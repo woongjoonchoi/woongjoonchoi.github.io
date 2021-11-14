@@ -9,6 +9,9 @@ main:
   - title: "Tags"
     url: /tags/
   - title : "CV"
-    url : https://drive.google.com/file/d/1FMUdAxekmAqgj1O2T_sMIanzYCZCn660/view?usp=sharing
+    url :  /cv_woong
+  - title : "CV_KR"
+    url :  /cv_woong_kr
+
   # - title: "Sitemap"
   #   url: /sitemap/
