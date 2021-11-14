@@ -1,5 +1,6 @@
 ---
 pdf_file : "/assets/cv_woong.pdf"
+# layout : cv_kr
 permalink : /cv_woong
 ---
 

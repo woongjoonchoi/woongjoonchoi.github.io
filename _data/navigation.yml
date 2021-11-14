@@ -9,9 +9,9 @@ main:
   - title: "Tags"
     url: /tags/
   - title : "CV"
-    url :  /cv_woong
+    url :  "https://github.com/woongjoonchoi/woongjoonchoi.github.io/blob/main/assets/cv_woong.pdf"
   - title : "CV_KR"
-    url :  /cv_woong_kr
+    url :  "https://github.com/woongjoonchoi/woongjoonchoi.github.io/blob/main/assets/cv_woong_한국어.pdf"
 
   # - title: "Sitemap"
   #   url: /sitemap/
