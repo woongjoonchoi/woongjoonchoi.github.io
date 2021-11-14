@@ -1,5 +1,6 @@
 ---
 pdf_file : "/assets/cv_woong.pdf"
+layout : default
 permalink : /cv_woong/
 ---
 
