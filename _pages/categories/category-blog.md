@@ -1,7 +1,7 @@
 ---
 title: "Blog"
 layout: archive
-permalink: categories/Blog/jekyll
+permalink: categories/Blog jekyll
 author_profile: true
 sidebar_main: true
 ---
