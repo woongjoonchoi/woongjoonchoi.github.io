@@ -7,7 +7,7 @@ title : Move Blog to Jekyll
 excerpt: "Blog를 tistory에서 Jekyll로 옮긴 이유"
 
 categories:
-  - Blog
+  - Blog/jekyll
 tags:
   - [Blog, jekyll, Github, Git]
 
