@@ -110,7 +110,7 @@ author:
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: oongjoon10@gmail.com
+      url: "mailto:oongjoon10@gmail.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://sites.google.com/view/woognjunchoiai/%ED%99%88"
