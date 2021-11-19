@@ -1,2 +1,4 @@
 # woongjoonai
-ddss
+
+
+This is woongjoon choi's blog
