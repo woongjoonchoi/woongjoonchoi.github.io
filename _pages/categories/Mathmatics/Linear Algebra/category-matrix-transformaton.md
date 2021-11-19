@@ -1,7 +1,7 @@
 ---
 title: "Matrix Transform"
 layout: archive
-permalink: categories/Mathmatics/Linear Algebra
+permalink: categories/Mathmatics/Linear_Algebra
 author_profile: true
 sidebar_main: true
 ---

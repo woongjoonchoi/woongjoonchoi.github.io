@@ -1,6 +1,4 @@
-
 ---
-
 title : "Matrices in linear Algebra:operating on vectors"
 
 
@@ -14,7 +12,6 @@ tags:
 
 toc: true
 toc_sticky: true
-
 ---
 
 
