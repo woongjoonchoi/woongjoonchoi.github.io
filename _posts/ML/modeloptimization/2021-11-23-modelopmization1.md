@@ -1,3 +1,19 @@
+---
+title : "ModelOptimization Introduction"
+
+
+
+excerpt: "Boostcampai model optimziation 1"
+
+categories:
+  - ModelOptimization
+tags:
+  - [Machine Learning,Boostcourse,deep learning ]
+# classes : wide
+toc: true
+toc_sticky: true
+---
+
 이 자료는 필자가 만든 자료가 아닌 부스트코스 ai tech 2기 교육자료임을 명시합니다. 이 자료는 상업적으로 이용할 수 없습니다.
 
 
