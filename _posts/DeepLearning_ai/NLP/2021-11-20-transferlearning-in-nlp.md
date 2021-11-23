@@ -83,7 +83,7 @@ NLP에서 transferlearning은 여러 case로 나눌 수 있습니다.
 
 
 
-![image-20211120224140640](2021-11-20-transferlearning-in-nlp/image-20211120224140640.png)
+![image](https://user-images.githubusercontent.com/50165842/143018896-613bbdd5-47ea-4b5f-a614-b54fbdd1f4ca.png)
 
 
 

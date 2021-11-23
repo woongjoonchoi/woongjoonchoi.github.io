@@ -1,4 +1,4 @@
 # woongjoonai
 
 
-This is woongjoon choi's blog
+This is woongjoon choi's blog. HAHAH
