@@ -9,7 +9,7 @@ categories:
   - DeepLearningainlp qa
 tags:
   - [Machine Learning,Coursera,deep learning , nlp]
-
+classes : wide
 toc: true
 toc_sticky: true
 ---

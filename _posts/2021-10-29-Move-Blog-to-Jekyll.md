@@ -10,7 +10,7 @@ categories:
   - Blog Jekyll
 tags:
   - [Blog, jekyll, Github, Git]
-
+classes : wide
 toc: true
 toc_sticky: true
 ---

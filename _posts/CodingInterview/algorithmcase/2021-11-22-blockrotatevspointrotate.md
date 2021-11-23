@@ -10,7 +10,7 @@ categories:
   - Codingtechnique
 tags:
   - [Algorithm,CodingTest,CodingInterview,technique]
-
+classes : wide
 toc: true
 toc_sticky: true
 ---
