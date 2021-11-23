@@ -9,7 +9,7 @@ categories:
   - Matrix Transformation
 tags:
   - [Mathmathics,Machine Learning,Coursera,Linear algebra , matrix,vectors]
-classes : wide
+# classes : wide
 toc: true
 toc_sticky: true
 ---

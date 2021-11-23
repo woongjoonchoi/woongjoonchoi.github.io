@@ -9,9 +9,9 @@ categories:
   - Handsonmachinelearning
 tags:
   - [Machine Learning,Handsonmachinelearning,orelly]
-classes : wide
+# classes : wide
 toc: true
-toc_sticky: false
+toc_sticky: true
 ---
 
 
