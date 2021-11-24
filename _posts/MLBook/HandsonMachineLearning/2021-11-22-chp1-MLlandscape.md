@@ -140,33 +140,26 @@ Supervised Learning은 ***<u>data가 주어지고 , target(label)이라는 desir
 
 > Clustering
 >
-> ​	K-means
->
-> ​	DBSCAN
->
-> ​	HCA
+> - ​	K-means
+> - ​	DBSCAN
+> - ​	HCA
 >
 > Anomaly detection and novelty detection
 >
-> ​	One-class SVM
->
-> ​	Isolation Forest
+> - ​	One-class SVM
+> - ​	Isolation Forest
 >
 > Visaulization and dimensionality  reduction
 >
-> ​	PCA
->
-> ​	Kernel PCA
->
-> ​	Locally LInear Embedding
->
-> ​	t-Distributed Stochastic Neighbor Embedding(t-SNE)
+> - ​	PCA
+> - ​	Kernel PCA
+> - ​	Locally LInear Embedding
+> - ​	t-Distributed Stochastic Neighbor Embedding(t-SNE)
 >
 > Association rule learning
 >
-> ​	Apriori
->
-> ​	Eclat
+> - ​	Apriori
+> - ​	Eclat
 
 필자는 여기서 Visualizatoin and dimensionality reduction 에 흥미가 있습니다.
 
