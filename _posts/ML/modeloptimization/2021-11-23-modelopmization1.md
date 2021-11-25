@@ -173,3 +173,10 @@ pre-defined된 rule이 tf-lite에는 200개가 있다고 합니다. 제가 정�
 ![image](https://user-images.githubusercontent.com/50165842/143059792-5239b4a7-7077-4d32-9459-86656782ce54.png)
 
 software 2.0(AutoML)로 좋은 graph fusion을 찾아내고자 하는 시도가 있습니다. Compile의 경우 성과가 있지만, 앞에서 보았던 문제점들이 있습니다.
+
+
+
+![image](https://user-images.githubusercontent.com/50165842/143318100-a2b0b085-1a80-4b1e-8617-717463a9770a.png)
+
+이상입니다.
+
