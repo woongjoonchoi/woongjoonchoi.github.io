@@ -139,7 +139,7 @@ GPR의 문제점으로는
 
 ​	
 
-$$ P(f \rvert\labmda) $$ 를 구하는 대신에 $$P(\labmda\lvert f)   ,P(\lambda)$$ 를 구하는 것을 TPR이라고 합니다.
+$$ P(f \rvert\lamda) $$ 를 구하는 대신에 $$P(\lamda\lvert f)   ,P(\lambda)$$ 를 구하는 것을 TPR이라고 합니다.
 
 TPE를 통한 계산방법 
 
