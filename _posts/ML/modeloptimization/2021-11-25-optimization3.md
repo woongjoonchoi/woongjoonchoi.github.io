@@ -139,7 +139,7 @@ GPR의 문제점으로는
 
 ​	
 
-$$ P(f \rvert\lamda) $$ 를 구하는 대신에 $$P(\lamda\lvert f)   ,P(\lambda)$$ 를 구하는 것을 TPR이라고 합니다.
+$$ P(f \rvert\lambda) $$ 를 구하는 대신에 $$P(\lambda\lvert f)   ,P(\lambda)$$ 를 구하는 것을 TPR이라고 합니다.
 
 TPE를 통한 계산방법 
 
@@ -155,9 +155,7 @@ TPE를 통한 계산방법
 
 #### EI 증명
 
-![image-20211125115837797](2021-11-25-optimization3/image-20211125115837797.png)
-
-
+![image](https://user-images.githubusercontent.com/50165842/143382794-5031c29d-734c-498b-bece-4dd2e0887e2a.png)
 
 이를 직관적으로보면 l(x) 가 높은 곳을 선호하되 , g(x) 가 낮은곳도 찾아보자는 의미라 볼 수 있습니다.
 
@@ -165,9 +163,7 @@ TPE를 통한 계산방법
 
 ### 문제점
 
-![image-20211125120354984](2021-11-25-optimization3/image-20211125120354984.png)
-
-
+![image](https://user-images.githubusercontent.com/50165842/143382850-076953bf-fd12-4600-b554-ab9ebae09abe.png)
 
 저의 경우 간단한 모델을 fine-tuning 하는 경우가 대부분이라 30~40분이면 끝나는데 , 엄청나게 큰 모델의 경우 training 하는데  3~4일 정도 걸릴 수 있기에 이를 몇백번 반복하게 되면 시간이 굉장히 오래 걸리게 됩니다.
 
