@@ -91,13 +91,13 @@ Regression task란 어떤  input이 주어졌을 때 output을 최대한 잘 예
 
 X,Y를 train 라 하고 $$X_{\displaystyle *}$$  $$Y_{\displaystyle *}$$ 를 test라 하겠습니다.
 
-우리가 알고자 하는 것은 $$Y^{\displaystyle *}$$ 입니다.  Gaussian Proceess Regression을 사용하게된 motiviation은 X,Y ,  $$X_{\displaystyle *}$$가 positive 이든 negative이든 어떠한 상관관계가 있지 않을까 라는 생각에 문제를 GPR을 통해 해결하고자 한 것입니다.   X,Y ,  $$X_{`\displaystyle `*}$$ 와  $$Y^{`\displaystyle `*}$$의 연관관계는 커널함수 K로 표현하게 됩니다.
+우리가 알고자 하는 것은 $$Y_{\displaystyle *}$$ 입니다.  Gaussian Proceess Regression을 사용하게된 motiviation은 X,Y ,  $$X_{\displaystyle *}$$가 positive 이든 negative이든 어떠한 상관관계가 있지 않을까 라는 생각에 문제를 GPR을 통해 해결하고자 한 것입니다.   X,Y ,  $$X_{\displaystyle *}$$ 와  $$Y^{\displaystyle *}$$의 연관관계는 커널함수 K로 표현하게 됩니다.
 
 이 때 , 이 f라는 것을 X,Y에 대한 multivariate Gaussian Joint Distribution 라 정의합니다.
 
 따라서 , 이에 대한 확률분포(mean, covraiance)를 구할 수 있습니다.
 
-예를들어 , 알고 있는 point가 50개이고 , $$f_{`\displaystyle `*}$$ 를 구하고자 할 때 , $$K(X,X)$$ 는 $$ 50\times50 $$ 의 shape이고 , $$K(X,X_*) $$는 $$ 50\times 1$$ 의 형태가 될 것입니다. $$K(X_*,X) $$ 는 $$1\times50$$의 shape이고 ,   $$K(X_*,X_*) $$ 의 $$1\times1$$의 형태가 될 것입니다.
+예를들어 , 알고 있는 point가 50개이고 , $$f_{\displaystyle *}$$ 를 구하고자 할 때 , $$K(X,X)$$ 는 $$ 50\times50 $$ 의 shape이고 , $$K(X,X_*) $$는 $$ 50\times 1$$ 의 형태가 될 것입니다. $$K(X_*,X) $$ 는 $$1\times50$$의 shape이고 ,   $$K(X_*,X_*) $$ 의 $$1\times1$$의 형태가 될 것입니다.
 
 ![image](https://user-images.githubusercontent.com/50165842/143366902-ea731902-d56e-4fd9-8d5c-9e11b349c2cc.png)
 
