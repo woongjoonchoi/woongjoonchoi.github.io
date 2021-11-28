@@ -33,7 +33,7 @@ VR은 Virtual Reality의 약자입니다. 한국어로 '가상현실'이라고 �
 
 위 두개가 한국에서 유명한 'VR' 플랫폼의 예시가 될 수 있겠습니다. 
 
-![가상 현실 | San Jose Public Library](https://www.sjpl.org/sites/default/files/styles/hero_image/public/2019-09/virtual-reality-1400.jpg?h=1dd3d00d&itok=YlY2OAn9)
+![여자는 가상 현실 헤드 기어를 통해 은하계를 탐험합니다.](https://www.sjpl.org/sites/default/files/styles/hero_image/public/2019-09/virtual-reality-1400.jpg?h=1dd3d00d&itok=YlY2OAn9)
 
 VR은 컴퓨터 테크놀로지를 이용해서 ***<u>현실과는 다른 '시뮬레이션' 환경을 만드는 것</u>***을 의미합니다. 현재 세계의 표준적인 VR시스템은, ***<u>VR해드셋</u>***과  multi project environment를 이용하여 실제같은 소리와 화면을 만들어냅니다.VR헤드셋은 interface를 제공하는데 이는 단순히 2D로 화면을 보는게 아니라 3D환경에 '여러분이 들어가게' 합니다. 현재, 수많은 기업들이 VR 헤드셋을 만들고 있습니다.
 
