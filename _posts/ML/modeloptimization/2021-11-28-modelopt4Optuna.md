@@ -227,7 +227,7 @@ m2 = trial.suggest_categorical(
 
 이렇게 conditional 하게 hyperparmeter를 configuration 할 수 있습니다.
 
-#### module안보단 architecture에 집중하자.
+### module안보단 architecture에 집중하자.
 
 ![image](https://user-images.githubusercontent.com/50165842/143771574-3c14d2c3-1e34-4485-9a96-9e15a6f638fb.png)
 
@@ -383,3 +383,55 @@ repeat이라는 개념은 mobilenetv2에서 나왔다고 합니다. 훈련된 �
 위에 있던 module_generator 부분을 떼어온것인데 이제 argument를 넘겨주면 module을 생성합니다. 
 
 layers 에 모듈들을 append 해주면 모델이 차곡차곡 쌓아져서 생성됩니다. 그리고 , out_channle을 다음 in_channl로 바꿔주고 iterative 하게 반복을 해줍니다.
+
+##  Module 구현체
+
+### AbstactClass(module generaotr)
+
+![image](https://user-images.githubusercontent.com/50165842/143773218-d2790084-a701-44f5-9fe4-64288ade678f.png)
+
+ModuleAbstract 클래스를 정의해보도록 하겠습니다. 최소한의 기능으로 out_channel을 결정해주기 위해서 out_channel과 callable 정의만 해주면 됩니다.
+
+
+
+### Module 추가 과정
+
+![image](https://user-images.githubusercontent.com/50165842/143773588-eedf911e-f5db-45b0-9de9-a918949574c6.png)
+
+여기서 제시된 inverted residual block을 module로 추가해보도록 하겠습니다.
+
+```python
+class InvertedResidualv2Generator(GeneratorAbstract):
+    """Bottleneck block generator."""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    @property
+    def out_channel(self) -> int:
+        """Get out channel size."""
+        return self._get_divisible_channel(self.args[0] * self.width_multiply)
+
+    @property
+    def base_module(self) -> nn.Module:
+        """Returns module class from src.common_modules based on the class name."""
+        return getattr(__import__("src.modules", fromlist=[""]), self.name)
+
+    def __call__(self, repeat: int = 1):
+        """call method.
+        InvertedResidualv2 args consists,
+        repeat(=n), [c, t, s] // note original notation from paper is [t, c, n, s]
+        """
+        module = []
+        _, t, s = self.args  # c is equivalent as self.out_channel
+        inp, oup = self.in_channel, self.out_channel
+        for i in range(repeat):
+            stride = s if i == 0 else 1
+            module.append(
+                self.base_module(inp=inp, oup=oup, expand_ratio=t, stride=stride)
+            )
+            inp = oup
+        return self._get_module(module)
+```
+
+repeat 만큼 block을 module 에 append 해준후 get_module로 넘겨줍니다.
