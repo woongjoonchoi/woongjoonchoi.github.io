@@ -109,6 +109,6 @@ MR은 real 과 virtual을 병합해서 완전히 새로운 환경을 만들어�
 
 디바이스는 AR,XR,MR 각각 다른 device를 사용하기 보다는 이 3가지의 현실을 모두 포괄할 수 있는 XR device가 요구되어지고 있습니다.
 
-![Qualcomm Collaborates with 15 Global Operators to Deliver XR Viewers |  Qualcomm](https://www.qualcomm.com/sites/ember/files/styles/optimize/public/press-releases/managed-images/asset_1_xr_viewer_devices.jpg?itok=uoMV10_W)
+![Qualcomm® XR Optimized Certification Program helps to make XR Viewers a 2020 reality](https://www.qualcomm.com/sites/ember/files/styles/optimize/public/press-releases/managed-images/asset_2.1_xr_viewers_logo_operators_smartphone_oems.jpg?itok=er51_WD9)
 
 퀄컴은 'XR viewer' 라는 것을 5g 통신과 더불어 여러 통신사에서 출시할 예정이라고 합니다. 앞으로 , 이런 디바이스에 대한 경쟁은 더욱 더 치열해질 거 같습니다.
