@@ -26,15 +26,15 @@ Example : Cat vs Dog
 
 Dev/test에서 이러한 지표가 나왔습니다. 자연스럽게 A를 선택하게 됩니다. 하지만, 현실의 문제는 그렇게 간단하지 않습니다. 만약에, A 알고리즘은  음란물을 검출할 수 있습니다. 하지만, B 알고리즘은 음란물을 검출하지 않습니다. 이럴 경우, 다시 B를 선택하게 됩니다.  기존 metric은 다음과 같습니다.
 
-$$ Error = {1 \over m_dev} \sum_{i=1}^m_dev L( \widehat{y^(i)} \neq y^(i) ) $$ 
+$$ Error = {1 \over {m_{dev}}} \sum_{i=1}^{m_{dev}} L( \widehat{y}^{(i)} \neq y^{(i)} ) $$ 
 
 위 metric으로는 음란물과 개, 고양이 사진에 같은 가중치를 부여합니다. 따라서, B라는 알고리즘이 더 적합함에도 B의 metric은 best metric이 될 수 없습니다. 알고리즘을 다음과 같이 수정해보도록 하겠습니다.
 
 
 
-$$ Error = {1 \over \Sigma w} \sum_{i=1}^m_dev w^(i) L( \widehat{y^(i)} \neq y^(i) ) $$ 
+$$ Error = {1 \over \Sigma w} \sum_{i=1}^{m_{dev}} w^{(i)} L( \widehat{y}^{(i)} \neq y^{(i)} ) $$ 
 
-$$ w^(i) =  \begin{cases} 1  & \mbox{if} x^(i) \mobx{non-pornographic } \\ 10, & \mbox{if }x^(i)\mbox{pornographic} \end{cases} $$
+$$ w^{(i)} =  \begin{cases} 1 ,  & \mbox{if  }\quad x^{(i)}\quad\mbox{nonpornographic } \\ 10, & \mbox{if  }\quad x^{(i)}\quad \mbox{	pornographic} \end{cases} $$
 
 이렇게 metric을 재정의하면 정확률과 음란물 검출을 전부 고려한 metric이 됩니다.
 
