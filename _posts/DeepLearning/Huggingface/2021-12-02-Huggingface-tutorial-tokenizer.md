@@ -94,11 +94,11 @@ UNKNOWN WORDS에 대해서 똑같은 representation을 가지므로 사람의 �
 
 
 
-dd
+
 
 ## Character-level
 
-ddd .
+문자 단위로 tokenizing을 하는 tokenizer입니다.  장점으로는 vocabulary size가 작다는 것에 있습니다. 
 
 
 
