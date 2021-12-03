@@ -116,13 +116,21 @@ out-of-vocabulary issue가 상대적으로 덜 발생하게 됩니다.
 
 ### poor representation
 
-이에 따른 단점도 존재합니다. 우선, single character의 meaningful representation을 학습하는 것이 매우 어렵습니다. 예를 들면 , 'a'라는 character의 representation을 학습하는 것보다 'apple'이라는 단어의 representation을 학습하기가 더 쉽습니다. 또 다른 예로는, 위 사진에서 'l'이  많은 정보를 보유한다고 가정하는 것은 모든 상황에 대해서 사실이 아닐 수 있습니다. 한자 같은 표의 문자의 경우 문자 자체가 많은 의미를 담는 경우가 많습니다. 하지만,  로마자, 한글, 영어 같은 표음문자는 각 문자 자체가 많은 의미를 담고 있지는 않습니다.
+이에 따른 단점도 존재합니다. 우선, ***<u>single character의 meaningful representation을 학습하는 것이 매우 어렵습니다</u>***. 예를 들면 , 'a'라는 character의 representation을 학습하는 것보다 'apple'이라는 단어의 representation을 학습하기가 더 쉽습니다. 또 다른 예로는, 위 사진에서 'l'이  많은 정보를 보유한다고 가정하는 것은 모든 상황에 대해서 사실이 아닐 수 있습니다. 한자 같은 표의 문자의 경우 문자 자체가 많은 의미를 담는 경우가 많습니다. 하지만,  로마자, 한글, 영어 같은 표음문자는 각 문자 자체가 많은 의미를 담고 있지는 않습니다.
 
 ### large size sequence
 
 ![image](https://user-images.githubusercontent.com/50165842/144560651-caa6d214-539c-432f-af95-47ab4bd65d0b.png)
 
-토큰의 숫자가 많이 반환되기 때문에 , sequence의 길이가 길어집니다.대부분 transformer 계열들은 sequence의  length가 제한이 되었기에 truncation 이되고 token화 된 문장은 원래 문장의 정보를 다 담지 못하게 됩니다.
+토큰의 숫자가 많이 반환되기 때문에, sequence의 길이가 길어집니다. 대부분 transformer 계열들은 ***<u>sequence의  length가 제한</u>***이 되었기에 truncation 이 되고 ***<u>token 화 된 문장은 원래 문장의 정보를 다 담지 못하게 됩니다</u>***.
+
+
+
+## Subword Tokenizer
+
+
+
+## BPE
 
 
 
