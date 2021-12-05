@@ -15,7 +15,7 @@ toc_sticky: true
 ---
 ## Flask:Sentiment Classifier tutorial
 
-ODQA system을 만들어서 실제로 배포를 하려고 합니다. 하지만, 한 번도 배포를 해본 적이 없기에 우선 web으로 배포를 하려고 합니다. Flask로 deep learning 모델을 배포하는 과정에 대한 배경지식이 없기에 top-down 식으로 빠르게 high-level view를 생성하기 위해서 간단한 sentiment classifier tutorial을 진행했습니다. 이를 이용해서 odqa 시스템 배포로 확장해 나갈 생각입니다.
+ODQA system을 만들어서 실제로 배포를 하려고 합니다. 하지만, 한 번도 배포를 해본 적이 없기에 우선 web으로 배포를 시도해볼려 합니다. Flask로 deep learning 모델을 배포하는 과정에 대한 배경지식이 없기에 top-down 식으로 빠르게 high-level view를 생성하기 위해서 간단한 sentiment classifier tutorial을 진행했습니다. 이를 이용해서 odqa 시스템 배포로 확장해 나갈 생각입니다.
 
 
 
