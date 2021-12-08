@@ -46,6 +46,10 @@ if __name__ == "__main__":
 
 `app.run()` line을 실행하게 되면 local server에 site가 빌드가 됩니다. `@app.route("/predict")` 를 typing하고 그 아래에 predict 라는 함수를 정의하면 root/predict 라는 경로로 들어가게 되면 predict라는 함수를 실행하게 됩니다.
 
+
+
+
+
 ## Predict route
 
 ![image](https://user-images.githubusercontent.com/50165842/144747174-1a0a5da4-2d4b-4f65-96d5-6b39ddc90fd4.png)
