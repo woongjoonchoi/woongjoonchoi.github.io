@@ -156,7 +156,7 @@ Subword 토크나이저는 단어의 start 토큰인지 end 토큰인지 구별�
 
 ![image](https://user-images.githubusercontent.com/50165842/145217887-2de741ba-cf74-4152-8ad3-37c8834cb225.png)
 
-Bert 외에도 다양한 subword tokenizer를 사용하는 PLM들이 있습니다. Subword 토크나이저는 vocab의 size를 줄여주고 , prefix와 suffix를 사용해서 
+Bert 외에도 다양한 subword tokenizer를 사용하는 PLM들이 있습니다. ***<u>Subword 토크나이저는 vocab의 size를 줄여주고 , prefix와 suffix를 사용해서 어느 단어의 토큰인지 명시를 해줍니다.</u>***
 
 
 
