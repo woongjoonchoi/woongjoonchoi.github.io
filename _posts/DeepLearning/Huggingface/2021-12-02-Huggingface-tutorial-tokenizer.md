@@ -68,7 +68,7 @@ dog, dogs라는 단어가 있습니다. 이 두 단어는 비슷한 의미를 �
 
 단어장에 malapromisms라는 단어가 없기에 정보의 손실(loss of information) 이 발생합니다. Representation 능력이 떨어진다고 볼 수 있습니다.![image](https://user-images.githubusercontent.com/50165842/144540337-88941576-3459-4e24-8f8f-792999703c62.png)
 
-UNKNOWN WORDS에 대해서 똑같은 representation을 가지므로 사람의 기준에서 봤을 때는 다르지만, input_ids로 변환을 한 경우 같은 표현을 가지는 여러 문장이 생길 수 있습니다. 다른 의미를 가지는 문장에 대해서 같은 representation을 가지므로 정보의 손실이 발생한다고 이해하시면 좋을 듯 합니다.
+UNKNOWN WORDS는 동일한 표현을 가지고 있으며 인간의 기준과 다릅니다. 그러나 input_ids로 변환하면 같은 표현을 가진 여러 개의 다른 의미 문장이 나타날 수 있습니다. 의미가 다른 문장이 같은 표현을 하기 때문에 정보 손실이 발생한다는 점을 이해하는 것이 좋을 것입니다. 
 
 ### punctation representation
 
@@ -122,7 +122,7 @@ out-of-vocabulary issue가 상대적으로 덜 발생하게 됩니다.
 
 ![image](https://user-images.githubusercontent.com/50165842/144560651-caa6d214-539c-432f-af95-47ab4bd65d0b.png)
 
-토큰의 숫자가 많이 반환되기 때문에, sequence의 길이가 길어집니다. 대부분 transformer 계열들은 ***<u>sequence의  length가 제한</u>***이 되었기에 truncation 이 되고 ***<u>token 화 된 문장은 원래 문장의 정보를 다 담지 못하게 됩니다</u>***.
+많은 토큰이 반환되기 때문에, sequence의 길이가 길어집니다. 대부분 transformer 계열들은 ***<u>sequence의  length가 제한</u>***이 되었기에 truncation 이 되고 ***<u>token 화 된 문장은 원래 문장의 정보를 다 담지 못하게 됩니다</u>***.
 
 
 
