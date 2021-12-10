@@ -13,7 +13,7 @@ tags:
 toc: true
 toc_sticky: true
 ---
-
+This article was expressed in my own words after listening to the DLS batch norm lecture.
 ## Input Normalization 과 유사점
 
 이전에 보았던 Input Normalization은 Input 의 range(scale)를 조정해줘서  , weight의 update가 균일하게 끔 되게 해주었습니다. 따라서, 상대적으로 수렴이 빠르게 되도록 해주는 역할을 하였습니다.
@@ -50,5 +50,5 @@ $$ z_{norm}$$ 를 그대로 사용하게 된다면 분포가 N(0,1)을 따르게
 
 $$ \widehat{z} = \alpha z_{norm} + \beta $$  
 
-로 작성할 수 있습니다. 이렇게 작성을 하게 된다면  $$ \alpha =  {\sqrt {\Sigma^2 + \epsilon} , \beta = \mu $$ 가되는데 이를 통해 평균,분산을 원하는 분포를 따르도록  $$ \alpha , \beta $$를 learnable parameters로 사용하게 됩니다 .
+로 작성할 수 있습니다. 이렇게 작성을 하게 된다면  $$ \alpha =  {\sqrt {\Sigma^2 + \epsilon} }, \beta = \mu $$ 가되는데 이를 통해 평균,분산을 원하는 분포를 따르도록  $$ \alpha , \beta $$를 learnable parameters로 사용하게 됩니다 .
 
