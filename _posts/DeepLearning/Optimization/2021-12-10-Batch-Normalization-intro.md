@@ -36,7 +36,7 @@ $$ \mu = \frac {\Sigma z^{(2)}_{i}} {m} $$
 
 $$ \sigma = \frac {(\Sigma z^{(2)}_{i} - \mu )^2} {m} $$
 
-$$ z_{norm}^{(i)}  =  \frac {(\Sigma z^{(2)}_{i} - \sigma )}{\sqrt {\mu} } $$
+$$ z_{norm}^{(i)}  =  \frac {(\Sigma z^{(2)}_{i} - \mu )}{\sqrt {\sigma} } $$
 
 하지만 , 이렇게 하면  $$\sigma$$ 가 0이 될 경우 계산을 할 수 없습니다. 따라서, 아래와 같이 계산을 합니다.
 
@@ -50,5 +50,5 @@ $$ z_{norm}$$ 를 그대로 사용하게 된다면 분포가 N(0,1)을 따르게
 
 $$ \widehat{z} = \alpha z_{norm} + \beta $$  
 
-로 작성할 수 있습니다. 이렇게 작성을 하게 된다면  $$ \alpha =  {\sqrt {\Sigma^2 + \epsilon} }, \beta = \mu $$ 가되는데 이를 통해 평균,분산을 원하는 분포를 따르도록  $$ \alpha , \beta $$를 learnable parameters로 사용하게 됩니다 .
+로 작성할 수 있습니다. 이렇게 작성을 하게 된다면  $$ \alpha =  {\sqrt {\sigma^2 + \epsilon} }, \beta = \mu $$ 가되는데 이를 통해 평균,분산을 원하는 분포를 따르도록  $$ \alpha , \beta $$를 learnable parameters로 사용하게 됩니다 .
 
