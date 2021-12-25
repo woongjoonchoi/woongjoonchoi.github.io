@@ -23,7 +23,7 @@ name                     : "Choi Woongjoon"
 description              : "AMazing developer"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : woongjoonchoi/Comments # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "woongjoonchoi/Comments" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
@@ -41,10 +41,10 @@ comments:
     num_posts            : # 5 (default)
     colorscheme          : # "light" (default), "dark"
   utterances:
-    repo : "woongjoonchoi/Comments"
+    # repo : "woongjoonchoi/Comments"
     theme                : "github-light" # "github-light" (default), "github-dark"
     issue_term           : "pathname" # "pathname" (default)
-    label : ✨comments✨
+    # label : Comment
   giscus:
     repo_id              : # Shown during giscus setup at https://giscus.app
     category_name        : # Full text name of the category
