@@ -1,5 +1,5 @@
 ---
-title : "Weighted Average and Momentum"
+title : "Exponentially Weighted Average and Momentum"
 
 
 
