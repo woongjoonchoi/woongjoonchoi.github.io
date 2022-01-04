@@ -170,3 +170,13 @@ turbulent drag(자유낙하 운동)가 작용할 경우 ![ v(t) = \sqrt{ \frac{2
 
 gradient descent을 이용해서 momentum과 같이 최신 데이터를 반영하게 할 수 있습니다. 예를들어 ,$$\beta$$ 가 0.99 인 경우 100개의 data에 대한 gradient를 메모리에 올려놓으면 됩니다.  하지만, momentum은 코드 1줄로 이를 해결할 수 있습니다. 통계학이 필수적인것은 아니지만, 알고리즘을 고도화 하는데 있어서 좋은 도구가 될 수 있다고 느꼈습니다.
 
+## Reference
+
+[1] [Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization - 홈 | Coursera](https://www.coursera.org/learn/deep-neural-network/home/welcome)
+
+[2] [deeplearningbook optimization](https://www.deeplearningbook.org/contents/optimization.html)
+
+[3] [Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems: Géron, Aurélien: 9781492032649: Amazon.com: Books](https://www.amazon.com/Hands-Machine-Learning-Scikit-Learn-TensorFlow/dp/1492032646)
+
+[4] [Drag (physics) - Wikipedia](https://en.wikipedia.org/wiki/Drag_(physics))
+
