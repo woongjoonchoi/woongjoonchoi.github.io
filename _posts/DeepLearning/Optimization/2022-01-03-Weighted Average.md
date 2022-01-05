@@ -15,6 +15,8 @@ toc_sticky: true
 ---
 2021-01-04 Intro , Exponentially Weighted Average 내용추가
 
+2021-01-05 Moving Average omitted after k term 내용 추가
+
 이번 글은  Exponentially Weighted Average , Momentum을 다루어 볼려 합니다. Exponentially Weighted Average는 각 step에 대한 Gradient 만을 가지고   stochastic gradient가 가지는 문제점을 해결할 수 있는 solution을 제공해줍니다.이번에도 복습한번 하고 3일후 Closed Book으로 작성하였습니다.
 
 ## Exponentially  Weighted Average
@@ -58,13 +60,41 @@ $$ V_n =  {\beta}^n (1-\beta) \theta_0 +{\beta}^{n-1}  (1 - \beta ) \theta_{1} +
 
 어떠한 기하급수적으로 감소하는 그래프가 있습니다. 여기에 날씨의 값을 element wise를 해서 곱해준 것들을 더해준게 바로 exponentially weighted average입니다. 
 
-그리고 , Andrew 교수님은 대략적으로 $$1 \over {1-\beta} $$ 개수 만큼을 반영하는 average 것에 대한 이유를 설명해주시는데 , 
+그리고 , Andrew 교수님은 대략적으로 $$1 \over {1-\beta} $$ 개수 만큼을 반영하는 average 것에 대한 이유를 설명해주시는데 , $$ {(1 - \epsilon)}^{1 \over \epsilon}  =  {1 \over e } $$ 이기 때문에 $$ {1-\beta} $$ 만큼의 최신 데이터를 반영한다고 합니다.
+ 등비급수로도 계산을 해보았는데 ,  대략 0.7의 비율이 나오고, 교수님께서는 rule of thumb이라 하는데 , 일단은 그냥 받아들이기로 했습니다.
 
-$$ (1 - \epsilon) ^{1 \over \epsilon} = {1 \over e } $$ 이기 때문에 $$ {1-\beta} $$ 만큼의 최신 데이터를 반영한다고 합니다. 등비급수로도 계산을 해보았는데 ,  대략 0.7의 비율이 나오고, 교수님께서는 rule of thumb이라 하는데 , 일단은 그냥 받아들이기로 했습니다.
+계산을 할려면 ,$$ \sum_{k=1}^{10} =  { (1- \beta) \beta^{k-1}} $$ 식을 계산하게 됩니다.  최신의 10개의 온도의 데이터 반영 비율은 약 0.7입니다. 이는 $$ n \to \infty$$ 가 되도 , 마찬가지 입니다. rule of thumb이라는 표현을 쓰신게 경험적으로 $$1 \over {1-\beta} $$ 개수 만큼의 data를 반영했기에 그렇게 표현 하신거 같습니다 .
+전체 날씨 개수가 무한하다고 할 때 , 단순히 반영비율이 0.7이 아닌 원하는 반영 비율을 구할 수 도 있습니다.
 
-계산을 할려면 ,$$ \sum_{k=1}^{10} =  { (1- \beta) \beta^{k-1}} $$ 식을 계산하게 됩니다.  최신의 10개의 온도의 데이터 반영 비율은 약 0.7입니다. 이는 $$ n \to \infty$$ 가 되도 , 마찬가지 입니다. rule of thumb이라는 표현을 쓰신게 경험적으로 $$1 \over {1-\beta} $$ 개수 만큼의 data를 반영했기에 그렇게 표현 하신거 같습니다
+  avearge 가 1 ..  k 번째 항의 avearge임을 보인다고 가정하겠습니다.
+
+$$ \alpha [ {(1-\alpha) }^k  + {(1-\alpha) }^{k+1} + {(1-\alpha) }^{k +2} ...  ] $$
+
+위 항들은 반영되지 않을 것입니다.
+
+$$ \alpha {(1-\alpha) }^k  [1  + {(1-\alpha) }^1 + {(1-\alpha) }^2 ...  ]  $$
+
+위 항은  이와 같이 적을 수 있습니다. 
+
+$$ {weighted \ omitted \ by \ stopping \  after\  k \  terms \over \ total \ weight} $$
+
+$$ =  { \alpha [ {(1-\alpha) }^k  + {(1-\alpha) }^{k+1} + {(1-\alpha) }^{k +2} ...  ]  \over  {\alpha (1-\alpha) }^k  [1  + {(1-\alpha) }^1 + {(1-\alpha) }^2 ...  ]  }$$ 
+
+$$ =   { \alpha {(1-\alpha) }^k  \over {1 \over {1 - (1-\alpha )}} }$$
+
+$$ =  {(1-\alpha) }^k $$ 
 
 
+
+따라서 ,   전체 에서 얼마나 항이 제외되는지를 수식화 하면 위와 같이 나타낼 수 있습니다. 예를 들어 , k번째 까지 의 term이 99 퍼센트를 반영하게 해보도록 하겠습니다.
+$$ 0.01 = {(1-\alpha) }^k  $$ 
+$$ k =  {\ln (0.01)} \over {\ln (1-\alpha)} $$ 
+가 됩니다.   테일러 급수에 따르면 $$ \alpha \to 0 \ as \ N \to \inf $$ 이면 $$ \ln  { (1-alpha) }  \to  {- \alpha } $$ 가 된다고 합니다.  
+
+$$ k   \approx  { {\ln (0.01)} \over {- \alpha} }$$ 
+
+라는 관계식을 얻게 됩니다.  $$ \alpha = 0 .1$$ 일 때 ,  대략적으로 23개의 항으로 90퍼센트를 반영할 수 있게 됩니다.
+(설명이 정확하지 않은 부분이 있으시다면 메일이나 댓글 남겨주시길 바라겠습니다.)
 
 ## Gradient Descent Momentum
 
