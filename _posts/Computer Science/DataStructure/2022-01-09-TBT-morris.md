@@ -28,7 +28,7 @@ Recursive Algorithm을 사용하게 되면 python 기준 새로운 stackframe가
 
 만약, binary tree가 완벽한(perfect) binary tree라면 tree의 높이는$$O(\log n)$$ 이 나올 것입니다. 따라서, 최소 $$ O(\log n)$$ 의 stackframe이 생성이 될것입니다.
 
-![Time Complexity of Binary Search Tree | Gate Vidyalay](https://www.gatevidyalay.com/wp-content/uploads/2018/08/Time-Complexity-of-Binary-Search-Tree-Worst-Case.png)
+![Creating a right skewed binary tree in C - Stack Overflow](https://i.stack.imgur.com/9w8b7.png)
 
 만약에 binary tree 가 치우쳐져(skewed) 있다면 , tree 의 높이는 $$ O(n)$$ 가 될 것입니다. 따라서 , stackframe은 최악의 경우(worst case) $$O(n) $$ 개수 만큼 생성 될 것입니다.  Stackframe 생성에 제한이 있는 environment 라면, 상당히 큰 이슈가 될 것입니다.
 
