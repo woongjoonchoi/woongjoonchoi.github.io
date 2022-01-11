@@ -54,11 +54,13 @@ $$Attention(Q,K,V) =  {softmax({{QK^T} \over {\sqrt{d_{keys}}}})   } \cdot V$$
 
 attention 수식에 대해서 좀 더 자세하게 코멘트를 달아보겠습니다.
 
+
+
 - Q는 $$[n_{queries}, d_{keys}]$$ 의 shape를 갖는 matrix입니다.
 - K는 $$[n_{keys} ,d_{keys}] $$ 의 shape를 갖는 matrix입니다.
-- V는 $$[n_{keys} , d{values}] $$ 의 shape를 갖는matrix입니다.
-- $$ QK^T $$ 의 shape은 $$[n_{queries} :n_{keys} ] $$ 입니다.  그리고 , softmax function의 output도 같은 shape을 가지게 됩니다. 그리고 , 모든 row가 sum이 1을 가지는 weighted sum의 형태입니다.  $$ QK^T$$ 의 shape은 $$[n_{queries} :d_{values} ] $$ 가 됩니다. 각 row가 query 1개에 대한 result라 봐도  됩니다.
-- scaling factor $$\sqrt{d_{keys}$$ 는 softmax 가 커지는 것을 방지하여 작은 graident 값을 계산해서 update할 수 있도록 해준다고 합니다.(왜 꼭 gradient의 크기를 낮춰야하는지는 잘 모르겠습니다.)
+- V는 $$[n_{keys} , d_{values}] $$ 의 shape를 갖는matrix입니다.
+- matrix $$QK^T$$ 의 shape은 $$[n_{queries} :n_{keys} ] $$ 입니다.  그리고 , softmax function의 output도 같은 shape을 가지게 됩니다. 그리고 , 모든 row가 sum이 1을 가지는 weighted sum의 형태입니다.  $$QK^T$$ 의 shape은 $$[n_{queries} :d_{values} ] $$ 가 됩니다. 각 row가 query 1개에 대한 result라 봐도  됩니다.
+- scaling factor $$\sqrt{d_{keys}}$$ 는 softmax 가 커지는 것을 방지하여 작은 graident 값을 계산해서 update할 수 있도록 해준다고 합니다.(왜 꼭 gradient의 크기를 낮춰야하는지는 잘 모르겠습니다.)
 - 실제로 , MaskedMultiheadAttention은 구현할 때 , decoder에 있는 각 self attention에서 아주 큰 negative 값을 더해주는 technique를 사용하는데 이는 꽤 유용합니다.
 
 그리고 , transformers에서 보면 encoder, decoder 파트가 있습니다. 여기에서 , encoder는 query, key ,value 가 모두 같은 input sentence 로부터 계산을 하게 됩니다.또한 , decoder 도 target sentence 로 query,key,value를 계산하게 됩니다. 하지만, decoder의 경우 $$ P(y_{t}|y_{<t}) $$ 를 계산해야 하기에  , 위에서 언급했듯이 , 아주 큰 negtaive 값을 이용해서 softmax 값을 계산할 때 뒤의 값들의 가중치를 0에 가깝게 만들어줍니다. 그리고 ,Decoder에서 MultiheadAttention Layer가 나오는데 , K,V는 encoder에서 만들어진 vector representation(dictionary) 를 사용하고 , Q는 maskedmulitheadattention에서 계산한 vector 를 사용합니다.
