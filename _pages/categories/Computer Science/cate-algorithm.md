@@ -1,11 +1,11 @@
 ---
 title: "Computer Science"
 layout: archive
-permalink: categories/DataStructure
+permalink: categories/Algorithm
 author_profile: true
 sidebar_main: true
 ---
 
 
-{% assign posts = site.categories['DataStructure' ] %}
+{% assign posts = site.categories['Algorithm' ] %}
 {% for post in posts %} {% include archive-single2.html type=page.entries_layout %} {% endfor %}
