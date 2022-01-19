@@ -1,3 +1,17 @@
+---
+title : "Git file state and convert to each other"
+
+excerpt: "git file state"
+
+categories:
+  - CI/CD
+tags:
+  - [SoftwareEngineering , VCS]
+# classes : wide
+toc: true
+toc_sticky: true
+---
+
 ## Git file state and convert to each other
 
 저는 여태까지 git의 파일 상태를 commit 된 상태 commit이 되지 않는 상태로만 구분을 해왔습니다. 그리고 , 실제로 version의 파일들을 그렇게 관리해왔습니다. 하지만, git 의 파일들은 세분화된 상태들로 존재합니다. 사실, commit이 된 파일, commit이되지 않는 파일 두 분류로 만 구분하여 VCS(Version Control System) 을 사용해도 문제가 없을 수 있습니다. 하지만, 좀 더 detail하게 안다면 VCS를 좀 더 상황에 맞게 잘 사용할 수 있을거라 확신합니다. 오늘은 Git Pro에서의 File state 내용을 공부하고 closed book으로 작성후 , 부족한 내용을 보완했습니다. File State에 대해 자세히 설명해보도록 하겠습니다. 
