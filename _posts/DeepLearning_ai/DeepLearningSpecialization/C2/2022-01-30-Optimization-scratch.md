@@ -6,9 +6,9 @@ title : "Optimization Assignment from scratch"
 excerpt: "DeepLearning.ai Dls Optimization "
 
 categories:
-  - DLS_C3
+  - DLS_C2
 tags:
-  - [Machine Learning,Coursera,deep learning ]
+  - [Machine Learning,Coursera,deep learning ,C2]
 # classes : wide
 toc: true
 toc_sticky: true
