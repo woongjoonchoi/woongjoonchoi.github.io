@@ -1,5 +1,5 @@
 ---
-title : "Convolution Neural Network : intution"
+title : "Convolution Neural Network : intuition"
 
 
 
@@ -188,7 +188,17 @@ Standford 강의를 듣다보면 , pooling 과 stride의 차이점에 대해서 
 
 여기서, 중요한 것은 pooling은 parameters가 없다는 것입니다. pooling의 operation에 필요한 것은 max, average function이므로 learnable parameters가 필요 없습니다. 
 
- 
+#  Why Convolution?
+
+글 서두에서 Convolution이 MLP 보다 parameters를 줄일 수 있다고 하였습니다. 그 이유와 Convolution을 사용하는 다른 이유를 자세히 알아보도록 하겠습니다. 
+
+## Parameter sharing
+
+Convolution은 activation map을 만드는데 모든 pixel에 대하여 같은 parameter를 사용하게 됩니다. 같은 parameter를 사용하므로 , 이미지의 다른 position에서도 같은 feature를 발견할 수 있게 됩니다. 예를 들면, 3 x 3 filter로 vertical edge를 detection을 한다고 했을때 , 이미지의 왼쪽과 이미지의 오른쪽의 vertical edge를 detection 하기 위해서 다른 parameter를 필요로 하지 않습니다.다시 말해서, Multilayer perceptron보다 더 적은 parameter로 같은 feature를 추출할 수 있게 됩니다. 
+
+## Sparse Connection
+
+Activation map은 Fully Connected Layer와 달리 각 pixel의 input의 모든 pixel과 연결이 되어있지 않습니다. 따라서, 이미지가 조금 손상이 되어도 조금 shift 되도 전체적인 feature를 추출하는데 큰 영향을 받지 않습니다. 이를 translation invariance를 잘 capture한다고 합니다. 
 
 # Reference
 
