@@ -1,9 +1,9 @@
 ---
-title : "What is Attention?Why softmax in hidden layer output?"
+title : "Convolution Neural Network : intution"
 
 
 
-excerpt: "Attention and Explicit Memory"
+excerpt: "Convolution Intuition"
 
 categories:
   - DLArchitecture
@@ -119,7 +119,7 @@ image의 외각에 어떤 pixel들을 붙이게 됩니다. 보통, 0을 padding�
 
 여태까지는 , filter를 1칸씩 만 이동을 했었는데 , 반드시 filter를 1칸씩 만 이동을 해야하는 것은 아닙니다. filter를 몇 칸 이동할지 정하는 것을 stride라고 합니다. 
 
-이 stride를 고려하게 된다면 , output 의 size는  $$ (\lfloor {{N+2p-f} \over S} \rfloor + 1 )(\lfloor {{N+2p-f} \over S }\rfloor + 1)$$ 가 됩니다. 
+이 stride를 고려하게 된다면 , output 의 size는  $$ (\lfloor {(N+2p-f) \over S} \rfloor + 1 )(\lfloor {(N+2p-f) \over S }\rfloor + 1)$$ 가 됩니다. 
 
 이를 말로 설명하자면, filter의 (0,0) position의 element와 dot-product를 하는 input pixel이 있는데, input pixel의 간격이 S가 되므로  S로 나누는 것과 같게 됩니다. 아까 설명했던 것처럼 양쪽 끝 구간을 포함해야 하므로 +1을 수행합니다. (수직선 에서 <= 범위를 생각하면 편합니다. )
 
@@ -159,7 +159,7 @@ stirde의 값을 1이상으로 주다 보면 , 반영이 되지 않는 부분이
 - activation_size  : n_h[l] * n_w[l] * n_c[l]
 - filter size: f[l] * f[l] * n_c[l-1] * n_c[l]
 - bias : 1 * 1 * 1* n_c[l]
-- n_h,w[l] = $$ (\lfloor {{n_h,w[l-1+2p[l]-f[l]} \over s[l]} \rfloor + 1 ) $$
+- n_h,w[l] = $$ (\lfloor {(n_h,w[l-1+2p[l]-f[l]) \over s[l]} \rfloor + 1 ) $$
 - A[l] : m * n_h[l] * n_w[l] * n_c[l] 
 
 A[l]은 m개의 mini batch에 대한 output 결과를 의미합니다. Andrew 교수님은 bias의 implementation이 4 dimension이면 편하다고 하셧는데 , position이 weight와 같은 dimension으로 access가 되어서 logic상 이해하기 쉽다고 하신 의미같다고 개인적으로 생각하고 있습니다. cs231n assignment 를 보면 1 dimension으로 처리를 했는데 , 코딩 스타일의 차이라 생각이 되어집니다 .
