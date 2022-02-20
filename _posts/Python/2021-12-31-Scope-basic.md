@@ -8,7 +8,7 @@ excerpt: "Scope"
 categories:
   - Python
 tags:
-  - [Python,Module,Package.Scope]
+  - [Python,Module,Package,Scope]
 # classes : wide
 toc: true
 toc_sticky: true
