@@ -18,6 +18,10 @@ toc_sticky: true
 
 
 
+2022-02-21 alignement modifed
+
+
+
 ## What is Attention ?
 
 ![image](https://user-images.githubusercontent.com/50165842/148772559-4c347b53-56e5-45d1-8cbe-5d1ebf479273.png)
@@ -110,9 +114,36 @@ Working Memory는 사람이 학습을 하게되면 일시적으로 기억이 저
 
 ### Why Memory Cell use vector?
 
+#### soft-alignment
+
+![image](https://user-images.githubusercontent.com/50165842/154868602-0d267e51-2917-4cb7-92f0-bd13984b85d4.png)
+
 Memory Cell은 address Location  방식으로 참조를 하게 되는데 , 이 때 기존의 방식으로는 read 와 write를 할 integer address를 정확하게 근사(approximation) 하기가 어려웠습니다. 따라서 , Memory Cell에서 read , write를 동시에 하는 방법으로 이를 해결하고자 했습니다. 동시에 ,모든 memory address를 읽고 가장 가능성이 높은 address에 access를 하는 것입니다. 즉, Read를 하기 위해서 weighted average으로 memory에서 값을 읽고  각 memory에 다른 값을 write 했습니다. memory 에 operation을 하기 위한 coefficient로 작은 수의 memory에 집중을 하게 해주었습니다. 이 때  , softmax function을 사용하게 되었습니다. 이러한 , non-zero deriative를 통해서 graident descent를 통해서 optimization을 하게 됩니다. coefficient의 gradient 는 어떤 weight를 키울지 ,줄일지를 정하지만 ,  coefficient가 큰 값에 해당하는 row는 gradient가 커지기에 , 이에 영향을 받습니다.
 
-위의 얘기가 Memory Cell이vector를 사용하는것과 무슨 상관인가 라고 생각이 드실 수 있습니다. Memory Cell을 vector의 set으로 사용한 첫번째 이유는 이미 동시에 read하도록(weighted average) computation cost를 늘렸기 때문입니다. 이미 , computation cost가 약 $$O(N^2) $$ 로 늘어났기에 , vector를 read함으로써 이 비용을 상쇄시킨다고 합니다. (이 부분이 좀 애매했습니다. 시간을 들여서 고민을 해봤는데 , neural turing machine , NTM에서는 shape (N,M) 특정 위치를 approximation 하지 않고 , 동시에 read해서 weighted avearge를 구하는 방식이였습니다. 앞에서 , 문제점으로 언급한게 정확한 integer address를 특정하는 것이였습니다.정확하게 특정하는 부분이 sequential  연산이고 , vector값으로 읽으면 병렬 연산으로 matrix multiplication을 하기에 계산상의 비용을 좀더 상쇄시켰다는 말 같습니다. ) 두번째로는 ,content-based reading을 하기 위해서입니다.  기존의  LSTM, GRU `cell state`는 모든 문서의 정보에서 어떤 특정한 pattern에 일치하는 문서를 생성하게 됩니다. sigmoid를 통해 그저 값이 크면 가중치를 올리고 값이 낮으면 가중치를 낮춥니다. 하지만, memory network는  어떤 pattern에 부합하는 정보를 찾을지 선택하기 때문에(coefficient , weighted average) 몇몇 문서만을 조회해서 정보를 찾습니다.(key,value dictionary).  예를 들어 , `코로나` 라는 단어가 들어간 문서를 찾기 위해서는 `코로나` 라는 keyword에 그루핑 되어 있는 문서들만을 검색 할 것입니다. 반대로, location based는 content 를 참조하지 않습니다. 이것은 , `문서함 347번째에 있는 문서를 가져와라` 라는 것과 유사하게 볼 수 있습니다.
+이를 좀더 detail 하게 설명하면 hard-alignment 와 soft-alignment의 차이라 할 수 있습니다. 왼쪽은 hard-alignment방식을 사용하는 방식이고 , 오른쪽은 soft-alignment를 사용하는 방식으로 attention score를 계산하는 module입니다. 두 방식 모두 alignment vector를 softmax로 계산하는 공통점이 있습니다. 하지만, hard-alginment 방식을 사용하게 어떤 단어의encoding state를 해줘야 할지 hard-coding으로 labeling을 해줘야 합니다. 하지만 , soft-alignment 방식은 weighted-sum을 구하기에 hard-coding으로 labeling(alignment)를 해줘야할 필요가 없게 됩니다.
+
+여기서 , 주목할 점은 alignment vector를 직접 hard-coding으로 desired한 output을 지정하지 않는다는 의미는 이를 더이상 latent variable로써 고려하지 않는다는 것입니다. 즉, 쉽게 말하자면 별개의 parameter를 가진 확률분포로써 encoder-decoder model과 별개로 고려하는게 아니라 , 전체 모델과 함께 gradient descent로 train이 가능해졌음을 나타냅니다.
+
+#### computation cost reduced
+
+
+
+위의 얘기가 Memory Cell이vector를 사용하는것과 무슨 상관인가 라고 생각이 드실 수 있습니다. Memory Cell을 vector의 set으로 사용한 첫번째 이유는 이미 동시에 read하도록(weighted average) computation cost를 늘렸기 때문입니다. 이미 , computation cost가 약 $$O(N^2) $$ 로 늘어났기에 , vector를 read함으로써 이 비용을 상쇄시킨다고 합니다. (이 ~~부분이 좀 애매했습니다. 시간을 들여서 고민을 해봤는데 , neural turing machine , NTM에서는 shape (N,M) 특정 위치를 approximation 하지 않고 , 동시에 read해서 weighted avearge를 구하는 방식이였습니다. 앞에서 , 문제점으로 언급한게 정확한 integer address를 특정하는 것이였습니다.정확하게 특정하는 부분이 sequential  연산이고 , vector값으로 읽으면 병렬 연산으로 matrix multiplication을 하기에 계산상의 비용을 좀더 상쇄시켰다는 말 같습니다.~~ ) 
+
+original paper[1]의 A.1.2 항목을 보면 이에 대한 설명이 나와있습니다.  
+$$
+\begin{align}
+
+ a(s_{i-1} , h) = e_{ij} = v_a^T \tanh (W_as_{i-1} + U_ah_{j}) 
+
+\end{align}
+$$
+
+보통은 decoder의 hidden state s 와 encoder의 hidden state h를 concatenate해서 계산을 한다 하는데 , 논문에서는 encoder 의 hidden state 를 U라는 matrix를 이용해서 미리 precomputation을 한다고 합니다. 왜냐하면, timestep i에 dependent하기 때문입니다. 모든 timestep에 대해서 미리 계산을 해놓고 사용하므로 compute cost를 줄인다는 의미라고 생각합니다.(책의 저자가 yousha bengio이기 때문에 논문에서 근거를 찾았습니다.) . computation cost를 상쇄시킨다는 의미는 아마도 기존의 hard-alignment 방식과 대조해서 설명한거 같습니다. 기존의 hard-alignment는 매 time-step마다 fully-connected layer에 concatenated 해서 input으로 주어서 output을 계산해야 하므로 , timestep에 dependent하기에 시간이 상대적으로 더 오래걸린다고 설명하는거 같습니다 .
+
+#### content-based 
+
+두번째로는 ,content-based reading을 하기 위해서입니다.  기존의  LSTM, GRU `cell state`는 모든 문서의 정보에서 어떤 특정한 pattern에 일치하는 문서를 생성하게 됩니다. sigmoid를 통해 그저 값이 크면 가중치를 올리고 값이 낮으면 가중치를 낮춥니다. 하지만, memory network는  어떤 pattern에 부합하는 정보를 찾을지 선택하기 때문에(coefficient , weighted average) 몇몇 문서만을 조회해서 정보를 찾습니다.(key,value dictionary).  예를 들어 , `코로나` 라는 단어가 들어간 문서를 찾기 위해서는 `코로나` 라는 keyword에 그루핑 되어 있는 문서들만을 검색 할 것입니다. 반대로, location based는 content 를 참조하지 않습니다. 이것은 , `문서함 347번째에 있는 문서를 가져와라` 라는 것과 유사하게 볼 수 있습니다.
 
 이를 Transformers에서 MultiheadAttention에서 비유하면 Decoder에서 multiheadattetntion이 $$softmax(QK^T)$$ 를 계산하는 것과 유사합니다. Transformer에서도 Decoder가 time step t에서 어떤 정보를 갖고있을지를 vector로 나타냅니다.Transformer에서 Memory cell에 대응되는 것이 V라 볼수 있고 , 이에 대한 weighted average를 구하기 위한 matrix가 $$softmax(QK^T)$$ 라 볼 수 있습니다. Transformer에서도 V에서 가장 관련이 높은 content의 address를 찾는 것이 아닌 weighted average를 구함을 볼 수 있습니다.
 
@@ -122,5 +153,13 @@ attention이 무엇이고 , attention에서 왜 hidden layer output으로 softma
 
 
 
+# Reference
 
+[NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE Dzmitry Bahdanau Jacobs University Bremen, Germany KyungHyun Cho Yoshua Bengio∗](https://arxiv.org/pdf/1409.0473.pdf)
+
+[Deep Learning (deeplearningbook.org)](https://www.deeplearningbook.org/)
+
+[Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems: Géron, Aurélien: 9781492032649: Amazon.com: Books](https://www.amazon.com/Hands-Machine-Learning-Scikit-Learn-TensorFlow/dp/1492032646)
+
+[Learning Deep Learning: Theory and Practice of Neural Networks, Computer Vision, Natural Language Processing, and Transformers Using TensorFlow: Ekman, Magnus: 9780137470358: Amazon.com: Books](https://www.amazon.com/Learning-Deep-Processing-Transformers-TensorFlow/dp/0137470355)
 
