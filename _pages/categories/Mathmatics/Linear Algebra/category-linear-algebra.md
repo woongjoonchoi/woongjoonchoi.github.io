@@ -7,5 +7,5 @@ sidebar_main: true
 ---
 
 
-{% assign posts = site.categories['Matrix Transformation'] %}
+{% assign posts = site.categories['Linear Algebra'] %}
 {% for post in posts %} {% include archive-single2.html type=page.entries_layout %} {% endfor %}

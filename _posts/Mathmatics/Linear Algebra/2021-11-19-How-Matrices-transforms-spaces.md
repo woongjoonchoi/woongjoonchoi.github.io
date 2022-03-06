@@ -6,7 +6,7 @@ title : "Matrices in linear Algebra:operating on vectors"
 excerpt: "What Matriceeis does on vectors?"
 
 categories:
-  - Matrix Transformation
+  - Linear Algebra
 tags:
   - [Mathmathics,Machine Learning,Coursera,Linear algebra , matrix,vectors]
 # classes : wide
