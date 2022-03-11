@@ -1,3 +1,18 @@
+---
+title : "Categorical variable's representation and interpretation"
+
+
+
+excerpt: "one-way table, two-way table, bar graph, distribution"
+
+categories:
+  - Statistics
+tags:
+  - [Mathmathics,Machine Learning,Khan,Statistics ,cateogrical data]
+# classes : wide
+toc: true
+toc_sticky: true
+---
 Machine Learning 혹은 Deep Learning이라는 어떤 주어진 data의 distribution을 구하는 것입니다. 이를 위해서는 statistics에 대한 이해도가 필요합니다. 물론 , statistics를 모르고도 deep learning을 할 수 있지만, data를 어떻게 분석하고,  model을 해석하는데 statistics는 유용한 tool이 되어줍니다. 따라서, statistics를 공부를 하는것은 machine learning에 있어서 필수적이라 볼 수 있습니다.
 
 khan academy의 statistics 강의를 듣고 정리하는 식으로 공부할려 합니다. 
@@ -138,9 +153,91 @@ A.
 
 ### two-way relative frequency table
 
-위의 table을 다르게 나타낼 수도 있습니다. 각 column에 대한 percentage(relative-frequency)가 궁금할 수도 있고 , row에 대한 percentage(relative-frequency)가 궁금할 수 도 있습니다.
+![image](https://user-images.githubusercontent.com/50165842/157774712-934c24b2-8d87-4899-a297-ed4a4f24ed49.png)
+
+
+
+frequency table을 다르게 나타낼 수도 있습니다. 각 column에 대한 percentage(relative-frequency)가 궁금할 수도 있고 , row에 대한 percentage(relative-frequency)가 궁금할 수 도 있습니다.
+
+한 variable을 기준으로 다른 variable의 가능성을 비교할 수 있게 됩니다. 
+
+예를 들어서 , 위 data에서는 sports를 play 하지 않는 학생은 sports를 play 하는 학생들 보다 악기를 play할 가능성이 높습니다.
+
+### interprete two-way table
+
+![image](https://user-images.githubusercontent.com/50165842/157775529-b55e9502-a835-46c4-9df6-0ddbac2f2e11.png)
+
+two-way table을 좀더 보도록 하겠습니다. 
+
+two-way table을 사용하면 한 variable에 대해서 다른 variable이 어떻게 변하는지를 알 수 있습니다 .  이를 해석하는 방법은 여러가지가 있는데 , 이에 대해 다루어보겠습니다.
+
+1.
+
+Computer time이라는 variable에 대해서 Hours/night라는 variable은 아래와 같이 변해갑니다.
+
+- minimal :   5 or fewer   <  5-7   <  7 or more
+- Moderate :   5 or fewer   ~= 5-7  ~=  7 or more
+- Extreme :    5 or fewer >  5-7  > 7 or more
+
+Computer Time 이 줄어 들수록 잠을 자는 시간이 늘어나므로 , minimal 과 7 or more는 관련이 있다는 결과를 도출해 낼 수 있습니다.
+
+
+
+2.
+
+7 or more 에서 Minimal 의 비율은 55 %입니다.  7 or more에서 Extreme의 비율은 20 %입니다. 따라서, Minimal 이 7 or more에서 majority이므로 , 7 or more과 Minimal 이 관계가 있다고 볼 수 있습니다.
+
+
+
+3.
+
+7 or more에서 Minimal 의 비율은 55 %입니다. Minimal은 전체의 35.8 %입니다. Minimal이 전체의 대부분이 아니므로 , 다른 이용 시간에서  Minimal 의 비율이 majority가 아닙니다. 따라서 , 7 or more과 Minimal이 관련이 있다고 볼 수 있습니다.
+
+이를 다른 variable을 기준으로 생각하면 Minimal 에서 7 or more의 비율이 51.1 % 이고 , 7 or more은 전체의 33.3 %이므로 Minimal 과 7 or more는 관련이 있다고 볼 수 있습니다. 
+
+
+
+
 
 ## Marginal distribution and conditional distribution
 
+위에서 two-way table을 보았는데 , 이는 2개의 dimension (2개의 variable)을 따르므로 joint distribution이라 볼 수 있습니다.
 
+이번에는 이 distribution 중 2가지 type의 distribution에 대해서 알아보도록 하겠습니다.
+
+### marginal distribution
+
+![image](https://user-images.githubusercontent.com/50165842/157877405-0c44a84d-ee80-4be9-a97b-a54469a481fb.png)
+
+이러한 two-way table이 있을때 초록색으로 highlight 된 부분이 있습니다. 이 부분은 전체에서 , Graduate, Undergraduate , 즉 각 student level 얼마만큼의 사람이 있는지를 보여줍니다.
+
+이와 같이, 전체에 대해서 한가지 variable만을 기준으로 각  bucket에 얼마나 있는지 보는 것을 marginal distribution 이라고 합니다.
+
+ marginal distribution은 1가지 variable에 집중한다 보셔도 됩니다.
+
+
+
+### conditional distribution
+
+Q . 각 student level 에 대한 A status variable의 conditional distribution을 구하시오
+
+
+
+
+
+![image](https://user-images.githubusercontent.com/50165842/157877994-a24d17be-deb3-4a80-b5a7-7608df21d01e.png)
+
+
+
+Conditional Distribution이라 함은 a라는  variable이 있고  , b라는 variable에 대하여 어떤 값이 주어졌을 때 이를 percentage로 나타낸 것이, 이를 b에 대한 a의   conditional distribution 이라고 합니다.
+
+
+
+
+
+
+
+# Reference
+
+[ Analyzing categorical data  Statistics and probability Khan Academy](https://www.khanacademy.org/math/statistics-probability/analyzing-categorical-data)
 
