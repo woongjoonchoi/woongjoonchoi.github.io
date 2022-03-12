@@ -44,8 +44,8 @@ $$ w^{(i)} =  \begin{cases} 1 ,  & \mbox{if  }\quad x^{(i)}\quad\mbox{nonpornogr
 
 처음부터 완벽한 metric을 만들 필요는 없습니다. metric이 바뀌어도, 학습 결과가 바뀌진 않습니다. 여기에 좋은 guideline이 있습니다.
 
-1. 우선 metric을 설정하고 모델을 훈련한 후 선택합니다.
-2. 그 모델이 user case에서 안 좋은 결과가 나오면 다시 재정의합니다.
+1. 우선 metric을 정의합니다(ex. Cross entropy).
+2. 어떻게 이 metric에서 잘 할지 고민한다(ex. Porn 사진을 고양이라 잘못 분류했을때 ,  가중치를 다른 사진 보다 10배를 가한다.).
 
 
 
