@@ -16,10 +16,16 @@ Metric을 설정하는 것은 case by case 라는 것을 기억해야 합니다.
 
 ## Satisfying Conditions and Optimizing
 
-위와 같은 경우가 아닌 , latency나 
+위와 같은 경우가 아닌 , latency와 precision을 동시에 고려해야 하는 경우가 있다면 , 이 두 metric을 합치는 것은 어색합니다. 따라서 , 이러한 경우에는 제일 우선시하는 metric를 선정하고 나머지 metric이 만족해야하는 조건을 설정하는 방법이 있습니다. 보통 , 나머지 metric들은 어느 조건을 만족하게 되면 , 그 이상을 잘하더라도 신경쓰지 않는 경우가 많습니다 . N개의 metric이 있다고 가정을 한다면 , N-1개의 metric이 조건을 만족한다면 나머지 1개의 metric으로 best model을 선정할 수 있습니다 .
 
-
+예를 들면 , 만족해야 하는 metric이 latency , precision , user response time , memory size 라고 하겠습니다. 가장 중요시 되는 metric이 precision이라 설정하면 , latency는 100ms 이하 , user response time은 150ms 이하 memory size는 1gb 이하등으로 설정할 수 있습니다. 
 
 
 
 ## Train / Dev / Test 
+
+Data를 수집하게 되면, Train , Dev , Test로 나누게 됩니다 . Train data는 model의 weight를 update하는데 사용되어 지는 data이고 , dev data는 훈련된 model이 unseen data에서 얼마나 잘하는지를 평가하는 data이고 , test data는 평가한 model이 실제 real world의 data가 주어질 때 얼마나 잘할지를 측정하는 data입니다 . 
+
+data를 3개의 category로 나누게 될 때 , dev,test의 분포가 다르게 되면 model이 real world에서 예상 performance와는 다른 performance를 보여줄 수 있습니다 . 
+
+예를 들어 , 글로벌 얼굴 인식 모델을 만든다고 가정하겠습니다. dev에는 asia 사람들의 data, africa 사람들의 data , test에는 europe ,america등 기타지역 사람들의 data를 사용하기로 결정했습니다. 만일 이렇게 된다면 ,      asai, africa 사람들에 대해서 잘 작동하는 model이 될 것입니다 .
