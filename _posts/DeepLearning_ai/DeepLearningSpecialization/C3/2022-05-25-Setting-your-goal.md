@@ -1,3 +1,19 @@
+---
+title : "Setting Your Goal"
+
+
+
+excerpt: "DeepLearning.ai Dls ML strategy (Metric, Data Split)"
+
+categories:
+  - DLS_C3
+tags:
+  - [Machine Learning,Coursera,deep learning ]
+# classes : wide
+toc: true
+toc_sticky: true
+---
+
 # Setting your Goal
 
 머신러닝 모델을 훈련을 시킬때 , 한가지 모델만을 훈련시키고 끝나는 것이 아니라 여러가지의 모델을 훈련시킨후 이 중에서 가장 잘 작동할 법한 모델을 선택하게 됩니다. 이 때 , 어떠한 기준치로 모델을 선택하는데 , 이 기준치를 Metric 이라 합니다. 이 Metric은 정렬해서 가장 좋은 모델을 고르는건 어렵지 않지만, Metric을 어떻게 설정하는지 모른다면 좋은 모델을 고를 수 없습니다.
@@ -24,8 +40,21 @@ Metric을 설정하는 것은 case by case 라는 것을 기억해야 합니다.
 
 ## Train / Dev / Test 
 
+### Dev Distribution vs Test Distribution
+
 Data를 수집하게 되면, Train , Dev , Test로 나누게 됩니다 . Train data는 model의 weight를 update하는데 사용되어 지는 data이고 , dev data는 훈련된 model이 unseen data에서 얼마나 잘하는지를 평가하는 data이고 , test data는 평가한 model이 실제 real world의 data가 주어질 때 얼마나 잘할지를 측정하는 data입니다 . 
 
 data를 3개의 category로 나누게 될 때 , dev,test의 분포가 다르게 되면 model이 real world에서 예상 performance와는 다른 performance를 보여줄 수 있습니다 . 
 
-예를 들어 , 글로벌 얼굴 인식 모델을 만든다고 가정하겠습니다. dev에는 asia 사람들의 data, africa 사람들의 data , test에는 europe ,america등 기타지역 사람들의 data를 사용하기로 결정했습니다. 만일 이렇게 된다면 ,      asai, africa 사람들에 대해서 잘 작동하는 model이 될 것입니다 .
+예를 들어 , 글로벌 얼굴 인식 모델을 만든다고 가정하겠습니다. dev에는 asia 사람들의 data, africa 사람들의 data , test에는 europe ,america등 기타지역 사람들의 data를 사용하기로 결정했습니다. 만일 이렇게 된다면 ,      asai, africa 사람들에 대해서 잘 작동하는 model이 될 것입니다 . 따라서, 여기서 이상적인 dev,test dataset의 설정법은 모든 지역의 data를 shuffle한뒤 dev , test 로 나눈다면 , dev set에서의 좋은 performance가 test에서의 좋은 performance로 연결될 것입니다. 
+
+
+
+### Train , Dev , Test Split
+
+DataSet을 수집하고 , Train , Dev, Test 를 나누게 되는데 , Test Set을 두지 않을 경우 , Train,Dev의 비율을 7:3으로 설정하고 , Test Set이 있을경우에는, Train,Dev,Test의 비율을 6:2:2 로 설정하는 것이 rule of thumb(관례적으로 좋음)이라고 합니다. 
+
+하지만 , 위의 얘기는 big data로 deep learning model을 학습하기 이전의 얘기입니다. 예전에는 , 10000개 정도의 수준이였지만, big data시대에서는 data가 100만개를 넘어가는 경우가 빈번합니다.  통상적으로 , data가 100만개를 넘어가는 경우에는 dev set, test set을 20만개정도로 설정할 필요가 없습니다. 만개정도의 test set이랑 dev set이 있으면 괜찮습니다.  즉 , dev set과 test set의 비율이 중요한것이 아니라 evaluation 과정을 진행할 수 있을 정도의 data set이 있으면 충분합니다. 
+
+
+

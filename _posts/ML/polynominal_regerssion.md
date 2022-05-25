@@ -54,15 +54,47 @@ model을 설정하였으면 ,  model을 학습해야 합니다. Polynomial Regre
 
 ### Gradient Descent in Multiple Variables
 
+우선 기존의 linear regression에서의 Gradient Descent를 equation으로 적으면 아래와 같습니다.
+$$
+\begin{align}
+\theta_{0} := \theta_{1} - \alpha * {\partial J(\theta) \over \partial\theta_{0}} \\
+\theta_{1} :=  \theta_{1} - \alpha * {\partial J(\theta) \over \partial\theta_{1}}
+
+\end{align}
+$$
+Polynomial Regression의 경우에는 variable의 개수가 늘어나므로 여러번 update를 해주면 됩니다.
+$$
+\begin{align}
+\theta_{0} &:= \theta_{1} - \alpha * {\partial J(\theta) \over \partial\theta_{0}} \\
+\theta_{1} &:=  \theta_{1} - \alpha * {\partial J(\theta) \over \partial\theta_{1}} \\
+\theta_{2} &:=  \theta_{2} - \alpha * {\partial J(\theta) \over \partial\theta_{2}} \\
+\theta_{3} &:=  \theta_{3} - \alpha * {\partial J(\theta) \over \partial\theta_{3}} \\
+&...
+
+
+\end{align}
+$$
+이를 일반화시키면 아래와 같은 eqation을 얻을 수 있습니다.
+$$
+\begin{align}
+
+\theta_{k} &:=  \theta_{k} - \alpha * {\partial J(\theta) \over \partial\theta_{k}} \\
+
+(k &= 1 ... n)
+
+\end{align}
+$$
 
 
 ### Convergence Speed
 
-
+Polynomial Regression model을 학습할 방법을 알아봤습니다. 바로 학습에 들어가도 되지만, model 빠르게 convergence할수록 model을 학습하는 시간을 줄일 수 있습니다. 여러 hyperparameter들에 의해서 이 model이 convergence하는 시점이 빨라질 수 있습니다. 
 
 #### Scaling Variables
 
+![image](https://user-images.githubusercontent.com/50165842/170268003-1fd87952-68ed-492f-9ba4-e0169e7117ae.png)
 
+Variable간의 scale 차이가 크다면 Loss Function이  위와 같은 형태를 보일 것입니다.  scale이 큰 variable의  parameter를 update하면 loss function의 값이 상대적으로 크게 변하고 , scale이 작은 variable의 parameter를 update하면 loss function의 값이 상대적으로 작게  변하기 때문에 위와같이 찌그러진 모양이 나오게 됩니다. 
 
 #### Learning Rate
 
