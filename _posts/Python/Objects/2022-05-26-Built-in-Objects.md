@@ -1,3 +1,18 @@
+---
+title : "What is Objects and Why use Built-in objects"
+
+
+
+excerpt: "Python Objects"
+
+categories:
+  - Python
+tags:
+  - [Python,Object,Builtin]
+# classes : wide
+toc: true
+toc_sticky: true
+---
 # What is Objects?
 
 Python을 이용하여 Program을 만들려면 Object를 이용하여 Program을 만들게 됩니다. Object를 이용해서 Program을 만드는 것은 당연하다고 볼 수 있지만, 왜 굳이 Built-in Type을 사용해야 될까요? 
