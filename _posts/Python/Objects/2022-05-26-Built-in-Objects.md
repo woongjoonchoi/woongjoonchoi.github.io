@@ -64,3 +64,9 @@ Python의 Core Data Type은 아래와 같습니다.
 - Other Core Types
 - Program Unit Types
 - Implementation-related data types
+
+# References
+
+
+
+Learning Python(by Mark Lutz)  - chp 4
