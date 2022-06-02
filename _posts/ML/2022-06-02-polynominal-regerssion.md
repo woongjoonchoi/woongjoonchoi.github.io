@@ -1,3 +1,19 @@
+---
+title : "Polynomial Regression"
+
+
+
+excerpt: "Standford ML "
+
+categories:
+  - MachineLearning
+tags:
+  - [Machine Learning,LinearRegression]
+# classes : wide
+toc: true
+toc_sticky: true
+---
+
 # Polynomial Regression in Multiple Features
 
 Linear Regression 모델을 1개의 독립변수 x와 1개의 의존변수 y로 나타내는 것을 Simple Linear Regression이라 한다. 이를 , 수식으로 표현하면  
@@ -98,11 +114,39 @@ Variable간의 scale 차이가 크다면 Loss Function이  위와 같은 형태�
 
 #### Learning Rate
 
+$$
+\begin{align}
+
+\theta_{k} &:=  \theta_{k} - \alpha * {\partial J(\theta) \over \partial\theta_{k}} \\
+
+(k &= 1 ... n)
+
+\end{align}
+$$
+
+Model의 weight를 update할 때  , $$\alpha$$ 라는 term을 곱하게 됩니다. 이 값을 learning rate라고 합니다. 만약에  , 이 learning rate값이 크다면,  loss function의 값이 아래와 같이 convergence 할 것입니다. convergence 값이 일정하게 감소하지 않을 것입니다.
 
 
-#### 
+
+![image](https://user-images.githubusercontent.com/50165842/171631540-d4abe530-7f8d-4327-bc79-462b28a0f437.png)
+
+만약에 , learning rate 값이 작다면 , loss function의 값이 convergence하는데 시간이 오래 걸릴 것입니다.
+
+![image](https://user-images.githubusercontent.com/50165842/171632233-0ca16407-0ddd-4db1-903e-ea386539c8d6.png)
+
+learning rate값이 적절한 값을 가진다면, loss function의 값은 상대적으로 잘 convergence할 것입니다.
 
 
+
+![image](https://user-images.githubusercontent.com/50165842/171632544-af33dc99-875b-4b16-899f-62bbd3e2da6f.png)
+
+즉, 적절한 learning rate 값이란, 매 update마다 loss function의 값이 감소하면서 , 너무 적지 않게 감소하게 하는 값이라 할 수 있습니다. 
+
+
+
+# References
+
+Standford-ml [기계 학습  Coursera](https://www.coursera.org/learn/machine-learning)
 
 
 
