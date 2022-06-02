@@ -6,9 +6,9 @@ title : "Polynomial Regression"
 excerpt: "Standford ML "
 
 categories:
-  - MachineLearning
+  - StandfordML
 tags:
-  - [Machine Learning,LinearRegression]
+  - [Machine Learning,LinearRegression,StandfordML]
 # classes : wide
 toc: true
 toc_sticky: true
