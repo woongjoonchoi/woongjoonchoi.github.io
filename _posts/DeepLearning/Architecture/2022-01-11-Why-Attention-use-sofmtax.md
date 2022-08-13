@@ -57,7 +57,7 @@ multiheadAttention 은 AttenionisAllyouneed 논문에서 소개된 transformers 
 
 하지만, 이를 바로 구현하는데 사용하기에는 무리가 있습니다. 왜냐하면, attention 내부는 vector representation이기에 , `주어` , `동사` ,`어디에서` 라는 key중에서 `어디에서`라는 key를 선택해서 활용할 수 없습니다. 그렇다면, 이 vector representation을 어떻게 활용해야 할까요? 여기서 , 문맥적 정보인 `query` 와 `key`값의 유사도를 구하는 것으로 어떤 `key`  값에서 좀 더 가중치(attention)을 둘지 결정합니다. 유사도를 계산하기 위해서 dot-product를 이용합니다. 그 다음에  , softmax 함수를 이용해서 이를 sum 이 1인 가중치로 변환합니다. 이를 이용해서 , value값을 얻게 됩니다. 여기에서는 `어디에서` 라는  key를 표현하는 vector의 weight가 1에 가깝게 될 것이고 , 나머지는 `주어` , `동사` 를 표현하는 vector의 weight는 0에 가깝게 될 것입니다. 이에 대한 weighted sum을 계산하게 되면, `어디에서`  의 value값인 `집에서` 를 나타내는 vector값에 근사하게 될 것입니다.  이를 수식으로 표현하면 아래와 같습니다.
 
-<center>{% raw %}$$Attention(Q,K,V) =  {softmax({{QK^T} \over {\sqrt{d_{keys}}}})   } \cdot V$${% endraw %}</center>
+$$Attention(Q,K,V) =  {softmax({{QK^T} \over {\sqrt{d_{keys}}}})   } \cdot V$$
 
 attention 수식에 대해서 좀 더 자세하게 코멘트를 달아보겠습니다.
 
@@ -133,9 +133,7 @@ Memory Cell은 address Location  방식으로 참조를 하게 되는데 , 이 �
 original paper[1]의 A.1.2 항목을 보면 이에 대한 설명이 나와있습니다.  
 $$
 \begin{align}
-
  a(s_{i-1} , h) = e_{ij} = v_a^T \tanh (W_as_{i-1} + U_ah_{j}) 
-
 \end{align}
 $$
 
