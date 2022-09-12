@@ -57,7 +57,9 @@ multiheadAttention 은 AttenionisAllyouneed 논문에서 소개된 transformers 
 
 하지만, 이를 바로 구현하는데 사용하기에는 무리가 있습니다. 왜냐하면, attention 내부는 vector representation이기에 , `주어` , `동사` ,`어디에서` 라는 key중에서 `어디에서`라는 key를 선택해서 활용할 수 없습니다. 그렇다면, 이 vector representation을 어떻게 활용해야 할까요? 여기서 , 문맥적 정보인 `query` 와 `key`값의 유사도를 구하는 것으로 어떤 `key`  값에서 좀 더 가중치(attention)을 둘지 결정합니다. 유사도를 계산하기 위해서 dot-product를 이용합니다. 그 다음에  , softmax 함수를 이용해서 이를 sum 이 1인 가중치로 변환합니다. 이를 이용해서 , value값을 얻게 됩니다. 여기에서는 `어디에서` 라는  key를 표현하는 vector의 weight가 1에 가깝게 될 것이고 , 나머지는 `주어` , `동사` 를 표현하는 vector의 weight는 0에 가깝게 될 것입니다. 이에 대한 weighted sum을 계산하게 되면, `어디에서`  의 value값인 `집에서` 를 나타내는 vector값에 근사하게 될 것입니다.  이를 수식으로 표현하면 아래와 같습니다.
 
-<center>{% raw %}$$Attention(Q,K,V) =  {softmax({{QK^T} \over {\sqrt{d_{keys}}}})   } \cdot V$${% endraw %}</center>
+
+
+$$Attention(Q,K,V) =  softmax({ {QK^T} \over { \sqrt{d_{keys}} } } )    \cdot V$$
 
 attention 수식에 대해서 좀 더 자세하게 코멘트를 달아보겠습니다.
 
@@ -131,13 +133,7 @@ Memory Cell은 address Location  방식으로 참조를 하게 되는데 , 이 �
 위의 얘기가 Memory Cell이vector를 사용하는것과 무슨 상관인가 라고 생각이 드실 수 있습니다. Memory Cell을 vector의 set으로 사용한 첫번째 이유는 이미 동시에 read하도록(weighted average) computation cost를 늘렸기 때문입니다. 이미 , computation cost가 약 $$O(N^2) $$ 로 늘어났기에 , vector를 read함으로써 이 비용을 상쇄시킨다고 합니다. (이 ~~부분이 좀 애매했습니다. 시간을 들여서 고민을 해봤는데 , neural turing machine , NTM에서는 shape (N,M) 특정 위치를 approximation 하지 않고 , 동시에 read해서 weighted avearge를 구하는 방식이였습니다. 앞에서 , 문제점으로 언급한게 정확한 integer address를 특정하는 것이였습니다.정확하게 특정하는 부분이 sequential  연산이고 , vector값으로 읽으면 병렬 연산으로 matrix multiplication을 하기에 계산상의 비용을 좀더 상쇄시켰다는 말 같습니다.~~ ) 
 
 original paper[1]의 A.1.2 항목을 보면 이에 대한 설명이 나와있습니다.  
-$$
-\begin{align}
-
- a(s_{i-1} , h) = e_{ij} = v_a^T \tanh (W_as_{i-1} + U_ah_{j}) 
-
-\end{align}
-$$
+$$\begin{align} a(s_{i-1} , h) = e_{ij} = v_a^T \tanh (W_as_{i-1} + U_ah_{j}) \end{align}$$
 
 보통은 decoder의 hidden state s 와 encoder의 hidden state h를 concatenate해서 계산을 한다 하는데 , 논문에서는 encoder 의 hidden state 를 U라는 matrix를 이용해서 미리 precomputation을 한다고 합니다. 왜냐하면, timestep i에 dependent하기 때문입니다. 모든 timestep에 대해서 미리 계산을 해놓고 사용하므로 compute cost를 줄인다는 의미라고 생각합니다.(책의 저자가 yousha bengio이기 때문에 논문에서 근거를 찾았습니다.) . computation cost를 상쇄시킨다는 의미는 아마도 기존의 hard-alignment 방식과 대조해서 설명한거 같습니다. 기존의 hard-alignment는 매 time-step마다 fully-connected layer에 concatenated 해서 input으로 주어서 output을 계산해야 하므로 , timestep에 dependent하기에 시간이 상대적으로 더 오래걸린다고 설명하는거 같습니다 .
 
@@ -145,11 +141,16 @@ $$
 
 두번째로는 ,content-based reading을 하기 위해서입니다.  기존의  LSTM, GRU `cell state`는 모든 문서의 정보에서 어떤 특정한 pattern에 일치하는 문서를 생성하게 됩니다. sigmoid를 통해 그저 값이 크면 가중치를 올리고 값이 낮으면 가중치를 낮춥니다. 하지만, memory network는  어떤 pattern에 부합하는 정보를 찾을지 선택하기 때문에(coefficient , weighted average) 몇몇 문서만을 조회해서 정보를 찾습니다.(key,value dictionary).  예를 들어 , `코로나` 라는 단어가 들어간 문서를 찾기 위해서는 `코로나` 라는 keyword에 그루핑 되어 있는 문서들만을 검색 할 것입니다. 반대로, location based는 content 를 참조하지 않습니다. 이것은 , `문서함 347번째에 있는 문서를 가져와라` 라는 것과 유사하게 볼 수 있습니다.
 
-이를 Transformers에서 MultiheadAttention에서 비유하면 Decoder에서 multiheadattetntion이 $$softmax(QK^T)$$ 를 계산하는 것과 유사합니다. Transformer에서도 Decoder가 time step t에서 어떤 정보를 갖고있을지를 vector로 나타냅니다.Transformer에서 Memory cell에 대응되는 것이 V라 볼수 있고 , 이에 대한 weighted average를 구하기 위한 matrix가 $$softmax(QK^T)$$ 라 볼 수 있습니다. Transformer에서도 V에서 가장 관련이 높은 content의 address를 찾는 것이 아닌 weighted average를 구함을 볼 수 있습니다.
+이를 Transformers에서 MultiheadAttention에서 비유하면 Decoder에서 multiheadattetntion이 
+$$softmax(QK^T)$$ 
+를 계산하는 것과 유사합니다. Transformer에서도 Decoder가 time step t에서 어떤 정보를 갖고있을지를 vector로 나타냅니다.Transformer에서 Memory cell에 대응되는 것이 V라 볼수 있고 , 이에 대한 weighted average를 구하기 위한 matrix가 
+$$softmax(QK^T)$$ 
+라 볼 수 있습니다. Transformer에서도 V에서 가장 관련이 높은 content의 address를 찾는 것이 아닌 weighted average를 구함을 볼 수 있습니다.
 
 ## Attention in optimization view
 
-attention이 무엇이고 , attention에서 왜 hidden layer output으로 softmax 를 사용하게 되었는지 그리고 weighted sum을 왜계산하는지, 그리고 어째서 {% raw %}$$Attention(Q,K,V) =  {softmax({{QK^T} \over {\sqrt{d_{keys}}}})   } \cdot V$$ {% endraw %}의 형태로 QK , V를 matrix multiplication을 했는지 알아 보았습니다. 이번에는, gradient optimization 관점에서 기존의 LSTM,GRU보다 어떤 이점이 있는지 알아보도록 하겠습니다. Explicit memory가  LSTM,GRU와는 다르게 상대적으로 propagation이 잘 되고, backpropagation이 잘 됩니다. hidden layer를 거치면서 cell state가 LSTM, GRU 기반의 seq2seq 에서는 많은 layer를 통과하기에 gradient가 explode 되거나 vanishing 될 확률이 높습니다. 하지만,Explicit memory는 attention mechanism을 적용해서 각  output에 대하여 gradient 계산이 가능하기에 , context를 weighted average로 계산하지 않고 directly 하게 계산하는 GRU, LSTM seq2seq과는 다르게 ,gradient descent 를 이용해서 학습을 할 수 있습니다.(respectively long duration )
+attention이 무엇이고 , attention에서 왜 hidden layer output으로 softmax 를 사용하게 되었는지 그리고 weighted sum을 왜계산하는지, 그리고 어째서 $$Attention(Q,K,V) =  softmax({  {QK^T} \over {\sqrt{d_{keys}}}  })    \cdot V$$ 
+의 형태로 QK , V를 matrix multiplication을 했는지 알아 보았습니다. 이번에는, gradient optimization 관점에서 기존의 LSTM,GRU보다 어떤 이점이 있는지 알아보도록 하겠습니다. Explicit memory가  LSTM,GRU와는 다르게 상대적으로 propagation이 잘 되고, backpropagation이 잘 됩니다. hidden layer를 거치면서 cell state가 LSTM, GRU 기반의 seq2seq 에서는 많은 layer를 통과하기에 gradient가 explode 되거나 vanishing 될 확률이 높습니다. 하지만,Explicit memory는 attention mechanism을 적용해서 각  output에 대하여 gradient 계산이 가능하기에 , context를 weighted average로 계산하지 않고 directly 하게 계산하는 GRU, LSTM seq2seq과는 다르게 ,gradient descent 를 이용해서 학습을 할 수 있습니다.(respectively long duration )
 
 
 
