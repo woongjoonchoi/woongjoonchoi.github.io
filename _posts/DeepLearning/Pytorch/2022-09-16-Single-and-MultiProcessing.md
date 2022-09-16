@@ -1,3 +1,18 @@
+---
+title : "Pytorch data api : Multiprocessing"
+
+
+
+excerpt: "Pytorch multiprocess"
+
+categories:
+  - Pytorch
+tags:
+  - [Machine Learning,Pytorch,deep learning ]
+# classes : wide
+toc: true
+toc_sticky: true
+---
 Pytorch에서 DataLoading을 할 때 DataLoader라는 class를 사용하는데 , 이 때 Data를 단일 Process내에서 loading 할수도 있고, parallelize해서 loading을 할 수도 있다.
 
 # Default Option
@@ -280,8 +295,39 @@ print(list(torch.utils.data.DataLoader(ds,num_workers=10,worker_init_fn=worker_i
 # [tensor([3]), tensor([12]), tensor([21]), tensor([30]), tensor([39]), tensor([48]), tensor([57]), tensor([66]), tensor([75]), tensor([84]), tensor([4]), tensor([13]), tensor([22]), tensor([31]), tensor([40]), tensor([49]), tensor([58]), tensor([67]), tensor([76]), tensor([85]), tensor([5]), tensor([14]), tensor([23]), tensor([32]), tensor([41]), tensor([50]), tensor([59]), tensor([68]), tensor([77]), tensor([86]), tensor([6]), tensor([15]), tensor([24]), tensor([33]), tensor([42]), tensor([51]), tensor([60]), tensor([69]), tensor([78]), tensor([87]), tensor([7]), tensor([16]), tensor([25]), tensor([34]), tensor([43]), tensor([52]), tensor([61]), tensor([70]), tensor([79]), tensor([88]), tensor([8]), tensor([17]), tensor([26]), tensor([35]), tensor([44]), tensor([53]), tensor([62]), tensor([71]), tensor([80]), tensor([89]), tensor([9]), tensor([18]), tensor([27]), tensor([36]), tensor([45]), tensor([54]), tensor([63]), tensor([72]), tensor([81]), tensor([90]), tensor([10]), tensor([19]), tensor([28]), tensor([37]), tensor([46]), tensor([55]), tensor([64]), tensor([73]), tensor([82]), tensor([91]), tensor([11]), tensor([20]), tensor([29]), tensor([38]), tensor([47]), tensor([56]), tensor([65]), tensor([74]), tensor([83]), tensor([92])]
 ```
 
-## Issues
 
+### Warning
+
+Pytorch Docs에서는 CUDA Tensor를 multi-processing loading 에서 return하는 것을 추천하지 않는다고 한다.  CUDA Tensor를 공유하거나 CUDA를 사용하는 대신에 , automatic memory pinning(pin_memory = True)을 이용해서  사용하는 것을 추천한다고 합니다. 이는 CUDA가 사용가능한 GPO로 빠른 data 전송을 하게 한다고 합니다. 
+
+
+## Platform Specific
+
+Python Multiprocessing을 사용하게 되면, OS에 따라서 , worker launch behavior가 달라집니다. 
+
+1. UNIX
+    + fork()가  multiprocessing을 시작하는 default method입니다. fork()를 사용하면 , child worker들은 복제된 address space를 통해 dataset과 Python functions에 직접 access 할 수 있습니다. 
+  
+2. Windows, MAC 
+   + spawn()이 multiprocessing을 시작하는 default method입니다. spawn()을 사용해서 , 다른 interpereter들이 실행되면서 , main script를 실행합니다. 그 다음에 , pickle serialization을 통해 dataset, collate_fn , 그리고 다른 argument를 serialization 하고 , internal worker function을 실행합니다. serialization을 사용한다는건 multiprocess data load를 사용하는동안에 Windows와 호환이 되는지 확인하는 2단계를 실행해야 함을 의미합니다.
+        1. main script code를 `if __name__  =='__main__'` block으로 둘러쌉니다. 
+           + why? 각 worker process가 실행될 때 , 다시는 main script code가 실행되지 않도록 하기 위해서입니다. main script code에 Dataset,Datalodaer instance 생성 코드를 포함시켜 , worker에서 다시 실행되지 않도록 합니다.
+        2. custom collate_fn ,worker_init_fn , 그리고 dataset code가 top level definitions에서 ,즉 `__main__` 을 check하는 code 바깥에서  define되도록 합니다.
+            + why? fucntions들이 bytecode가 아닌 reference로써 pickled 되기 때문입니다.
+
+## Randomness in multiprocessing data loading
+
+각 worker는 seed를  (base_seed + worker_id)로 설정합니다. base_seed는 main_process에 의해서 생성이 되는데 , 이 때 RNG(Random Number Generator) 나 지정한 generator를 이용하게 됩니다. 하지만, 다른 라이브러리의 seed가 중복이 될 수 있습니다. 따라서 ,  worker 가 initialized 될 때 , 각 worker가 동일한 random number를 return할 수 있습니다.   
+worker_init_fn에서 torch.utils.data.get_worker_info().seed 나 torch.initial.seed를 사용하면 각 worker에 대한 Pytorch seed set에 access하고 , 이를 사용하여  , data 를 loading하기 전에 다른 라이브러리로 seed를 전달할 수 있습니다. 
+
+## Issues
++ Problem
+  + iteration을 몇 번 반복하고 나면 , loader worker process가 parent process에 있는 모든 Python Objects(worker process에서 access가능)에 대해 같은 양의 CPU Memory를 점유하고 있습니다.만약에 , Dataset이 엄청나게 큰 data(ex.매우 큰 filename lsit)를 포함하거나 수많은 worker를 사용한다면 문제가 발생할 것입니다.
++ Why?
+  + 임의의 Python Objects를  shared memmory에 저장하는 것은 copy-on-write problem을 발생시킵니다. 이 object들을 read할 때마다 , reference count를 증가시킵니다. reference count의 변화로 인해 fork된 python process의 copy-on-acess problem이 발생하게 되는것입니다. (Memory-leak 문제가 아닙니다.)
++ Sol 
+  + 기본적인 Python Objects(list,dict) 대신에 pandas,numpy,pyarrow 같은 objects를 사용합니다. 이들은 reference count가 1입니다.  
+  + String을 저장할 때에는 , ASCII code로 numpy array를 사용하여 저장할 수 있습니다. 아니면, ByteCode나 Custom Datatype을 사용할 수 있습니다.
 # References
 
 [Pytorch-data-docs][Pytorch-data-api]
