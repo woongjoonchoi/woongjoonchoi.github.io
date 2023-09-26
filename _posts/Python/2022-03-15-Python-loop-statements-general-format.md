@@ -92,9 +92,6 @@ for ((a,b),c) in S :
 	
 ```
 
-뿐만 아니라 , target에 어떤형태의 expression도 가능하기에 , nested expression도 가능합니다
-
-
 
 
 
