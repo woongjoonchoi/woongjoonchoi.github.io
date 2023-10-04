@@ -134,7 +134,7 @@ momentum이 빠른건 알겠지만, 정확히 어느정도 빨라지는지는 �
 
 결론 부터 말하자면 , stochastic gradient descent에 비해서 $$ {1 \over (1-\beta) }  $$ 만큼 빨라지게 됩니다. 
 
-그리고 ,  gradient가 일정하다면 , 가속도(gradient) 와 마찰력((1-$$\beta$$)v) 가 같아지는 순간 v는 더 증가하지 않게 됩니다. 이를 terminal velocity라 합니다. 
+만약 ,  gradient가 일정하다면 , 가속도(gradient) 와 마찰력((1-$$\beta$$)v) 가 같아지는 순간 v는 더 증가하지 않게 됩니다. 이를 terminal velocity라 합니다. 
 
 $$ friction - accel  = 0$$
 
