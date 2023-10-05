@@ -75,7 +75,7 @@ $$ \alpha {(1-\alpha) }^k  [1  + {(1-\alpha) }^1 + {(1-\alpha) }^2 ...  ]  $$
 
 위 항은  이와 같이 적을 수 있습니다. 
 
-$$ {weighted \ omitted \ by \ stopping \  after\  k \  terms \over \ total \ weight} $$
+$$ {weights \ omitted \ by \ stopping \  after\  k \  terms \over \ total \ weight} $$
 
 $$ =  { \alpha [ {(1-\alpha) }^k  + {(1-\alpha) }^{k+1} + {(1-\alpha) }^{k +2} ...  ]  \over  {\alpha (1-\alpha) }^k  [1  + {(1-\alpha) }^1 + {(1-\alpha) }^2 ...  ]  }$$ 
 
