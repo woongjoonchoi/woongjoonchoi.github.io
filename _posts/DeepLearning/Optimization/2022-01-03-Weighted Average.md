@@ -60,7 +60,7 @@ $$ V_n =  {\beta}^n (1-\beta) \theta_0 +{\beta}^{n-1}  (1 - \beta ) \theta_{1} +
 
 어떠한 기하급수적으로 감소하는 그래프가 있습니다. 여기에 날씨의 값을 element wise를 해서 곱해준 것들을 더해준게 바로 exponentially weighted average입니다. 
 
-그리고 , Andrew 교수님은 대략적으로 $$1 \over {1-\beta} $$ 개수 만큼을 반영하는 average 것에 대한 이유를 설명해주시는데 , $$ {(1 - \epsilon)}^{1 \over \epsilon}  =  {1 \over e } $$ 이기 때문에 $$ {1-\beta} $$ 만큼의 최신 데이터를 반영한다고 합니다.
+그리고 , Andrew 교수님은 대략적으로 $$1 \over {1-\beta} $$ 개수 만큼을 반영하는 average 것에 대한 이유를 설명해주시는데 , $$ {(1 - \epsilon)}^{1 \over \epsilon}  =  {1 \over e } $$ 이기 때문에 $$1 \over {1-\beta} $$ 만큼의 최신 데이터를 반영한다고 합니다.
  등비급수로도 계산을 해보았는데 ,  대략 0.7의 비율이 나오고, 교수님께서는 rule of thumb이라 하는데 , 일단은 그냥 받아들이기로 했습니다.
 
 계산을 할려면 ,$$ \sum_{k=1}^{10} =  { (1- \beta) \beta^{k-1}} $$ 식을 계산하게 됩니다.  최신의 10개의 온도의 데이터 반영 비율은 약 0.7입니다. 이는 $$ n \to \infty$$ 가 되도 , 마찬가지 입니다. rule of thumb이라는 표현을 쓰신게 경험적으로 $$1 \over {1-\beta} $$ 개수 만큼의 data를 반영했기에 그렇게 표현 하신거 같습니다 .
