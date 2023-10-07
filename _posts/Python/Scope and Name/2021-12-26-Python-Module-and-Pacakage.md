@@ -80,7 +80,7 @@ blah = 42
 __all__=['spam' , 'mac']
 ```
 
-이 module을 import를 하게 되면, namespace에 `spam` , `mac`  만이 포함 되어있지않음을 확인할 수 있습니다. 만약에 , empty list가 `__all__` 에 assign 된다면 아무것도 import 하지 않을 것입니다.
+이 module을 import를 하게 되면, namespace에 `spam` , `mac`  만이 포함 되어있음을 확인할 수 있습니다. 만약에 , empty list가 `__all__` 에 assign 된다면 아무것도 import 하지 않을 것입니다.
 
 ## realtive import
 
