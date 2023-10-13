@@ -185,7 +185,8 @@ viscous drag 가 작용할 경우 ![{\displaystyle v(t)={\frac {(\rho -\rho _{0}
 
 turbulent drag(자유낙하 운동)가 작용할 경우 ![ v(t) = \sqrt{ \frac{2mg}{\rho A C_d} } \tanh \left(t \sqrt{\frac{g \rho C_d A}{2 m}} \right). \,](https://wikimedia.org/api/rest_v1/media/math/render/svg/32c270eb2f615809be38ee5926955ec86b64d8b1) 이와 같은 속력이 공식화가 됩니다.
 
-![img](https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/Speed_vs_time_for_objects_with_drag.png/800px-Speed_vs_time_for_objects_with_drag.png)
+![img](https://github.com/woongjoonchoi/CodingTest/assets/50165842/68e9cc72-d998-4d9d-bad6-31511eb26010)
+
 
 ![img](https://upload.wikimedia.org/wikipedia/commons/6/63/Inclinedthrow.gif)
 
