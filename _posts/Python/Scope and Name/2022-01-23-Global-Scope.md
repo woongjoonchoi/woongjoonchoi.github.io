@@ -136,15 +136,17 @@ first.X=88
 ```python
 X = 99
 
-def setX() :
+def setX(num) :
     global X
-    X = 88
+    X = num
+    # X = 88
 ```
 
 ```python
 import first
 
-first.setX()
+num = 88 
+first.setX(num)
 print(first.X)
 ```
 
