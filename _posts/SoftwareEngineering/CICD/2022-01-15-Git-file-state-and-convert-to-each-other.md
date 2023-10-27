@@ -138,7 +138,7 @@ directory)
 
 ### git diff
 
-git status를 사용하면 단순히 파일이 MODIFIED되었다는 사실만을 보여줍니다. 어떤 내용이 구체적으로 바뀌었는지를 확인할려면 git diff을 사용해야 합니다. git diff은  STAGED AREA에 들어가기전 MODIFIED 상태의  파일과 STAGED AREA에 들어간 후 의 내용의 차이점을 보여줍니다.
+git status를 사용하면 단순히 파일이 MODIFIED되었다는 사실만을 보여줍니다. 어떤 내용이 구체적으로 바뀌었는지를 확인할려면 git diff을 사용해야 합니다. git diff은  STAGED AREA에 들어가기전 내용의 차이점을 보여줍니다.
 
 ```bash
 $ git status
