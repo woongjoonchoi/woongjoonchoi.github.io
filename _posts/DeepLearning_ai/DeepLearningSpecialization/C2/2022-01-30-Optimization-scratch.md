@@ -81,7 +81,10 @@ DLS에서 제공해주는 backpropagation 코드입니다.  cache에서 한 번�
 ## 이 이외의 방법은?
 
 OOP 프로그래밍 스타일을 따른다면 , recursive하게 짜게 될 것입니다 . stack frame을 많이 생성하는 만큼, resource allocation이 더 많아질 수 밖에 없습니다. layer 3개정도의 layer라면 단순하게 이렇게 구현해도 괜찮을 것이다 라고 생각이 들었습니다.(이 부분은 OOP style로 실제로 구현을 해보고 다시 추가해서 넣어보도록 하겠습니다.)
+## 심화과정
 
+코드는 결국 사람이 생각한 논리를 컴퓨터가 대신 계산해주는 도구입니다. 위의 Backpropagation은 수식으로 설명이 되기됩니다.  일반적인 수식으로 이해할 수 있다면 ,다른 특수한 예제에서 back propagation 코드를 처음부터 작성할 수 있을 것입니다.   
+일반적인 수학적 해석에 대한 [링크](https://jonaslalin.com/2021/12/10/feedforward-neural-networks-part-1/)를 첨부합니다.
 # Mini Batch
 
 mini batch를 사용하게 되면 shuffle을 사용하게 됩니다. 단순히 shuffle하면 random한 순서로 학습할 수 있어서 더 일반적인 data를 학습할 수 있다고 말해도 되지만 , 이를 좀 더 분해해서 detail하게 알아보겠습니다.
