@@ -15,6 +15,8 @@ toc_sticky: true
 ---
 ## Python Module and Pacakage
 
+23.11.04 sys.path 내용 추가 
+
 BoostCampAi Tech에서 최종프로젝트를 진행하였습니다. 제 개인적인 생각으로는 중형규모의 프로젝트였습니다. user flow , system design, prototype , serving의 단계를 거친 프로젝트 였기에 , 여러  module, 이를 넘어선 package 단위로 프로젝트를 관리하게 되었습니다. 초기에는  , 모듈을 import 할 때 absolute path로 관리를 했었습니다. module 및 package를 관리하기 위해서 hardcoding으로 세부적인 경로를 지정해서 import했습니다. 이의 문제점을 깨닫고 , 제가 다시 relative import 로 바꾸었지만, package, module에 관한 공부를 저만 했기에 팀원들이 이해하지 못하여 다시 absolute path로 돌아가게 되었습니다. 제가 이 때 팀원들에게 잘 알려주었다면 이라는 생각이 들었습니다.이 외에도 ,  ML Model을 학습할 때는 단순히 여러 module들을 한 directory안에서 관리해도 괜찮았지만, 여러 domain의 engineer들과 협업을 하게 되면 package  단위로 프로젝트를 관리하게 된다고 생각이 들어서 이 내용을 제대로 정리하는 기회를 가져보고자 합니다.(되게, 양이 많은 내용이여서 제가 프로젝트를 하면서 공부했던 내용들을 정리하고 추가적으로 정리해서 update 하도록 하겠습니다.)(이 책은 Python-cookbook 을 보고 공부하고 제가 closed book으로 저의 word로 적은 글입니다.)(적고 다시 책을 보고 부족한 내용을 채워넣었습니다.)
 
 ## hierachical package and module
@@ -154,5 +156,38 @@ python my_package/A/grok.py  # relative import error
 python -m my_package.A.grok  # OK
 ```
 
+## Optional(sys.path)
+```python
+E
+	__init__.py
+    c.py
+my_package
+	__init__.py
+    A
+    	__init__.py
+        grok.py
+        Gabi.py
+    B
+    	__init__.py
+        mba.py
+        ccd.py
+    test.py
 
 
+from ...E import c  # Error
+```
+위와 같은 디렉토리 구조에서 A package에 있는 `__init__.py`에서 아래와 같이 Module을 import하고 top-level module script command를  사용하여 `test.py`를 실행하면 에러가 발생하지 않습니다.
+
+
+
+```python
+from B import mba
+```
+
+
+```python
+python my_package/A/grok.py  
+
+```
+
+왜냐하면, python script command는 script가 sys.path에 script가 포함되어 있는 디렉토리를 추가하기 때문입니다. Python은 module의 path를 특정할 때 sys.path에서 확인하기 때문에 위와 같은 module import가 가능하게 됩니다.
