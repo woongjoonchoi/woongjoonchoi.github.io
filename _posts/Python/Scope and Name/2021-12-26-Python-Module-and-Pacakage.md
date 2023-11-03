@@ -156,6 +156,24 @@ python my_package/A/grok.py  # relative import error
 python -m my_package.A.grok  # OK
 ```
 
+double dotted name pattern으로 module을 import하기 위해서는 script파일이 partnt package와 같은 level에 있어야합니다.즉, 아래와 같은 디렉토리 구조에서 new.py라는 script를 실행할 때 가능합니다.
+```python
+E
+	__init__.py
+    c.py
+my_package
+	__init__.py
+    A
+    	__init__.py
+        grok.py
+        Gabi.py
+    B
+    	__init__.py
+        mba.py
+        ccd.py
+new.py
+
+```
 ## Optional(sys.path)
 ```python
 E
@@ -191,3 +209,4 @@ python my_package/A/grok.py
 ```
 
 왜냐하면, python script command는 script가 sys.path에 script가 포함되어 있는 디렉토리를 추가하기 때문입니다. Python은 module의 path를 특정할 때 sys.path에서 확인하기 때문에 위와 같은 module import가 가능하게 됩니다.
+[참고링크](https://docs.python.org/3/library/sys.html#sys.path:~:text=in%20version%203.10.-,sys.path,-%C2%B6)
