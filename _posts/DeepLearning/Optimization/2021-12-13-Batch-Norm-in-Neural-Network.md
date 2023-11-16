@@ -30,9 +30,9 @@ $$ X^{[1]}   \implies W^{[1]} , b^{[1]} \implies Z^{[1]} ,  a^{[1]} =  g(Z^{[1]}
 
 
 
-$$ Z^{[1]} ,  \mu =  \frac {\Sigma z^{[2]}}{m}, \sigma = \frac{(\Sigma z^{[2]} - \mu )^2}{\sqrt {\mu}}  \implies {z_{norm}}^{[1]} = \frac {(\Sigma z^{[1]}  -  \mu )}{\sqrt {\sigma}} \implies  $$
+$$ Z^{[1]} ,  \mu =  \frac {\Sigma z^{[1]}}{m}, \sigma = \frac{\Sigma (z^{[1]} - \mu )^2}{m}  \implies {z_{norm}}^{[1]} = \frac {(z^{[1]}  -  \mu )}{\sqrt {\sigma}} \implies  $$
 
-$$ {z_{norm}}^{[1]} = \frac {(\Sigma z^{[1]} - \mu)} {\sqrt {\sigma^2 + \epsilon }} \implies \widehat{z} = \alpha z_{norm} + \beta  $$    
+$$ {z_{norm}}^{[1]} = \frac {( z^{[1]} - \mu)} {\sqrt {\sigma^2 + \epsilon }} \implies \widehat{z} = \alpha z_{norm} + \beta  $$    
 
 
 
@@ -42,7 +42,7 @@ $$ {z_{norm}}^{[1]} = \frac {(\Sigma z^{[1]} - \mu)} {\sqrt {\sigma^2 + \epsilon
 
 여기서 , 생각해봐야 할 것은 이 모든 parameters들이 필요한가 입니다. 아래의 수식을 봅시다.
 
- $$ Z_{norm} = \frac {(\Sigma z - \mu)} {\sqrt {\sigma^2 + \epsilon}} $$ 는 znorm을 구하는 수식입니다. znorm을 구할 때 평균을 빼 주는데 , $$ \mu = \frac {\Sigma z }{m}  = \frac{\Sigma {(wx^T + b)} }{m} \implies Z_{norm} = \frac {\Sigma {wx^T}}{\sqrt {\sigma^2 + \epsilon}}$$ 입니다.   즉, bias term은 있으나 마나 영향을 주지 않습니다. 따라서 , 이 bias term을 지워주어도 영향을 주지 않습니다.
+ $$ Z_{norm} = \frac {( z - \mu)} {\sqrt {\sigma^2 + \epsilon}} $$ 는 znorm을 구하는 수식입니다. znorm을 구할 때 평균을 빼 주는데 , $$ \mu = \frac {\Sigma z }{m}  = \frac{\Sigma {(wx^T + b)} }{m} \implies Z_{norm} = \frac {wx^T - \Sigma {\frac{wx^T}{m}}}{\sqrt {\sigma^2 + \epsilon}}$$ 입니다.   즉, bias term은 있으나 마나 영향을 주지 않습니다. 따라서 , 이 bias term을 지워주어도 영향을 주지 않습니다.
 
 
 
