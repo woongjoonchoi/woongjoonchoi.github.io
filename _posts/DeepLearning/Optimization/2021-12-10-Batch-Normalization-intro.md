@@ -34,13 +34,13 @@ $$ \Sigma z^{(2)}_{i} $$
 
 $$ \mu = \frac {\Sigma z^{(2)}_{i}} {m} $$ 
 
-$$ \sigma = \frac {(\Sigma z^{(2)}_{i} - \mu )^2} {m} $$
+$$ \sigma = \frac {\Sigma (z^{(2)}_{i} - \mu )^2} {m} $$
 
-$$ z_{norm}^{(i)}  =  \frac {(\Sigma z^{(2)}_{i} - \mu )}{ {\sigma} } $$
+$$ z_{norm}^{(i)}  =  \frac {( z^{(2)}_{i} - \mu )}{ {\sigma} } $$
 
 하지만 , 이렇게 하면  $$\sigma$$ 가 0이 될 경우 계산을 할 수 없습니다. 따라서, 아래와 같이 계산을 합니다.
 
-$$ z_{norm}^{(i)}  =  \frac {(\Sigma z^{(2)}_{i} - \mu )} {\sqrt {\sigma^2 + \epsilon}  } $$
+$$ z_{norm}^{(i)}  =  \frac {( z^{(2)}_{i} - \mu )} {\sqrt {\sigma^2 + \epsilon}  } $$
 
  
 
