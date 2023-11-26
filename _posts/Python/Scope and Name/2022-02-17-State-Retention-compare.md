@@ -45,7 +45,7 @@ module scope의 state에 보관하게 되면 이 state를 담고 있는 variable
 - module namespace에 name collision의 가능성이 있다.
 - ***<u>1개의 name으로 같은 state만 보관이 가능하다.</u>***
 
-3번째 특성이 제일 중요한 특성입니다.  MultiProcessing에서 ,   fork된 processe들이  같은 공유 resource(ex.lock,mutex) 를 가지게 하기위해 의되적으로 사용할 수 있는 중요한 기능이 될 수도 있습니다. 하지만, 여러개의 event handler를 만들어야 할 경우에는 적합한 option이 아닙니다 .
+3번째 특성이 제일 중요한 특성입니다.  MultiProcessing에서 ,   fork된 processe들이  같은 공유 resource(ex.lock,mutex) 를 가지게 하기위해 의도적으로 사용할 수 있는 중요한 기능이 될 수도 있습니다. 하지만, 여러개의 event handler를 만들어야 할 경우에는 적합한 option이 아닙니다 .
 
 Global Statement를 사용할 때는, cross-file change, control flow 등 여러가지 option등을 고려해야 합니다 .
 
