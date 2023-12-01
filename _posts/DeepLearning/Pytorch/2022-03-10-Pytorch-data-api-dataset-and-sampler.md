@@ -13,6 +13,10 @@ tags:
 toc: true
 toc_sticky: true
 ---
+
+23.12.01  Customsapmler code수정 : sampler는 indicies/key 를 넘겨야하기 때문에 dic-> dic.keys()로 수정
+
+
 인공지능의 알고리즘이 점점 더 복잡해지지만, 딥러닝 1.0수준에서만 고려하면 , 이는 feature가 점점 더 복잡해짐을 의미합니다. 즉, data에 대한 hand engineering이 더 많아짐을 의미합니다. 이는 feature가 점점 더 복잡해지고 , data에 대한 hand engineering 비중이 더 커짐을 의미합니다. 
 
 예를 들면 , object detction 의 경우 label 이외에도 , 여러가지 것들( bounding box , object, multi object label..etc) 같은 추가적인 feature engineering이 필요합니다. image recognition 에 비해서 좀 더 많은 비용이 들어갑니다. natural language processing의 경우  , 단어를 토큰화 해서 , lookup table을 만드는 feature engineering이 필요합니다. question answering의 경우 answer span에 대한 정보와 , passage가 길어서 잘렸을 때 , 이에 대한 offset을 계산하는등 추가적인 feature engineering이 필요합니다. text classification이 label 1개만 필요한 것과 비교하면 상대적으로 cost가 많이 들어갑니다. 
@@ -194,7 +198,7 @@ class CustomSampler(torch.utils.data.Sampler) :
 ```
 NonintegerSamplerTestDataset = MySamplerTestDataset(dic)
 
-nonintegersampler = CustomSampler(dic)
+nonintegersampler = CustomSampler(dic.keys())
 
 print(list(torch.utils.data.DataLoader(NonintegerSamplerTestDataset , sampler = nonintegersampler)))
 ```
