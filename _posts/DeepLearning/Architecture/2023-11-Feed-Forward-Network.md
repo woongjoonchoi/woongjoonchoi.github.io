@@ -11,7 +11,15 @@ NeuralNetwork를 인간이 이해할 수 있는 logic으로 표현하는 방법�
 |-------------------------------|-----------------------------------------------------------------------------------|
 |l| $$l $$번째  layer  . $$ l $$ =   0, ... , L  은 weights와 bias를 가지는  layer의 번호를 의미한다.|
 |$$n^{[l]}| $$ l $$ 번째 layer의 node의 개수를 의미합니다.|
-|$$w_{j,k}^{[l]}$$| $$l $$ 번째 layer의 weight $$ W^{[l]} $$ , $$ W^{[l]} \in \mathbb{R}^{n^{[l]} \times n^{[l-1]} } $$ . $$ W^{[l]} $$ 의 $$(j,k) $$ 원소를 의미한다. $$j  = 0,..., n^{[l]}  \quad k = 0, .... n^{[l-1]} $$ |
+|$$j$$|$$j  = 0,..., n^{[l]}$$|
+|$$k$$|$$k = 0, .... n^{[l-1]} $$|
+|$$m$$|$$m$$ 은 training step에서의 batch size 입니다.|
+|$$i$$|$$i = 0,..... m$$|
+|$$w_{j,k}^{[l]}$$| $$l $$ 번째 layer의 weight $$ W^{[l]} $$ , $$ W^{[l]} \in \mathbb{R}^{n^{[l]} \times n^{[l-1]} } $$ . $$ W^{[l]} $$ 의 $$(j,k) $$ 원소를 의미한다.|
+|$$z_{j,i}^{[l]}$$| $$l$$ 번째 layer의 bias를 더한 output의 $$(i,j)$$ 성분입니다 . |
+|$$a_{j,i}^{[l]}$$|$$l$$ 번째 layer의 activation의 $$(i,j) $$성분입니다 .|
+|$$b^{[l]}|$$l$$ 번쨰 layer의 bias입니다.$$ b^{[l]} \in \mathbb{R}^{n^{[l]}  } $$ |
+|$$g_{j}^{[l]}| $$l$$ 번째 layer activation function $$g_{j}^{[l]} : \mathbb{R}^{n^{[l]}} \rightarrow \mathbb{R}^{n^{[l]}} $$  , $$g_{j}^{[l]} \in \mathbb{R}^{n^{[l]}  } $$|
 ## Explanation in Mathmatical View
 
 $$w_{j,k}^{[l]}$$
@@ -19,6 +27,9 @@ $$l 번째$$
 $$ W^{[l]} $$
 $$ W^{[l]} \in \mathbb{R}^{n^{[l]} \times n^{[l-1]} } $$
 $$j  = 0,..., n^{[l]}  \quad k = 0, .... n^{[l-1]} $$
+$$(i,j) $$
+$$g^{[l]} : \mathbb{R}^{n^{[l]}} \rightarrow \mathbb{R}^{n^{[l]}} $$ 
+$$g_{j}^{[l]} \in \mathbb{R}^{n^{[l]}  } $$
 ## Reference
 
 feedforward-neural-networks-part-1/journalsim From Jonas Lalin  
