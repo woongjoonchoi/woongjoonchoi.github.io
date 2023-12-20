@@ -27,7 +27,7 @@ NeuralNetwork를 인간이 이해할 수 있는 logic으로 표현하는 방법�
 |기호|설명|
 |-------------------------------|-----------------------------------------------------------------------------------|
 |l| $$l $$번째  layer  . $$ l $$ =   0, ... , L  은 weights와 bias를 가지는  layer의 번호를 의미한다.|
-|$$n^{[l]}| $$ l $$ 번째 layer의 node의 개수를 의미합니다.|
+|$$n^{[l]}$$| $$ l $$ 번째 layer의 node의 개수를 의미합니다.|
 |$$j$$|$$j  = 0,..., n^{[l]}$$|
 |$$k$$|$$k = 0, .... n^{[l-1]} $$|
 |$$m$$|$$m$$ 은 training step에서의 batch size 입니다.|
@@ -38,7 +38,7 @@ NeuralNetwork를 인간이 이해할 수 있는 logic으로 표현하는 방법�
 |$$b^{[l]}|$$l$$ 번쨰 layer의 bias입니다.$$ b^{[l]} \in \mathbb{R}^{n^{[l]}  } $$ |
 |$$g_{j}^{[l]}| $$l$$ 번째 layer activation function $$g_{j}^{[l]} : \mathbb{R}^{n^{[l]}} \rightarrow \mathbb{R}^{n^{[l]}} $$  , $$g_{j}^{[l]} \in \mathbb{R}^{n^{[l]}  } $$|
 ## Explanation in Mathmatical View
-![image](https://kau365-my.sharepoint.com/personal/oongjoon_kau_kr/_layouts/15/embed.aspx?UniqueId=ebe423ca-0dae-4174-a359-332ad084d52e)
+![feed](https://kau365-my.sharepoint.com/personal/oongjoon_kau_kr/Documents/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%9D%B4%EB%AF%B8%EC%A7%80/feed.png)
 
 다른 교육자료들을 보면 쉽게 설명하기 위해서 3개의 node로 한정짓거나 하는 방식으로 설명을 하게 됩니다. 하지만, 여기서는 일반식을 정의하기 위해서 $$ n^{[l]}$$개의 node의 대해서 설명을 하겠습니다.
 
