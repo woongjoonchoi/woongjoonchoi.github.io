@@ -1,3 +1,20 @@
+---
+title : "FeedForward Network"
+
+
+
+excerpt: "Mathmatical view"
+
+categories:
+  - DLArchitecture
+tags:
+  - [Machine Learning,deep learning ]
+# classes : wide
+toc: true
+toc_sticky: true
+---
+
+
 작성중-23.11.13
 
 
@@ -21,6 +38,10 @@ NeuralNetwork를 인간이 이해할 수 있는 logic으로 표현하는 방법�
 |$$b^{[l]}|$$l$$ 번쨰 layer의 bias입니다.$$ b^{[l]} \in \mathbb{R}^{n^{[l]}  } $$ |
 |$$g_{j}^{[l]}| $$l$$ 번째 layer activation function $$g_{j}^{[l]} : \mathbb{R}^{n^{[l]}} \rightarrow \mathbb{R}^{n^{[l]}} $$  , $$g_{j}^{[l]} \in \mathbb{R}^{n^{[l]}  } $$|
 ## Explanation in Mathmatical View
+![image](https://kau365-my.sharepoint.com/personal/oongjoon_kau_kr/_layouts/15/embed.aspx?UniqueId=ebe423ca-0dae-4174-a359-332ad084d52e)
+
+다른 교육자료들을 보면 쉽게 설명하기 위해서 3개의 node로 한정짓거나 하는 방식으로 설명을 하게 됩니다. 하지만, 여기서는 일반식을 정의하기 위해서 $$ n^{[l]}$$개의 node의 대해서 설명을 하겠습니다.
+
 
 $$w_{j,k}^{[l]}$$
 $$l 번째$$
