@@ -23,7 +23,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Woongjoon_AI">
 <meta property="og:title" content="Remote Branch:origin/master는 무엇일까요?">
-<meta property="og:url" content="/ci/cd/Remote-Tracking-branch/">
+<meta property="og:url" content="http://localhost:4000/ci/cd/Remote-Tracking-branch/">
 
 
   <meta property="og:description" content="git remote server">
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="/ci/cd/Remote-Tracking-branch/">
+<link rel="canonical" href="http://localhost:4000/ci/cd/Remote-Tracking-branch/">
 
 
 
@@ -56,7 +56,7 @@
     
       "@type": "Person",
       "name": "Choi Woongjoon",
-      "url": "/"
+      "url": "http://localhost:4000/"
     
   }
 </script>
@@ -158,7 +158,7 @@
 
   <div class="author__content">
     <h3 class="author__name p-name" itemprop="name">
-      <a class="u-url" rel="me" href="/" itemprop="url">Choi Woongjoon</a>
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Choi Woongjoon</a>
     </h3>
     
       <div class="author__bio p-note" itemprop="description">
@@ -272,7 +272,7 @@
   <ul class="nav__items" id="category_tag_menu">
       <!--전체 글 수-->
       <li>
-            📂 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">78</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
+            📂 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">81</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
       </li>
       <li>
         <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
@@ -318,7 +318,7 @@
                     
                 
                     
-                        <li><a href="/categories/Python" class="">Python(8)</a></li>
+                        <li><a href="/categories/Python" class="">Python(9)</a></li>
                     
                 
                     
@@ -715,7 +715,7 @@
                     
                 
                     
-                        <li><a href="/categories/Pytorch" class="">Pytorch (2)</a></li>
+                        <li><a href="/categories/Pytorch" class="">Pytorch (3)</a></li>
                     
                 
                     
@@ -1003,7 +1003,7 @@
                     
                 
                     
-                        <li><a href="/categories/DLArchitecture" class="">DLArchitecture (3)</a></li>
+                        <li><a href="/categories/DLArchitecture" class="">DLArchitecture (4)</a></li>
                     
                 
                     
@@ -1348,7 +1348,7 @@
                     
                 
                     
-                        <li><a href="/categories/Network" class="">Network (5)</a></li>
+                        <li><a href="/categories/Network" class="">Network (6)</a></li>
                     
                 
                     
@@ -2198,7 +2198,7 @@
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="/ci/cd/Remote-Tracking-branch/" class="u-url" itemprop="url">Remote Branch:origin/master는 무엇일까요?
+            <a href="http://localhost:4000/ci/cd/Remote-Tracking-branch/" class="u-url" itemprop="url">Remote Branch:origin/master는 무엇일까요?
 </a>
           </h1>
           
@@ -2316,7 +2316,9 @@
 
 <p>입력한 브랜치가 있는 리모트가 하나 있고 , 로컬에는 없으면 <code class="language-plaintext highlighter-rouge">git checkout &lt;branch&gt;</code> 를 사용하면 마찬가지로 트래킹 브랜치를 생성해줍니다.</p>
 
-<p>현재 브랜치를 트래킹 브랜치로 사용하고 싶으면 <code class="language-plaintext highlighter-rouge">git branch -u &lt;remote&gt;&lt;branch&gt;</code> 명령어를 사용하면 , 현재 브랜치를 트래킹 브랜치로 설정하게 됩니다. 이때 , <code class="language-plaintext highlighter-rouge">-u</code> 대신에 <code class="language-plaintext highlighter-rouge">--set-upstream-to</code> 라는 옵션을 사용해도 됩니다.</p>
+<p>현재 브랜치를 트래킹 브랜치로 사용하고 싶으면 <code class="language-plaintext highlighter-rouge">git branch -u &lt;remote&gt;&lt;branch&gt;</code> 명령어를 사용하면 , 현재 브랜치를 트래킹 브랜치로 설정하게 됩니다. 이때 , <code class="language-plaintext highlighter-rouge">-u</code> 대신에 <code class="language-plaintext highlighter-rouge">--set-upstream-to</code> 라는 옵션을 사용해도 됩니다. 한개의 리모트 브랜치에 대해서 여러개의 트래킹 브랜치를 설정할 수 있습니다.</p>
+
+<p>트래킹 브랜치로 설정한 브랜치에 대해 트래킹을 취소할려면 <code class="language-plaintext highlighter-rouge">git branch &lt;branch&gt; --unset-upstream</code> 명령어를 사용하면 됩니다.</p>
 
 <p>트래킹 브랜치에 대한 정보를 보기 위해서는 <code class="language-plaintext highlighter-rouge">git branch -vv</code> 라는 명령어를 사용하면 됩니다.  이는 로컬 트래킹 브랜치 목록들을 보여주는데 , 로컬 트래킹 브랜치가 앞서가는지 뒤쳐지는지를 보여줍니다.</p>
 
@@ -2388,11 +2390,11 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Remote+Branch%3Aorigin%2Fmaster%EB%8A%94+%EB%AC%B4%EC%97%87%EC%9D%BC%EA%B9%8C%EC%9A%94%3F+%20%2Fci%2Fcd%2FRemote-Tracking-branch%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Remote+Branch%3Aorigin%2Fmaster%EB%8A%94+%EB%AC%B4%EC%97%87%EC%9D%BC%EA%B9%8C%EC%9A%94%3F+%20http%3A%2F%2Flocalhost%3A4000%2Fci%2Fcd%2FRemote-Tracking-branch%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fci%2Fcd%2FRemote-Tracking-branch%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fci%2Fcd%2FRemote-Tracking-branch%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Fci%2Fcd%2FRemote-Tracking-branch%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fci%2Fcd%2FRemote-Tracking-branch%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -2449,88 +2451,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/Numeric/" rel="permalink">Numeric
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-
-    
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          4 minute read
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-Numeric Types라는 Built-in Objects를 잘 이용하기 위해서는 이 Built-in Objects에 어떤 Literals들이 있고 , 어떤 operator들을 제공하는지 알아야합니다. 이것들에 대해서 알아보도록 하겠습니다 .
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/standfordml/polynominal-regerssion/" rel="permalink">Polynomial Regression
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-
-    
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          2 minute read
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">Standford ML
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/python/Built-in-Objects/" rel="permalink">What is Objects and Why use Built-in objects
+        <a href="/dlarchitecture/Feed-Forward-Network/" rel="permalink">FeedForward Network
 </a>
       
     </h2>
@@ -2555,7 +2476,7 @@ Numeric Types라는 Built-in Objects를 잘 이용하기 위해서는 이 Built-
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Python Objects
+    <p class="archive__item-excerpt" itemprop="description">Mathmatical view
 </p>
   </article>
 </div>
@@ -2570,7 +2491,7 @@ Numeric Types라는 Built-in Objects를 잘 이용하기 위해서는 이 Built-
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/dls_c3/Setting-your-goal/" rel="permalink">Setting Your Goal
+        <a href="/network/The-Physical-Layer/" rel="permalink">The Phyiscal Layer
 </a>
       
     </h2>
@@ -2588,14 +2509,94 @@ Numeric Types라는 Built-in Objects를 잘 이용하기 위해서는 이 Built-
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          2 minute read
+          1 minute read
         
       </span>
     
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">DeepLearning.ai Dls ML strategy (Metric, Data Split)
+    <p class="archive__item-excerpt" itemprop="description">TCP 5 layer model-phyiscal
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/pytorch/Single-and-MultiProcessing/" rel="permalink">Pytorch data api : Multiprocessing
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Pytorch multiprocess
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/python/Numeric/" rel="permalink">Numerics
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Python Numerics
 </p>
   </article>
 </div>
@@ -2643,7 +2644,7 @@ Numeric Types라는 Built-in Objects를 잘 이용하기 위해서는 이 Built-
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2022 Choi Woongjoon. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2023 Choi Woongjoon. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
