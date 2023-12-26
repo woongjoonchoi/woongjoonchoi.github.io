@@ -1,0 +1,2833 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Recursion to Iteration - Woongjoon_AI</title>
+<meta name="description" content="Recursion , Iteratoin">
+
+
+  <meta name="author" content="Choi Woongjoon">
+  
+  <meta property="article:author" content="Choi Woongjoon">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Woongjoon_AI">
+<meta property="og:title" content="Recursion to Iteration">
+<meta property="og:url" content="/algorithm/Recursion-to-Iteration/">
+
+
+  <meta property="og:description" content="Recursion , Iteratoin">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-01-16T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/algorithm/Recursion-to-Iteration/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Choi Woongjoon",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Woongjoon_AI Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Woongjoon_AI
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://kau365-my.sharepoint.com/:b:/g/personal/oongjoon_kau_kr/EUebRgY_s5xFikJdu4cCTZgBSeQd5DRoslVvEaEhYt2WYw?e=kNtQkx">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://kau365-my.sharepoint.com/:b:/g/personal/oongjoon_kau_kr/EY70u-guz5BOnxNWqBdBcrIBoAbFny3p8tUOcPE8x7QZTA?e=h34VMJ">CV_KR</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="/" itemprop="url">Choi Woongjoon</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>I am an <strong>amazing</strong> developer.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Goyang/Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:oongjoon10@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://sites.google.com/view/woognjunchoiai/%ED%99%88" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/ANWTNev5jkzYwoC" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/woongjoonchoi" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+  
+    
+  
+    <!--전체 글 수를 세기 위한 연산. sum 변수에 전체 글 수 저장-->
+
+
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle menu</label>
+  <ul class="nav__items" id="category_tag_menu">
+      <!--전체 글 수-->
+      <li>
+            📂 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">78</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
+      </li>
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+
+        <span class="nav__sub-title">Programming</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Python" class="">Python(8)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            
+        <span class="nav__sub-title">Coding Interview</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CodingInterview/CodingTest" class="">CodingTest (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CodingInterview/CodingInterview" class="">CodingInterview (3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CodingInterview/Codingtechnique" class="">Codingtechnique (3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Computer Science</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DataStructure" class="">DataStructure (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Algorithm" class="">Algorithm (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+      </li>
+        <span class="nav__sub-title">DeepLearning</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Pytorch" class="">Pytorch (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Huggingface" class="">Huggingface (4)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Optimization" class="">Optimization (5)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/NLP" class="">NLP (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>    
+           <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DLArchitecture" class="">DLArchitecture (3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Software Engineering</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CICD" class="">CI/CD (8)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>     
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/OS" class="">Operating System  (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+            </ul>     
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Tools" class="">Tools (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>     
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Development" class="">Development (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Network" class="">Network (5)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+        <span class="nav__sub-title">DeepLearningSpecialization</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DLS_C3" class="">ML Strategy(2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DLS_C2" class="">DLS Assignment(2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+        <span class="nav__sub-title">ML</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/StandfordML" class="">StandfordML(1)</a></li>
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/modeloptimization" class="">ModelOptimization(4)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/Handsonmachinelearning" class="">Handsonmachinelearning(1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/PatternRecognitionML" class="">Pattern Recognition and Machine Learning(1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+      </li>
+        <span class="nav__sub-title">Data Engineering</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/Data-Engineering-basic" class="">Data Engineering기본 (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">GCP</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/GCP/Bigquery" class="">Bigquery(3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+        <span class="nav__sub-title">Mathmatics</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Mathmatics/Linear_Algebra" class="">Linear Algebra (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Mathmatics/Statisticd" class="">Statistics (1)</a></li>
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">DeepLearningAI NLP</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DeepLearningai_nlp" class="">DeepLearning.ai nlp qa (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Data Analytics</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Visualization" class="">Data Visualization (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+      </li>
+  </ul>
+</nav>
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Recursion to Iteration">
+    <meta itemprop="description" content="Recursion , Iteratoin">
+    <meta itemprop="datePublished" content="2022-01-16T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="/algorithm/Recursion-to-Iteration/" class="u-url" itemprop="url">Recursion to Iteration
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#recursion-vs-iteration">Recursion vs Iteration</a></li><li><a href="#where-to-go">where to go?</a></li><li><a href="#steps--recursion-to-iteration">Steps : Recursion to Iteration</a><ul><li><a href="#1-recursion-작성">1. Recursion 작성</a></li><li><a href="#2어떤-state를-복원해야-하는가">2.어떤 state를 복원해야 하는가</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>저번에 Recursion , Iteration 에 대해서 다루었습니다. Recursion , Iteration은 서로가 서로를 대체하는 것이 아닌, 상황에 맞게 바꿔서 사용하는 Algorithm 입니다. Computer Architecture 관점에서 보았을 때 , Recursion, Iteration 은 모두 같은 일을 합니다. 따라서, 서로 간의 전환이 언제든지 가능하다는 것입니다. 하지만, 이에 대한 일반적인 방법론은 찾아보았지만, 없었습니다. 제가 이를 시행착오 하면서 얻은 둘의 차이점에 대한 고찰과 제 나름의 방법론을 제시해볼려고합니다. (이번 글은 평소보다 가독성이 좀 떨어질 수 있습니다.)</p>
+
+<h2 id="recursion-vs-iteration">Recursion vs Iteration</h2>
+
+<p>Recursion 과 Iteration을 비교해보도록 하겠습니다. 우선 둘의 공통점은 특정 서브루틴(파이썬의 경우 <code class="language-plaintext highlighter-rouge">함수</code>) 의 수행을 완료하면 State를 변환시킨 다는 것입니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fact</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">:</span>
+	<span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+		<span class="k">return</span> <span class="n">n</span>
+	<span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">fact</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>factorial 함수를 예로 들면  재귀함수의 호출이 완료되면 , 이전 caller에서의 state로 변환해줍니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+	<span class="n">a</span> <span class="o">*=</span> <span class="n">n</span>
+	<span class="n">n</span><span class="o">-=</span><span class="mi">1</span>
+
+</code></pre></div></div>
+
+<p>while 구문에서 서브루틴은 while 안의 코드라 볼 수 있습니다.  매 iteration 마다 n을 1씩 감소시키는 것을 확인할 수 있습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stack</span> <span class="o">=</span><span class="p">[]</span>
+<span class="k">while</span> <span class="n">n</span><span class="o">&gt;</span> <span class="mi">0</span> <span class="p">:</span>
+	<span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+	<span class="n">n</span><span class="o">-=</span><span class="mi">1</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">stack</span> <span class="p">:</span>
+	<span class="n">a</span> <span class="o">*=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<p>이와 같이 변환시킬수도 있습니다.  auxiliary stack을 이용해서 state를 복원할 수 있습니다. state 의 복원이 정해져 있지 않고  , branch에 따라 바뀌는 경우 ,  auxiliary stack을 사용해야 합니다.  저는, 일반적인 경우를 가정할 것이기에 auxiliary stack을 사용한다고 가정하겠습니다.</p>
+
+<p>둘의 차이점은 우선 namespace의 개수라 볼 수 있습니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/149150164-eb63ac0b-91d9-4e20-afbc-fbe567208a81.png" alt="image" /></p>
+
+<p>recursion program의 경우 자기 자신을 호출할 때 마다 새로운 stack frame을 형성합니다.  연속된 주소에 할당하지 않고 , 임의의 주소에 할당하게 됩니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import inspect
+def fact(n) :
+    if n==1 :
+        print(inspect.stack())
+        return 1 
+    return n * fact(n-1)
+
+fact(4)
+
+&gt;&gt;frame=&lt;frame at 0x7fa1c0b5f3a0,
+&gt;&gt;frame=&lt;frame at 0x7fa1c0b5f1f0,
+&gt;&gt;&lt;frame at 0x7fa1c3fc0dc0
+...
+</code></pre></div></div>
+
+<p>보면 stackframe간 의 byte 차이를 보면 n이 클수록 overhead가 될 수 있음을 알 수 있습니다. n이외에도 다른 값들이 frame안에 저장되기에 address간의 차이가 integer size보다 더 큼을 알 수 있습니다. 실제로 , python 의 recursion 에는 limit가 걸려있습니다.</p>
+
+<p>반면, iteration 은 global scope의 namespace 1개만 생성이 됩니다 .  이러한 , 차이점으로 굉장히 중요하면서 큰 차이점이 생깁니다.</p>
+
+<h2 id="where-to-go">where to go?</h2>
+
+<p>Python 뿐만 아니라 대부분의 programming language는 recursion concept을 지원합니다 . 함수(서브루틴)를 수행후 이전 caller의 frame(scope)으로 돌아가게 됩니다. 이는, 각 frame 안에  이전 caller의 frame에 대한 포인터가 있음을 의미합니다. 하지만, iteration의 경우 frame이 1개입니다 . 돌아갈 frame이 없습니다. 이를 다른 말로 표현하면, <strong><em><u>recursion은 이전 state를 caller 의 frame으로 돌아가서복구할 수  있지만, iteration은 이전의 frame으로 돌아가는 방법으로 state를 복구할 수 없습니다</u></em></strong> . 따라서, iteration 의 경우 state를 복구해주어야 한다면, 추가적인 저장공간이 필요합니다. 따라서, auxiliary stack이 필요하게 됩니다. 추가적인 stack을 이용해서 이전 state로 복구를 해주는 것입니다.</p>
+
+<h2 id="steps--recursion-to-iteration">Steps : Recursion to Iteration</h2>
+
+<p>이제 , Iteration의 stack을 복구하는 방법을 알았으니 변환을 해줄 차례입니다.Recursion에서 Iteration으로 바꾸는 과정이 그리 쉽지는 않다고 개인적으로 생각합니다. factorial은 직관적인 예제이고 , 굳이 stack을 쓰지 않아도 되는 예제이기에 변환이 쉽다고 생각합니다. 하지만, branch를 통해서 어떤 state를 복원할지 정하는 예의 경우 상당히 복잡해진다고 생각합니다. 대표적인 예로 , binary tree traversal이 있다고 생각합니다.  유명한 예제를 외워도 되겠지만, Recursion에서 Iteration을 바꾸는 step을 정해놓고 바꾸는 연습을 하면 좀 더 체계적으로 바꿀 수 있다고 생각합니다. 제가 소개할 것은 일반적인 solution이 아닌 , 어떠한 과정을 수행해야 하는지를 단계별로 정리해 놓은 것입니다.(제 개인적인 시행착오에 의한 결과임으로 정확하지 않습니다 .)</p>
+
+<h3 id="1-recursion-작성">1. Recursion 작성</h3>
+
+<p>우선은 Recursion 프로그램으로 작성할 수 있는게 첫번째 조건이라고 생각합니다. Recursion 프로그램은 인간이 직관적으로 볼 수 있기에 여기서 부터 출발할 수 있으면 좋다고 생각합니다. 여기서 가장 중요한 것은 Recursion 프로그램을 작성할 때 대충 PseudoCode로 작성하는게 아닌 정의에 따라서 엄밀하게 작성하는 것이 좋다고 생각합니다. Recursion의 정의를 다시 회상해보도록 하겠습니다.</p>
+
+<ul>
+  <li>Programming technique that function call itself
+    <ul>
+      <li>In programming, the goal is not to have infinite Recursion
+        <ul>
+          <li><strong><em><u>must</u></em></strong> have 1 or more base cases</li>
+          <li><strong><em><u>must</u></em></strong> solve same problem on other input with goal of simplifying larger input</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>그림슨 교수님의 정의를 다시 가져왔는데 , 여기서 must라는 단어가 사용된 것을 알 수 있습니다. 즉 , <strong><em><u>반드시 지켜야만 하는 rule이라는 것입니다</u></em></strong>.  Recursion은 base case를 기준으로 branch가 이루어집니다. Base case에서의 서브루틴을 수행할지 , 일반적인 case에서의 루틴을 수행할지 결정합니다. 이를 정하지 않으면, iteration에서 어떤 state를 저장할지 정할수 가 없습니다. 그리고 , 매번 같은 문제를 풀어야 하는것을 반드시 지키는 것이 중요합니다. 이 조건 역시 branch를 어떻게 정하는지 와 연결이 되기에 명확하게 지켜주어야 합니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>procedure inorder(node)
+    if node = null
+        return
+    inorder(node.left)
+    visit(node)
+    inorder(node.right)
+</code></pre></div></div>
+
+<p>inorder traversal은 위와 같이 작성이 될 것입니다.</p>
+
+<h3 id="2어떤-state를-복원해야-하는가">2.어떤 state를 복원해야 하는가</h3>
+
+<p>이제 , Recursion을 엄밀하게 작성을 했다면, 어떤 state로 복원을 해야할지 정해주어야 합니다. Recursion 프로그램을 보고 Branch를 만들면 비교적 쉽게 할 수 있습니다 .</p>
+
+<p>예를 들어, Tree순회의 경우 base case는 node가 null인가 아닌가 입니다. 따라서, 분기 조건은 아래와 같게 됩니다.</p>
+
+<ul>
+  <li>node가 null 값이다
+    <ul>
+      <li>base case</li>
+    </ul>
+  </li>
+  <li>node가 null 값이 아니다.
+    <ul>
+      <li>함수 실행</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>procedure iterativeInorder(node)
+    stack ← empty stack
+    while not stack.isEmpty() or node ≠ null
+        if node ≠ null
+
+        else
+
+</code></pre></div></div>
+
+<p>작성한 Recursion 프로그램을 살펴보면 , base case일경우 그저 return하는 것을 확인할 수 있습니다. 이 말은 직접 state를 복구하는 과정을 프로그램이 대신 해줘야 함을 의미합니다 .inorder의 경우 node를 방문했을 때 null 값이면 root를 방문후 right subtree를 방문하면 될 뿐입니다. 이 경우는 간단하게 아래와 같이 작성할 수 있습니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>procedure iterativeInorder(node)
+    stack ← empty stack
+    while not stack.isEmpty() or node ≠ null
+        if node ≠ null
+        
+        else
+            node ← stack.pop()
+            visit(node)
+            node ← node.right
+</code></pre></div></div>
+
+<p>null 값이 아니라면 , 서브루틴을 실행하게 됩니다. Recursion의 경우 left subtree를 방문한 후 다시 서브루틴을 실행하게 됩니다. 따라서, 아래와 같이 작성하면 될 것입니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>procedure iterativeInorder(node)
+    stack ← empty stack
+    while not stack.isEmpty() or node ≠ null
+        if node ≠ null
+            stack.push(node)
+            node ← node.left
+        else
+            node ← stack.pop()
+            visit(node)
+            node ← node.right
+</code></pre></div></div>
+
+<p>inorder에서 node가 null인 경우 따로 명시는 안했지만 , state를 복구하는 과정이 단순했습니다.  단순한 의식의 흐름대로 코드를 작성해도 잘 동작을 합니다. 하지만, 이 restore 과정에 대해 집중을 할 필요가 있습니다. postorder의 경우 restore 과정에 집중을 해야 합니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>procedure postorder(node)
+    if node = null
+        return
+    postorder(node.left)
+    postorder(node.right)
+    visit(node)
+</code></pre></div></div>
+
+<p>postorder의 경우도 base의 case는 다른 tree traversal 알고리즘과 같습니다. 따라서, 아래와 같이 iterative 알고리즘으로 변환이 될 것입니다 . 방문한 node가 null이 아닐경우 서브루틴을 실행하게 될 것입니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">postorderTraversal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        
+        <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="n">root</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="bp">None</span> <span class="p">:</span> <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">while</span> <span class="n">stack</span>  <span class="ow">or</span> <span class="n">curr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">curr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="p">:</span>
+                <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+                <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="n">left</span>
+            <span class="k">else</span> <span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
+
+<p>방문한 node가 null일 경우 case가 inorder보다 비교적 어렵습니다.</p>
+
+<p>Inorder Traversal를 코드를 자세히 보면, null인 경우 stack에서 다음에 방문할 노드를 pop해서 정해줍니다. 이는 , 강제적으로 다음에 방문할 노드를 정해주는 것입니다. Inorder의 경우 항상 stack의 top을 방문합니다. 어떤 경우에도 base case에 도달하면 이전 caller의 state를 복원해서 사용하게 됩니다. 하지만, postorder는 그렇지 않습니다. stack에 있는 노드가 아닌 stack의 right를 방문하게 됩니다.</p>
+
+<p>즉, <strong><em><u>어떤 state를 복원하게 되는지 잘 알고 있어야 합니다.</u></em></strong>   <strong><em><u>postorder는 leftsubtree를 방문한후 stack의 top을 복원하는 것이 아닌 새로운 state를 갖고 다시 서브루틴을 수행하게 됩니다</u></em></strong>.  Recursion을 정의에 입각해서 만든 후 어떤 state를 복원하는지 체크를 해야합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">postorderTraversal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        
+        <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="n">root</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># stack.append(curr)
+</span>        <span class="n">lastvisitnode</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="bp">None</span> <span class="p">:</span> <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">while</span> <span class="n">stack</span>  <span class="ow">or</span> <span class="n">curr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">curr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="p">:</span>
+                <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+                <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="n">left</span>
+            <span class="k">else</span> <span class="p">:</span>
+                <span class="n">temp</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">right</span>
+                <span class="k">if</span> <span class="n">temp</span> <span class="ow">is</span> <span class="bp">None</span> <span class="p">:</span> 
+                    <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">val</span><span class="p">)</span>
+                    <span class="n">temp</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+                    <span class="k">while</span> <span class="n">stack</span> <span class="ow">and</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">right</span> <span class="o">==</span> <span class="n">temp</span> <span class="p">:</span>
+                        <span class="n">temp</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+                        <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+                <span class="k">else</span> <span class="p">:</span>
+                    <span class="n">curr</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">right</span>
+        <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div></div>
+
+<p>postorder의 자세한 디테일은 생략하겠습니다. 중요한 것은 curr이 모든 branch에서 가리키는 대상이 바뀌지 않는 것을 주목해야 합니다. curr은 Recursion에서 argument 값이라 볼 수 있습니다. Recursion에서 Argument가 바뀌는 것은 새로운 stack frame을 생성할 때입니다. Recursion Program은 여러개의 stack frame을 만들 수 있고 , 한 프로그램으로 여러개의 branch를 가지는 것과 같은 효과를 보여줍니다 .하지만, Iterative Program은 모든 state에서 호출이 종료되면, 어떻게 복구해야할지 알려줘야 합니다 . 각 분기별로, 알고리즘을 작성해도 괜찮지만, 그렇게 될 경우 recursion 프로그램을 변환한 것이 아닌 새로운 알고리즘을 작성해 준 것입니다. 아까 말했던, 매번 작아지는 다른 input에 대해 같은 문제를 풀지 않은 것입니다. <strong><em><u>같은 문제를 풀기 위해서 는 , state를 복원을 해주는 코드를 따로 작성해주는 것이 좋다</u></em></strong>고 개인적으로 생각합니다. <strong><em><u>State 를 복원하는 과정에서 curr(Recursion에서 argument 역할)은 새로운 서브루틴을 실행하기 전까지 base case(여기서는 null) 값을 가지고 있게 해서 복원하는 중임을 명시해주는 것이 좋다고 생각합니다.</u></em></strong></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#algorithm" class="page__taxonomy-item p-category" rel="tag">Algorithm</a><span class="sep">, </span>
+    
+      <a href="/tags/#computer-science" class="page__taxonomy-item p-category" rel="tag">Computer Science</a><span class="sep">, </span>
+    
+      <a href="/tags/#iteration" class="page__taxonomy-item p-category" rel="tag">Iteration</a><span class="sep">, </span>
+    
+      <a href="/tags/#recursion" class="page__taxonomy-item p-category" rel="tag">Recursion</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#algorithm" class="page__taxonomy-item p-category" rel="tag">Algorithm</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2022-01-16T00:00:00+09:00">January 16, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Recursion+to+Iteration%20%2Falgorithm%2FRecursion-to-Iteration%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Falgorithm%2FRecursion-to-Iteration%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Falgorithm%2FRecursion-to-Iteration%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/algorithm/Recursion-vs-Iterationmd/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>Recursion vs Iteration</a>
+    
+    
+      <a href="#" class="pagination_prev_next--pager disabled">가장 최근 글입니다</a>
+    
+  </nav>
+
+
+<!-- 
+  <nav class="pagination">
+    
+      <a href="/ci/cd/Git-file-state-and-convert-to-each-other/" class="pagination--pager" title="Git file state and convert to each other
+">Previous</a>
+    
+    
+      <a href="/development/Basic-Resource-managment-pattern/" class="pagination--pager" title="Resource ManageMent
+">Next</a>
+    
+  </nav>
+ -->
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Numeric/" rel="permalink">Numeric
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+Numeric Types라는 Built-in Objects를 잘 이용하기 위해서는 이 Built-in Objects에 어떤 Literals들이 있고 , 어떤 operator들을 제공하는지 알아야합니다. 이것들에 대해서 알아보도록 하겠습니다 .
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/standfordml/polynominal-regerssion/" rel="permalink">Polynomial Regression
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Standford ML
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/python/Built-in-Objects/" rel="permalink">What is Objects and Why use Built-in objects
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Python Objects
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/dls_c3/Setting-your-goal/" rel="permalink">Setting Your Goal
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">DeepLearning.ai Dls ML strategy (Metric, Data Split)
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Choi Woongjoon. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+<script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'woongjoonchoi/Comments');
+    script.setAttribute('issue-term', 'pathname');
+    script.setAttribute('theme', 'photon-dark');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+  
+
+
+
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+extensions: ["tex2jax.js"],
+jax: ["input/TeX", "output/HTML-CSS"],
+tex2jax: {
+inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+processEscapes: true
+},
+"HTML-CSS": { availableFonts: ["TeX"] }
+});
+</script>
+
+  </body>
+</html>

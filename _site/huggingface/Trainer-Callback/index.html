@@ -1,0 +1,2757 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Huggingface:TrainerCallback - Woongjoon_AI</title>
+<meta name="description" content="Huggingface TrainerCallback">
+
+
+  <meta name="author" content="Choi Woongjoon">
+  
+  <meta property="article:author" content="Choi Woongjoon">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Woongjoon_AI">
+<meta property="og:title" content="Huggingface:TrainerCallback">
+<meta property="og:url" content="/huggingface/Trainer-Callback/">
+
+
+  <meta property="og:description" content="Huggingface TrainerCallback">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-12-14T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/huggingface/Trainer-Callback/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Choi Woongjoon",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Woongjoon_AI Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Woongjoon_AI
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://kau365-my.sharepoint.com/:b:/g/personal/oongjoon_kau_kr/EUebRgY_s5xFikJdu4cCTZgBSeQd5DRoslVvEaEhYt2WYw?e=kNtQkx">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://kau365-my.sharepoint.com/:b:/g/personal/oongjoon_kau_kr/EY70u-guz5BOnxNWqBdBcrIBoAbFny3p8tUOcPE8x7QZTA?e=h34VMJ">CV_KR</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="/" itemprop="url">Choi Woongjoon</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>I am an <strong>amazing</strong> developer.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Goyang/Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:oongjoon10@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://sites.google.com/view/woognjunchoiai/%ED%99%88" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/ANWTNev5jkzYwoC" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/woongjoonchoi" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+  
+    
+  
+    <!--전체 글 수를 세기 위한 연산. sum 변수에 전체 글 수 저장-->
+
+
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle menu</label>
+  <ul class="nav__items" id="category_tag_menu">
+      <!--전체 글 수-->
+      <li>
+            📂 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">78</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
+      </li>
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+
+        <span class="nav__sub-title">Programming</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Python" class="">Python(8)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            
+        <span class="nav__sub-title">Coding Interview</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CodingInterview/CodingTest" class="">CodingTest (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CodingInterview/CodingInterview" class="">CodingInterview (3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CodingInterview/Codingtechnique" class="">Codingtechnique (3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Computer Science</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DataStructure" class="">DataStructure (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Algorithm" class="">Algorithm (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+      </li>
+        <span class="nav__sub-title">DeepLearning</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Pytorch" class="">Pytorch (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Huggingface" class="">Huggingface (4)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Optimization" class="">Optimization (5)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/NLP" class="">NLP (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>    
+           <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DLArchitecture" class="">DLArchitecture (3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Software Engineering</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CICD" class="">CI/CD (8)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>     
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/OS" class="">Operating System  (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+            </ul>     
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Tools" class="">Tools (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>     
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Development" class="">Development (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Network" class="">Network (5)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+        <span class="nav__sub-title">DeepLearningSpecialization</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DLS_C3" class="">ML Strategy(2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DLS_C2" class="">DLS Assignment(2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+        <span class="nav__sub-title">ML</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/StandfordML" class="">StandfordML(1)</a></li>
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/modeloptimization" class="">ModelOptimization(4)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/Handsonmachinelearning" class="">Handsonmachinelearning(1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/PatternRecognitionML" class="">Pattern Recognition and Machine Learning(1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+      </li>
+        <span class="nav__sub-title">Data Engineering</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/Data-Engineering-basic" class="">Data Engineering기본 (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">GCP</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/GCP/Bigquery" class="">Bigquery(3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+        <span class="nav__sub-title">Mathmatics</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Mathmatics/Linear_Algebra" class="">Linear Algebra (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Mathmatics/Statisticd" class="">Statistics (1)</a></li>
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">DeepLearningAI NLP</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DeepLearningai_nlp" class="">DeepLearning.ai nlp qa (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Data Analytics</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Visualization" class="">Data Visualization (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+      </li>
+  </ul>
+</nav>
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Huggingface:TrainerCallback">
+    <meta itemprop="description" content="Huggingface TrainerCallback">
+    <meta itemprop="datePublished" content="2021-12-14T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="/huggingface/Trainer-Callback/" class="u-url" itemprop="url">Huggingface:TrainerCallback
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#trainercallback">TrainerCallback</a></li><li><a href="#callback-이-어떻게-구현되었는지">Callback 이 어떻게 구현되었는지</a></li><li><a href="#callback-추가-및-삭제">Callback 추가 및 삭제</a></li><li><a href="#callback-method">Callback Method</a></li><li><a href="#custom-callback">Custom Callback</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="trainercallback">TrainerCallback</h2>
+
+<p>Huggingface에서 Trainer라는 Class는 모델의 학습을 굉장히 쉽게 해줍니다. 하지만, logging 방식이 정해져 있기 때문에, 상황에 따라 logging을 다르게 할 수 있는 방법을 찾다가 TrainerCallback이라는 것을 알게 되었습니다. Huggingface에서 TrainerCallback이라는 Class를 제공해줍니다.  TrainerCallback class를 subclassing해서 다양한 Callback Class들이 제공되고 있습니다. subclassing을 통해 다양한 callback method를 override 할 수 있기 때문에 inheritance에 대한 개념을 인지한다면 scratch부터 짜는 것처럼  짤 수 있다고 생각합니다. 이번 글에 나오는 코드는 huggingface의 docs에서 가져온 코드입니다. 지극히, 초보적인 Python Coder 관점에서 바라본 것이라 중급자나 고급자분들께서는 의아하실 수도 있다고 생각합니다. 좋게 봐주시면 감사하겠습니다. (자세한 정의는 나중에 좀 더 자세하게 다루도록 하겠습니다.)</p>
+
+<h2 id="callback-이-어떻게-구현되었는지">Callback 이 어떻게 구현되었는지</h2>
+
+<p>Huggingface 에서 TrainerCallback이 어떻게 작동하는지 알아보도록 하겠습니다. TrainerCallback이라는 부모 클래스를 여러 개의 다른 callback 클래스들이 subcalssing을 해서  구현되어있습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">DefaultFlowCallback</span><span class="p">(</span><span class="n">TrainerCallback</span><span class="p">):</span>
+    <span class="s">"""
+    A :class:`~transformers.TrainerCallback` that handles the default flow of the training loop for logs, evaluation
+    and checkpoints.
+    """</span>
+</code></pre></div></div>
+
+<p>callback의 예시 중 하나인 DefaultFlowCallback을 가져와 보았습니다. TrainerCallback을 subclassing 했다는 것을 알 수 있습니다. Huggingface에서 제공하는 Callback은 저 개인적으로는 두 종류로 분류할 수 있다고 생각합니다. Huggingface에서 기본적으로 제공하는 Callback Class와 외부 서비스와 통합이 된 integration callback class들이 있다고 생각합니다. Huggingface repository를 들어가시면 trainer_callback.py 와 integrations.py 두 개로 나뉘어서 저장되어있음을 알 수 있습니다 . integrations.py에는 wadnb,mlfow,azure등 여러 metric logging 서비스와 통합이 되어있음을 알 수 있습니다.</p>
+
+<ul>
+  <li>Default Callback
+    <ul>
+      <li>DefaultFlowCallback</li>
+      <li>ProgressCallback</li>
+      <li>PrinterCallback</li>
+      <li>EarlyStoppingCallback</li>
+    </ul>
+  </li>
+  <li>Integration Callback
+    <ul>
+      <li>TensorboardCallback</li>
+      <li>WandbCallback</li>
+      <li>CometCallback</li>
+      <li>AzureMLCallback</li>
+      <li>MLFlowCallback</li>
+      <li>CodeCarbonCallback</li>
+    </ul>
+  </li>
+</ul>
+
+<p>현재 repo 에 정의된 callback 클래스들입니다.</p>
+
+<h2 id="callback-추가-및-삭제">Callback 추가 및 삭제</h2>
+
+<p>Callback 클래스를 추가하게 되면 특정 조건을 만족할 때마다 callback이 호출되게 됩니다. Integration Callback의 경우 추가하는 방법은 Trainer를 instantiate 할 때 report_to argument에서 지정해주게 됩니다. 예를 들어, WandBCallback을 추가하고 싶으면 “wandb” 라는 argument를 넘겨주면 됩니다. Default Callback들의 경우 DefaultFlowCallback 은 자동으로 추가가 됩니다. 수동으로 Callback들을 추가하려면 Trainer의 add_callback이라는 method를 사용하게 된다면  Callback을 추가할 수 있습니다. Trainer의 remove_callback이라는 method를 사용하게 되면 Callback을 삭제할 수 있습니다.</p>
+
+<h2 id="callback-method">Callback Method</h2>
+
+<p>Huggingface에서 한번 Trainer를 instantiate 하게 된다면 CallbackHandler,TrainerState,TrainerControl 가 Trainer instance의 attribute로 지정이 됩니다. callback handler로 여러 method를 호출하게 됩니다.다른 프레임워크는 잘 모르지만, Huggingface의 경우 on_init_end, on_train_begin , on_step_end , ..등등으로 callback의 method들이 훈련하는 도중에 특정 시점에 호출이 됩니다.  TrainerState로 train 했을 때의 metric, best_checkpoint, epoch,step 등등을 넘기고 TrianserControl로 should_evaluation ,should_save, should_log 등등의 boolean 값으로 호출된 method를 수행할 지 정하게 됩니다.</p>
+
+<p>예시를 보겠습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+                    <span class="n">model</span><span class="p">.</span><span class="n">zero_grad</span><span class="p">()</span>
+                    <span class="bp">self</span><span class="p">.</span><span class="n">state</span><span class="p">.</span><span class="n">global_step</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="bp">self</span><span class="p">.</span><span class="n">state</span><span class="p">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span> <span class="o">+</span> <span class="p">(</span><span class="n">step</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">steps_in_epoch</span>
+                    <span class="bp">self</span><span class="p">.</span><span class="n">control</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">callback_handler</span><span class="p">.</span><span class="n">on_step_end</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">state</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">control</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>예시를 보면, 위 코드는 step이 끝날 때 마다 callback_handler 가 on_step_end 라는 method를 호출하는 것을 볼 수 있습니다 .</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">on_step_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">TrainingArguments</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">TrainerState</span><span class="p">,</span> <span class="n">control</span><span class="p">:</span> <span class="n">TrainerControl</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">call_event</span><span class="p">(</span><span class="s">"on_step_end"</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">control</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>이런 식으로 on_step_end method가 call_event라는 method를 호출하게 됩니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">call_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">.</span><span class="n">callbacks</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">event</span><span class="p">)(</span>
+                <span class="n">args</span><span class="p">,</span>
+                <span class="n">state</span><span class="p">,</span>
+                <span class="n">control</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">model</span><span class="p">,</span>
+                <span class="n">tokenizer</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">,</span>
+                <span class="n">optimizer</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">optimizer</span><span class="p">,</span>
+                <span class="n">lr_scheduler</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">lr_scheduler</span><span class="p">,</span>
+                <span class="n">train_dataloader</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">train_dataloader</span><span class="p">,</span>
+                <span class="n">eval_dataloader</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">eval_dataloader</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="c1"># A Callback can skip the return of `control` if it doesn't change it.
+</span>            <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">control</span> <span class="o">=</span> <span class="n">result</span>
+        <span class="k">return</span> <span class="n">control</span>
+</code></pre></div></div>
+
+<p>call_event에서 Trainer에 추가된 모든 callback들에 대하여 getattr을 통해서 event 에 해당하는 method가 있는지 확인을 합니다 . 여기에서는 이 method가 ‘on_step_end’ 가 되겠습니다. TrainerControl의 boolean값들을 result를 통해 변경해줍니다. (모든 event가 그렇지는 않겟지만, on_step_end 의 경우 boolean 값을 변경해줍니다.)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+                    <span class="n">model</span><span class="p">.</span><span class="n">zero_grad</span><span class="p">()</span>
+                    <span class="bp">self</span><span class="p">.</span><span class="n">state</span><span class="p">.</span><span class="n">global_step</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="bp">self</span><span class="p">.</span><span class="n">state</span><span class="p">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span> <span class="o">+</span> <span class="p">(</span><span class="n">step</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">steps_in_epoch</span>
+                    <span class="bp">self</span><span class="p">.</span><span class="n">control</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">callback_handler</span><span class="p">.</span><span class="n">on_step_end</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">state</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">control</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="p">.</span><span class="n">_maybe_log_save_evaluate</span><span class="p">(</span><span class="n">tr_loss</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">ignore_keys_for_eval</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">_maybe_log_save_evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tr_loss</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">ignore_keys_for_eval</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">control</span><span class="p">.</span><span class="n">should_log</span><span class="p">:</span>
+            <span class="n">logs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+            <span class="c1"># all_gather + mean() to get average loss over all processes
+</span>            <span class="n">tr_loss_scalar</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">_nested_gather</span><span class="p">(</span><span class="n">tr_loss</span><span class="p">).</span><span class="n">mean</span><span class="p">().</span><span class="n">item</span><span class="p">()</span>
+
+            <span class="c1"># reset tr_loss to zero
+</span>            <span class="n">tr_loss</span> <span class="o">-=</span> <span class="n">tr_loss</span>
+
+            <span class="n">logs</span><span class="p">[</span><span class="s">"loss"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">tr_loss_scalar</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">state</span><span class="p">.</span><span class="n">global_step</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">_globalstep_last_logged</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span>
+            <span class="n">logs</span><span class="p">[</span><span class="s">"learning_rate"</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">_get_learning_rate</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="p">.</span><span class="n">_total_loss_scalar</span> <span class="o">+=</span> <span class="n">tr_loss_scalar</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">_globalstep_last_logged</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">state</span><span class="p">.</span><span class="n">global_step</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">store_flos</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">logs</span><span class="p">)</span>
+
+        <span class="n">metrics</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">control</span><span class="p">.</span><span class="n">should_evaluate</span><span class="p">:</span>
+            <span class="n">metrics</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">ignore_keys</span><span class="o">=</span><span class="n">ignore_keys_for_eval</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">_report_to_hp_search</span><span class="p">(</span><span class="n">trial</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">metrics</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">control</span><span class="p">.</span><span class="n">should_save</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">_save_checkpoint</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">trial</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">control</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">callback_handler</span><span class="p">.</span><span class="n">on_save</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">args</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">state</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">control</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>이후 다시 trainer의 stackframe으로 돌아오게 됩니다. 그리고 ,maybe_log_save_evaluate 라는 method를 통해서 control의 attribute의 따라서 logging을 하게 됩니다. 아직 시도를 해보지는 않았지만, Trainer Class의 _maybe_log_save_evaluate 랑 train method를 overriding을 하면 logging을 상황에 맞게 할 수 있습니다. 하지만, 단순히 train  data에 대한 metric이 궁금한 수준이라면 , 저는 eval set을 train의 subset으로 사용해서 overfitting 여부를 확인하는게 더 효율적이라고 생각합니다</p>
+
+<h2 id="custom-callback">Custom Callback</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MyCallback</span><span class="p">(</span><span class="n">TrainerCallback</span><span class="p">):</span>
+    <span class="s">"A callback that prints a message at the beginning of training"</span>
+
+    <span class="k">def</span> <span class="nf">on_train_begin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Starting training"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PrinterCallback</span><span class="p">(</span><span class="n">TrainerCallback</span><span class="p">):</span>
+    <span class="s">"""
+    A bare :class:`~transformers.TrainerCallback` that just prints the logs.
+    """</span>
+
+    <span class="k">def</span> <span class="nf">on_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">control</span><span class="p">,</span> <span class="n">logs</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">logs</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">log_history</span><span class="p">)</span>
+        <span class="n">_</span> <span class="o">=</span> <span class="n">logs</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="s">"total_flos"</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">state</span><span class="p">.</span><span class="n">is_local_process_zero</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">logs</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>기존의 Callback들을 그대로 사용해도 되지만 customize해서 나만의 callback 클래스를 만들 수 있습니다. 두번째 예시는 , 필자가 PrinterCallback을 새로 정의한 예시입니다 .하지만, method를 override를 할 때는 callback handler class에 정의되어 있는 method를 해주셔야 합니다. 위에서 봤듯이, callblackhandler에서 정의된 method에서 call_event를 호출을 합니다. 만약에 ,callbackhandler에  정의되지 않은 method를 callback class에서 override를 한다면 호출되지 않을 것입니다.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#callback" class="page__taxonomy-item p-category" rel="tag">Callback</a><span class="sep">, </span>
+    
+      <a href="/tags/#deep-learning" class="page__taxonomy-item p-category" rel="tag">deep learning</a><span class="sep">, </span>
+    
+      <a href="/tags/#huggingface" class="page__taxonomy-item p-category" rel="tag">Huggingface</a><span class="sep">, </span>
+    
+      <a href="/tags/#machine-learning" class="page__taxonomy-item p-category" rel="tag">Machine Learning</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#huggingface" class="page__taxonomy-item p-category" rel="tag">Huggingface</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2021-12-14T00:00:00+09:00">December 14, 2021</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Huggingface%3ATrainerCallback%20%2Fhuggingface%2FTrainer-Callback%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fhuggingface%2FTrainer-Callback%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Fhuggingface%2FTrainer-Callback%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/huggingface/FlaskSentiment-Classifier-tutorial/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>Flask:Sentiment Classifier tutorial</a>
+    
+    
+      <a href="/huggingface/Huggingface-Datasets/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>Huggingface:Datasets</a>
+    
+  </nav>
+
+
+<!-- 
+  <nav class="pagination">
+    
+      <a href="/optimization/Batch-Norm-in-Neural-Network/" class="pagination--pager" title="Batch Norm in Neural Network Training and Test
+">Previous</a>
+    
+    
+      <a href="/huggingface/Huggingface-Datasets/" class="pagination--pager" title="Huggingface:Datasets
+">Next</a>
+    
+  </nav>
+ -->
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Numeric/" rel="permalink">Numeric
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+Numeric Types라는 Built-in Objects를 잘 이용하기 위해서는 이 Built-in Objects에 어떤 Literals들이 있고 , 어떤 operator들을 제공하는지 알아야합니다. 이것들에 대해서 알아보도록 하겠습니다 .
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/standfordml/polynominal-regerssion/" rel="permalink">Polynomial Regression
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Standford ML
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/python/Built-in-Objects/" rel="permalink">What is Objects and Why use Built-in objects
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Python Objects
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/dls_c3/Setting-your-goal/" rel="permalink">Setting Your Goal
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">DeepLearning.ai Dls ML strategy (Metric, Data Split)
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Choi Woongjoon. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+<script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'woongjoonchoi/Comments');
+    script.setAttribute('issue-term', 'pathname');
+    script.setAttribute('theme', 'photon-dark');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+  
+
+
+
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+extensions: ["tex2jax.js"],
+jax: ["input/TeX", "output/HTML-CSS"],
+tex2jax: {
+inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+processEscapes: true
+},
+"HTML-CSS": { availableFonts: ["TeX"] }
+});
+</script>
+
+  </body>
+</html>

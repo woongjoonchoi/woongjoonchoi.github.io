@@ -1,0 +1,3126 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Special Stalck - Woongjoon_AI</title>
+<meta name="description" content="Special Stack">
+
+
+  <meta name="author" content="Choi Woongjoon">
+  
+  <meta property="article:author" content="Choi Woongjoon">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Woongjoon_AI">
+<meta property="og:title" content="Special Stalck">
+<meta property="og:url" content="/codinginterview/Special-MinStack/">
+
+
+  <meta property="og:description" content="Special Stack">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-02-18T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/codinginterview/Special-MinStack/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Choi Woongjoon",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Woongjoon_AI Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Woongjoon_AI
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://kau365-my.sharepoint.com/:b:/g/personal/oongjoon_kau_kr/EUebRgY_s5xFikJdu4cCTZgBSeQd5DRoslVvEaEhYt2WYw?e=kNtQkx">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://kau365-my.sharepoint.com/:b:/g/personal/oongjoon_kau_kr/EY70u-guz5BOnxNWqBdBcrIBoAbFny3p8tUOcPE8x7QZTA?e=h34VMJ">CV_KR</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="/" itemprop="url">Choi Woongjoon</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>I am an <strong>amazing</strong> developer.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Goyang/Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:oongjoon10@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://sites.google.com/view/woognjunchoiai/%ED%99%88" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/ANWTNev5jkzYwoC" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/woongjoonchoi" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+  
+    
+  
+    <!--전체 글 수를 세기 위한 연산. sum 변수에 전체 글 수 저장-->
+
+
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle menu</label>
+  <ul class="nav__items" id="category_tag_menu">
+      <!--전체 글 수-->
+      <li>
+            📂 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">78</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
+      </li>
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+
+        <span class="nav__sub-title">Programming</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Python" class="">Python(8)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            
+        <span class="nav__sub-title">Coding Interview</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CodingInterview/CodingTest" class="">CodingTest (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CodingInterview/CodingInterview" class="">CodingInterview (3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CodingInterview/Codingtechnique" class="">Codingtechnique (3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Computer Science</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DataStructure" class="">DataStructure (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Algorithm" class="">Algorithm (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+      </li>
+        <span class="nav__sub-title">DeepLearning</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Pytorch" class="">Pytorch (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Huggingface" class="">Huggingface (4)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Optimization" class="">Optimization (5)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/NLP" class="">NLP (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>    
+           <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DLArchitecture" class="">DLArchitecture (3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Software Engineering</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CICD" class="">CI/CD (8)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>     
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/OS" class="">Operating System  (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+            </ul>     
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Tools" class="">Tools (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>     
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Development" class="">Development (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Network" class="">Network (5)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+        <span class="nav__sub-title">DeepLearningSpecialization</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DLS_C3" class="">ML Strategy(2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DLS_C2" class="">DLS Assignment(2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+        <span class="nav__sub-title">ML</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/StandfordML" class="">StandfordML(1)</a></li>
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/modeloptimization" class="">ModelOptimization(4)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/Handsonmachinelearning" class="">Handsonmachinelearning(1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/PatternRecognitionML" class="">Pattern Recognition and Machine Learning(1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+      </li>
+        <span class="nav__sub-title">Data Engineering</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/Data-Engineering-basic" class="">Data Engineering기본 (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">GCP</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/GCP/Bigquery" class="">Bigquery(3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+        <span class="nav__sub-title">Mathmatics</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Mathmatics/Linear_Algebra" class="">Linear Algebra (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Mathmatics/Statisticd" class="">Statistics (1)</a></li>
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">DeepLearningAI NLP</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DeepLearningai_nlp" class="">DeepLearning.ai nlp qa (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Data Analytics</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Visualization" class="">Data Visualization (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+      </li>
+  </ul>
+</nav>
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Special Stalck">
+    <meta itemprop="description" content="Special Stack">
+    <meta itemprop="datePublished" content="2022-02-18T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="/codinginterview/Special-MinStack/" class="u-url" itemprop="url">Special Stalck
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          9 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#problem-statement">Problem Statement</a></li><li><a href="#simple-no-efficient-sol">Simple no efficient sol</a></li><li><a href="#sol1">Sol1</a></li><li><a href="#sol2">Sol2</a><ul><li><a href="#q1--why-duplicated-min-value-">Q1 . Why duplicated min value ?</a></li></ul></li><li><a href="#sol3">Sol3</a><ul><li><a href="#ver-1">ver 1</a></li><li><a href="#ver2">ver2</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>Stack이라는 data structure는 FIFO(First In First Out)의 원칙을 가지는 data structure입니다. 대표적으로 사용되는 곳이 computer memory 입니다. Stack에 원소들을 저장하면서 data set의 max, min 같은 property를 같이 보관하고 싶을 수도 있습니다 . 기존의 Stack은 max,min 같은 property를 보관해주지 않습니다.예를 들어 , DataStructure에서 최솟값을 data의 size에 관계없이 O(1) 의 time complexity로 return 해주는 Heap이라는 자료구조가 있습니다 . 하지만, Heap과는 다르지만 Stack에서도 최솟값을 data의 Size에 관계없이 O(1)의 time complexity로 return 해주도록 할 수 있습니다.</p>
+
+<h1 id="problem-statement">Problem Statement</h1>
+
+<p><strong>Question:</strong> Design a Data Structure SpecialStack that supports all the stack operations like push(), pop(), isEmpty(), isFull() and an additional operation getMin() which should return minimum element from the SpecialStack. All these operations of SpecialStack must be O(1). To implement SpecialStack, you should only use standard Stack data structure and no other data structure like arrays, list, . etc.</p>
+
+<p>link : <a href="https://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/">[Special Stack Practice  GeeksforGeeks]</a></p>
+
+<p>Design a data-structure <strong>SpecialStack</strong> that supports all the stack operations like <strong>push()</strong>, <strong>pop()</strong>, <strong>isEmpty()</strong>, <strong>isFull()</strong> and an additional operation <strong>getMin()</strong> which should return <strong>minimum</strong> element from the SpecialStack. Your task is to <strong>complete all the functions</strong>, using stack data-Structure.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Input:
+Stack: 18 19 29 15 16
+Output: 15
+Explanation:
+The minimum element of the stack is 15.
+</code></pre></div></div>
+
+<p><strong>Your Task:</strong>
+Since this is a function problem, you don’t need to take inputs. You just have to complete 5 functions, <strong>push()</strong> which takes the stack and an integer x as input and pushes it into the stack; <strong>pop()</strong> which takes the stack as input and pops out the topmost element from the stack; <strong>isEmpty()</strong> which takes the stack as input and returns true/false depending upon whether the stack is empty or not; <strong>isFull()</strong> which takes the stack and the size of the stack as input and returns true/false depending upon whether the stack is full or not (depending upon the
+given size); <strong>getMin()</strong> which takes the stack as input and returns the minimum element of the stack. 
+<strong>Note:</strong> The output of the code will be the value returned by <strong>getMin()</strong> function.</p>
+
+<p><strong>Expected Time Complexity:</strong> O(N) for getMin, O(1) for remaining all 4 functions.
+<strong>Expected Auxiliary Space:</strong> O(1) for all the 5 functions.</p>
+
+<p><strong>Constraints:</strong>
+1 ≤ N ≤ 104</p>
+
+<h1 id="simple-no-efficient-sol">Simple no efficient sol</h1>
+
+<p>min value가 stack의 element에서의 min value라는 사실을 잘 기억해야 합니다. 단순하게 생각하면 , stack에 매번 operation을 할 때 마다 , min_value를 update 하면 괜찮지 않나라고 생각할 수 있습니다 .하지만 , 처음에 min_value가 설정되고 push ,pop operation을 반복하다 보면 min_value가 매번 바뀌게 됩니다. pop을 하면서 이전의 min_value로 복원을 해줄지 말지 결정할 수 가 없습니다. 이전의 min_value를 기억할 방법이 없습니다.  따라서, 이 방법은 사용할 수 없습니다.</p>
+
+<h1 id="sol1">Sol1</h1>
+
+<p>위에서 얻은 힌트를 보면 이전의 min_value 문제만 해결하면 됨을 알 수 있습니다. push , pop operation을 하면서 stack의 element들이 바뀌는데  , 이전의 value 를 기억하지 못한다는 것은 orignal stack의 element와 min_vaule간의 연결고리 , 즉 mapping 관계가 없음을 의미합니다  . orginal stack 과 min_value 간의 mapping 관계가 유지가 된다면, min_value 는 여러 개의 value가 담겨있는 sequence가 될 것입니다. 그리고, mapping 관계를 유지하기에 stack operation이 적용이 될 것입니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Python3 program for the
+# above approach
+# A simple stack class with 
+# basic stack funtionalities
+</span><span class="k">class</span> <span class="nc">stack</span><span class="p">:</span>
+ 
+  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+ 
+    <span class="bp">self</span><span class="p">.</span><span class="n">array</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">top</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="bp">self</span><span class="p">.</span><span class="nb">max</span> <span class="o">=</span> <span class="mi">100</span> 
+ 
+  <span class="c1"># Stack's member method to check
+</span>  <span class="c1"># if the stack is empty
+</span>  <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+ 
+    <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">top</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+      <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="k">return</span> <span class="bp">False</span> 
+ 
+  <span class="c1"># Stack's member method to check
+</span>  <span class="c1"># if the stack is full 
+</span>  <span class="k">def</span> <span class="nf">isFull</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> 
+     
+    <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">top</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="nb">max</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+      <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="k">return</span> <span class="bp">False</span>  
+ 
+  <span class="c1"># Stack's member method to
+</span>  <span class="c1"># insert an element to it  
+</span> 
+  <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+ 
+    <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">isFull</span><span class="p">():</span>
+      <span class="k">print</span><span class="p">(</span><span class="s">'Stack OverFlow'</span><span class="p">)</span>
+      <span class="k">return</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="bp">self</span><span class="p">.</span><span class="n">top</span> <span class="o">+=</span> <span class="mi">1</span>
+      <span class="bp">self</span><span class="p">.</span><span class="n">array</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>    
+ 
+  <span class="c1"># Stack's member method to
+</span>  <span class="c1"># remove an element from it
+</span>  <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+ 
+    <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">isEmpty</span><span class="p">():</span>
+      <span class="k">print</span><span class="p">(</span><span class="s">'Stack UnderFlow'</span><span class="p">)</span>
+      <span class="k">return</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="bp">self</span><span class="p">.</span><span class="n">top</span> <span class="o">-=</span> <span class="mi">1</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">array</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+ 
+<span class="c1"># A class that supports all the stack 
+# operations and one additional
+# operation getMin() that returns the
+# minimum element from stack at
+# any time.  This class inherits from
+# the stack class and uses an
+# auxiliary stack that holds
+# minimum elements 
+</span><span class="k">class</span> <span class="nc">SpecialStack</span><span class="p">(</span><span class="n">stack</span><span class="p">):</span>
+ 
+  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">Min</span> <span class="o">=</span> <span class="n">stack</span><span class="p">()</span> 
+ 
+  <span class="c1"># SpecialStack's member method to
+</span>  <span class="c1"># insert an element to it. This method
+</span>  <span class="c1"># makes sure that the min stack is also
+</span>  <span class="c1"># updated with appropriate minimum
+</span>  <span class="c1"># values
+</span>  <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+ 
+    <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">isEmpty</span><span class="p">():</span>
+      <span class="nb">super</span><span class="p">().</span><span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="bp">self</span><span class="p">.</span><span class="n">Min</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="nb">super</span><span class="p">().</span><span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">Min</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+      <span class="bp">self</span><span class="p">.</span><span class="n">Min</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">y</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">Min</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">Min</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> 
+ 
+  <span class="c1"># SpecialStack's member method to 
+</span>  <span class="c1"># remove an element from it. This
+</span>  <span class="c1"># method removes top element from
+</span>  <span class="c1"># min stack also.
+</span>  <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+ 
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">super</span><span class="p">().</span><span class="n">pop</span><span class="p">()</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">Min</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">x</span> 
+ 
+  <span class="c1"># SpecialStack's member method
+</span>  <span class="c1"># to get minimum element from it.
+</span>  <span class="k">def</span> <span class="nf">getmin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+ 
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">Min</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">Min</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+ 
+<span class="c1"># Driver code
+</span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+   
+  <span class="n">s</span> <span class="o">=</span> <span class="n">SpecialStack</span><span class="p">()</span>
+  <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+  <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+  <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">getmin</span><span class="p">())</span>
+  <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">getmin</span><span class="p">())</span>
+ 
+<span class="c1"># This code is contributed by rachitkatiyar99
+</span></code></pre></div></div>
+
+<ol>
+  <li>Original Stack, MinStack 을 생성합니다.</li>
+  <li>When Push to original stack</li>
+  <li>If stack empty :
+    <ol>
+      <li>Push(element) to minstack</li>
+    </ol>
+  </li>
+  <li>if stack not emtpy :
+    <ol>
+      <li>if top of minstack &lt;= element :
+        <ol>
+          <li>Push minstack top to minstack</li>
+        </ol>
+      </li>
+      <li>else :
+        <ol>
+          <li>Push element to minstack</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>When Pop from minstack
+    <ol>
+      <li>Pop from minstack</li>
+    </ol>
+  </li>
+</ol>
+
+<p>Pop  Operation 의 경우 minstack 과 original stack이 항상 대응관계이기에 , Original Stack이 Pop을 할 때 , 같이 Pop을 해주면 됩니다.</p>
+
+<h1 id="sol2">Sol2</h1>
+
+<p>So1의 문제점으로 minstack의 공간이 O(n)의 Space Complexity가 발생한다는 점입니다. 반드시 , 모든 stack의 element에 최솟값을  mapping을 할 필요가 있을까요? Sol1에서 Minstack의 element는 min value가 update 되는 순간에 element의 값이 변함을 알 수 있습니다. 따라서, original stack에서 minvalue가 update 될 때 , minstack에서 어떤 min_value에 mapping 되는지를 알 수 있다면 언제나 min_value를 얻을 수 있을 것입니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MinStack</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">min_stack</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">min_stack</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="ow">or</span> <span class="n">val</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="p">.</span><span class="n">getMin</span><span class="p">()</span> <span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">min_stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">stack</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="bp">self</span><span class="p">.</span><span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">getMin</span><span class="p">()</span> <span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">min_stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">top</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">getMin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">min_stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+
+<span class="c1"># Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(val)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMin()
+</span></code></pre></div></div>
+
+<ol>
+  <li>Push
+    <ol>
+      <li>if stack size == 0:
+        <ol>
+          <li>push to minstack</li>
+          <li>push to original stack</li>
+        </ol>
+      </li>
+      <li>original stack size &gt; 0 :
+        <ol>
+          <li>push to org stack</li>
+          <li>if getmin() &lt;= ele :
+            <ol>
+              <li>push to min stack</li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>Pop
+    <ol>
+      <li>if stack.size &lt; 0 :
+        <ol>
+          <li>not Operation</li>
+        </ol>
+      </li>
+      <li>if stack.size &gt; 0 :
+        <ol>
+          <li>if getmin() == orignal stack.pop()
+            <ol>
+              <li>minstack.pop()</li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<h2 id="q1--why-duplicated-min-value-">Q1 . Why duplicated min value ?</h2>
+
+<p>알고리즘을 보면 min value를 같은 값을 중복해서 min stack에 저장함을 알 수 있습니다.  min value를 1개만 저장하는 것이 space complexity 측면에서 효율적이다 라고 볼 수 있습니다  . 아까 위에서 min value와 stack의 element를 mapping 해서 이전의 min value를 복원할 수 있다는 것을 설명했습니다 . 만약에 , min value를 중복해서 저장하지 않는다면 min stack에서 언제 pop을 해야할 지 알 수 없습니다 .</p>
+
+<p>구체적으로 경우를 나눠 보면 ,</p>
+
+<ul>
+  <li>unique한 min_value인 경우 :
+    <ul>
+      <li>위에서 설명한 알고리즘을 따라가면 됩니다.</li>
+    </ul>
+  </li>
+  <li>multiple min_value인 경우 :
+    <ul>
+      <li>어떤 element가 최초의 min_value인지 표시를 해야 합니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>즉, 2가지 mapping을 구현을 해야되는 상황이 발생합니다.즉 , minstack에 multiple min_value인지 아닌지를 표시해주는 flag가 변수를 매번 붙여줘야 함으로 , space complexity에서 O(n) 의 overhead가 추가적으로 발생하게 됩니다. 따라서, 비효율적이라 볼 수 있습니다</p>
+
+<h1 id="sol3">Sol3</h1>
+
+<p>위의 2가지 솔루션을 요약하면, min_value와 stack의 element 사이에 1:1 mapping을 만들어 주어야 한다. 1 : 1 mapping을 만들기 위해서 반드시 추가저장 공간이 필요할 까요?</p>
+
+<p>map 이라는 것은 function을 뜻합니다 . function이란 key값이 있으면 value 값에 대응시키는 relation 입니다 . 어떤 key값이 주어지면 value를 assign 해주는 관계를 수학적으로 정의가 가능하다면 O(n) 의 auxiliary space complexity가 발생하지 않을 것입니다.  수학적으로 정의한 값을 stack에 넣어준다면 auxiliary space complexity 없이 2개의 값을 보존하는 것이 가능할 것입니다.</p>
+
+<h2 id="ver-1">ver 1</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class stack:
+    def __init__(self):
+        self.s=[]
+        self.minEle=None
+        
+    def push(self,x):
+        if self.minEle == None :
+            self.minEle = x
+            self.s.append(x)
+            
+        elif self.minEle &gt; x :  
+            self.s.append(2*x - self.minEle)
+            self.minEle = x
+        else :
+            self.s.append(x)
+        #CODE HERE
+        
+    def pop(self):
+        if len(self.s) == 0:
+            return -1
+        if len(self.s) == 1 :
+            self.minEle = None
+            return self.s.pop()
+        if self.minEle &gt; self.s[-1] :
+            x = self.minEle
+            self.minEle = 2 * self.minEle - self.s.pop()
+            return x
+        else :
+            return self.s.pop()
+        #CODE HERE
+        
+
+    def getMin(self):
+        #CODE HERE
+        if len(self.s) == 0 :
+            return -1
+        return self.minEle
+
+#{ 
+#  Driver Code Starts
+#contributed by RavinderSinghPB
+if __name__ == '__main__':
+    t = int(input())
+    for _ in range(t):
+        q = int(input())
+
+        arr = [int(x) for x in input().split()]
+
+        stk=stack()  
+
+        qi = 0
+        qn=1
+        while qn &lt;= q:
+            qt = arr[qi]
+
+            if qt == 1:
+                stk.push(arr[qi+1])
+                qi+=2
+            elif qt==2:
+                print(stk.pop(),end=' ')
+                qi+=1
+            else:
+                print(stk.getMin(),end=' ')
+                qi+=1
+            qn+=1
+        print()
+
+# } Driver Code Ends
+</code></pre></div></div>
+
+<p>min_value를 O(1) 의 complexity로 계산해서 결과값으로 도출해야 하기 때문에 , min_value를 key로 가지는 function을 만들어야 할거 같습니다.</p>
+
+<p>stack에  element가 들어오는 경우는 min_value &gt; element  , min_value &lt;= elment의 relation 중 하나입니다.</p>
+
+<p>알고리즘은 아래와 같습니다.</p>
+
+<ol>
+  <li>​	Push
+    <ol>
+      <li>if min_value == None :
+        <ol>
+          <li>min_value = element</li>
+          <li>stack.push(element)</li>
+        </ol>
+      </li>
+      <li>min_value &lt;= element :
+        <ol>
+          <li>push element stack</li>
+        </ol>
+      </li>
+      <li>min_value &gt; element :
+        <ol>
+          <li>push 2*element - min_value</li>
+          <li>min_value = element</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>Pop</li>
+  <li>if stack size == 0 :
+      1. return -1</li>
+  <li>if stack size == 1 :
+    <ol>
+      <li>min_value = None</li>
+      <li>stack.pop()</li>
+    </ol>
+  </li>
+  <li>min_value &gt; stack.top() :
+    <ol>
+      <li>min_value = 2 * min_value -  stack.top()</li>
+      <li>stack.pop()</li>
+    </ol>
+  </li>
+  <li>min_value &lt; stack.top()
+    <ol>
+      <li>stack.pop()</li>
+    </ol>
+  </li>
+</ol>
+
+<p>아까와는 다르게 min_value의 duplicate를 허용하지 않습니다. 왜냐하면, 처음 나온 min_value에 대해서 mathmatical function 값을 계산하여 stack에 push하기 때문에 따로 flag를 안달아도 위치를 찾을 수 있기 때문입니다.</p>
+
+<p>전체적인 알고리즘에 대하여 설명을 하면 ,  min_value &lt;= element 인 경우는 기존의 stack 처럼 push를 합니다. 만약에 , min_value &gt; element인 경우가 발생하면 2 * element - min_value를 계산하여 stack에 push합니다. stack의 element가 min_value와의 function 관계를 나타내는 것임을 알기 위해서는 기준점이 필요합니다. min_value&lt;=element인 기준과  다른 기준을 사용할려면 min_value &gt; element인 기준이 필요합니다. 이 시점에서 min_value는 update된 min_value입니다. 따라서, element를 min_value로 update 하기전에 element &lt; f(element,min_value) 인 f를 만들어야 합니다. element &lt; min_value 이므로 element-min_value &lt; min_value를 만족하게 됩니다. 하지만, 둘의 차이가 어느정도인지 몰라서 overflow가 발생할 수도 있습니다. 따라서, element- min_value &lt;0 인 것을 이용하여 element -min_value + element &lt; min_value 인 관계를 도출할 수 있습니다.</p>
+
+<h2 id="ver2">ver2</h2>
+
+<p>key 1개로 1개의 value가 아닌 value의 set을 return할 수는 없을까요?  Discrete math에서 자주사용되는 modular 연산이라는 것을 이용하면 됩니다.  Modular 연산이란 어떤 key값을 통해서 remainder를 구하는 mapping관계 입니다. remainder를 구할 수 있다는 것은 key값에 대한  quotient를 구할 수 있다는 것을 의미합니다. 따라서, 1: 2 mapping 관계를 만들 수 있게 됩니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">stack</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="o">=</span><span class="p">[]</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">minEle</span><span class="o">=</span><span class="bp">None</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">key</span> <span class="o">=</span> <span class="mi">9999</span>
+        
+    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">minEle</span> <span class="o">==</span> <span class="bp">None</span> <span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">minEle</span> <span class="o">=</span> <span class="n">x</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">min_Ele</span><span class="p">)</span>
+           
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">min_Ele</span><span class="p">)</span>
+        <span class="c1">#CODE HERE
+</span>        
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">minEle</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span> <span class="o">//</span> <span class="n">key</span>
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span> <span class="o">//</span> <span class="n">key</span>
+        <span class="c1">#CODE HERE
+</span>        
+
+    <span class="k">def</span> <span class="nf">getMin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#CODE HERE
+</span>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">%</span> <span class="n">key</span>
+
+<span class="c1">#{ 
+#  Driver Code Starts
+#contributed by RavinderSinghPB
+</span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+
+        <span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">()]</span>
+
+        <span class="n">stk</span><span class="o">=</span><span class="n">stack</span><span class="p">()</span>  
+
+        <span class="n">qi</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">qn</span><span class="o">=</span><span class="mi">1</span>
+        <span class="k">while</span> <span class="n">qn</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">:</span>
+            <span class="n">qt</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">qi</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">qt</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">qi</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">qi</span><span class="o">+=</span><span class="mi">2</span>
+            <span class="k">elif</span> <span class="n">qt</span><span class="o">==</span><span class="mi">2</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">stk</span><span class="p">.</span><span class="n">pop</span><span class="p">(),</span><span class="n">end</span><span class="o">=</span><span class="s">' '</span><span class="p">)</span>
+                <span class="n">qi</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">stk</span><span class="p">.</span><span class="n">getMin</span><span class="p">(),</span><span class="n">end</span><span class="o">=</span><span class="s">' '</span><span class="p">)</span>
+                <span class="n">qi</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="n">qn</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">print</span><span class="p">()</span>
+
+<span class="c1"># } Driver Code Ends
+</span></code></pre></div></div>
+
+<ol>
+  <li>Push
+    <ol>
+      <li>if min_ele == None :
+        <ol>
+          <li>min_ele = element</li>
+          <li>push key * element + min_ele</li>
+        </ol>
+      </li>
+      <li>else :
+        <ol>
+          <li>push key * element + min_ele</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>Pop
+    <ol>
+      <li>if len(stack) == 0 :
+        <ol>
+          <li>return -1</li>
+        </ol>
+      </li>
+      <li>if len(stack ) == 1 :
+        <ol>
+          <li>return stack.pop()//key</li>
+          <li>min_ele = None</li>
+        </ol>
+      </li>
+      <li>else :
+        <ol>
+          <li>return stack.pop()//key</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>getmin
+    <ol>
+      <li>return stack.top() % key</li>
+    </ol>
+  </li>
+</ol>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#algorithm" class="page__taxonomy-item p-category" rel="tag">Algorithm</a><span class="sep">, </span>
+    
+      <a href="/tags/#codinginterview" class="page__taxonomy-item p-category" rel="tag">CodingInterview</a><span class="sep">, </span>
+    
+      <a href="/tags/#codingtest" class="page__taxonomy-item p-category" rel="tag">CodingTest</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#codinginterview" class="page__taxonomy-item p-category" rel="tag">CodingInterview</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2022-02-18T00:00:00+09:00">February 18, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Special+Stalck%20%2Fcodinginterview%2FSpecial-MinStack%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fcodinginterview%2FSpecial-MinStack%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Fcodinginterview%2FSpecial-MinStack%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/codinginterview/temp-array/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>Array Rotation Program</a>
+    
+    
+      <a href="#" class="pagination_prev_next--pager disabled">가장 최근 글입니다</a>
+    
+  </nav>
+
+
+<!-- 
+  <nav class="pagination">
+    
+      <a href="/python/State-Retention-compare/" class="pagination--pager" title="State Retention Compare
+">Previous</a>
+    
+    
+      <a href="/dls_c2/conv-scratch/" class="pagination--pager" title="Convolution Assignment from scratch
+">Next</a>
+    
+  </nav>
+ -->
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Numeric/" rel="permalink">Numeric
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+Numeric Types라는 Built-in Objects를 잘 이용하기 위해서는 이 Built-in Objects에 어떤 Literals들이 있고 , 어떤 operator들을 제공하는지 알아야합니다. 이것들에 대해서 알아보도록 하겠습니다 .
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/standfordml/polynominal-regerssion/" rel="permalink">Polynomial Regression
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Standford ML
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/python/Built-in-Objects/" rel="permalink">What is Objects and Why use Built-in objects
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Python Objects
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/dls_c3/Setting-your-goal/" rel="permalink">Setting Your Goal
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">DeepLearning.ai Dls ML strategy (Metric, Data Split)
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Choi Woongjoon. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+<script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'woongjoonchoi/Comments');
+    script.setAttribute('issue-term', 'pathname');
+    script.setAttribute('theme', 'photon-dark');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+  
+
+
+
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+extensions: ["tex2jax.js"],
+jax: ["input/TeX", "output/HTML-CSS"],
+tex2jax: {
+inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+processEscapes: true
+},
+"HTML-CSS": { availableFonts: ["TeX"] }
+});
+</script>
+
+  </body>
+</html>

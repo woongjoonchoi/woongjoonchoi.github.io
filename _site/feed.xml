@@ -1,0 +1,1518 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-20T14:29:16+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Woongjoon_AI</title><subtitle>AMazing developer</subtitle><author><name>Choi Woongjoon</name></author><entry><title type="html">FeedForward Network</title><link href="http://localhost:4000/dlarchitecture/Feed-Forward-Network/" rel="alternate" type="text/html" title="FeedForward Network" /><published>2023-11-23T00:00:00+09:00</published><updated>2023-11-23T00:00:00+09:00</updated><id>http://localhost:4000/dlarchitecture/Feed-Forward-Network</id><content type="html" xml:base="http://localhost:4000/dlarchitecture/Feed-Forward-Network/">&lt;p&gt;작성중-23.11.13&lt;/p&gt;
+
+&lt;h2 id=&quot;why-we-need-understand-neural-network-in-mathmatical-view&quot;&gt;Why we need understand Neural Network in Mathmatical view?&lt;/h2&gt;
+&lt;p&gt;NeuralNetwork를 인간이 이해할 수 있는 logic으로 표현하는 방법중 하나는 바로 수식입니다. 수식으로 표현하는 방법을 알아야만 하는 이유로 크게 몇가지 있다고 생각합니다.
+첫번째로 , Neural Network를 공부하는 이유는 이 neural Network를 컴퓨터로 구현하여 사용하기 위함입니다. 컴퓨터로 구현한다는 것은  머릿속의 로직을 코딩함을 의미합니다.&lt;/p&gt;
+&lt;h2 id=&quot;term-definition&quot;&gt;Term Definition&lt;/h2&gt;
+&lt;p&gt;여기서의 Term에 관한 Symbol이나 Notation 방식은 Andrew 교수님의 DeepLearning 강의를 참고하였습니다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;기호&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;\(l\)&lt;/td&gt;
+      &lt;td&gt;\(l\)번째  layer  . \(l\) =   0, … , L  은 weights와 bias를 가지는  layer의 번호를 의미한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;\(n^{[l]}\)&lt;/td&gt;
+      &lt;td&gt;\(l\) 번째 layer의 node의 개수를 의미합니다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;\(j\)&lt;/td&gt;
+      &lt;td&gt;\(j  = 0,..., n^{[l]}\)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;\(k\)&lt;/td&gt;
+      &lt;td&gt;\(k = 0, .... n^{[l-1]}\)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;\(m\)&lt;/td&gt;
+      &lt;td&gt;\(m\) 은 training step에서의 batch size 입니다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;\(i\)&lt;/td&gt;
+      &lt;td&gt;\(i = 0,..... m\)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;\(w_{j,k}^{[l]}\)&lt;/td&gt;
+      &lt;td&gt;\(l\) 번째 layer의 weight \(W^{[l]}\) , \(W^{[l]} \in \mathbb{R}^{n^{[l]} \times n^{[l-1]} }\) . \(W^{[l]}\) 의 \((j,k)\) 원소를 의미한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;\(z_{j,i}^{[l]}\)&lt;/td&gt;
+      &lt;td&gt;\(l\) 번째 layer의 bias를 더한 output의 \((i,j)\) 성분입니다 .&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;\(a_{j,i}^{[l]}\)&lt;/td&gt;
+      &lt;td&gt;\(l\) 번째 layer의 activation의 \((i,j)\)성분입니다 .&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;\(b^{[l]}\)&lt;/td&gt;
+      &lt;td&gt;\(l\) 번쨰 layer의 bias입니다.\(b^{[l]} \in \mathbb{R}^{n^{[l]}  }\)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;\(g_{j}^{[l]}\)&lt;/td&gt;
+      &lt;td&gt;\(l\) 번째 layer activation function \(g_{j}^{[l]} : \mathbb{R}^{n^{[l]}} \rightarrow \mathbb{R}^{n^{[l]}}\)  , \(g_{j}^{[l]} \in \mathbb{R}^{n^{[l]}  }\)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;explanation-in-mathmatical-view&quot;&gt;Explanation in Mathmatical View&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://kau365-my.sharepoint.com/personal/oongjoon_kau_kr/Documents/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%9D%B4%EB%AF%B8%EC%A7%80/feed1.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;다른 교육자료들을 보면 쉽게 설명하기 위해서 3개의 node로 한정짓거나 하는 방식으로 설명을 하게 됩니다. 하지만, 여기서는 일반식을 정의하기 위해서 \(n^{[l]}\)개의 node의 대해서 설명을 하겠습니다. (bias는 그림에서만 생략하였습니다 . )&lt;/p&gt;
+
+&lt;p&gt;여기서 , \(z_{k,i}^{[l]}\) 에는 \(n^{[l-1]}\)개의 node가 연결되어 있습니다.&lt;br /&gt;
+따라서 , \(z_{k,i}^{[l]} = \sum_{j=0}^n^{[l-1]}\)&lt;/p&gt;
+
+\[z_{j,i}^{[l]} = \sum_{k=0}^{n^{[l-1]}}  w_{j,k}^{[l]} \cdot a_{j,i}^{[l]} + b_{j}^{[l]}\]
+
+&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+
+&lt;p&gt;feedforward-neural-networks-part-1/journalsim From Jonas Lalin&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jonaslalin.com/2021/12/10/feedforward-neural-networks-part-1/&quot;&gt;Link&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Choi Woongjoon</name></author><category term="DLArchitecture" /><category term="Machine Learning" /><category term="deep learning" /><summary type="html">Mathmatical view</summary></entry><entry><title type="html">The Phyiscal Layer</title><link href="http://localhost:4000/network/The-Physical-Layer/" rel="alternate" type="text/html" title="The Phyiscal Layer" /><published>2022-10-03T00:00:00+09:00</published><updated>2022-10-03T00:00:00+09:00</updated><id>http://localhost:4000/network/The-Physical-Layer</id><content type="html" xml:base="http://localhost:4000/network/The-Physical-Layer/">예전 Post에서 TCP-IP Model에 대해 설명을 한 적이 있습니다. TCP-IP Model은 5개의 layer로 이루어져 있는데, 오늘은 가장 아래 layer인 Physical Layer Model에 대해서 설명해보도록 하겠습니다. 
+
+# Physical Layer?
+
+![image](https://user-images.githubusercontent.com/50165842/192401951-1c3511fd-0043-4d22-84a4-ccca355c97fc.png)
+
+Physical Layer란 여러 device에서 다른 Network로 Bit라는 정보를 보내게 됩니다. Bit는 computer가 이해할 수 있는 data 의 representation입니다. 0,1의 값을 가지고 있습니다.   
+
+
+
+구리 네트워크 케이블에 Modulation이라는 과정을 거쳐서 bit를 만들어 보내게 됩니다. Modulation이란 cable을 따라 움직이는 전하의 전압을 다르게 하는것을 의미합니다. 
+![image](https://user-images.githubusercontent.com/50165842/192905671-59927d83-99a7-4192-a317-c08583b6b058.png)
+
+
+Computer Networking에서 이러한 Modulation을 line coding이라 부릅니다. 현대 networking에서는 10 기가비트 네트워크라는 단어가 많이 등장하는데 이는 100억개의 bit(0,1)을 각 cable마다 1초에 처리한다는 의미입니다. 
+
+
+# Twisted Pair Cabling
+
+![image](https://user-images.githubusercontent.com/50165842/192906277-22635c2f-4c75-4f5f-9ba2-06b0fc052f38.png)
+
+twisted pair란 구리선이 꼬아져있음을 의미합니다. 꼬아져 있는 cable pair로 이루어져 있어서 twisted pair cable이라 합니다. 이렇게 cable을 꼬아두면 , 전자기간섭 , 즉 crosstalk을 줄여줍니다.  
+예를 들어, cat6 cable은 8개의 wire,즉 4 pair를 사용합니다. 전송기술에 따라서  몇개의 pair를 사용할 지 결정합니다.
+# Duplexing
+
+근대의 네트워킹에서 cable은 duplex communication이나 simplex communication을 사용합니다.    
+![image](https://user-images.githubusercontent.com/50165842/192907374-7139d5a2-fa5c-4ab9-9c73-eb429b4f7593.png)  
+
+simplex는 정보를 한 방향으로만 전송하는 communication 방식을 의미합니다.그림과 같이 한 쪽의 device가 일방적으로 수신하거나 송신하는것을 볼 수 있습니다. 대표적인 예시로는 , 라디오나 TV가 있습니다. 방송국에서 전파를 송신하고 , 청자는 그 전파를 수신하기만 합니다.  
+![image](https://user-images.githubusercontent.com/50165842/193703834-b4a8bc16-a6b1-45cb-93ed-7761ef8dc4c8.png)  
+
+Duplex는 Client와 Server가 양방향으로 communication을 할 수 있는 방식입니다. 그렇다면 , 이것이 어떻게 가능한 것일까요?  
+cable은 여러개의 pair로 이루어져 있는데 ,각 pair를 한 방향으로만 미리 예약을 해두는 것입니다. 정확히 동시에 양방향 communication이 가능하다면 , 이를 full duplex라고 부릅니다.
+
+![image](https://user-images.githubusercontent.com/50165842/192907219-b76b3246-9525-473f-a3f5-52338320cef1.png)
+
+만약에 Network에 문제가 생긴다면, Network는 link가 degrade 되고 , half-duplex communication을 한다고 보고합니다.  
+이 때, Network는 양방향으로 communication이 가능하지만, 한번에 한방향으로만 가능합니다. 
+
+# Network Ports and panel
+
+Twisted Pair network cable에는 끝에 Plug가 있습니다. 
+
+![image](https://user-images.githubusercontent.com/50165842/193705135-31a0b36a-c130-4664-861c-a2d8071ecb6e.png)  
+
+가장 대중적인 plug는 RJ45 plug(Registered Jack 45)가 있습니다.  
+![image](https://user-images.githubusercontent.com/50165842/193705565-1e8ffa88-ec48-40a4-9dbb-c64140880ae7.png)  
+![image](https://user-images.githubusercontent.com/50165842/193705655-9bafd997-c574-4eb7-ba11-c963cbcda4dc.png)  
+저번에 설명했던, Switch에는 여러개의 port가 있는반면, Server나 Desktop에는 1 개나 2개의 port가 달려있습니다.  
+![image](https://user-images.githubusercontent.com/50165842/193705381-c4cb44c5-1763-43dd-80cb-555e3f94757c.png)  
+
+
+모든 네트워크 port는 link led, activity led라는 2개의 port를 가지고 있습니다. LinkLed는 두 Device가 잘  연결되면 전원이 켜집니다. activityLed는 data가 활발하게 전송되면 ,  LED가 깜빡입니다.   
+요즘은, 컴퓨터 네트워크가 워낙 빨라서 ,Activity Led는 실제로 traffic이 있는지 없는지 외에는 의미하지 않습니다.  
+
+![image](https://user-images.githubusercontent.com/50165842/193705887-78fbb6cf-3513-46a8-a44d-f4fd93120f73.png)
+가끔씩, 책상 아래에 network port가 붙어있는 경우가 있습니다. 이 포트들은 네트워크 케이블을 통해서 , 벽을 넘어가서 patch-panel에 도달하게 됩니다. patch-panel에는 많은 port들이 잇지만, 그저 port의 container일 뿐입니다. 이 patch panel로 부터 나온 cable은 switch나 router나 computer로 향하게 됩니다.
+
+# References
+
+[Google-IT-support][Google-It-support]
+
+[Google-It-support]: &quot;https://www.coursera.org/learn/computer-networking/lecture/Nihjd/moving-bits-across-the-wire&quot; 
+
+[Twisted-pairwiki][Twisted-pairwiki]
+
+[Twisted-pairwiki]: &quot;https://en.wikipedia.org/wiki/Twisted_pair&quot;
+
+
+[Simplex][Simplex]
+
+[Simplex]: &quot;https://en.wikipedia.org/wiki/Simplex_communication&quot;
+
+[Duplex][Duplex]
+
+[Duplex]: &quot;https://en.wikipedia.org/wiki/Duplex_(telecommunications)&quot;</content><author><name>Choi Woongjoon</name></author><category term="Network" /><category term="SoftwareEngineering" /><category term="Network" /><category term="TCPIP" /><summary type="html">TCP 5 layer model-phyiscal</summary></entry><entry><title type="html">Pytorch data api : Multiprocessing</title><link href="http://localhost:4000/pytorch/Single-and-MultiProcessing/" rel="alternate" type="text/html" title="Pytorch data api : Multiprocessing" /><published>2022-09-16T00:00:00+09:00</published><updated>2022-09-16T00:00:00+09:00</updated><id>http://localhost:4000/pytorch/Single-and-MultiProcessing</id><content type="html" xml:base="http://localhost:4000/pytorch/Single-and-MultiProcessing/">Pytorch에서 DataLoading을 할 때 DataLoader라는 class를 사용하는데 , 이 때 Data를 단일 Process내에서 loading 할수도 있고, parallelize해서 loading을 할 수도 있다.
+
+# Default Option
+DataLoader는 Single Process data loading이 default option입니다 .
+
+Python Process는 GIL(Global Interpretatoin Lock)이 Python Code를 thread로 parallelize하는 것을 막습니다. 따라서, data loading에서 computation을 1개의 process가 blocking 하는것을 방지하기 위해서 ,Pytorch는 'num_workers' 라는 argument를 양의 정수로 설정하여 multi-process data loading으로 쉽게 전환 시킵니다. 
+
+
+# Single Processing
+
+data fetching이 같은 process내에서 이루어집니다. 즉, 1개의 process가 computing을 block하는 상태입니다. 
+이 방법은 resource가 제한이 되거나 , 전체 memory 에 data를 올릴 수 있을만큼 작다면 , 선호되는 방법입니다.  
+또한, 이 방법의 장점으로는 error tracing이 쉽다는 것입니다. 이에 대해서는, Multi Processing에서 자세히 알아보도록 하겠습니다.
+
+# Multi Processing
+
+Dataloader에서는 num_workers라는 argument를 설정할 수 있습니다. 
+
+1. 'num_workers' = 0 
+   + data loading이 main process에서 이루어집니다.
+2. 'num_workers' &gt; 0 
+   + multi-process data loading 이 활성화되고 , 지정한 숫자만큼의 worker process가 생성이 됩니다 . 이 subprocess들이 data loading에 사용됩니다.
+
+
+data를 loading할 때 에는 , enumerate(dataloader)를 call 하여 , 매번 DataLoader의 iterator를 생성합니다. 여기에서 , `num_workers' argument에 지정한 개수 만큼의 worker_process가 생성이 됩니다. 그리고 , 'dataset' , 'collate_fn', 'worker_init_fn'이 각  worker에 전달이 됩니다. worker가  initialize 된 후 ,   data가 fetch 되어집니다.   
+
+즉 , Internal I/O , transformation('collate_fn' 포함)이  dataset access와 함께 , worker_process에서 실행되어짐을 의미합니다.
+
+
+## Iterating DataLoader
+
+실제로 , Data를 여러개의 worker에서 fetching 할 때에는 , torch.utils.data.get_worekr_info()라는 method를 사용합니다.   
+이 function은 아래와 같은 항목을 return합니다.
++ worker_id
++ dataset replica
++ initial seed
++ .etc
+
+main_process에서는 None을 return 하게 됩니다. Pytorch 개발자들은 이 function을 dataset code나 worker_init_fn에서 사용하여 code가 worker_process에서 실행중인지 아닌지를 판별하여 개별적인 dataset_replica를 configure합니다.   
+
+특히, data sharding에 도움이 된다고 합니다.
+
+### Map-style
+
+map-style dataset에서 여러 subprocess들을 만들게 되면 , sampler를 사용해서 indicies를 만들게 되고 이를 각 worker에 전달하게 됩니다 . sampler에서의 shuffling 은 main process에서 수행이 되어집니다.   
+즉, main process는 data loading에서 shuffle된 indicies를 worker에 할당하여 data를 loading하도록 합니다.   
+아래의 코드 예시를 보도록 하겠습니다.
+```python 
+import torch
+
+class MyMapDataset(torch.utils.data.Dataset) :
+    def __init__(self , start , end) :
+        super(MyMapDataset).__init__()
+        assert end&gt;start , &quot;this example code only works with end&gt; = start&quot;
+
+        self.start = start
+        self.end = end 
+        self.data = list(range(self.start,self.end))
+    def __getitem__(self,idx) :
+        
+        worker_info  =torch.utils.data.get_worker_info()
+        worker_id = worker_info.id
+        print(f&quot;worekr_id : {worker_id} data : {self.data[idx]}\n&quot;)
+
+        return self.data[idx]
+    def __len__(self) :
+        return len(self.data)
+
+
+map_ds = MyMapDataset(3,100)
+
+
+print(list(torch.utils.data.DataLoader(map_ds,num_workers=2)))
+
+# worekr_id : 0 data : 3
+
+# worekr_id : 1 data : 4
+# worekr_id : 0 data : 5
+
+
+# worekr_id : 1 data : 6
+# worekr_id : 0 data : 7
+
+
+# worekr_id : 1 data : 8
+# worekr_id : 0 data : 9
+
+
+# worekr_id : 1 data : 10
+# worekr_id : 0 data : 11
+
+
+# worekr_id : 1 data : 12
+# worekr_id : 0 data : 13
+
+
+# worekr_id : 1 data : 14
+# worekr_id : 0 data : 15
+
+# worekr_id : 1 data : 16
+
+
+# worekr_id : 1 data : 18
+
+
+#  ... 
+# worekr_id : 0 data : 93
+# worekr_id : 1 data : 96
+
+
+# worekr_id : 0 data : 95
+# worekr_id : 1 data : 98
+
+# worekr_id : 0 data : 97
+# worekr_id : 0 data : 99
+
+# [tensor([3]), tensor([4]), tensor([5]), tensor([6]), tensor([7]), tensor([8]), tensor([9]), tensor([10]), tensor([11]), tensor([12]), tensor([13]), tensor([14]), tensor([15]), tensor([16]), tensor([17]), tensor([18]), tensor([19]), tensor([20]), tensor([21]), tensor([22]), tensor([23]), tensor([24]), tensor([25]), tensor([26]), tensor([27]), tensor([28]), tensor([29]), tensor([30]), tensor([31]), tensor([32]), tensor([33]), tensor([34]), tensor([35]), tensor([36]), tensor([37]), tensor([38]), tensor([39]), tensor([40]), tensor([41]), tensor([42]), tensor([43]), tensor([44]), tensor([45]), tensor([46]), tensor([47]), tensor([48]), tensor([49]), tensor([50]), tensor([51]), tensor([52]), tensor([53]), tensor([54]), tensor([55]), tensor([56]), tensor([57]), tensor([58]), tensor([59]), tensor([60]), tensor([61]), tensor([62]), tensor([63]), tensor([64]), tensor([65]), tensor([66]), tensor([67]), tensor([68]), tensor([69]), tensor([70]), tensor([71]), tensor([72]), tensor([73]), tensor([74]), tensor([75]), tensor([76]), tensor([77]), tensor([78]), tensor([79]), tensor([80]), tensor([81]), tensor([82]), tensor([83]), tensor([84]), tensor([85]), tensor([86]), tensor([87]), tensor([88]), tensor([89]), tensor([90]), tensor([91]), tensor([92]), tensor([93]), tensor([94]), tensor([95]), tensor([96]), tensor([97]), tensor([98]), tensor([99])]
+
+```
+
+보시는 바와 같이 각 indicies들이 worker에 전달되어 data를 loading함을 알 수 있습니다.
+
+### Iterative-style
+Iterable sytle의 dataset을 worker를 이용해서 loading할 때에는 data 중복을 주의해야 합니다.   
+Iterable style의 dataset을 loading할 때 subprocess들을 만드는 경우 , 각 worker들이 dataset object의 replica를 얻게 됩니다. 그 다음에, 각 worker들이 dataset object를 iterating 함으로 써 , data의 중복이 발생하게 됩니다. 아래의 예시코드에서 확인해보도록 하겠습니다. 
+```python
+
+import torch
+
+class MyIterableDataset(torch.utils.data.IterableDataset) :
+    def __init__(self,start, end) :
+        super(MyIterableDataset).__init__()
+        assert end&gt;start , &quot;this example code only works with end &gt;=start&quot;
+
+        self.start = start
+        self.end = end
+    def __iter__(self) :
+        worker_info = torch.utils.data.get_worker_info()
+        worker_id = worker_info.id
+        print(range(self.start,self.end))
+        print(worker_info)
+        return iter(range(self.start,self.end))
+
+ds = MyIterableDataset(start=3 ,end =100)
+
+print(list(torch.utils.data.DataLoader(ds,num_workers=2)))
+
+# range(3, 100)
+# WorkerInfo(id=0, num_workers=2, seed=4911920692807402111, dataset=&lt;__main__.MyIterableDataset object at 0x7f5d2ef69910&gt;)range(3, 100)
+
+# WorkerInfo(id=1, num_workers=2, seed=4911920692807402112, dataset=&lt;__main__.MyIterableDataset object at 0x7f5d2ef69910&gt;)
+# [tensor([3]), tensor([3]), tensor([4]), tensor([4]), tensor([5]), tensor([5]), tensor([6]), tensor([6]), tensor([7]), tensor([7]), tensor([8]), tensor([8]), tensor([9]), tensor([9]), tensor([10]), tensor([10]), tensor([11]), tensor([11]), tensor([12]), tensor([12]), tensor([13]), tensor([13]), tensor([14]), tensor([14]), tensor([15]), tensor([15]), tensor([16]), tensor([16]), tensor([17]), tensor([17]), tensor([18]), tensor([18]), tensor([19]), tensor([19]), tensor([20]), tensor([20]), tensor([21]), tensor([21]), tensor([22]), tensor([22]), tensor([23]), tensor([23]), tensor([24]), tensor([24]), tensor([25]), tensor([25]), tensor([26]), tensor([26]), tensor([27]), tensor([27]), tensor([28]), tensor([28]), tensor([29]), tensor([29]), tensor([30]), tensor([30]), tensor([31]), tensor([31]), tensor([32]), tensor([32]), tensor([33]), tensor([33]), tensor([34]), tensor([34]), tensor([35]), tensor([35]), tensor([36]), tensor([36]), tensor([37]), tensor([37]), tensor([38]), tensor([38]), tensor([39]), tensor([39]), tensor([40]), tensor([40]), tensor([41]), tensor([41]), tensor([42]), tensor([42]), tensor([43]), tensor([43]), tensor([44]), tensor([44]), tensor([45]), tensor([45]), tensor([46]), tensor([46]), tensor([47]), tensor([47]), tensor([48]), tensor([48]), tensor([49]), tensor([49]), tensor([50]), tensor([50]), tensor([51]), tensor([51]), tensor([52]), tensor([52]), tensor([53]), tensor([53]), tensor([54]), tensor([54]), tensor([55]), tensor([55]), tensor([56]), tensor([56]), tensor([57]), tensor([57]), tensor([58]), tensor([58]), tensor([59]), tensor([59]), tensor([60]), tensor([60]), tensor([61]), tensor([61]), tensor([62]), tensor([62]), tensor([63]), tensor([63]), tensor([64]), tensor([64]), tensor([65]), tensor([65]), tensor([66]), tensor([66]), tensor([67]), tensor([67]), tensor([68]), tensor([68]), tensor([69]), tensor([69]), tensor([70]), tensor([70]), tensor([71]), tensor([71]), tensor([72]), tensor([72]), tensor([73]), tensor([73]), tensor([74]), tensor([74]), tensor([75]), tensor([75]), tensor([76]), tensor([76]), tensor([77]), tensor([77]), tensor([78]), tensor([78]), tensor([79]), tensor([79]), tensor([80]), tensor([80]), tensor([81]), tensor([81]), tensor([82]), tensor([82]), tensor([83]), tensor([83]), tensor([84]), tensor([84]), tensor([85]), tensor([85]), tensor([86]), tensor([86]), tensor([87]), tensor([87]), tensor([88]), tensor([88]), tensor([89]), tensor([89]), tensor([90]), tensor([90]), tensor([91]), tensor([91]), tensor([92]), tensor([92]), tensor([93]), tensor([93]), tensor([94]), tensor([94]), tensor([95]), tensor([95]), tensor([96]), tensor([96]), tensor([97]), tensor([97]), tensor([98]), tensor([98]), tensor([99]), tensor([99])]
+
+```
+
+dataset의 replica가 각 worker에 전달되어 중복되게 fetching함을 알 수 있습니다.   
+이를 해결하기 위해서는 여러가지 방법이 있습니다. 
+
+#### Using get_worker_info()
+
+위에서 언급했듯이 , get_worker_info() 는 main_process의 경우 None을 return하고 , subprocess의 경우에는 id,replica ,seed 등등을 return합니다. worker_id를 이용해서 각 worker마다 fetching을 configuration을 할 수 있습니다.
+```python
+class MyIterableDataset(torch.utils.data.IterableDataset) :
+    def __init__(self, start, end) :
+        super(MyIterableDataset).__init__()
+        assert end &gt; start , &quot;this example code only works with end &gt;= start&quot;
+
+        self.start = start
+        self.end = end
+    
+    def __iter__(self) :
+        worker_info= torch.utils.data.get_worker_info()
+        if worker_info is None :
+            iter_start = self.start
+            iter_end = self.end
+        else :
+            per_worker = int(math.ceil((self.end-self.start) ) /
+                             float(worker_info.num_workers))
+            worker_id = worker_info.id
+            iter_start = self.start + worker_id * per_worker
+            iter_end =  min(iter_start + per_worker , self.end)
+            print(f'worker_id : {worker_id} \n iter_start : {iter_start}  iter_end : {iter_end}\n')
+        return iter(range(iter_start, iter_end))
+
+
+ds = MyIterableDataset(start = 3 ,end = 100) 
+
+
+print(list(torch.utils.data.DataLoader(ds,num_workers=3)))
+
+
+# worker_id : 0 
+#  iter_start : 3  iter_end : 35
+# worker_id : 1 
+#  iter_start : 35  iter_end : 67
+
+
+# worker_id : 2 
+#  iter_start : 67  iter_end : 99
+
+# [tensor([3]), tensor([35]), tensor([67]), tensor([4]), tensor([36]), tensor([68]), tensor([5]), tensor([37]), tensor([69]), tensor([6]), tensor([38]), tensor([70]), tensor([7]), tensor([39]), tensor([71]), tensor([8]), tensor([40]), tensor([72]), tensor([9]), tensor([41]), tensor([73]), tensor([10]), tensor([42]), tensor([74]), tensor([11]), tensor([43]), tensor([75]), tensor([12]), tensor([44]), tensor([76]), tensor([13]), tensor([45]), tensor([77]), tensor([14]), tensor([46]), tensor([78]), tensor([15]), tensor([47]), tensor([79]), tensor([16]), tensor([48]), tensor([80]), tensor([17]), tensor([49]), tensor([81]), tensor([18]), tensor([50]), tensor([82]), tensor([19]), tensor([51]), tensor([83]), tensor([20]), tensor([52]), tensor([84]), tensor([21]), tensor([53]), tensor([85]), tensor([22]), tensor([54]), tensor([86]), tensor([23]), tensor([55]), tensor([87]), tensor([24]), tensor([56]), tensor([88]), tensor([25]), tensor([57]), tensor([89]), tensor([26]), tensor([58]), tensor([90]), tensor([27]), tensor([59]), tensor([91]), tensor([28]), tensor([60]), tensor([92]), tensor([29]), tensor([61]), tensor([93]), tensor([30]), tensor([62]), tensor([94]), tensor([31]), tensor([63]), tensor([95]), tensor([32]), tensor([64]), tensor([96]), tensor([33]), tensor([65]), tensor([97]), tensor([34]), tensor([66]), tensor([98])]
+
+
+```
+
+위의 code에서 iter method는 subprocess가 설정되면 , num_workers만큼 data를 나누어서 worker_id를 기준으로 fetching하도록 configuration 합니다.
+
+
+
+#### Using worker_init_fn(worker_id)
+
+pytorch dataloader의 argument에는 worker_init_fn을 설정할 수 있습니다. worker_init_fn은 worker_id를 argument로 받아서, 각 dataset의 replica를 개별적으로 설정합니다.
+```python
+class MyIterableDataset(torch.utils.data.IterableDataset) :
+    def __init__(self,start, end) :
+        super(MyIterableDataset).__init__()
+        assert end&gt;start , &quot;this example code only works with end &gt;=start&quot;
+
+        self.start = start
+        self.end = end
+    def __iter__(self) :
+        worker_info = torch.utils.data.get_worker_info()
+        worker_id = worker_info.id
+        print(f'worker_id : {worker_id} \n iter_start : {self.start}  iter_end : {self.end}\n')
+        return iter(range(self.start,self.end))
+
+
+def worker_init_fn(worker_id) :
+    worker_info = torch.utils.data.get_worker_info()
+    dataset = worker_info.dataset
+    overall_start = dataset.start
+    overall_end = dataset.end
+
+    per_worker = int(math.ceil((overall_end-overall_start) ) /
+                     float(worker_info.num_workers))
+    worker_id = worker_info.id
+    dataset.start = overall_start + worker_id * per_worker
+    dataset.end = min(dataset.start + per_worker , overall_end)
+    # print(f'worker_id : {worker_id} , worker_start : {dataset.start}  ,  worekr_end : {dataset.end}')
+
+
+ds = MyIterableDataset(start = 3 ,end = 100) 
+
+
+print(list(torch.utils.data.DataLoader(ds,num_workers=10,worker_init_fn=worker_init_fn)))
+
+
+# /usr/local/lib/python3.7/dist-packages/torch/utils/data/dataloader.py:481: UserWarning: This DataLoader will create 10 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+#   cpuset_checked))
+# worker_id : 0 
+#  iter_start : 3  iter_end : 12
+
+# worker_id : 1 
+#  iter_start : 12  iter_end : 21
+# worker_id : 2 
+#  iter_start : 21  iter_end : 30
+
+# worker_id : 3 
+#  iter_start : 30  iter_end : 39
+
+
+# worker_id : 4 
+#  iter_start : 39  iter_end : 48
+
+# worker_id : 5 
+#  iter_start : 48  iter_end : 57
+
+# worker_id : 6 
+#  iter_start : 57  iter_end : 66
+
+# worker_id : 7 
+#  iter_start : 66  iter_end : 75
+
+# worker_id : 8 
+#  iter_start : 75  iter_end : 84
+
+# worker_id : 9 
+#  iter_start : 84  iter_end : 93
+
+# [tensor([3]), tensor([12]), tensor([21]), tensor([30]), tensor([39]), tensor([48]), tensor([57]), tensor([66]), tensor([75]), tensor([84]), tensor([4]), tensor([13]), tensor([22]), tensor([31]), tensor([40]), tensor([49]), tensor([58]), tensor([67]), tensor([76]), tensor([85]), tensor([5]), tensor([14]), tensor([23]), tensor([32]), tensor([41]), tensor([50]), tensor([59]), tensor([68]), tensor([77]), tensor([86]), tensor([6]), tensor([15]), tensor([24]), tensor([33]), tensor([42]), tensor([51]), tensor([60]), tensor([69]), tensor([78]), tensor([87]), tensor([7]), tensor([16]), tensor([25]), tensor([34]), tensor([43]), tensor([52]), tensor([61]), tensor([70]), tensor([79]), tensor([88]), tensor([8]), tensor([17]), tensor([26]), tensor([35]), tensor([44]), tensor([53]), tensor([62]), tensor([71]), tensor([80]), tensor([89]), tensor([9]), tensor([18]), tensor([27]), tensor([36]), tensor([45]), tensor([54]), tensor([63]), tensor([72]), tensor([81]), tensor([90]), tensor([10]), tensor([19]), tensor([28]), tensor([37]), tensor([46]), tensor([55]), tensor([64]), tensor([73]), tensor([82]), tensor([91]), tensor([11]), tensor([20]), tensor([29]), tensor([38]), tensor([47]), tensor([56]), tensor([65]), tensor([74]), tensor([83]), tensor([92])]
+```
+
+
+### Warning
+
+Pytorch Docs에서는 CUDA Tensor를 multi-processing loading 에서 return하는 것을 추천하지 않는다고 한다.  CUDA Tensor를 공유하거나 CUDA를 사용하는 대신에 , automatic memory pinning(pin_memory = True)을 이용해서  사용하는 것을 추천한다고 합니다. 이는 CUDA가 사용가능한 GPO로 빠른 data 전송을 하게 한다고 합니다. 
+
+
+## Platform Specific
+
+Python Multiprocessing을 사용하게 되면, OS에 따라서 , worker launch behavior가 달라집니다. 
+
+1. UNIX
+    + fork()가  multiprocessing을 시작하는 default method입니다. fork()를 사용하면 , child worker들은 복제된 address space를 통해 dataset과 Python functions에 직접 access 할 수 있습니다. 
+  
+2. Windows, MAC 
+   + spawn()이 multiprocessing을 시작하는 default method입니다. spawn()을 사용해서 , 다른 interpereter들이 실행되면서 , main script를 실행합니다. 그 다음에 , pickle serialization을 통해 dataset, collate_fn , 그리고 다른 argument를 serialization 하고 , internal worker function을 실행합니다. serialization을 사용한다는건 multiprocess data load를 사용하는동안에 Windows와 호환이 되는지 확인하는 2단계를 실행해야 함을 의미합니다.
+        1. main script code를 `if __name__  =='__main__'` block으로 둘러쌉니다. 
+           + why? 각 worker process가 실행될 때 , 다시는 main script code가 실행되지 않도록 하기 위해서입니다. main script code에 Dataset,Datalodaer instance 생성 코드를 포함시켜 , worker에서 다시 실행되지 않도록 합니다.
+        2. custom collate_fn ,worker_init_fn , 그리고 dataset code가 top level definitions에서 ,즉 `__main__` 을 check하는 code 바깥에서  define되도록 합니다.
+            + why? fucntions들이 bytecode가 아닌 reference로써 pickled 되기 때문입니다.
+
+## Randomness in multiprocessing data loading
+
+각 worker는 seed를  (base_seed + worker_id)로 설정합니다. base_seed는 main_process에 의해서 생성이 되는데 , 이 때 RNG(Random Number Generator) 나 지정한 generator를 이용하게 됩니다. 하지만, 다른 라이브러리의 seed가 중복이 될 수 있습니다. 따라서 ,  worker 가 initialized 될 때 , 각 worker가 동일한 random number를 return할 수 있습니다.   
+worker_init_fn에서 torch.utils.data.get_worker_info().seed 나 torch.initial.seed를 사용하면 각 worker에 대한 Pytorch seed set에 access하고 , 이를 사용하여  , data 를 loading하기 전에 다른 라이브러리로 seed를 전달할 수 있습니다. 
+
+## Issues
++ Problem
+  + iteration을 몇 번 반복하고 나면 , loader worker process가 parent process에 있는 모든 Python Objects(worker process에서 access가능)에 대해 같은 양의 CPU Memory를 점유하고 있습니다.만약에 , Dataset이 엄청나게 큰 data(ex.매우 큰 filename lsit)를 포함하거나 수많은 worker를 사용한다면 문제가 발생할 것입니다.
++ Why?
+  + 임의의 Python Objects를  shared memmory에 저장하는 것은 copy-on-write problem을 발생시킵니다. 이 object들을 read할 때마다 , reference count를 증가시킵니다. reference count의 변화로 인해 fork된 python process의 copy-on-acess problem이 발생하게 되는것입니다. (Memory-leak 문제가 아닙니다.)
++ Sol 
+  + 기본적인 Python Objects(list,dict) 대신에 pandas,numpy,pyarrow 같은 objects를 사용합니다. 이들은 reference count가 1입니다.  
+  + String을 저장할 때에는 , ASCII code로 numpy array를 사용하여 저장할 수 있습니다. 아니면, ByteCode나 Custom Datatype을 사용할 수 있습니다.
+# References
+
+[Pytorch-data-docs][Pytorch-data-api]
+
+[Pytorch-data-api]: &quot;https://pytorch.org/docs/stable/data.html#single-and-multi-process-data-loading&quot;</content><author><name>Choi Woongjoon</name></author><category term="Pytorch" /><category term="Machine Learning" /><category term="Pytorch" /><category term="deep learning" /><summary type="html">Pytorch multiprocess</summary></entry><entry><title type="html">Numerics</title><link href="http://localhost:4000/python/Numeric/" rel="alternate" type="text/html" title="Numerics" /><published>2022-09-12T00:00:00+09:00</published><updated>2022-09-12T00:00:00+09:00</updated><id>http://localhost:4000/python/Numeric</id><content type="html" xml:base="http://localhost:4000/python/Numeric/">Numeric Types라는 Built-in Objects를 잘 이용하기 위해서는 이 Built-in Objects에 어떤 Literals들이 있고 , 어떤 operator들을 제공하는지 알아야합니다. 이것들에 대해서 알아보도록 하겠습니다 .
+
+# Numeric Literals
+## Integers
+Integer 타입은 decimal digits으로 쓰여진 string 입니다. 
+예시는 아래와 같습니다.
+
+```python
+#  24, 0 ,-123234556
+
+```
+
+
+### Python 3.x vs Python 2.x
+Python의 Integer는 precision에 제한이 없습니다. 
+하지만 , 
+&gt; Python 3.x 버전과 2.X버전에서의 Integer는 큰 차이점이 있습니다. 
+
+2.x 버전에서는 Integer는 normal type과 long type으로 나뉩니다. normal integer는 32bit로 표현할 수 있는 decimal digit을 표현합니다. 하지만, long type은 precision에 제한이 없고 , decimal digit 끝이 l 혹은 L로 끝나게 됩니다. 허용된 bit인 32를 넘게되면, 자동으로 long integer로 변환이 됩니다.Programmer가 'L'을 type할 필요가 없습니다.
+```python
+2147689795
+&gt;&gt;&gt;2147689795L
+
+```
+
+
+하지만, 3.x버전에서는 Integer는 normal type과 long type이 병합되었습니다. 따라서, integer는 더이상 l 이나 L이 끝에 출력도지 않습니다.
+```python
+2147689795
+&gt;&gt;&gt;2147689795
+
+```
+
+### Hex,Binary,Oct
+
+여태까지, 위에서 본 Integer는 전부 decimal digits로 코딩된 Integer였습니다. Integer는 decimal 뿐만 아니라, hexadecimal, octal, binary로 코딩될 수 있습니다.   
+HexaDecimal은 (0x or 0X)(A-F and 0-9) 의 format으로 coding이 되어집니다. 
+```python
+a= 0xAF
+print(a)
+# 175
+b = 0XAF
+
+print(b)
+```
+말 그대로 코딩이 될 뿐 Integer이므로 출력은 Integer로 됩니다.
+
+Octal은  (0o or 0O)(0-7) 의 format으로 coding이 되어집니다.  
+2.x 버전에서는 0(0-7)의 format이였지만, decimal representation과 햇갈려서 3.x버전에서는 변경되었습니다.
+```python
+a = 0o10
+
+print(a)
+# 8
+b= 0O10
+
+print(b)
+
+# 8
+```
+
+Binary는 (0b or 0B)(0-1) 의 format으로 coding이 되어집니다.
+
+```python
+
+a = 0b11
+
+print(a)
+
+# 3
+b = 0B11
+
+print(b)
+
+# 3
+```
+#### Create Integers Using Built-in Calls
+
+위에서 사용되었던 Integer의 format은 Built-in method로 생성할 수 있습니다.
+
+```python
+
+c = hex(16)
+
+print(c)
+
+print(type(c))
+
+# 0x10
+# &lt;class 'str'&gt;
+
+c = oct(8)
+
+print(c)
+
+print(type(c))
+
+# 0o10
+# &lt;class 'str'&gt;
+
+
+c = bin(2)
+
+print(c)
+
+print(type(c))
+
+# 0b10
+# &lt;class 'str'&gt;
+
+```
+
+hex,oct,bin 은 Integer를 argument로 받아 해당되는 representation을 string으로 return함을 알 수 있습니다.   
+
+literal expression으로 Integer object를 생성할 수 있지만 , built-in method로도 Integer Objects를 생성할 수 있습니다. 
+
+```python 
+
+a = int(&quot;10&quot;,10)
+
+
+print(f&quot;a : {a}&quot;)
+
+print(f&quot; type of a : {type(a)}&quot;)
+b = int(&quot;10&quot;,2)
+
+print(f&quot;b : {b}&quot;)
+print(f&quot; type of a : {type(b)}&quot;)
+
+c = int(&quot;10&quot;,8)
+
+print(f&quot;c : {c}&quot;)
+print(f&quot; type of a : {type(c)}&quot;)
+d = int(&quot;10&quot; , 16)
+
+print(f&quot;d : {d}&quot;)
+print(f&quot; type of a : {type(d)}&quot;)
+e = int(&quot;10&quot;,3)
+
+print(f&quot;e : {e}&quot;)
+print(f&quot; type of a : {type(e)}&quot;)
+k = int(6)
+print(f&quot;k : {k}&quot;)
+print(f&quot; type of a : {type(k)}&quot;)
+
+
+# a : 10
+#  type of a : &lt;class 'int'&gt;
+# b : 2
+#  type of a : &lt;class 'int'&gt;
+# c : 8
+#  type of a : &lt;class 'int'&gt;
+# d : 16
+#  type of a : &lt;class 'int'&gt;
+# e : 3
+#  type of a : &lt;class 'int'&gt;
+# k : 6
+#  type of a : &lt;class 'int'&gt;
+
+```
+int method는 int(str,base)  or int(digit) 로 정의되어 있습니다.
+1. int(str,base)
+   + base를 통해서 representation을 확인후 , 그 에 해당하는 integer objects를  return합니다
+2. int(digit)
+   + digit에 해당하는 intger object를 return합니다.
+
+## Floating Numbers
+
+
+```
+floatnumber   ::=  pointfloat | exponentfloat
+pointfloat    ::=  [digitpart] fraction | digitpart &quot;.&quot;
+exponentfloat ::=  (digitpart | pointfloat) exponent
+digitpart     ::=  digit ([&quot;_&quot;] digit)*
+fraction      ::=  &quot;.&quot; digitpart
+exponent      ::=  (&quot;e&quot; | &quot;E&quot;) [&quot;+&quot; | &quot;-&quot;] digitpart
+
+```
+
+floating literal의 lexical definition은 위와 같습니다.floatnumber는 pointfloat , exponentfloat 2가지의 literal로 구성되어집니다.  pointfloat , 즉 decimal 인 부분과 '.'으로만 이루어진 floatnumber입니다. exponentfloat은 추가적으로 exponent인 부분도 포함한다는 뜻입니다.   
+
+Python에서 float literal를 사용하게 되면 , 이를 float object로 만들고  , floating object가 expression에서 사용되어 질 때 , floating-point math를 사용합니다.  floating object의 예시는 아래와 같습니다 .
+
+```python 
+print(3.14)
+
+print(10.)
+
+print(.0001)
+
+print(1e100)
+
+print(3.15e-10)
+
+print(0e0)
+
+# 3.14
+# 10.0
+# 0.0001
+# 1e+100
+# 3.15e-10
+# 0.0
+
+```
+
+Floating-point number는 standard C python에서는 C의 &quot;doubles&quot;로 구현이 되어있습니다. 따라서, C compiler가 double에 제공하는 만큼의 precision을 얻게 됩니다. 
+
+## Complex Numbers
+
+복소수는 실수와 허수를 갖는 숫자입니다.
+
+허수의 lexical definition은 아래와 같습니다.   
+```
+imagnumber ::=  (floatnumber | digitpart) (&quot;j&quot; | &quot;J&quot;)
+```
+
+복소수에서 실수부는 optional이므로 생략하여도 괜찮습니다.   
+복소수의 예시는 아래와 같습니다.
+
+```python 
+print(3+5j)
+
+print(type(3+5j))
+
+b= 3.15j
+print(b)
+print(type(b))
+
+b = 10.j
+
+print(b)
+print(type(b))
+
+b = 10j
+
+print(b)
+print(type(b))
+
+b=.001j
+print(b)
+print(type(b))
+
+
+b=1e100j
+print(b)
+print(type(b))
+
+
+b=3.14e-10j
+print(b)
+print(type(b))
+
+b=3.14_15_93j
+
+print(b)
+print(type(b))
+
+# (3+5j)
+# &lt;class 'complex'&gt;
+# 3.15j
+# &lt;class 'complex'&gt;
+# 10j
+# &lt;class 'complex'&gt;
+# 10j
+# &lt;class 'complex'&gt;
+# 0.001j
+# &lt;class 'complex'&gt;
+# 1e+100j
+# &lt;class 'complex'&gt;
+# 3.14e-10j
+# &lt;class 'complex'&gt;
+# 3.141593j
+# &lt;class 'complex'&gt;
+
+
+```
+예를들어 ,3 + 5j 는 실수부 3, 허수부 5j를 가진 complex number입니다. 나머지는 , 허수만을 가진 complex number입니다.
+
+
+# Handling Numeric Types Using Built-in tools
+
+Numeric Types object를 정의를 했다면,이 objects에 대한 method 나 operator를 정의하여 Numeric type objects를 다룰 수 있습니다.   
+
+## Expression Operator
+
+[python-operator-list-and-precedence][python-operator-list-and-precedence]  
+
+[python-operator-list-and-precedence]: &quot;https://docs.python.org/ko/3/reference/expressions.html#operator-precedence&quot;  
+
+Python Operator의 목록과 우선순위는 documents site의 link를 첨부하도록 하겠습니다.  
+ Documents에서의 table에서 위에 있을수록 precedence가 높고 , 같은 precedence라면 왼쪽에서 오른쪽으로 expression이 진행이 됩니다.     
+
+Python Expression Operator에서는 알아야 할 몇가지 특징이 있습니다. 
+
+1. 괄호에 둘러쌓인 expression을 먼저 수행합니다.
+2. 서로 다른 type의 operands에 대해 expression을 수행할 때 , 더 복잡한 type의 operands로 type을 변환시킵니다. 그 다음에 , math operation을 수행합니다. 
+
+```python
+b = 40 + 3.14
+
+print(type(b))
+
+# &lt;class 'float'&gt;
+
+```
+물론 , 명시적으로 type을 변환할 수 있습니다.
+```python
+
+a = int(3.1425)
+print(type(a))
+print(a)
+b= float(3)
+print(b)
+print(type(b))
+# &lt;class 'int'&gt;
+# 3
+# &lt;class 'float'&gt;
+#3.0 
+
+```
+
+즉, 자동적으로 type을 conversion 하기 때문에 , 명시적으로 type을 변환할 필요가 없습니다 .
+
+## Built-in math functions and utitlity modules
+
+Built-in math functions에는 pow , trunc,round , int 등등이 있고 , utility modules에는 random, math 등등이 있습니다. 
+
+[Python-math-moduels][Python-math-modules]
+
+[Python-math-modules]: &quot;https://docs.python.org/ko/3/library/numeric.html&quot;
+
+math-modules에 대한 document link를 첨부하도록 하겠습니다.
+
+# References
+
+
+[Python-Types-docs][Python-Type-docs]
+
+[Python-Type-docs]: &quot;https://docs.python.org/ko/3/library/stdtypes.html#numeric-types-int-float-complex&quot;
+
+[Python-Lexical-analysis][Python-Lexical-analysis]  
+
+[Python-Lexical-analysis]: &quot;https://docs.python.org/ko/3/reference/lexical_analysis.html#floating&quot;
+
+Learning-Python</content><author><name>Choi Woongjoon</name></author><category term="Python" /><category term="Python" /><category term="Object" /><category term="Builtin" /><summary type="html">Python Numerics</summary></entry><entry><title type="html">Polynomial Regression</title><link href="http://localhost:4000/standfordml/polynominal-regerssion/" rel="alternate" type="text/html" title="Polynomial Regression" /><published>2022-06-02T00:00:00+09:00</published><updated>2022-06-02T00:00:00+09:00</updated><id>http://localhost:4000/standfordml/polynominal-regerssion</id><content type="html" xml:base="http://localhost:4000/standfordml/polynominal-regerssion/"># Polynomial Regression in Multiple Features
+
+Linear Regression 모델을 1개의 독립변수 x와 1개의 의존변수 y로 나타내는 것을 Simple Linear Regression이라 한다. 이를 , 수식으로 표현하면  
+$$
+y = \theta_{1} x + \theta_{0}
+$$
+로 표현할 수 있다. 이는 단순하게 x,y 축을 가진 그래프로 표현할 수 있기에 쉽게 이해할 수 있습니다. 하지만, 의존변수 y를 예측해야하는 Linear Regression 모델을 만들때 , 독립변수는 1개가 아닐 수 있습니다. 이때 , 사용하는 LInear Regerssion 모델은 다른 equation입니다. 
+
+## What is Polynomial Regression
+
+Polynomial Regression이란 독립변수가 1개가 아닌 여러개인 경우의 Linear Regression 모델입니다.  
+
+이를 식으로 표현하면  아래와 같습니다.
+
+
+$$
+\begin{align}
+y &amp;= \theta_{0} + \theta_{1}x_{1} + \theta_{2}x_{2} + ... + \theta_{n}x_{n} \\
+y &amp;= \sum_{i=1}^{n} \theta_{i}x_{i} + \theta_{0} \\
+\end{align}
+$$
+
+여기서 주의할 점은 모든 feature를사용하는 것이 아니라 , 필요한 만큼의 feature를 사용한다는 것입니다.
+
+![image](https://user-images.githubusercontent.com/50165842/170036215-31ef848c-168f-4f1d-9f17-e7c39509d458.png)
+
+예를 들어, 위와 같이 데이터가 주어진 경우에는 feature를 1개만 사용하면 충분합니다.
+
+![image](https://user-images.githubusercontent.com/50165842/170036527-36e28dc6-2dea-4dab-8e9e-affe47055672.png)
+
+이렇게 데이터가 주어진 경우 , feature를 2개 (x, x*x) 를 사용하게 된다면 , 빨간색과 같은  model을 얻게 될 것입니다. 이는 데이터를 잘 표현하지 못하는 model입니다. 
+
+![image](https://user-images.githubusercontent.com/50165842/170037696-19d8cc0f-6b60-406e-b677-682a83f1e860.png)
+
+
+
+만약에 , feature를 3개(x,x*x,x*x*x) 사용하게 된다면, 3차 함수가 되어서 , 위와 같은  model을 만들게 될 것입니다.
+
+
+
+![image](https://user-images.githubusercontent.com/50165842/170037425-e9b1f125-6509-4e66-ae16-905a7445b020.png)
+
+하지만 , feature를 다르게 사용한다면(x,x*x x*(1/2) (root x) ) 위와같이 점진적으로 증가하는 model이 되어서 데이터를 잘 표현하는 model이 될 것입니다. 
+
+
+
+위의 데이터의 경우 , feature가 x1 ,x2... xn 만큼 주어졋다하더라도, 임의의 feature xk만을 사용하여 표현할 수 있고 , 이 feature의 지수를 어떻게 설정하느냐에 따라 data를 저 잘 표현할 수 있습니다.
+
+
+
+## Learning Polynomial Regression 
+
+model을 설정하였으면 ,  model을 학습해야 합니다. Polynomial Regression model 역시 Gradient Descent를 이용하여 학습을 진행합니다.
+
+### Gradient Descent in Multiple Variables
+
+우선 기존의 linear regression에서의 Gradient Descent를 equation으로 적으면 아래와 같습니다.
+$$
+\begin{align}
+\theta_{0} := \theta_{1} - \alpha * {\partial J(\theta) \over \partial\theta_{0}} \\
+\theta_{1} :=  \theta_{1} - \alpha * {\partial J(\theta) \over \partial\theta_{1}}
+
+\end{align}
+$$
+Polynomial Regression의 경우에는 variable의 개수가 늘어나므로 여러번 update를 해주면 됩니다.
+$$
+\begin{align}
+\theta_{0} &amp;:= \theta_{1} - \alpha * {\partial J(\theta) \over \partial\theta_{0}} \\
+\theta_{1} &amp;:=  \theta_{1} - \alpha * {\partial J(\theta) \over \partial\theta_{1}} \\
+\theta_{2} &amp;:=  \theta_{2} - \alpha * {\partial J(\theta) \over \partial\theta_{2}} \\
+\theta_{3} &amp;:=  \theta_{3} - \alpha * {\partial J(\theta) \over \partial\theta_{3}} \\
+&amp;...
+
+
+\end{align}
+$$
+이를 일반화시키면 아래와 같은 eqation을 얻을 수 있습니다.
+$$
+\begin{align}
+
+\theta_{k} &amp;:=  \theta_{k} - \alpha * {\partial J(\theta) \over \partial\theta_{k}} \\
+
+(k &amp;= 1 ... n)
+
+\end{align}
+$$
+
+
+### Convergence Speed
+
+Polynomial Regression model을 학습할 방법을 알아봤습니다. 바로 학습에 들어가도 되지만, model 빠르게 convergence할수록 model을 학습하는 시간을 줄일 수 있습니다. 여러 hyperparameter들에 의해서 이 model이 convergence하는 시점이 빨라질 수 있습니다. 
+
+#### Scaling Variables
+
+![image](https://user-images.githubusercontent.com/50165842/170268003-1fd87952-68ed-492f-9ba4-e0169e7117ae.png)
+
+Variable간의 scale 차이가 크다면 Loss Function이  위와 같은 형태를 보일 것입니다.  scale이 큰 variable의  parameter를 update하면 loss function의 값이 상대적으로 크게 변하고 , scale이 작은 variable의 parameter를 update하면 loss function의 값이 상대적으로 작게  변하기 때문에 위와같이 찌그러진 모양이 나오게 됩니다. 
+
+#### Learning Rate
+
+$$
+\begin{align}
+
+\theta_{k} &amp;:=  \theta_{k} - \alpha * {\partial J(\theta) \over \partial\theta_{k}} \\
+
+(k &amp;= 1 ... n)
+
+\end{align}
+$$
+
+Model의 weight를 update할 때  , $$\alpha$$ 라는 term을 곱하게 됩니다. 이 값을 learning rate라고 합니다. 만약에  , 이 learning rate값이 크다면,  loss function의 값이 아래와 같이 convergence 할 것입니다. convergence 값이 일정하게 감소하지 않을 것입니다.
+
+
+
+![image](https://user-images.githubusercontent.com/50165842/171631540-d4abe530-7f8d-4327-bc79-462b28a0f437.png)
+
+만약에 , learning rate 값이 작다면 , loss function의 값이 convergence하는데 시간이 오래 걸릴 것입니다.
+
+![image](https://user-images.githubusercontent.com/50165842/171632233-0ca16407-0ddd-4db1-903e-ea386539c8d6.png)
+
+learning rate값이 적절한 값을 가진다면, loss function의 값은 상대적으로 잘 convergence할 것입니다.
+
+
+
+![image](https://user-images.githubusercontent.com/50165842/171632544-af33dc99-875b-4b16-899f-62bbd3e2da6f.png)
+
+즉, 적절한 learning rate 값이란, 매 update마다 loss function의 값이 감소하면서 , 너무 적지 않게 감소하게 하는 값이라 할 수 있습니다. 
+
+
+
+# References
+
+Standford-ml [기계 학습  Coursera](https://www.coursera.org/learn/machine-learning)</content><author><name>Choi Woongjoon</name></author><category term="StandfordML" /><category term="Machine Learning" /><category term="LinearRegression" /><category term="StandfordML" /><summary type="html">Standford ML</summary></entry><entry><title type="html">What is Objects and Why use Built-in objects</title><link href="http://localhost:4000/python/Built-in-Objects/" rel="alternate" type="text/html" title="What is Objects and Why use Built-in objects" /><published>2022-05-26T00:00:00+09:00</published><updated>2022-05-26T00:00:00+09:00</updated><id>http://localhost:4000/python/Built-in-Objects</id><content type="html" xml:base="http://localhost:4000/python/Built-in-Objects/"># What is Objects?
+
+Python을 이용하여 Program을 만들려면 Object를 이용하여 Program을 만들게 됩니다. Object를 이용해서 Program을 만드는 것은 당연하다고 볼 수 있지만, 왜 굳이 Built-in Type을 사용해야 될까요? 
+
+## Python's Conceptual Hierachy
+
+Python의 Object-Type을 이해할려면 Python Syntax가 어떤 계층으로 이루어져 있는지를 알아야 합니다. 
+
+1. Program은 여러개의 Modules로 이루어져 있습니다.
+2. Modules는 여러개의 Statements로 이루어져 있습니다.
+3. Statement는 여러개의 Expression으로 이루어져 있습니다.
+4. Expression은 Object-type을 process하거나 create 합니다.
+
+즉, 연역법에 의해서 , Python의 Program은 Object-type을 통해서만 작동됨을 알 수 있습니다. 
+
+다시 말하면 , Python의 Program은 Object가 어떻게 작동하는지 알아야 , Python Program을 의도하는대로 작동시킬 수 있습니다. 
+
+
+
+## Why Use Built-in types?
+
+Object를 잘 알아야하는 이유는 알겠는데 , 왜 굳이 Built-in Object Type을 사용할까요?  내가 필요한 Operation을 지원해주는 Object-Type을 사용하면 안될까요?
+
+### C++,C  vs Python
+
+ C++,C 에서하는 일을 생각해보면 Built-in type을 사용하는 이유를 알 수 있습니다. C,C++ 에서 주로 Object를 Implementation 하는데 초점이 맞추어져 있습니다. 이 object를 위해서 memory structure를 배치하고 ,  memory allocation을 관리하고  , 또한 search 와 access 루틴을 구현해야 합니다. 
+
+하지만, Python에서는 Built-in Object를 사용한다면, C++,C에서 해야만 하는 작업들을 할 필요가 없습니다.
+
+### Other Reasons
+
+위 이유 이외에도 다양한 여러가지 이유가 있습니다.
+
+1. 간단한 task의 경우 Built-in Object type이 내가 지금 풀고있는 problem domain에 필요로하는 data structure를 제공해줄 수 있습니다. 
+2. 복잡한 task의 경우 , custom object나 c언어 interface를 사용해야 할 수 있습니다 .Built-in type objects는 custom object을 구성하는 요소입니다.
+3. Built-in object는 custom data structure보다 효율적입니다. Python의 Built-in Object는 speed를 최적화하기 위해 C로 구현된 data structure를 사용합니다.
+
+## Python's Core Data Type
+
+Python의 Core Data Type은 아래와 같습니다.
+
+- Object
+- Numbers
+- Strings
+- Lists
+- Dictionaries
+- Files
+- Sets
+- Other Core Types
+- Program Unit Types
+- Implementation-related data types
+
+# References
+
+
+
+Learning Python(by Mark Lutz)  - chp 4</content><author><name>Choi Woongjoon</name></author><category term="Python" /><category term="Python" /><category term="Object" /><category term="Builtin" /><summary type="html">Python Objects</summary></entry><entry><title type="html">Setting Your Goal</title><link href="http://localhost:4000/dls_c3/Setting-your-goal/" rel="alternate" type="text/html" title="Setting Your Goal" /><published>2022-05-25T00:00:00+09:00</published><updated>2022-05-25T00:00:00+09:00</updated><id>http://localhost:4000/dls_c3/Setting-your-goal</id><content type="html" xml:base="http://localhost:4000/dls_c3/Setting-your-goal/"># Setting your Goal
+
+머신러닝 모델을 훈련을 시킬때 , 한가지 모델만을 훈련시키고 끝나는 것이 아니라 여러가지의 모델을 훈련시킨후 이 중에서 가장 잘 작동할 법한 모델을 선택하게 됩니다. 이 때 , 어떠한 기준치로 모델을 선택하는데 , 이 기준치를 Metric 이라 합니다. 이 Metric은 정렬해서 가장 좋은 모델을 고르는건 어렵지 않지만, Metric을 어떻게 설정하는지 모른다면 좋은 모델을 고를 수 없습니다.
+
+## Metric is case by case
+
+Metric을 설정하는 것은 case by case 라는 것을 기억해야 합니다. Metric은 Machine Learning Project Team이 어떤 Goal을 지향하는지에 따라서 달라집니다. 어떤 Team은 low latency가 가장 중요할 수 도 있고 , 여러개의 지표를 한번에 고려할 수 도 있습니다. Team에서 회의를 통해 어떤 Metric을 중요시 할 지 결정하게 될 것입니다. 이를 가지고 , 어떻게 Metric을 잘 설정하면 좋을지 이에 대해 간단한 방법을 알아보도록 하겠습니다.
+
+
+
+## Using Single Number Metric
+
+여러 Metric을 전부 고려해야하는 경우 , 이를 한가지의 Number로 합칠 수 있는 경우가 있습니다. 예를들어 , Recall, Precision은 Model이 주어진 DataSet에 대하여 얼마나 좋은 performance를 보여주는지에 대한 Metric입니다. 이러한 Metric에 대한 평균값을 사용하여 , 좋은 값을 찾을 수 있습니다. 평균중에서도 산술평균, 기하평균,조화평균 을 사용하거나, Metric을 Parameter로 사용하는 새로운 function을 만들 수 도 있습니다. 
+
+
+
+## Satisfying Conditions and Optimizing
+
+위와 같은 경우가 아닌 , latency와 precision을 동시에 고려해야 하는 경우가 있다면 , 이 두 metric을 합치는 것은 어색합니다. 따라서 , 이러한 경우에는 제일 우선시하는 metric를 선정하고 나머지 metric이 만족해야하는 조건을 설정하는 방법이 있습니다. 보통 , 나머지 metric들은 어느 조건을 만족하게 되면 , 그 이상을 잘하더라도 신경쓰지 않는 경우가 많습니다 . N개의 metric이 있다고 가정을 한다면 , N-1개의 metric이 조건을 만족한다면 나머지 1개의 metric으로 best model을 선정할 수 있습니다 .
+
+예를 들면 , 만족해야 하는 metric이 latency , precision , user response time , memory size 라고 하겠습니다. 가장 중요시 되는 metric이 precision이라 설정하면 , latency는 100ms 이하 , user response time은 150ms 이하 memory size는 1gb 이하등으로 설정할 수 있습니다. 
+
+
+
+## Train / Dev / Test 
+
+### Dev Distribution vs Test Distribution
+
+Data를 수집하게 되면, Train , Dev , Test로 나누게 됩니다 . Train data는 model의 weight를 update하는데 사용되어 지는 data이고 , dev data는 훈련된 model이 unseen data에서 얼마나 잘하는지를 평가하는 data이고 , test data는 평가한 model이 실제 real world의 data가 주어질 때 얼마나 잘할지를 측정하는 data입니다 . 
+
+data를 3개의 category로 나누게 될 때 , dev,test의 분포가 다르게 되면 model이 real world에서 예상 performance와는 다른 performance를 보여줄 수 있습니다 . 
+
+예를 들어 , 글로벌 얼굴 인식 모델을 만든다고 가정하겠습니다. dev에는 asia 사람들의 data, africa 사람들의 data , test에는 europe ,america등 기타지역 사람들의 data를 사용하기로 결정했습니다. 만일 이렇게 된다면 ,      asai, africa 사람들에 대해서 잘 작동하는 model이 될 것입니다 . 따라서, 여기서 이상적인 dev,test dataset의 설정법은 모든 지역의 data를 shuffle한뒤 dev , test 로 나눈다면 , dev set에서의 좋은 performance가 test에서의 좋은 performance로 연결될 것입니다. 
+
+
+
+### Train , Dev , Test Split
+
+DataSet을 수집하고 , Train , Dev, Test 를 나누게 되는데 , Test Set을 두지 않을 경우 , Train,Dev의 비율을 7:3으로 설정하고 , Test Set이 있을경우에는, Train,Dev,Test의 비율을 6:2:2 로 설정하는 것이 rule of thumb(관례적으로 좋음)이라고 합니다. 
+
+하지만 , 위의 얘기는 big data로 deep learning model을 학습하기 이전의 얘기입니다. 예전에는 , 10000개 정도의 수준이였지만, big data시대에서는 data가 100만개를 넘어가는 경우가 빈번합니다.  통상적으로 , data가 100만개를 넘어가는 경우에는 dev set, test set을 20만개정도로 설정할 필요가 없습니다. 만개정도의 test set이랑 dev set이 있으면 괜찮습니다.  즉 , dev set과 test set의 비율이 중요한것이 아니라 evaluation 과정을 진행할 수 있을 정도의 data set이 있으면 충분합니다.</content><author><name>Choi Woongjoon</name></author><category term="DLS_C3" /><category term="Machine Learning" /><category term="Coursera" /><category term="deep learning" /><summary type="html">DeepLearning.ai Dls ML strategy (Metric, Data Split)</summary></entry><entry><title type="html">Residual Network : intuition</title><link href="http://localhost:4000/dlarchitecture/ResNet/" rel="alternate" type="text/html" title="Residual Network : intuition" /><published>2022-03-26T00:00:00+09:00</published><updated>2022-03-26T00:00:00+09:00</updated><id>http://localhost:4000/dlarchitecture/ResNet</id><content type="html" xml:base="http://localhost:4000/dlarchitecture/ResNet/">이론적으로 NeuralNet의 layer가 증가하면, Parameter의 수가 증가하므로 , training에서의 performance가 증가해야합니다. 하지만, 실제로는 training error가 줄어들다가 어느 순간부터 증가합니다. 이에 대해서, 알아보고자 합니다.
+
+# Residual Block
+
+Deep Neural Net에서 위와 같은 문제점이 발생하는 이유는 gradient가 폭발적으로 증가하거나, 0에 가깝게 감소하기 때문입니다.
+
+이를, gradient exploding ,gradient vanishing이라 부릅니다. 이를 해결하기 위한 architecture로 ResNet이 있습니다. 
+
+Neural Net의 Layer Block은 아래와 같이 이루어 집니다.
+
+![image](https://user-images.githubusercontent.com/50165842/160216325-cd462626-a284-4917-83d4-17c447a34b64.png)
+
+NeuralNet 의 layer , activation을 forward propagation을 시킨 것을 a 라 하겠습니다. a[L]은  l번째 layer의 forward propagtion후 activation을 적용한 output이라 정의 하겠습니다. l번째 layer에서 forward propagation을 한 것을 z[L] 이라 하겠습니다. 마찬가지로, weight는 W[L] , bias는 b[L] , activation 은 g[L] 이라 정의하겠습니다.
+
+
+
+![image](https://user-images.githubusercontent.com/50165842/160216684-69e00ecb-4693-4415-90e7-4fe054d94fd6.png)
+
+
+
+Residual Block이란 a[L+2] 를 계산하기 전에 a[L]을    z[L+2] 을 concatenate한 다음에 , a[L+2]를 계산하는 것입니다.  
+
+$$
+\begin{align}
+z^{[L+1]} &amp;= W^{[L+1]}a^{[L]} + b^{[L+1]} \\
+a^{[L+1]} &amp;= g^{[L+1]}(z^{[L+1]}) \\
+z^{[L+2]} &amp;= W^{[L+2]}a^{[L+1]} + b^{[L+2]} \\
+a^{[L+2]} &amp;= g^{[L+2]}(z^{[L+2]} +a^{[L]} ) \\
+\end{align}
+$$  
+
+수식으로 표현하게 되면 위와 같이 표현할 수 있습니다. 
+
+
+
+# Why Resnet Work?
+
+ResNet 은 어떤 원리로 작동하게 되는 것일까요? 즉 , ResNet이 어떤 원리로 gradient vanishing이나 gradient exploding을 해결할까요?
+$$
+a^{[L+2]} = g^{[L+2]}(W^{[L+2]}a^{[L+1]} + b^{[L+2]} + a^{[L]})
+$$
+L+2 layer의 activation을 풀어서 전개하게 되면 , 위와 같이 전개할 수 있습니다. 만약에 , W, b 가 0라고 가정을 하면, 
+$$
+a^{[L+2]} = g^{[L+2]}( a^{[L]}) = a^{[L]}
+$$
+위와 같이 식이 단순화됩니다. Activation Function을 ReLU를 사용하게 된다면,  l번째 layer의 activation이 0 이상이기 때문에 , l번째 layer의 activation이 결과값이 됩니다. 따라서,  forward propagation시 L+2 번째 layer의 activation은 그저 항등함수가 될 것이고 , 이는 다른 복잡한 function 보다는 비교적으로  배우기가 쉽습니다. 
+
+그렇다면, 위의 과정에서 L+2번째 layer의 affine transformation이 무시된다면, hidden layer가 반드시 필요한 것일까라는 의문이 들 수 있습니다.
+
+단순히 hidden-layer없이 , activation만이 전달되는 상황을 가정한다면, 단순히 항등함수만을 배우게 될 것입니다. 하지만, hidden-layer가 존재한다면 좀 더 복잡한 function을 배울 수 있습니다. 따라서, hidden layer를 추가하게 되면, Identity function으로 activation이 그대로 전달되어 최소한의 성능이 보장이 되고 , 뿐만 아니라, 좀더 복잡한 function으로 성능이 더 올라갈 수 있습니다. 왜냐하면 , 복잡한 function을 만들게 되면 , 이에 대한 activation이 L+2 번째 activation에 반영이 되고 , back-propagation으로 배울수 있기 때문입니다. L+2번째  layer의 activation이 0보다 크더라도 , back-propagation시 L번째 layer 에 대한 gradient가 직접적으로 전달되기 때문에 , vanishing gradient나 exploding gradient가 발생하지 않습니다.
+
+따라서, hidden layer를 추가하는게 좋은 선택입니다.
+
+
+
+# Implementation
+
+VGG architecture의 등장이후 ,Linear,Relu Block을 2번 정도 거치면 channel수를 2배정도로 늘리는 architecture가 보편화 되었습니다. ResNet에서도 이것이 적용되었습니다.
+$$
+a^{[L+2]} = g^{[L+2]}(z^{[L+2]} + W_{s}a^{[L]})
+$$
+즉 , L+2번째 layer의 channel수와 L번째 layer의 channel수가 다릅니다. 예를 들어, L+2번째의 channel수가 256이라면, l번째 layer는 128정도가 될 것입니다. 따라서, matrix를 통해서 dimension을 변화시켜주어야 합니다. 
+$$
+a^{[L+2]} \in R^{n^{[L+2]}   \times m} \qquad a^{[L]} \in R^{n^{[L]} \times m } \qquad W_s \in R^{n^{[L+2]} \times n^{[L]} }
+$$
+단순하게 , Linear Layer라 생각하면 dimension을 위와 같이 설정할 수 있을 것입니다.</content><author><name>Choi Woongjoon</name></author><category term="DLArchitecture" /><category term="Machine Learning" /><category term="ResNet" /><category term="deep learning" /><summary type="html">ResNet Intuition</summary></entry><entry><title type="html">Python loop statement general format and general definition</title><link href="http://localhost:4000/python/Python-loop-statements-general-format/" rel="alternate" type="text/html" title="Python loop statement general format and general definition" /><published>2022-03-15T00:00:00+09:00</published><updated>2022-03-15T00:00:00+09:00</updated><id>http://localhost:4000/python/Python-loop-statements-general-format</id><content type="html" xml:base="http://localhost:4000/python/Python-loop-statements-general-format/"># Python loop statements general format
+
+Python에서 사용할 수 있는  loop statement로는 2가지가 있습니다. 하나는, for statement, 다른 하나는 while statement입니다. 어떻게 사용하는지는 다들 대략적으로 알고 있습니다. 
+
+하지만, 이에 대한 semantic한 definition 과 general 한 syntax에 대해서는 잘 알지 못할것입니다. 이렇게 , 공부하는 것은 Programming language를 배울때 안좋다고 하지만, 저는 formulate하는 것이 이러한 logic을 처음 보는 문제에 응용하는 좋은 방법이라고 믿고 있습니다. for statment, while statement, loop 에서만 허용된 statement에 대해서 semantic 한 definition과 general 한 syntax로 나타내보도록 하겠습니다.
+
+
+
+
+
+# while
+
+&gt; while statement는 general 한 loop 를 나타냅니다. 
+
+즉, general한 proecedure 를 만들기 위한 statement입니다. while loop로는 모든 종류의 loop를 만들수 있습니다. 
+
+while의 general한 format은 아래와 같습니다.
+
+```
+while test : # test expression
+	statements # intended expression
+	if test : continue  # Go to top of loop
+	if test : break  #Exit loop
+[else :] # Optional
+	statements
+```
+
+
+
+
+
+# for
+
+&gt; for loop은 iterable objects나 sequence 안에 있는 item들을 조회해나가는 statement 입니다.
+
+iterable objects에는 list,tuples, sets, user-defiend iterable objects등이 포함될 수 있습니다.
+
+for statement의 general한 format은 아래와 같습니다.
+
+```
+for target in iterable :  # Assign item in iterable to target
+	statements
+	if test : continue  # Go to top of loop
+	if test : break  #Exit loop
+[else :] # Optional
+	statements
+	
+```
+
+## target assignment
+
+`target in iterable`  은 assignment statement라 봐도 괜찮습니다. 즉 , iterable 안의 item이 target에 assign 됩니다.
+
+assignment이면서 어떤 종류의 assignent도 제한이 없습니다.
+
+
+
+```
+for (a,b) in S :
+	print(a,b)
+```
+
+tuple 형태의 assignment도 가능합니다.
+
+```
+for target in S :
+	a,b = target
+```
+
+이와 같이 sequence를 unpack할 수도 있습니다.
+
+뿐만 아니라 , target에 어떤형태의 expression도 가능하기에 , nested expression도 가능합니다.
+
+```
+for ((a,b),c) in S :
+	print(a,b,c)
+	
+```
+
+
+
+
+```
+for (a, *b, c) in S :
+	print(a,b,c)
+```
+
+starred expression도 가능합니다.
+
+
+
+***&lt;u&gt;즉 , Python assignment에서 허용된 syntax라면 전부 사용할 수 있습니다.&lt;/u&gt;***
+
+# Continue, break, loop else
+
+## continue , break
+
+continue, break는 자주 쓰이지만, 이에 대해서 define해보도록 하겠습니다.
+
+continue statement는 즉각적으로 바로 loop의 맨 위로 가게 하는 statement입니다.
+
+break statement는 바로 loop를 나오게 하는 statement 입니다. 
+
+## loop else
+
+loop else는 loop statement의 test가 False가 되면 실행이됩니다.  혹은, for loop에서 iterable이 소진이 되면 사용될 수 있습니다. 하지만, break statement로 loop가 종료가 되면 실행되지 않습니다.
+
+이는 try except statement와 비슷한데, try statament에서 else는 except가 실행되지 않으면 실행되고 , for loop or while loop에서는 break가 실행되지 않으면 else가 실행됩니다.
+
+loop 에서 flag status를 이용하여 loop를 실행할 때 , 원하는 조건을 만족하지 못하고 전체 loop를 iterate하는 경우, flag를 이용한 coding structure를 자주 사용하게 됩니다. 하지만, loop else를 사용하면 좀더 explicit한 coding structure를 제공해준다고 볼 수 있습니다.
+
+즉, flag status 나 다른 condition을 설정하지 않고 , loop flow에서 벗어나는 flow를 control 할 수 있게 해줍니다.
+
+```
+for n in range(2, 10):
+...     for x in range(2, n):
+...         if n % x == 0:
+...             print(n, 'equals', x, '*', n//x)
+...             break
+...     else:
+...         # loop fell through without finding a factor
+...         print(n, 'is a prime number')
+...
+2 is a prime number
+3 is a prime number
+4 equals 2 * 2
+5 is a prime number
+6 equals 2 * 3
+7 is a prime number
+8 equals 2 * 4
+9 equals 3 * 3
+```
+
+소수를 구하는 예제인데 , factor를 발견하지 못한다면, loop else를 사용하여 소수임을 알려줍니다.
+
+```
+for n in range(2, 10):
+		flag =False
+...     for x in range(2, n):
+...         if n % x == 0:
+...             print(n, 'equals', x, '*', n//x)
+				flag = True
+...             break
+...     if not flag  :
+			print(n, 'is a prime number')
+...
+2 is a prime number
+3 is a prime number
+4 equals 2 * 2
+5 is a prime number
+6 equals 2 * 3
+7 is a prime number
+8 equals 2 * 4
+9 equals 3 * 3
+```
+
+만약에 , loop else가 없다면 flag status를 이용하여 자연스럽지 않은 coding structure를 사용하게 될 것입니다.
+
+```
+while x: # Exit when x empty
+     if match(x[0]):
+         print('Ni')
+         break # Exit, go around else
+     x = x[1:]
+else:
+     print('Not found') # Only here if exhausted x
+```
+
+while의 loop를 통해 발견하지 못한다면 loop else 로 그 flow를 처리해줄 것입니다.
+
+```
+found = False
+while x and not found:
+     if match(x[0]): # Value at front?
+         print('Ni')
+         found = True
+     else:
+         x = x[1:] # Slice off front and repeat
+if not found:
+     print('not found')	
+```
+
+loop else를 사용하지 않는다면 flag status로 따로 loop 밖에서 발견하지 못한  flow를 처리해 주어야 할 것입니다.</content><author><name>Choi Woongjoon</name></author><category term="Python" /><category term="Python" /><category term="loop" /><category term="Statemens" /><summary type="html">for and while detail in Python</summary></entry><entry><title type="html">Categorical variable’s representation and interpretation</title><link href="http://localhost:4000/statistics/Analyzing-Categorical-data/" rel="alternate" type="text/html" title="Categorical variable’s representation and interpretation" /><published>2022-03-11T00:00:00+09:00</published><updated>2022-03-11T00:00:00+09:00</updated><id>http://localhost:4000/statistics/Analyzing-Categorical-data</id><content type="html" xml:base="http://localhost:4000/statistics/Analyzing-Categorical-data/">Machine Learning 혹은 Deep Learning이라는 어떤 주어진 data의 distribution을 구하는 것입니다. 이를 위해서는 statistics에 대한 이해도가 필요합니다. 물론 , statistics를 모르고도 deep learning을 할 수 있지만, data를 어떻게 분석하고,  model을 해석하는데 statistics는 유용한 tool이 되어줍니다. 따라서, statistics를 공부를 하는것은 machine learning에 있어서 필수적이라 볼 수 있습니다.
+
+khan academy의 statistics 강의를 듣고 정리하는 식으로 공부할려 합니다. 
+
+
+
+# Analyzing Categorical data
+
+## Variable ,individual
+
+| Drink             | Type | Calories | Sugars(g) | Caffeine(mg) |
+| ----------------- | ---- | -------- | --------- | ------------ |
+| Brewed Coffe      | Hot  | 4        | 0         | 260          |
+| Caff'e latte      | Hot  | 100      | 14        | 75           |
+| Caff'e latte      | Hot  | 170      | 27        | 95           |
+| Cappucino         | Hot  | 60       | 8         | 75           |
+| Iced brewed coffe | Cold | 60       | 15        | 120          |
+| Chai latte        | Hot  | 120      | 25        | 60           |
+
+이러한 coffee data가 예시로 주어졋다고 가정하겠습니다. 
+
+여기서, Individual은 drink가 됩니다. 왜냐하면, 각 drink가 개별적인 data를 나타내기 때문입니다. 
+
+&gt;여기서, individual을 제외한 나머지 column은 variable이고 각 row가 data를 의미합니다.
+
+variable은 두 가지 종류가 있는데 , quantitive 와 categorical 입니다.
+
+&gt; quantitive는  어떤 목록에 fit할 수 없는 값들을 나타냅니다.
+&gt;
+&gt; categorical은 몇 개의 목록(bucket)을 가지는 값을 의미합니다.
+
+## analyzing One categorical variable
+
+1개의 categroical variable을 여러개의 representaion으로 나타낼 수 있습니다. 그에 대해 알아보고자 합니다.
+
+### pictographs
+
+![image](https://user-images.githubusercontent.com/50165842/157341172-2a5f82e2-8427-4920-bf99-af6f8437380d.png)
+
+pictograph란 &quot;이미지나 심볼을 사용하여 data를 representation하는 방법&quot;을 의미합니다.
+
+통계학을 처음 배울때 , visualizing하기 쉬우므로 많이 사용되는 방법이기도 합니다.
+
+위의 예제에서, symbol 1개는 5개의 다람쥐를 의미합니다. 이를 수식적으로 표현하면 5마리의 다람쥐 / 심볼 입니다.
+
+pictograph 를 읽는 방법은 아래와 같습니다.
+
+&gt; Jazz에 참가한 다람쥐의 symbol수는 5개입니다. 
+&gt;
+&gt; 5 개의 심볼* (5마리의 다람쥐 / 심볼) 을 계산한다.
+&gt;
+&gt; 심볼이 약분되어서 5 * 5마리의 다람쥐 = 25마리의 다람쥐 
+
+### bar charts
+
+![image](https://user-images.githubusercontent.com/50165842/157343173-a5d33159-2e5e-4b37-87fc-632ae2e992f4.png)
+
+
+
+bar chart의 경우 one-way table이 있는 경우 , bar chart로 변환할 수 있습니다. 
+
+bar chart를 만들 때에는 scale 단위를 잘 정해야 합니다. scale의 단위가 너무 작으면 data를 bar chart내에서 표현할 수 없습니다. 예를들어 , max 값이 40이 제한이라면 50이라는 값을 넘기는 variable이 4개중 3개이기에 의미 있는 정보를 도출할 수 없습니다. 만약에 , max 값이 10000이라면 4개간의 비교를 시각적으로 하기 어려울 것입니다. 따라서, 위의 예제의 경우 이상적인 scale은 min값 0 에 max값 70으로 볼 수 있을 것입니다. 
+
+![image](https://user-images.githubusercontent.com/50165842/157343194-41e847a7-c315-4e14-a142-013ceb985500.png)
+
+
+
+### bar chart comparing two sets
+
+bar chart를 이용하면 1개의 set 뿐만 아니라 2개의 set을 비교할 수도 있습니다.
+
+
+
+
+
+![image](https://user-images.githubusercontent.com/50165842/157555346-be29e9aa-6a5d-4139-843c-706b907a9e5a.png)
+
+예를 들면 , 한 사람의 시험 점수를 기말, 중간 으로 나누어서 표현할 수 있습니다.
+
+### bar chart question
+
+Q . bar chart로 부터 물어볼 수 있는 정보는 무엇이 있을까요?
+
+A. 
+
+-  range
+- mid-range
+-  median
+- 최빈값(mode) 
+- average
+
+
+
+
+
+
+
+## Two-way table
+
+여태까지는 1개의 variable만을 table이나 cahrt에 표현하는 방법에 대해서만 알아보았습니다. 하지만,2개의 variable을 한번에 table에 표현할 수도 있습니다. 이번에는 2개의 variable을 table에 표현하는 방법을 알아보도록 하겠습니다 .
+
+&gt; 100명의 사람이 있는데, 남자는 48명 , 여자가 52명이 있습니다. 이 사람들에게 어떤 동물을 선호하는지 조사하였습니다. 남자는 36명이 개를 , 10명이 고양이를 , 2명은 선호하는 동물이 없다고 합니다. 여자는 20명이 개를, 26명이 고양이를, 6명은 선호하는 동물이 없다고 합니다.
+
+위의 조사한 내용을 여러 표현 방법으로 표현해보도록 하겠습니다.
+
+
+
+### two-way frequency table
+
+![image](https://user-images.githubusercontent.com/50165842/157670735-afb44c35-328d-4573-a0d4-d5663757bf3f.png)
+
+1. 위 data는 2개의 categorical variable을 가지고 있습니다. 이 variable은 성별, 선호도를 나타냅니다.
+2. 성별 variabl이 2개의 bucket, 선호도의 variable이 3개의 bucket을 가지므로 6개의 cell에 value를 넣어야 합니다.
+3. 3개의 row에 선호도 variable , 2개의 column이 성별을 나타내도록 합니다.
+4. (row,column) 에 해당하는 위치에 해당하는 value를 기입합니다.
+
+
+
+위와 같이 count를 채워 넣는 것을 frequency table이라고 합니다.
+
+
+
+### venn diagram
+
+![image](https://user-images.githubusercontent.com/50165842/157671681-76015b84-952f-4915-8cd4-521078d35d0e.png)
+
+
+
+각 variable이 2개의 bucket을 가진다면 쉽게 venn diagram으로 표현할 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/50165842/157672946-efed14c6-a90c-452f-8578-0f9d4f98086c.png)
+
+
+
+
+
+
+
+### two-way relative frequency table
+
+![image](https://user-images.githubusercontent.com/50165842/157774712-934c24b2-8d87-4899-a297-ed4a4f24ed49.png)
+
+
+
+frequency table을 다르게 나타낼 수도 있습니다. 각 column에 대한 percentage(relative-frequency)가 궁금할 수도 있고 , row에 대한 percentage(relative-frequency)가 궁금할 수 도 있습니다.
+
+한 variable을 기준으로 다른 variable의 가능성을 비교할 수 있게 됩니다. 
+
+예를 들어서 , 위 data에서는 sports를 play 하지 않는 학생은 sports를 play 하는 학생들 보다 악기를 play할 가능성이 높습니다.
+
+### interprete two-way table
+
+![image](https://user-images.githubusercontent.com/50165842/157775529-b55e9502-a835-46c4-9df6-0ddbac2f2e11.png)
+
+two-way table을 좀더 보도록 하겠습니다. 
+
+two-way table을 사용하면 한 variable에 대해서 다른 variable이 어떻게 변하는지를 알 수 있습니다 .  이를 해석하는 방법은 여러가지가 있는데 , 이에 대해 다루어보겠습니다.
+
+1.
+
+Computer time이라는 variable에 대해서 Hours/night라는 variable은 아래와 같이 변해갑니다.
+
+- minimal :   5 or fewer   &lt;  5-7   &lt;  7 or more
+- Moderate :   5 or fewer   ~= 5-7  ~=  7 or more
+- Extreme :    5 or fewer &gt;  5-7  &gt; 7 or more
+
+Computer Time 이 줄어 들수록 잠을 자는 시간이 늘어나므로 , minimal 과 7 or more는 관련이 있다는 결과를 도출해 낼 수 있습니다.
+
+
+
+2.
+
+7 or more 에서 Minimal 의 비율은 55 %입니다.  7 or more에서 Extreme의 비율은 20 %입니다. 따라서, Minimal 이 7 or more에서 majority이므로 , 7 or more과 Minimal 이 관계가 있다고 볼 수 있습니다.
+
+
+
+3.
+
+7 or more에서 Minimal 의 비율은 55 %입니다. Minimal은 전체의 35.8 %입니다. Minimal이 전체의 대부분이 아니므로 , 다른 이용 시간에서  Minimal 의 비율이 majority가 아닙니다. 따라서 , 7 or more과 Minimal이 관련이 있다고 볼 수 있습니다.
+
+이를 다른 variable을 기준으로 생각하면 Minimal 에서 7 or more의 비율이 51.1 % 이고 , 7 or more은 전체의 33.3 %이므로 Minimal 과 7 or more는 관련이 있다고 볼 수 있습니다. 
+
+
+
+
+
+## Marginal distribution and conditional distribution
+
+위에서 two-way table을 보았는데 , 이는 2개의 dimension (2개의 variable)을 따르므로 joint distribution이라 볼 수 있습니다.
+
+이번에는 이 distribution 중 2가지 type의 distribution에 대해서 알아보도록 하겠습니다.
+
+### marginal distribution
+
+![image](https://user-images.githubusercontent.com/50165842/157877405-0c44a84d-ee80-4be9-a97b-a54469a481fb.png)
+
+이러한 two-way table이 있을때 초록색으로 highlight 된 부분이 있습니다. 이 부분은 전체에서 , Graduate, Undergraduate , 즉 각 student level 얼마만큼의 사람이 있는지를 보여줍니다.
+
+이와 같이, 전체에 대해서 한가지 variable만을 기준으로 각  bucket에 얼마나 있는지 보는 것을 marginal distribution 이라고 합니다.
+
+ marginal distribution은 1가지 variable에 집중한다 보셔도 됩니다.
+
+
+
+### conditional distribution
+
+Q . 각 student level 에 대한 A status variable의 conditional distribution을 구하시오
+
+
+
+
+
+![image](https://user-images.githubusercontent.com/50165842/157877994-a24d17be-deb3-4a80-b5a7-7608df21d01e.png)
+
+
+
+Conditional Distribution이라 함은 a라는  variable이 있고  , b라는 variable에 대하여 어떤 값이 주어졌을 때 이를 percentage로 나타낸 것이, 이를 b에 대한 a의   conditional distribution 이라고 합니다.
+
+
+
+
+
+
+
+# Reference
+
+[ Analyzing categorical data  Statistics and probability Khan Academy](https://www.khanacademy.org/math/statistics-probability/analyzing-categorical-data)</content><author><name>Choi Woongjoon</name></author><category term="Statistics" /><category term="Mathmathics" /><category term="Machine Learning" /><category term="Khan" /><category term="Statistics" /><category term="cateogrical data" /><summary type="html">one-way table, two-way table, bar graph, distribution</summary></entry></feed>

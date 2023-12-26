@@ -1,0 +1,2993 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>AutoML:Optumna - Woongjoon_AI</title>
+<meta name="description" content="Boostcampai model optimziation 4">
+
+
+  <meta name="author" content="Choi Woongjoon">
+  
+  <meta property="article:author" content="Choi Woongjoon">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Woongjoon_AI">
+<meta property="og:title" content="AutoML:Optumna">
+<meta property="og:url" content="/modeloptimization/modelopt4Optuna/">
+
+
+  <meta property="og:description" content="Boostcampai model optimziation 4">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-11-28T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/modeloptimization/modelopt4Optuna/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Choi Woongjoon",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Woongjoon_AI Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Woongjoon_AI
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://kau365-my.sharepoint.com/:b:/g/personal/oongjoon_kau_kr/EUebRgY_s5xFikJdu4cCTZgBSeQd5DRoslVvEaEhYt2WYw?e=kNtQkx">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://kau365-my.sharepoint.com/:b:/g/personal/oongjoon_kau_kr/EY70u-guz5BOnxNWqBdBcrIBoAbFny3p8tUOcPE8x7QZTA?e=h34VMJ">CV_KR</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="/" itemprop="url">Choi Woongjoon</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>I am an <strong>amazing</strong> developer.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Goyang/Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:oongjoon10@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://sites.google.com/view/woognjunchoiai/%ED%99%88" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/ANWTNev5jkzYwoC" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/woongjoonchoi" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+  
+    
+  
+    <!--전체 글 수를 세기 위한 연산. sum 변수에 전체 글 수 저장-->
+
+
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle menu</label>
+  <ul class="nav__items" id="category_tag_menu">
+      <!--전체 글 수-->
+      <li>
+            📂 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">78</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
+      </li>
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+
+        <span class="nav__sub-title">Programming</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Python" class="">Python(8)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            
+        <span class="nav__sub-title">Coding Interview</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CodingInterview/CodingTest" class="">CodingTest (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CodingInterview/CodingInterview" class="">CodingInterview (3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CodingInterview/Codingtechnique" class="">Codingtechnique (3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Computer Science</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DataStructure" class="">DataStructure (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Algorithm" class="">Algorithm (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+      </li>
+        <span class="nav__sub-title">DeepLearning</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Pytorch" class="">Pytorch (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Huggingface" class="">Huggingface (4)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Optimization" class="">Optimization (5)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/NLP" class="">NLP (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>    
+           <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DLArchitecture" class="">DLArchitecture (3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Software Engineering</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CICD" class="">CI/CD (8)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>     
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/OS" class="">Operating System  (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+            </ul>     
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Tools" class="">Tools (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>     
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Development" class="">Development (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Network" class="">Network (5)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+        <span class="nav__sub-title">DeepLearningSpecialization</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DLS_C3" class="">ML Strategy(2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DLS_C2" class="">DLS Assignment(2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+        <span class="nav__sub-title">ML</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/StandfordML" class="">StandfordML(1)</a></li>
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/modeloptimization" class="">ModelOptimization(4)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/Handsonmachinelearning" class="">Handsonmachinelearning(1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/PatternRecognitionML" class="">Pattern Recognition and Machine Learning(1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+      </li>
+        <span class="nav__sub-title">Data Engineering</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/Data-Engineering-basic" class="">Data Engineering기본 (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">GCP</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/GCP/Bigquery" class="">Bigquery(3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+        <span class="nav__sub-title">Mathmatics</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Mathmatics/Linear_Algebra" class="">Linear Algebra (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Mathmatics/Statisticd" class="">Statistics (1)</a></li>
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">DeepLearningAI NLP</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DeepLearningai_nlp" class="">DeepLearning.ai nlp qa (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Data Analytics</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Visualization" class="">Data Visualization (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+      </li>
+  </ul>
+</nav>
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="AutoML:Optumna">
+    <meta itemprop="description" content="Boostcampai model optimziation 4">
+    <meta itemprop="datePublished" content="2021-11-28T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="/modeloptimization/modelopt4Optuna/" class="u-url" itemprop="url">AutoML:Optumna
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#optuna란">Optuna란?</a></li><li><a href="#optuna-sample-code">Optuna Sample Code</a><ul><li><a href="#objective">objective</a></li><li><a href="#architecture-config">architecture config</a></li><li><a href="#hyperparameter-config">hyperparameter config</a><ul><li><a href="#categorical-suggest">categorical suggest</a></li><li><a href="#continuous-suggest">continuous suggest</a></li><li><a href="#integer-suggest">integer suggest</a></li><li><a href="#log-uniform-suggest">log uniform suggest</a></li><li><a href="#discrete-uniform-suggest">discrete uniform suggest</a></li><li><a href="#uniform-suggest">uniform suggest</a></li><li><a href="#conditional">conditional</a></li></ul></li><li><a href="#module안보단-architecture에-집중하자">module안보단 architecture에 집중하자.</a></li><li><a href="#예시1">예시1</a></li><li><a href="#예시2">예시2</a></li></ul></li><li><a href="#model-code">Model code</a><ul><li><a href="#model-parser">model parser</a></li><li><a href="#module-generator">module generator</a></li></ul></li><li><a href="#module-구현체">Module 구현체</a><ul><li><a href="#abstactclassmodule-generaotr">AbstactClass(module generaotr)</a></li><li><a href="#module-추가-과정">Module 추가 과정</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>이 자료는 필자가 만든 자료가 아닌 부스트코스 ai tech 2기 교육자료임을 명시합니다. 이 자료는 상업적으로 이용할 수 없습니다.</p>
+
+<h2 id="optuna란">Optuna란?</h2>
+
+<p>optuna를 강의에서 사용하게 된 이유는  SOTA 알고리즘이 구현이 되어 있고 , 병렬화가 용이하고 , Conditonal 하이퍼파라미터 구성이 용이하다는 장점이 있습니다. 또한 , 이를 프레임워크가 아닌 라이브러리 형식으로 import  해서 사용이 용이하다는 장점이 있습니다.</p>
+
+<p>(사실은 이거 말고는 다른건 모르기 때문에 잘은 모르겠습니다.)</p>
+
+<p>Optuna의 동작 순서를 보면 아래와 같습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span> 
+ <span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="p">.</span><span class="n">create_study</span><span class="p">(</span><span class="n">directions</span><span class="o">=</span><span class="err">”</span><span class="n">maximize</span><span class="s">") 
+ study.optimize(objective, n_trials=500) 
+ print(f"</span><span class="n">Best</span> <span class="n">trial</span> <span class="p">{</span><span class="n">study</span><span class="p">.</span><span class="n">best_trial</span><span class="p">}</span><span class="s">")
+</span></code></pre></div></div>
+
+<ol>
+  <li>study를 만든다.</li>
+  <li>objective 를 정의한다.</li>
+  <li>optimize 한다.</li>
+</ol>
+
+<h2 id="optuna-sample-code">Optuna Sample Code</h2>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143770131-541dc3a0-1a62-46a0-b0bb-a0ad22441879.png" alt="image" /></p>
+
+<p>logical view로 표현하며 위와 같이 됩니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143770157-48764504-df95-413a-8613-8417cdfd2b07.png" alt="image" /></p>
+
+<p>이를 코드블럭으로 대치 해서 표현하면 위와 같이 됩니다.</p>
+
+<h3 id="objective">objective</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">:</span> <span class="n">optuna</span><span class="p">.</span><span class="n">trial</span><span class="p">.</span><span class="n">Trial</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+    <span class="s">"""Optuna objective.
+    Args:
+        trial
+    Returns:
+        float: score1(e.g. accuracy)
+        int: score2(e.g. params)
+    """</span>
+    
+    <span class="p">...</span>
+    <span class="p">...</span>
+    <span class="n">hyperparams</span> <span class="o">=</span> <span class="n">search_hyperparam</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">model_config</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">trainer</span> <span class="o">=</span> <span class="n">TorchTrainer</span><span class="p">(</span>
+        <span class="n">model</span><span class="p">,</span>
+        <span class="n">criterion</span><span class="p">,</span>
+        <span class="n">optimizer</span><span class="p">,</span>
+        <span class="n">scheduler</span><span class="p">,</span>
+        <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">model_path</span><span class="o">=</span><span class="n">RESULT_MODEL_PATH</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">trainer</span><span class="p">.</span><span class="n">train</span><span class="p">(</span><span class="n">train_loader</span><span class="p">,</span> <span class="n">hyperparams</span><span class="p">[</span><span class="s">"EPOCHS"</span><span class="p">],</span> <span class="n">val_dataloader</span><span class="o">=</span><span class="n">val_loader</span><span class="p">)</span>
+    <span class="n">loss</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">acc_percent</span> <span class="o">=</span> <span class="n">trainer</span><span class="p">.</span><span class="n">test</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test_dataloader</span><span class="o">=</span><span class="n">val_loader</span><span class="p">)</span>
+    <span class="n">params_nums</span> <span class="o">=</span> <span class="n">count_model_params</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="n">model_info</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">params_nums</span><span class="p">,</span> <span class="n">mean_time</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">study</span> <span class="o">=</span> <span class="n">optuna</span><span class="p">.</span><span class="n">create_study</span><span class="p">(</span>
+        <span class="n">directions</span><span class="o">=</span><span class="p">[</span><span class="s">"maximize"</span><span class="p">,</span> <span class="s">"minimize"</span><span class="p">,</span> <span class="s">"minimize"</span><span class="p">],</span>
+        <span class="n">study_name</span><span class="o">=</span><span class="s">"automl101"</span><span class="p">,</span>
+        <span class="n">sampler</span><span class="o">=</span><span class="n">sampler</span><span class="p">,</span>
+        <span class="n">storage</span><span class="o">=</span><span class="n">rdb_storage</span><span class="p">,</span>
+        <span class="n">load_if_exists</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">study</span><span class="p">.</span><span class="n">optimize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">trial</span><span class="p">:</span> <span class="n">objective</span><span class="p">(</span><span class="n">trial</span><span class="p">,</span> <span class="n">device</span><span class="p">),</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>대략 pseudocode로 적어보면 위와 같이 나오게 됩니다.   obejctvie를 정의하고 위에서 봐왔던 대로 이를 optimize 합니다.</p>
+
+<h3 id="architecture-config">architecture config</h3>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143770199-fc6d8681-27ec-4d2c-aefe-082f98e3ecdd.png" alt="image" /></p>
+
+<p>위 와 같이 논문들은 architecture들을 표의 형태로 표현을 합니다. 따라서, 이 모델의 module(block)들을 configure 파일로 만들 수 있지 않을까 라는 생각이 들 수 있습니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143770267-beed1e83-51b1-462a-a79e-1fce82714625.png" alt="image" /></p>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143770292-6c64858f-c82e-49b3-ad47-401b7255126b.png" alt="image" /></p>
+
+<h3 id="hyperparameter-config">hyperparameter config</h3>
+
+<p>hyperparameter serach를 위한 configuration으로 강의에서 소개해준 것은 3가지가 있다. 필자는 wandb에서 hyperparameter search를 했을 때, categorical, continuous, integer ,log_uniform , exponential_uniform으로 다 커버가 됬었다. 강의에서는 log,discrete등등을 소개 안해주었으나 필자가 따로 찾아서 정리했다.</p>
+
+<h4 id="categorical-suggest">categorical suggest</h4>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143770755-523bcb73-faac-46f7-a855-661306026fbc.png" alt="image" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">m2_activation</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_categorical</span><span class="p">(</span>
+            <span class="s">"m2/activation"</span><span class="p">,</span> <span class="p">[</span><span class="s">"ReLU"</span><span class="p">,</span> <span class="s">"Hardswish"</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="p">...</span>
+    <span class="n">model_config</span><span class="p">[</span><span class="s">"depth_multiple"</span><span class="p">]</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_categorical</span><span class="p">(</span>
+        <span class="s">"depth_multiple"</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+    <span class="p">)</span>
+     
+        
+        <span class="n">pseudo</span> <span class="n">code로</span> <span class="n">작성한거니</span> <span class="n">tab키나</span> <span class="n">이런것들은</span> <span class="n">신경쓰지</span> <span class="n">말자</span><span class="p">.</span>
+</code></pre></div></div>
+
+<p>suggest_categorical은 docs에 위 사진 같이 정의되어 있다. 첫번째 argument가 name parameter고 , 두번째 parameter가 선택 대상이다. string type 인지 numerical type인지 명시를 안해줘도 되는 듯 합니다.</p>
+
+<h4 id="continuous-suggest">continuous suggest</h4>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143770820-3d71c4ab-b134-4d89-af5a-88489ce7cbc5.png" alt="image" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m2_t</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">trial</span><span class="p">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s">"m2/v3_t"</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">6.0</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+        
+</code></pre></div></div>
+
+<p>low,high 를정해주면 됩니다. step=0.1인건 잘 모르겠습니다. log=False에서 logdomain에서 search가 가능합니다.,</p>
+
+<p>얘는 아마 baeysian search로 찾을 것입니다.</p>
+
+<h4 id="integer-suggest">integer suggest</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m2_kernel</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s">"m2/kernel_size"</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>low,high가 주어지면 주어진 구간을 bayesian search로 탐색을 할 것입니다.</p>
+
+<h4 id="log-uniform-suggest">log uniform suggest</h4>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143771000-22825590-c643-4cb8-b7eb-3e5fbd613b7f.png" alt="image" /></p>
+
+<p>log domain의 continous parameter를 sapmling 해줍니다.</p>
+
+<h4 id="discrete-uniform-suggest">discrete uniform suggest</h4>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143771363-04c22e53-8a1c-49af-bf8b-d252698fedf3.png" alt="image" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">subsample</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_discrete_uniform</span><span class="p">(</span><span class="s">"subsample"</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>q 간격의 discrete sampling을 해줍니다.</p>
+
+<h4 id="uniform-suggest">uniform suggest</h4>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143771209-e6731755-5a67-461b-a48e-c9f22e090a89.png" alt="image" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">momentum</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_uniform</span><span class="p">(</span><span class="s">"momentum"</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>linear domain에서 low ,high 범위 내의 continuous parameter를 sample해준답니다. continous parameter가 필요할 때 사용하면 될듯 합니다.</p>
+
+<h4 id="conditional">conditional</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">m2</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_categorical</span><span class="p">(</span>
+        <span class="s">"m2"</span><span class="p">,</span> <span class="p">[</span><span class="s">"Conv"</span><span class="p">,</span> <span class="s">"DWConv"</span><span class="p">,</span> <span class="s">"InvertedResidualv2"</span><span class="p">,</span> <span class="s">"InvertedResidualv3"</span><span class="p">,</span> <span class="s">"Pass"</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">m2_args</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">m2_repeat</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s">"m2/repeat"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">m2_out_channel</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s">"m2/out_channels"</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">m2_stride</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s">"m2/stride"</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">UPPER_STRIDE</span><span class="p">)</span>
+    <span class="c1"># force stride m2
+</span>    <span class="k">if</span> <span class="n">n_stride</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">m2_stride</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">if</span> <span class="n">m2</span> <span class="o">==</span> <span class="s">"Conv"</span><span class="p">:</span>
+        <span class="c1"># Conv args: [out_channel, kernel_size, stride, padding, groups, activation]
+</span>        <span class="n">m2_kernel</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s">"m2/kernel_size"</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">m2_activation</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_categorical</span><span class="p">(</span>
+            <span class="s">"m2/activation"</span><span class="p">,</span> <span class="p">[</span><span class="s">"ReLU"</span><span class="p">,</span> <span class="s">"Hardswish"</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">m2_args</span> <span class="o">=</span> <span class="p">[</span><span class="n">m2_out_channel</span><span class="p">,</span> <span class="n">m2_kernel</span><span class="p">,</span> <span class="n">m2_stride</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">m2_activation</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">m2</span> <span class="o">==</span> <span class="s">"DWConv"</span><span class="p">:</span>
+        <span class="c1"># DWConv args: [out_channel, kernel_size, stride, padding_size, activation]
+</span>        <span class="n">m2_kernel</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s">"m2/kernel_size"</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">m2_activation</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_categorical</span><span class="p">(</span>
+            <span class="s">"m2/activation"</span><span class="p">,</span> <span class="p">[</span><span class="s">"ReLU"</span><span class="p">,</span> <span class="s">"Hardswish"</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">m2_args</span> <span class="o">=</span> <span class="p">[</span><span class="n">m2_out_channel</span><span class="p">,</span> <span class="n">m2_kernel</span><span class="p">,</span> <span class="n">m2_stride</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">m2_activation</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">m2</span> <span class="o">==</span> <span class="s">"InvertedResidualv2"</span><span class="p">:</span>
+        <span class="n">m2_c</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s">"m2/v2_c"</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+        <span class="n">m2_t</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s">"m2/v2_t"</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">m2_args</span> <span class="o">=</span> <span class="p">[</span><span class="n">m2_c</span><span class="p">,</span> <span class="n">m2_t</span><span class="p">,</span> <span class="n">m2_stride</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">m2</span> <span class="o">==</span> <span class="s">"InvertedResidualv3"</span><span class="p">:</span>
+        <span class="n">m2_kernel</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s">"m2/kernel_size"</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">m2_t</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">trial</span><span class="p">.</span><span class="n">suggest_float</span><span class="p">(</span><span class="s">"m2/v3_t"</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">6.0</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">m2_c</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_int</span><span class="p">(</span><span class="s">"m2/v3_c"</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+        <span class="n">m2_se</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s">"m2/v3_se"</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">m2_hs</span> <span class="o">=</span> <span class="n">trial</span><span class="p">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s">"m2/v3_hs"</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="c1"># k t c SE HS s
+</span>        <span class="n">m2_args</span> <span class="o">=</span> <span class="p">[</span><span class="n">m2_kernel</span><span class="p">,</span> <span class="n">m2_t</span><span class="p">,</span> <span class="n">m2_c</span><span class="p">,</span> <span class="n">m2_se</span><span class="p">,</span> <span class="n">m2_hs</span><span class="p">,</span> <span class="n">m2_stride</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">m2</span> <span class="o">==</span> <span class="s">"Pass"</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">m2_stride</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">n_stride</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">n_stride</span> <span class="o">&gt;=</span> <span class="n">MAX_NUM_STRIDE</span><span class="p">:</span>
+                <span class="n">UPPER_STRIDE</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">model</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">m2_repeat</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">m2_args</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>이렇게 conditional 하게 hyperparmeter를 configuration 할 수 있습니다.</p>
+
+<h3 id="module안보단-architecture에-집중하자">module안보단 architecture에 집중하자.</h3>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143771574-3c14d2c3-1e34-4485-9a96-9e15a6f638fb.png" alt="image" /></p>
+
+<p>Nas 논문을 언급하자면, 여기서 말하자는 내용은 Enigneering 관점에서 <strong><em><u>module(micro)을 연구할 것이 아니라 , module들을 어떻게 잘 연결할지를 연구</u></em></strong>하자는 것입니다.</p>
+
+<h3 id="예시1">예시1</h3>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143771733-d607f35e-64e0-4daf-9f04-09e7699d65d5.png" alt="image" /></p>
+
+<p>아 모델은 보면 low-level의 feature 뽑을 떄랑, high level feature뽑을 때가 같습니다. 이를 layer가 깊어질수록 high-level feature을 더 많이 뽑도록 하게 할 수 있습니다.</p>
+
+<h3 id="예시2">예시2</h3>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143771891-f7896d54-8902-4863-ae11-802d7d8649e6.png" alt="image" /></p>
+
+<p>일괄적으로 n번 repeat 하는대신 n1,n2,n3번 repeat하도록 할 수 있습니다.</p>
+
+<h2 id="model-code">Model code</h2>
+
+<p>이제 yaml파일로 부터 어떻게 모델을 생성하는지 알아보도록 하겠습니다.</p>
+
+<h3 id="model-parser">model parser</h3>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143772004-b7202ac8-bbec-497b-a9ba-196db4ea07b6.png" alt="image" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">model_config</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>위 사진과 같은 yaml file을 Model이라는 class로 넘겨줍니다.</p>
+
+<p>Model이라는 class는 아래와 같이 정의되어 있다고 하겠습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="s">"""Base model class."""</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">cfg</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Type</span><span class="p">]]</span> <span class="o">=</span> <span class="s">"./model_configs/show_case.yaml"</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="s">"""Parse model from the model config file.
+
+        Args:
+            cfg: yaml file path or dictionary type of the model.
+            verbose: print the model parsing information.
+        """</span>
+        <span class="nb">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">model_parser</span> <span class="o">=</span> <span class="n">ModelParser</span><span class="p">(</span><span class="n">cfg</span><span class="o">=</span><span class="n">cfg</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">model_parser</span><span class="p">.</span><span class="n">model</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">:</span>
+        <span class="s">"""Forward."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">forward_one</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward_one</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">:</span>
+        <span class="s">"""Forward onetime."""</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Model_Parser라는 클래스를 살펴보겠습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ModelParser</span><span class="p">:</span>
+    <span class="s">"""Generate PyTorch model from the model yaml file."""</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">cfg</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Type</span><span class="p">]]</span> <span class="o">=</span> <span class="s">"./model_configs/show_case.yaml"</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="s">"""Generate PyTorch model from the model yaml file.
+
+        Args:
+            cfg: model config file or dict values read from the model config file.
+            verbose: print the parsed model information.
+        """</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">cfg</span> <span class="o">=</span> <span class="n">cfg</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">cfg</span> <span class="o">=</span> <span class="n">yaml</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="p">.</span><span class="n">FullLoader</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">in_channel</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">cfg</span><span class="p">[</span><span class="s">"input_channel"</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">depth_multiply</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">cfg</span><span class="p">[</span><span class="s">"depth_multiple"</span><span class="p">]</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">width_multiply</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">cfg</span><span class="p">[</span><span class="s">"width_multiple"</span><span class="p">]</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">model_cfg</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">cfg</span><span class="p">[</span><span class="s">"backbone"</span><span class="p">]</span>  <span class="c1"># type: 				ignore
+</span>        <span class="p">....</span>
+		<span class="bp">self</span><span class="p">.</span><span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">_parse_model</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>yaml파일을 받으면 line별로 yaml 파일을 읽습니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143772193-0206a248-b07b-4f00-b4cf-872fb3b7d129.png" alt="image" /></p>
+
+<p>예시를 들면 위 첫 3줄이 각각, in_channel,depth_multiply,width_multiply에 assign 됩니다.</p>
+
+<h3 id="module-generator">module generator</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">repeat</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">model_cfg</span><span class="p">):</span>  <span class="c1"># type: ignore
+</span>            <span class="n">repeat</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="nb">max</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">repeat</span> <span class="o">*</span> <span class="bp">self</span><span class="p">.</span><span class="n">depth_multiply</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">repeat</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">repeat</span>
+            <span class="p">)</span>
+            <span class="n">module_generator</span> <span class="o">=</span> <span class="n">ModuleGenerator</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">in_channel</span><span class="p">)(</span>  <span class="c1"># type: ignore
+</span>                <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                <span class="n">width_multiply</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">width_multiply</span><span class="p">,</span>
+            <span class="p">)</span>
+</code></pre></div></div>
+
+<p>mode_cfg 를 config의 ‘backbone’ 에 위에서 assign 시켰습니다. repeat,module_name , module_args를 반복문을 돌며 unpacking 한다음 이를 ModuleGenerator로 넘겨줍니다. 이를 그림으로 표현하면 아래와 같습니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143772410-c45209aa-9875-413e-84aa-58ce8cc1ae28.png" alt="image" /></p>
+
+<p>아래의 그림에선 repeat에 대해 얘기합니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143772470-68093404-4f83-4610-a289-3c1c0530b2f7.png" alt="image" /></p>
+
+<p>repeat이라는 개념은 mobilenetv2에서 나왔다고 합니다. 훈련된 모델을 작은 devcice나 웹 , 진짜 큰서버 등등 여러 application에서 쓸 수 있을 겁니다.  <strong><em><u>edge device에서는 module이 너무 클 수도 있기 때문에</u></em></strong> , depth_multiple이라는 것을 이용해서 repeat 횟수를 줄이는 것입니다.</p>
+
+<p>예를 들어 , depth_multiple이 0.5이면 repeat 횟수를 절반으로 줄입니다.</p>
+
+<p>여기에서는 언급이 되어있지 않지만, width_multiple은 모델의 output size를 조절해줍니다. 예를들어 ,width_multiple이 2.0이면 output 은 64가아닌 128이 됩니다. 마스터님께서는 이것이 모델을 조율 하는데 효과적이라고 생각을 하신답니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            <span class="n">module_generator</span> <span class="o">=</span> <span class="n">ModuleGenerator</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">in_channel</span><span class="p">)(</span>  <span class="c1"># type: ignore
+</span>                <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                <span class="n">width_multiply</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">width_multiply</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">module_generator</span><span class="p">(</span><span class="n">repeat</span><span class="o">=</span><span class="n">repeat</span><span class="p">)</span>
+
+            <span class="n">layers</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+            <span class="n">in_channel</span> <span class="o">=</span> <span class="n">module_generator</span><span class="p">.</span><span class="n">out_channel</span>    
+</code></pre></div></div>
+
+<p>위에 있던 module_generator 부분을 떼어온것인데 이제 argument를 넘겨주면 module을 생성합니다.</p>
+
+<p>layers 에 모듈들을 append 해주면 모델이 차곡차곡 쌓아져서 생성됩니다. 그리고 , out_channle을 다음 in_channl로 바꿔주고 iterative 하게 반복을 해줍니다.</p>
+
+<h2 id="module-구현체">Module 구현체</h2>
+
+<h3 id="abstactclassmodule-generaotr">AbstactClass(module generaotr)</h3>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143773218-d2790084-a701-44f5-9fe4-64288ade678f.png" alt="image" /></p>
+
+<p>ModuleAbstract 클래스를 정의해보도록 하겠습니다. 최소한의 기능으로 out_channel을 결정해주기 위해서 out_channel과 callable 정의만 해주면 됩니다.</p>
+
+<h3 id="module-추가-과정">Module 추가 과정</h3>
+
+<p><img src="https://user-images.githubusercontent.com/50165842/143773588-eedf911e-f5db-45b0-9de9-a918949574c6.png" alt="image" /></p>
+
+<p>여기서 제시된 inverted residual block을 module로 추가해보도록 하겠습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">InvertedResidualv2Generator</span><span class="p">(</span><span class="n">GeneratorAbstract</span><span class="p">):</span>
+    <span class="s">"""Bottleneck block generator."""</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="o">@</span><span class="nb">property</span>
+    <span class="k">def</span> <span class="nf">out_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="s">"""Get out channel size."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">_get_divisible_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="p">.</span><span class="n">width_multiply</span><span class="p">)</span>
+
+    <span class="o">@</span><span class="nb">property</span>
+    <span class="k">def</span> <span class="nf">base_module</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">:</span>
+        <span class="s">"""Returns module class from src.common_modules based on the class name."""</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="nb">__import__</span><span class="p">(</span><span class="s">"src.modules"</span><span class="p">,</span> <span class="n">fromlist</span><span class="o">=</span><span class="p">[</span><span class="s">""</span><span class="p">]),</span> <span class="bp">self</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">repeat</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="s">"""call method.
+        InvertedResidualv2 args consists,
+        repeat(=n), [c, t, s] // note original notation from paper is [t, c, n, s]
+        """</span>
+        <span class="n">module</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">args</span>  <span class="c1"># c is equivalent as self.out_channel
+</span>        <span class="n">inp</span><span class="p">,</span> <span class="n">oup</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">in_channel</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">out_channel</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repeat</span><span class="p">):</span>
+            <span class="n">stride</span> <span class="o">=</span> <span class="n">s</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span>
+            <span class="n">module</span><span class="p">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">base_module</span><span class="p">(</span><span class="n">inp</span><span class="o">=</span><span class="n">inp</span><span class="p">,</span> <span class="n">oup</span><span class="o">=</span><span class="n">oup</span><span class="p">,</span> <span class="n">expand_ratio</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="n">stride</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">inp</span> <span class="o">=</span> <span class="n">oup</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">_get_module</span><span class="p">(</span><span class="n">module</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>repeat 만큼 block을 module 에 append 해준후 get_module로 넘겨줍니다.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#boostcourse" class="page__taxonomy-item p-category" rel="tag">Boostcourse</a><span class="sep">, </span>
+    
+      <a href="/tags/#deep-learning" class="page__taxonomy-item p-category" rel="tag">deep learning</a><span class="sep">, </span>
+    
+      <a href="/tags/#machine-learning" class="page__taxonomy-item p-category" rel="tag">Machine Learning</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#modeloptimization" class="page__taxonomy-item p-category" rel="tag">ModelOptimization</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2021-11-28T00:00:00+09:00">November 28, 2021</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=AutoML%3AOptumna%20%2Fmodeloptimization%2Fmodelopt4Optuna%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fmodeloptimization%2Fmodelopt4Optuna%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Fmodeloptimization%2Fmodelopt4Optuna%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+  <nav class="pagination_prev_next">
+    
+      <a href="/modeloptimization/optimization3/" class="pagination_prev_next--pager"><span class="prev_next">이전 글  &nbsp</span>AutoML 이론</a>
+    
+    
+      <a href="/modeloptimization/nas_from_scratch/" class="pagination_prev_next--pager"><span class="prev_next">다음 글  &nbsp  </span>Nas from scratch using Optuna</a>
+    
+  </nav>
+
+
+<!-- 
+  <nav class="pagination">
+    
+      <a href="/none/what-is-metaverse/" class="pagination--pager" title="Metaverse Introductions
+">Previous</a>
+    
+    
+      <a href="/pytorch/Pytorch-Subsampling/" class="pagination--pager" title="Pytorch SubSampling : Dataloaer &amp; SubSampler, ranodm_split , Subset
+">Next</a>
+    
+  </nav>
+ -->
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Numeric/" rel="permalink">Numeric
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+Numeric Types라는 Built-in Objects를 잘 이용하기 위해서는 이 Built-in Objects에 어떤 Literals들이 있고 , 어떤 operator들을 제공하는지 알아야합니다. 이것들에 대해서 알아보도록 하겠습니다 .
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/standfordml/polynominal-regerssion/" rel="permalink">Polynomial Regression
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Standford ML
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/python/Built-in-Objects/" rel="permalink">What is Objects and Why use Built-in objects
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Python Objects
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/dls_c3/Setting-your-goal/" rel="permalink">Setting Your Goal
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">DeepLearning.ai Dls ML strategy (Metric, Data Split)
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Choi Woongjoon. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+<script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'woongjoonchoi/Comments');
+    script.setAttribute('issue-term', 'pathname');
+    script.setAttribute('theme', 'photon-dark');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+  
+
+
+
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+extensions: ["tex2jax.js"],
+jax: ["input/TeX", "output/HTML-CSS"],
+tex2jax: {
+inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+processEscapes: true
+},
+"HTML-CSS": { availableFonts: ["TeX"] }
+});
+</script>
+
+  </body>
+</html>

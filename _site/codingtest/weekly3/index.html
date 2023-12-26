@@ -1,0 +1,2637 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Programmers[weekly3] - Woongjoon_AI</title>
+<meta name="description" content="프로그래머스 위클리 3주차">
+
+
+  <meta name="author" content="Choi Woongjoon">
+  
+  <meta property="article:author" content="Choi Woongjoon">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Woongjoon_AI">
+<meta property="og:title" content="Programmers[weekly3]">
+<meta property="og:url" content="http://localhost:4000/codingtest/weekly3/">
+
+
+  <meta property="og:description" content="프로그래머스 위클리 3주차">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-11-18T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/codingtest/weekly3/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Choi Woongjoon",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Woongjoon_AI Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Woongjoon_AI
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://kau365-my.sharepoint.com/:b:/g/personal/oongjoon_kau_kr/EUebRgY_s5xFikJdu4cCTZgBSeQd5DRoslVvEaEhYt2WYw?e=kNtQkx">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://kau365-my.sharepoint.com/:b:/g/personal/oongjoon_kau_kr/EY70u-guz5BOnxNWqBdBcrIBoAbFny3p8tUOcPE8x7QZTA?e=h34VMJ">CV_KR</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Choi Woongjoon</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>I am an <strong>amazing</strong> developer.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Goyang/Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:oongjoon10@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://sites.google.com/view/woognjunchoiai/%ED%99%88" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/ANWTNev5jkzYwoC" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/woongjoonchoi" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+  
+    
+  
+    <!--전체 글 수를 세기 위한 연산. sum 변수에 전체 글 수 저장-->
+
+
+
+<nav class="nav__list">
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle menu</label>
+  <ul class="nav__items" id="category_tag_menu">
+      <!--전체 글 수-->
+      <li>
+            📂 <span style="font-family:'Cafe24Oneprettynight';">전체 글 수</style> <span style="font-family:'Coming Soon';">78</style> <span style="font-family:'Cafe24Oneprettynight';">개</style> 
+      </li>
+      <li>
+        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
+
+        <span class="nav__sub-title">Programming</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Python" class="">Python(8)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            
+        <span class="nav__sub-title">Coding Interview</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CodingInterview/CodingTest" class="">CodingTest (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CodingInterview/CodingInterview" class="">CodingInterview (3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CodingInterview/Codingtechnique" class="">Codingtechnique (3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Computer Science</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DataStructure" class="">DataStructure (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Algorithm" class="">Algorithm (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+      </li>
+        <span class="nav__sub-title">DeepLearning</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Pytorch" class="">Pytorch (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Huggingface" class="">Huggingface (4)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Optimization" class="">Optimization (5)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/NLP" class="">NLP (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>    
+           <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DLArchitecture" class="">DLArchitecture (3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Software Engineering</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/CICD" class="">CI/CD (8)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>     
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/OS" class="">Operating System  (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+            </ul>     
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Tools" class="">Tools (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>     
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Development" class="">Development (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Network" class="">Network (5)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+
+        <span class="nav__sub-title">DeepLearningSpecialization</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DLS_C3" class="">ML Strategy(2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DLS_C2" class="">DLS Assignment(2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+        <span class="nav__sub-title">ML</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/StandfordML" class="">StandfordML(1)</a></li>
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/modeloptimization" class="">ModelOptimization(4)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/Handsonmachinelearning" class="">Handsonmachinelearning(1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/ML/PatternRecognitionML" class="">Pattern Recognition and Machine Learning(1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+      </li>
+        <span class="nav__sub-title">Data Engineering</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                        <li><a href="/categories/Data-Engineering-basic" class="">Data Engineering기본 (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">GCP</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/GCP/Bigquery" class="">Bigquery(3)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+
+        <span class="nav__sub-title">Mathmatics</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Mathmatics/Linear_Algebra" class="">Linear Algebra (2)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+            <ul>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Mathmatics/Statisticd" class="">Statistics (1)</a></li>
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">DeepLearningAI NLP</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/DeepLearningai_nlp" class="">DeepLearning.ai nlp qa (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+        <span class="nav__sub-title">Data Analytics</span>
+            <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
+            <ul>
+                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <li><a href="/categories/Visualization" class="">Data Visualization (1)</a></li>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </ul>
+      </li>
+  </ul>
+</nav>
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Programmers[weekly3]">
+    <meta itemprop="description" content="프로그래머스 위클리 3주차">
+    <meta itemprop="datePublished" content="2021-11-18T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/codingtest/weekly3/" class="u-url" itemprop="url">Programmers[weekly3]
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#개요">개요</a></li><li><a href="#문제">문제</a></li><li><a href="#6n--vs--6--n2">\(6^n\)  vs  \(6 * n^2\)</a></li><li><a href="#연립방정식--행렬">연립방정식 , 행렬</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="개요">개요</h2>
+
+<p>Programmers 위클리 3주차를 풀었는데 , 내 기준에선 상당히 어려웠다.  내가 약점인 부분이 문제로 나왔다고 생각해서 자세하게 보게 되었다. 이건 아카이브 용으로 작성한 자기회고글이다. 남을 이해시킬려 작성한 글이 아니기 때문에  전문성이나 정확성이 떨어질 수 있다.</p>
+
+<p>잘못된 점이 있는거같으면 깃허브나 이메일로 문의를 부탁합니다.</p>
+
+<h2 id="문제">문제</h2>
+
+<p>현재 게임 보드의 상태 <code class="language-plaintext highlighter-rouge">game_board</code>, 테이블 위에 놓인 퍼즐 조각의 상태 <code class="language-plaintext highlighter-rouge">table</code>이 매개변수로 주어집니다. 규칙에 맞게 최대한 많은 퍼즐 조각을 채워 넣을 경우, 총 몇 칸을 채울 수 있는지 return 하도록 solution 함수를 완성해주세요.</p>
+
+<p><a href="https://programmers.co.kr/learn/courses/30/lessons/84021">코딩테스트 연습 - 퍼즐 조각 채우기 | 프로그래머스 (programmers.co.kr)</a>
+자세한 사항은 위 링크로 가면 알 수 있습니다.</p>
+
+<h2 id="6n--vs--6--n2">\(6^n\)  vs  \(6 * n^2\)</h2>
+
+<p>나는 처음에 이 문제의 Time Complexity 가 Big  O 표기법으로 \(O(6^n)\) 이라고 생각했다. table의 모든 퍼즐에 대한 모든 경우를 search를 해야 한다고 생각 했다. Tree형태의 search를 한다고 생각했다.</p>
+
+<p><img src="data:image/png;base64,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" alt="Search Tree - Chessprogramming wiki" /></p>
+
+<p>※ 위 문제와 아무상관 없다. 그냥 tree그림을 표현하기 위해 첨부한 것이다.</p>
+
+<p>문제는 이렇게 로직을 짤 경우 runtime은 초과 된다는 점이다. 지수함수는 쓰면 안된다..</p>
+
+<p>Boostcamp aitech에서 다른 캠퍼분한테 질문을 드렸을때 \(O(n^2)\) 의 BigO complexity 가 된다고 설명을 들었다. 솔직히 , 첫날에는 잘 이해가 되질 않았다. 내가 무언가 기본적인 부분을 잘못 이해하고 있음에 틀림이 없었다. 이러한 BigO가 <strong><em><u>지수함수</u></em></strong>가 되는 경우를 나는 자주 생각했었고, 그러한 문제를 풀지 못한적이 많았기 때문에 이 부분에 대해서는 시간이 얼마가 걸리든지 고민할 필요가 있다고 느꼇다. 앉은 자리에서 무조건 끝내야 겠다는 생각보다는 천천히 다른것들을 하면서 생각해보았다.</p>
+
+<p>시간이 조금 지나고 , 오늘 다시 보니까, 어처구니 없는 실수를 저질렀다는 것을 느꼇다.</p>
+
+<p>문제의 요구 사항을 전혀 이해하지 못했던 것이다.   문제의 요구사항은 <strong><em><u>최대 합</u></em></strong> 을 구하는 것이다. <strong><em><u>어떤 블록인지는 중요하지 않다</u></em></strong>.</p>
+
+<p>즉, 문제의 요구사항은 \((a_1 , a_2 , a_3, a_4, a_5, ..a_n )\) 의 개수를 구하는 것이 아니다.  \(max(a_1 + a_2 + a_3+ a_4+ a_5 .. +a_n )\) 를 구하는 것이다.</p>
+
+<p>단순히 exahustive search를 해야겠네 , search tree 처럼 엄청난 가지 수로 뻗어나가겟네 , <strong><em><u>factorial</u></em></strong>을 사용해야 겠네 라고 생각했던 것이다. 이 문제를 분해(decomposition) 해서 생각했더라면 , exhaustive search를 단순히 tree search로 통으로 이해하지 않고 case별로 나누어서 생각을 하였더라면, 고민을 하지 않았을 것이다. 라는 생각을 한다.</p>
+
+<p>컴퓨터 과학쪽은 case에 따라 optimal 한 solution이 달라지는 재밌는 과목이라는걸 다시금 깨닫는다.</p>
+
+<h2 id="연립방정식--행렬">연립방정식 , 행렬</h2>
+
+<p>제목은 거창한데 별 대단한 내용은 아니다. 내가 이 문제를 풀다가 꽤 긴 시간 삽질 한 부분이 있어서 , 기록을 남기고자 한다.</p>
+
+<p>코딩테스트 문제들을 풀다 보면  <strong><em><u>여러 개의 값을 input</u></em></strong>으로 받고 <strong><em><u>변환된 값을 반환</u></em></strong> 함수를 작성해야 하는 상황이 생긴다.  항상 똑같이 동작하는 함수들은 <strong><em><u>연립방정식</u></em></strong>을 세워서 풀 수 있는 경우가 있다. 이런 경우 , linear algebra를 배웠다면 각 column이 basis vector임을 인지한다면 쉽게   구할 수 있다. 보통, 코딩테스트를 풀 때는 내장 라이브러리를 제외한 라이브러리를 쓸 수 없다.  나는 여기서  , 머릿속에서 이것이 <strong><em><u>회전변환</u></em></strong>임을 알고 이 회전변환 행렬을유도할줄 안다. 하지만, 알고리즘 테스트니까 f<strong><em><u>or문을 이용해서 예쁘게 할 수 있지 않을까</u></em></strong> 에 집착을 했다.</p>
+
+<p>이런 경우 , 그냥 연립방정식을 풀어서 나온 그 <strong><em><u>결과 값</u></em></strong>을 계산해서 리턴해주면 빠르게 할 수 있다.  예를들어, 회전변환의 경우 그냥 행렬을 곱한 값을 계산해서 리턴해주면 쉽다.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#algorithm" class="page__taxonomy-item p-category" rel="tag">Algorithm</a><span class="sep">, </span>
+    
+      <a href="/tags/#codinginterview" class="page__taxonomy-item p-category" rel="tag">CodingInterview</a><span class="sep">, </span>
+    
+      <a href="/tags/#codingtest" class="page__taxonomy-item p-category" rel="tag">CodingTest</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#codingtest" class="page__taxonomy-item p-category" rel="tag">CodingTest</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2021-11-18T00:00:00+09:00">November 18, 2021</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Programmers%5Bweekly3%5D%20http%3A%2F%2Flocalhost%3A4000%2Fcodingtest%2Fweekly3%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcodingtest%2Fweekly3%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fcodingtest%2Fweekly3%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+
+
+  
+  	
+  	
+  	
+  	
+  	
+
+
+
+<!-- 
+  <nav class="pagination">
+    
+      <a href="/data%20engineering%EA%B8%B0%EB%B3%B8/What-is-de/" class="pagination--pager" title="Data Engineering 개요
+">Previous</a>
+    
+    
+      <a href="/data%20visualization/Quiver/" class="pagination--pager" title="Quiver:Plot vector
+">Next</a>
+    
+  </nav>
+ -->
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/Numeric/" rel="permalink">Numeric
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+Numeric Types라는 Built-in Objects를 잘 이용하기 위해서는 이 Built-in Objects에 어떤 Literals들이 있고 , 어떤 operator들을 제공하는지 알아야합니다. 이것들에 대해서 알아보도록 하겠습니다 .
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/standfordml/polynominal-regerssion/" rel="permalink">Polynomial Regression
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Standford ML
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/python/Built-in-Objects/" rel="permalink">What is Objects and Why use Built-in objects
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Python Objects
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/dls_c3/Setting-your-goal/" rel="permalink">Setting Your Goal
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">DeepLearning.ai Dls ML strategy (Metric, Data Split)
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Choi Woongjoon. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+<script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'woongjoonchoi/Comments');
+    script.setAttribute('issue-term', 'pathname');
+    script.setAttribute('theme', 'photon-dark');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+  
+
+
+
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+extensions: ["tex2jax.js"],
+jax: ["input/TeX", "output/HTML-CSS"],
+tex2jax: {
+inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+processEscapes: true
+},
+"HTML-CSS": { availableFonts: ["TeX"] }
+});
+</script>
+
+  </body>
+</html>
