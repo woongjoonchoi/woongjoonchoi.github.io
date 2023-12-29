@@ -47,9 +47,9 @@ NeuralNetwork를 인간이 이해할 수 있는 logic으로 표현하는 방법�
 따라서 ,   
 
 $$ 
-\begin{align}
+\begin{equation}
 z_{j,i}^{[l]} = \sum_{k=0}^{n^{[l-1]}}  w_{j,k}^{[l]} \cdot a_{k,i}^{[l-1]} + b_{j}^{[l]} 
-\end{align}
+\end{equation}
 $$  
 
 vector space는 다음과 같이 정의됩니다.  $$ \vec{a}_{:, i}^{[l-1]} \in \mathbb{R}^ {n \times {n^{[l-1]}} }, \vec{w}_{j, :}^{[l]} \in \mathbb{R}^ {n \times {n^{[l-1]}}}  $$  .  
@@ -124,9 +124,9 @@ vector space는 다음과 같이 정의된다 .$$ \vec{Z}^{[l]} \in \mathbb{R}^{
 $$ Z^{[l]}$$ 을 계산하게 되면, 이를 $$g_{j}^{[l]}$$ 에 parameter로 넘겨주어 계산하게 됩니다. 아래와 같은 식으로 표현할 수 있습니다.  
 
 $$ 
-\begin{align}
-a_{j, i}^{[l]} &= g_j^{[l]}(z_{1, i}^{[l]}, \dots, z_{j, i}^{[l]}, \dots, z_{n^{[l]}, i}^{[l]}). 
-\end{align}
+\begin{equation}
+a_{j, i}^{[l]} = g_j^{[l]}(z_{1, i}^{[l]}, \dots, z_{j, i}^{[l]}, \dots, z_{n^{[l]}, i}^{[l]}). 
+\end{equation}
 $$
 
 마찬가지로, sequential하게 하는것이 아닌 parallell 하게 진행되기 때문에 (2) 를 vectorize 해보도록 하겠습니다.  
