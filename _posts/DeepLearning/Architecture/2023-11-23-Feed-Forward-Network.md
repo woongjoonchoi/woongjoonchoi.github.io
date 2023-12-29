@@ -41,7 +41,7 @@ NeuralNetwork를 인간이 이해할 수 있는 logic으로 표현하는 방법�
 ### output z 
 ![image](https://kau365-my.sharepoint.com/personal/oongjoon_kau_kr/Documents/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%9D%B4%EB%AF%B8%EC%A7%80/feed1.png)
 
-다른 교육자료들을 보면 쉽게 설명하기 위해서 3개의 node로 한정짓거나 하는 방식으로 설명을 하게 됩니다. 하지만, 여기서는 일반식을 정의하기 위해서 $$ n^{[l]}$$개의 node의 대해서 설명을 하겠습니다. (bias는 그림에서만 생략하였습니다 . )
+다른 교육자료들을 보면 쉽게 설명하기 위해서 3개의 node로 한정짓거나 하는 방식으로 설명을 하게 됩니다. 하지만, 여기서는 일반식을 정의하기 위해서 $$ ^{[l-1]}$$개의 node에서  $$ n^{[l]}$$개의 node로 변환시키는 $$ l$$번째 layer에  대해서 설명을 하겠습니다. (bias는 그림에서만 생략하였습니다 . )
 
 여기서 , $$z_{k,i}^{[l]}$$ 에는 $$ n^{[l-1]} $$ 개의 node가 연결되어 있습니다.    
 따라서 ,   
@@ -174,7 +174,7 @@ $$
 vector space는 다음과 같이 정의된다. $$ \vec{A}^{[l]} \in R^{n^{[l]} \times m} $$  
 
 ## Conclusion
-전체 feedforward network에 대한 math expression을 정의하였습니다. 이를 , 모든 일반적인 feedforward network에 적용할 수 있습니다. 전체적으로 feedforward network가 아니더라도 , 부분부분 feedforward network가 사용되어 집니다. 이를 직접 implementation 할 때 , 수식을 알고 있다면 큰 도움이 될 것입니다 . 
+ feedforward network의 임의의 layer에 대하여  math expression을 정의하였습니다. 이를 , 모든 일반적인 feedforward network에 적용할 수 있습니다. 전체적으로 feedforward network가 아니더라도 , 부분부분 feedforward network가 사용되어 집니다. 이를 직접 implementation 할 때 , 수식을 알고 있다면 큰 도움이 될 것입니다 . 
 
 
 
