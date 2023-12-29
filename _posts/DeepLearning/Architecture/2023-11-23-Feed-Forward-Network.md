@@ -120,9 +120,11 @@ vector space는 다음과 같이 정의됩니다 .$$ \vec{Z}^{[l]} \in \mathbb{R
 
 
 ### $${A}^{[l]}$$ 의 vectorization
+![image](https://kau365-my.sharepoint.com/personal/oongjoon_kau_kr/Documents/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%9D%B4%EB%AF%B8%EC%A7%80/DeepLearning/Architecture/feedforward-al.png)  
 
+위의 그림은 $$Z^{[l]}$$ 을 activation function $$g^{[l]} $$ 에 parameter 로 넘겨주는 그림입니다. $$Z^{[l]}$$ 의 모든 node가 $${A}^{[l]}$$의 각 node에 전부 연결되어 있습니다. $$g^{[l]} $$ 이 아직 확정이 되지 않았기에 그렇습니다. 보통은 RELU를 사용하게 되어 1 대 1 mapping 관계가 되지만, softmax를 사용하게 된다면 $$ n^{[l]} $$ 대 1 mapping 관계가 될 것입니다. notation은 [Definition](#term-definition)을 참조하시면됩니다.  
 
-$$ Z^{[l]}$$ 을 계산하게 되면, 이를 $$g_{j}^{[l]}$$ 에 parameter로 넘겨주어 계산하게 됩니다. 아래와 같은 식으로 표현할 수 있습니다.  
+아래와 같은 식으로 표현할 수 있습니다.  
 
 $$ 
 \begin{equation}
