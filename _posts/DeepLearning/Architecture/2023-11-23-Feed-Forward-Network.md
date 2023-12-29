@@ -49,13 +49,12 @@ NeuralNetwork를 인간이 이해할 수 있는 logic으로 표현하는 방법�
 $$ 
 \begin{align}
 z_{j,i}^{[l]} = \sum_{k=0}^{n^{[l-1]}}  w_{j,k}^{[l]} \cdot a_{k,i}^{[l-1]} + b_{j}^{[l]} 
-\label{eqzji}
 \end{align}
 $$  
 
 vector space는 다음과 같이 정의됩니다.  $$ \vec{a}_{:, i}^{[l-1]} \in \mathbb{R}^ {n \times {n^{[l-1]}} }, \vec{w}_{j, :}^{[l]} \in \mathbb{R}^ {n \times {n^{[l-1]}}}  $$  .  
 
-딥러닝에서는 이러한 multiplication을 sequential하게 하는것이 아닌 parallell 하게 진행합니다.(ex.Numpy) 따라서, 우리는 $$\eqref{eqzji} $$ 을 vectorization 해야 합니다 .  위 식은 sum을 나타내지만 , 이는 vector $$ w_{j,:}^{[l]} $$ 와 vector $$ a_{:,i}^{[l-1]}$$  의 multiplication이라 볼 수 있습니다. 위 식에서 변수 j의 범위는 $$ 0<= j <=n^{[l]} $$ 입니다.  따라서 , 이를 확장하면 아래와 같이 vectorize할 수 있습니다.
+딥러닝에서는 이러한 multiplication을 sequential하게 하는것이 아닌 parallell 하게 진행합니다.(ex.Numpy) 따라서, 우리는 (1) 을 vectorization 해야 합니다 .  위 식은 sum을 나타내지만 , 이는 vector $$ w_{j,:}^{[l]} $$ 와 vector $$ a_{:,i}^{[l-1]}$$  의 multiplication이라 볼 수 있습니다. 위 식에서 변수 j의 범위는 $$ 0<= j <=n^{[l]} $$ 입니다.  따라서 , 이를 확장하면 아래와 같이 vectorize할 수 있습니다.
 
 
 $$
@@ -95,7 +94,7 @@ $$
 
 $$\vec{z}_{:, i}^{[l]} = \vec{W}^{[l]} \vec{a}_{:, i}^{[l - 1]} + \vec{b}^{[l]} $$ 
 
-vector space는 다음과 같이 정의됩니다 .$$ \vec{z}_{:, i}^{[l]} \in \mathbb{R}^{n \times {n^{[l]}}} , \vec{W}^{[l]} \in \mathbb{R}{n^{n^{[l]} \times n^{[l - 1]}}}  , \vec{b}^{[l]} \in \mathbb{R}^{n \times {n^{[l]}}} , \vec{a}_{:, i}^{[l - 1]} \in \mathbb{R}^{n \times {n^{[l - 1]}}}  $$  
+vector space는 다음과 같이 정의됩니다 .$$ \vec{z}_{:, i}^{[l]} \in \mathbb{R}^{n \times {n^{[l]}}} , \vec{W}^{[l]} \in \mathbb{R}{n^{[l]} \times n^{[l - 1]}}  , \vec{b}^{[l]} \in \mathbb{R}^{n \times {n^{[l]}}} , \vec{a}_{:, i}^{[l - 1]} \in \mathbb{R}^{n \times {n^{[l - 1]}}}  $$  
 
 이는 1개의 training data에 대한  math expression입니다. 이를 이제 $$ m $$개의 batch data의 size로 확장하여 vectorize를 해보겠습니다.   
 
@@ -127,11 +126,10 @@ $$ Z^{[l]}$$ 을 계산하게 되면, 이를 $$g_{j}^{[l]}$$ 에 parameter로 �
 $$ 
 \begin{align}
 a_{j, i}^{[l]} &= g_j^{[l]}(z_{1, i}^{[l]}, \dots, z_{j, i}^{[l]}, \dots, z_{n^{[l]}, i}^{[l]}). 
-\label{eq:a_scalar}
 \end{align}
 $$
 
-마찬가지로, sequential하게 하는것이 아닌 parallell 하게 진행되기 때문에 [(2)](#eq:a_scalar)를 vectorize 해보도록 하겠습니다.  
+마찬가지로, sequential하게 하는것이 아닌 parallell 하게 진행되기 때문에 (2) 를 vectorize 해보도록 하겠습니다.  
 $$
 \begin{align*}
 \begin{bmatrix}
