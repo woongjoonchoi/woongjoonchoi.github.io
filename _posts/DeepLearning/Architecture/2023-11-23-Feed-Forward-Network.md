@@ -37,7 +37,7 @@ FeedForward Network는 가장 기본적인 형태의 neural net입니다. 이는
 
 ## Explanation in Mathematical View
 
-### output z 
+### $${Z}^{[l]}$$ 의 vectorization 
 ![image](https://kau365-my.sharepoint.com/personal/oongjoon_kau_kr/Documents/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%9D%B4%EB%AF%B8%EC%A7%80/DeepLearning/Architecture/feedforward%20-%20%EB%B3%B5%EC%82%AC%EB%B3%B8.png)
 
 다른 교육자료들을 보면 쉽게 설명하기 위해서 3개의 node로 한정짓거나 하는 방식으로 설명을 하게 됩니다. 하지만, 여기서는 일반식을 정의하기 위해서 $$ n^{[l-1]}$$개의 node에서  $$ n^{[l]}$$개의 node로 변환시키는 $$ l$$번째 layer에  대해서 설명을 하겠습니다. (bias는 그림에서만 생략하였습니다 . ) . 위의 그림은 $$ l$$번째 layer 를 나타낸 그림입니다. 동그라미가 node이고 연결선이 weight입니다. notation은 [Definition](#term-definition)을 참조하시면됩니다.
@@ -95,7 +95,7 @@ $$
 
 $$\vec{z}_{:, i}^{[l]} = \vec{W}^{[l]} \vec{a}_{:, i}^{[l - 1]} + \vec{b}^{[l]} $$ 
 
-vector space는 다음과 같이 정의됩니다 .$$ \vec{z}_{:, i}^{[l]} \in \mathbb{R}^{n^{[l]}} , \vec{W}^{[l]} \in \mathbb{R}{{n^{[l]} \times n^{[l - 1]}}}  , \vec{b}^{[l]} \in \mathbb{R}^{n^{[l]}} , \vec{a}_{:, i}^{[l - 1]} \in \mathbb{R}^{n^{[l - 1]}}  $$  
+vector space는 다음과 같이 정의됩니다 .$$\vec{z}_{:, i}^{[l]} \in \mathbb{R}^{ {n^{[l]}}} , \vec{W}^{[l]} \in \mathbb{R}^{n^{[l]} \times n^{[l - 1]}}  , \vec{b}^{[l]} \in \mathbb{R}^{ {n^{[l]}}} , \vec{a}_{:, i}^{[l - 1]} \in \mathbb{R}^{ {n^{[l - 1]}}}$$
 
 이는 1개의 training data에 대한  math expression입니다. 이를 이제 $$ m $$개의 batch data의 size로 확장하여 vectorize를 해보겠습니다.   
 
@@ -119,7 +119,7 @@ $$
 vector space는 다음과 같이 정의됩니다 .$$ \vec{Z}^{[l]} \in \mathbb{R}^{n^{[l]} \times m} , \vec{A}^{[l - 1]} \in \mathbb{R}^{n^{[l - 1]} \times m}$$
 
 
-### output a 
+### $${A}^{[l]}$$ 의 vectorization
 
 
 $$ Z^{[l]}$$ 을 계산하게 되면, 이를 $$g_{j}^{[l]}$$ 에 parameter로 넘겨주어 계산하게 됩니다. 아래와 같은 식으로 표현할 수 있습니다.  
