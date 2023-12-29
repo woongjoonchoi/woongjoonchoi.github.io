@@ -95,7 +95,7 @@ $$
 
 $$\vec{z}_{:, i}^{[l]} = \vec{W}^{[l]} \vec{a}_{:, i}^{[l - 1]} + \vec{b}^{[l]} $$ 
 
-vector space는 다음과 같이 정의됩니다 .$$ \vec{z}_{:, i}^{[l]} \in \mathbb{R}^{n \times {n^{[l]}}} , \vec{W}^{[l]} \in \mathbb{R}{n^{[l]} \times n^{[l - 1]}}  , \vec{b}^{[l]} \in \mathbb{R}^{n \times {n^{[l]}}} , \vec{a}_{:, i}^{[l - 1]} \in \mathbb{R}^{n \times {n^{[l - 1]}}}  $$  
+vector space는 다음과 같이 정의됩니다 .$$ \vec{z}_{:, i}^{[l]} \in \mathbb{R}^{n^{[l]}} , \vec{W}^{[l]} \in \mathbb{R}{{n^{[l]} \times n^{[l - 1]}}}  , \vec{b}^{[l]} \in \mathbb{R}^{n^{[l]}} , \vec{a}_{:, i}^{[l - 1]} \in \mathbb{R}^{n^{[l - 1]}}  $$  
 
 이는 1개의 training data에 대한  math expression입니다. 이를 이제 $$ m $$개의 batch data의 size로 확장하여 vectorize를 해보겠습니다.   
 
