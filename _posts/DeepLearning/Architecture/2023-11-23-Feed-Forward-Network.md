@@ -17,8 +17,7 @@ usemathjax : true
 
 
 ## Why we need understand Neural Network in Mathmatical view?
-NeuralNetwork를 인간이 이해할 수 있는 logic으로 표현하는 방법중 하나는 바로 수식입니다. 수식으로 표현하는 방법을 알아야만 하는 이유로 크게 몇가지 있다고 생각합니다.
-첫번째로 , Neural Network를 공부하는 이유는 이 neural Network를 컴퓨터로 구현하여 사용하기 위함입니다. 컴퓨터로 구현한다는 것은  머릿속의 로직을 코딩함을 의미합니다. 
+FeedFowrad Network는 가장 기본적인 형태의 neuralnet입니다. 이는 노드에 weight matrix를 곱하고 bias를 더 해줌으로써 구현됩니다. NeuralNet을 수식으로 이해함으로써 NeuralNet에 대한 이해도가 올라가기 때문에 수학적으로 이해하는 것이 딥러닝 엔지니어의 역량을 기르는데 많은 도움이 된다고 여겨집니다. 이 글은 임의의 layer의 node의 일반항을 도출하여 vectorize하는 과정을 수식으로 도출할 것입니다 .
 ## Term Definition
 여기서의 Term에 관한 Symbol이나 Notation 방식은 Andrew 교수님의 DeepLearning 강의를 참고하였습니다.  
 
@@ -174,8 +173,24 @@ $$
 vector space는 다음과 같이 정의된다. $$ \vec{A}^{[l]} \in R^{n^{[l]} \times m} $$  
 
 ## Conclusion
- feedforward network의 임의의 layer에 대하여  math expression을 정의하였습니다. 이를 , 모든 일반적인 feedforward network에 적용할 수 있습니다. 전체적으로 feedforward network가 아니더라도 , 부분부분 feedforward network가 사용되어 집니다. 이를 직접 implementation 할 때 , 수식을 알고 있다면 큰 도움이 될 것입니다 . 
 
+임의의 layer의 vectorize 과정을 수학적으로 직접 도출해보았습니다. 아래와 같은 이유로 도움이 될 것이라 여겨집니다. 
+
+1. neuralnet에 대한 이해도가 올라간다.
+neural net의 작동 원리를 깊게 이해하면, 모델의 성능을 향상시키고 문제를 해결하는 데 도움이 됩니다. 일반항을 도출하면 neural net의 내부 작동 방식을 더 잘 이해할 수 있습니다
+
+2. neuralnet이 어떻게 계산을 최적화 하는지 이해
+vectorization 과정을 수식으로 도출하면, 어떻게 최적화할 수 있는지에 대한 통찰력을 얻을 수 있습니다.
+
+3. 문제 해결 능력 
+벡터화 과정을 수식으로 도출하면, 모델이 예상대로 작동하지 않을 때 문제를 진단하고 해결하는 데 도움이 될 것입니다.. 이는 디버깅 및 최적화 과정에서 매우 유용합니다.\
+
+4. 커뮤니케이션 능력 향상
+이러한 수식을 도출하고 이해하는 능력은 다른 엔지니어, 연구원, 이해관계자와의 커뮤니케이션에서 중요합니다. 이를 통해 복잡한 개념을 명확하게 전달하고, 팀의 공동 작업을 촉진할 수 있습니다.
+
+5. 가장 기본이다.
+
+feedfowrad network는 가장 기본적인 형태이기에 vectorize 과정을 수식으로 도출을 해본다면, 다른 neuralnet을 도출해내는 데에도 도움이 될 것입니다. 뿐만 아니라, 다른  neuralnet 모델들을 분해해보면 feedforward 가 사용되어지는 경우가 많습니다. 
 
 
 
