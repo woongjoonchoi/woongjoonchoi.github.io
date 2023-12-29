@@ -17,7 +17,7 @@ usemathjax : true
 
 
 ## Why we need understand Neural Network in Mathematical view?
-FeedFowrad Network는 가장 기본적인 형태의 neural net입니다. 이는 노드에 weight matrix를 곱하고 bias를 더 해줌으로써 구현됩니다. neural net을 수식으로 이해함으로써 neural net에 대한 이해도가 올라가기 때문에 수학적으로 이해하는 것이 딥러닝 엔지니어의 역량을 기르는데 많은 도움이 된다고 여겨집니다. 이 글은 임의의 layer의 node의 일반항을 도출하여 vectorize하는 과정을 수식으로 도출할 것입니다 .
+FeedForward Network는 가장 기본적인 형태의 neural net입니다. 이는 노드에 weight matrix를 곱하고 bias를 더 해줌으로써 구현됩니다. neural net을 수식으로 이해함으로써 neural net에 대한 이해도가 올라가기 때문에 수학적으로 이해하는 것이 딥러닝 엔지니어의 역량을 기르는데 많은 도움이 된다고 여겨집니다. 이 글은 임의의 layer의 node의 일반항을 도출하여 vectorize하는 과정을 수식으로 도출할 것입니다 .
 ## Term Definition
 여기서의 Term에 관한 Symbol이나 Notation 방식은 Andrew 교수님의 DeepLearning 강의를 참고하였습니다.  
 
@@ -40,7 +40,7 @@ FeedFowrad Network는 가장 기본적인 형태의 neural net입니다. 이는 
 ### output z 
 ![image](https://kau365-my.sharepoint.com/personal/oongjoon_kau_kr/Documents/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%9D%B4%EB%AF%B8%EC%A7%80/DeepLearning/Architecture/feedforward%20-%20%EB%B3%B5%EC%82%AC%EB%B3%B8.png)
 
-다른 교육자료들을 보면 쉽게 설명하기 위해서 3개의 node로 한정짓거나 하는 방식으로 설명을 하게 됩니다. 하지만, 여기서는 일반식을 정의하기 위해서 $$ n^{[l-1]}$$개의 node에서  $$ n^{[l]}$$개의 node로 변환시키는 $$ l$$번째 layer에  대해서 설명을 하겠습니다. (bias는 그림에서만 생략하였습니다 . )
+다른 교육자료들을 보면 쉽게 설명하기 위해서 3개의 node로 한정짓거나 하는 방식으로 설명을 하게 됩니다. 하지만, 여기서는 일반식을 정의하기 위해서 $$ n^{[l-1]}$$개의 node에서  $$ n^{[l]}$$개의 node로 변환시키는 $$ l$$번째 layer에  대해서 설명을 하겠습니다. (bias는 그림에서만 생략하였습니다 . ) . 위의 그림은 $$ l$$번째 layer 를 나타낸 그림입니다. 동그라미가 node이고 연결선이 weight입니다.
 
 여기서 , $$z_{k,i}^{[l]}$$ 에는 $$ n^{[l-1]} $$ 개의 node가 연결되어 있습니다.    
 따라서 ,   
@@ -91,7 +91,7 @@ b_{n^{[l]}}^{[l]}
 \end{align*}
 $$  
 
-이를 수식으로 표현하면 다음과 같이 적을 수 있습니다.  
+이를 수식으로 표현하면 다음과 같습니다.  
 
 $$\vec{z}_{:, i}^{[l]} = \vec{W}^{[l]} \vec{a}_{:, i}^{[l - 1]} + \vec{b}^{[l]} $$ 
 
@@ -186,10 +186,10 @@ vectorization 과정을 수식으로 도출하면, 어떻게 최적화할 수 �
 벡터화 과정을 수식으로 도출하면, 모델이 예상대로 작동하지 않을 때 문제를 진단하고 해결하는 데 도움이 될 것입니다.. 이는 디버깅 및 최적화 과정에서 매우 유용합니다.\
 
 4. 커뮤니케이션 능력 향상
-이러한 수식을 도출하고 이해하는 능력은 다른 엔지니어, 연구원, 이해관계자와의 커뮤니케이션에서 중요합니다. 이를 통해 복잡한 개념을 명확하게 전달하고, 팀의 공동 작업을 촉진할 수 있습니다.
+이러한 수식을 도출하고 이해하는 능력은 다른 엔지니어, 연구원, 이해관계자와의 커뮤니케이션에서 중요합니다. 이를 통해 복잡한 개념을 명확하게 전달하고, 팀의 협업을 촉진할 수 있습니다.
 
 5. 가장 기본이다.
-feedfowrad network는 가장 기본적인 형태이기에 vectorize 과정을 수식으로 도출을 해본다면, 다른 neural net을 도출해내는 데에도 도움이 될 것입니다. 뿐만 아니라, 다른  neural net 모델들을 분해해보면 feedforward 가 사용되어지는 경우가 많습니다. 
+feedforward network는 가장 기본적인 형태이기에 vectorize 과정을 수식으로 도출을 해본다면, 다른 neural net을 도출해내는 데에도 도움이 될 것입니다. 뿐만 아니라, 다른  neural net 모델들을 분해해보면 feedforward 가 사용되어지는 경우가 많습니다. 
 
 
 
