@@ -1,5 +1,5 @@
 ---
-title : " 일반적인 FeedForward Network를 수식으로 알아보자  "
+title : " 임의의 숫자의 parameter를 가진 FeedForward Network의 일반항을 정의하고 vectorize하는 과정을 수식으로 도출해보자   "
 
 
 
@@ -153,7 +153,7 @@ g_{n^{[l]}}^{[l]}(z_{1, i}^{[l]}, \dots, z_{j, i}^{[l]}, \dots, z_{n^{[l]}, i}^{
 \end{bmatrix}
 \end{align*}
 $$
-
+  
 이를 수식으로 표현하면   
 
 $$
