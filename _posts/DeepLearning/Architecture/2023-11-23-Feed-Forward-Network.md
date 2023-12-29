@@ -3,7 +3,7 @@ title : " 임의의 숫자의 parameter를 가진 FeedForward Network의 일반�
 
 
 
-excerpt: "Mathmatical view"
+excerpt: "Mathematical view"
 
 categories:
   - DLArchitecture
@@ -16,8 +16,8 @@ usemathjax : true
 ---
 
 
-## Why we need understand Neural Network in Mathmatical view?
-FeedFowrad Network는 가장 기본적인 형태의 neural net입니다. 이는 노드에 weight matrix를 곱하고 bias를 더 해줌으로써 구현됩니다. NeuralNet을 수식으로 이해함으로써 NeuralNet에 대한 이해도가 올라가기 때문에 수학적으로 이해하는 것이 딥러닝 엔지니어의 역량을 기르는데 많은 도움이 된다고 여겨집니다. 이 글은 임의의 layer의 node의 일반항을 도출하여 vectorize하는 과정을 수식으로 도출할 것입니다 .
+## Why we need understand Neural Network in Mathematical view?
+FeedFowrad Network는 가장 기본적인 형태의 neural net입니다. 이는 노드에 weight matrix를 곱하고 bias를 더 해줌으로써 구현됩니다. neural net을 수식으로 이해함으로써 neural net에 대한 이해도가 올라가기 때문에 수학적으로 이해하는 것이 딥러닝 엔지니어의 역량을 기르는데 많은 도움이 된다고 여겨집니다. 이 글은 임의의 layer의 node의 일반항을 도출하여 vectorize하는 과정을 수식으로 도출할 것입니다 .
 ## Term Definition
 여기서의 Term에 관한 Symbol이나 Notation 방식은 Andrew 교수님의 DeepLearning 강의를 참고하였습니다.  
 
@@ -35,7 +35,7 @@ FeedFowrad Network는 가장 기본적인 형태의 neural net입니다. 이는 
 |$$b^{[l]}$$|$$l$$ 번쨰 layer의 bias입니다.$$ b^{[l]} \in \mathbb{R}^{n^{[l]}  } $$ |
 |$$g_{j}^{[l]}$$| $$l$$ 번째 layer activation function $$g_{j}^{[l]} : \mathbb{R}^{n^{[l]}} \rightarrow \mathbb{R}^{n^{[l]}} $$  , $$g_{j}^{[l]} \in \mathbb{R}^{n^{[l]}  } $$|  
 
-## Explanation in Mathmatical View
+## Explanation in Mathematical View
 
 ### output z 
 ![image](https://kau365-my.sharepoint.com/personal/oongjoon_kau_kr/Documents/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%9D%B4%EB%AF%B8%EC%A7%80/DeepLearning/Architecture/feedforward%20-%20%EB%B3%B5%EC%82%AC%EB%B3%B8.png)
