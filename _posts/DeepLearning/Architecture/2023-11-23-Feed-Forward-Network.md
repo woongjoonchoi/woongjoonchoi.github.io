@@ -38,7 +38,7 @@ FeedForward Network는 가장 기본적인 형태의 neural net입니다. 이는
 ## Explanation in Mathematical View
 
 ### $${Z}^{[l]}$$ 의 vectorization 
-![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217803&authkey=%21AG3PCmGXC76EdXA&width=1401&height=1541)
+![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217803&authkey=%21AG3PCmGXC76EdXA&width=1121&height=1233)
 
 
 다른 교육자료들을 보면 쉽게 설명하기 위해서 3개의 node로 한정짓거나 하는 방식으로 설명을 하게 됩니다. 하지만, 여기서는 일반식을 정의하기 위해서 $$ n^{[l-1]}$$개의 node에서  $$ n^{[l]}$$개의 node로 변환시키는 $$ l$$번째 layer에  대해서 설명을 하겠습니다. (bias는 그림에서만 생략하였습니다 . ) . 위의 그림은 $$ l$$번째 layer 를 나타낸 그림입니다. 동그라미가 node이고 연결선이 weight입니다. notation은 [Definition](#term-definition)을 참조하시면됩니다.
@@ -121,7 +121,7 @@ vector space는 다음과 같이 정의됩니다 .$$ \vec{Z}^{[l]} \in \mathbb{R
 
 
 ### $${A}^{[l]}$$ 의 vectorization
-![image](https://kau365-my.sharepoint.com/personal/oongjoon_kau_kr/Documents/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%9D%B4%EB%AF%B8%EC%A7%80/DeepLearning/Architecture/feedforward-al.png)  
+![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217804&authkey=%21AF5RN-qLjiNzdI4&height=1121&width=1233)  
 
 위의 그림은 $$Z^{[l]}$$ 을 activation function $$g^{[l]} $$ 에 parameter 로 넘겨주는 그림입니다. $$Z^{[l]}$$ 의 모든 node가 $${A}^{[l]}$$의 각 node에 전부 연결되어 있습니다. $$g^{[l]} $$ 이 아직 확정이 되지 않았기에 그렇습니다. 보통은 RELU를 사용하게 되어 1 대 1 mapping 관계가 되지만, softmax를 사용하게 된다면 $$ n^{[l]} $$ 대 1 mapping 관계가 될 것입니다. notation은 [Definition](#term-definition)을 참조하시면됩니다.  
 
