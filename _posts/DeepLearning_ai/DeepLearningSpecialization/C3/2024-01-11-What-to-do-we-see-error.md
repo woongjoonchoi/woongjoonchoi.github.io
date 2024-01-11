@@ -11,7 +11,7 @@ tags:
 toc: true
 toc_sticky: true
 ---
-프로젝트에서 Machine Learning Model을 사용하기로 했습니다. 그러면, Model을 개발할 때, 어떤 Model을 고르고, 데이터를 증강하는지, 어떤 알고리즘을 쓰는지 등등이 중요해집니다. 이는 모델이 Over fit인지, Variance가 높은지 판단해야 좋은 선택을 할 수 있습니다..  
+프로젝트에서 Machine Learning Model을 사용하기로 했습니다. 그러면, Model을 개발할 때, 어떤 Model을 고르고, 데이터를 증강하는지, 어떤 알고리즘을 쓰는지 등등이 중요해집니다. 이는 모델이 Over fit인지, Variance가 높은지 판단해야 좋은 선택을 할 수 있습니다.Andrew 교수님의 DeepLearning Specialization에서 이에 대한 내용을 다루었고 이를 정리했습니다.  
 
 # Error-rate를 확인하면 어떻게 해야할까?
 Error-rate를 train,dev, test에 대해서 logging 할 것입니다. 이 log 값들을 가지고 어떻게 해야 할지 결정하기 위해서는 몇 가지 용어들을 정의해야 합니다.  
@@ -38,7 +38,7 @@ avoidable bias는 **Bayes error approximation 과 training error 간의 차이**
 |High Variance| - More Data <br/> - regularization <br/> - Architecture,hyperparameter search|  
 
 Avoidable bias가 높다는 것은 모델이 Training data를 잘 학습하지 못한다는 뜻이므로, parameter가 더 많은 모델을 사용하거나 훈련을 더 길게 하거나 optimization 알고리즘이 다른 걸 사용할 수 있습니다.
-Variance가 높다는 것은 모델이 과적합 되었다는 뜻이므로, 더 많은 데이터를 수집하거나 Regularization 기법을 사용할 수 있습니다.  
+Variance가 높다는 것은 모델이 일반화를 못했다는 뜻이므로, 더 많은 데이터를 수집하거나 Regularization 기법을 사용할 수 있습니다.  
 
 # Error를 분석하자
 bias문제인지 variance 문제인지  error-rate 를 통해 판단이 되었습니다. 그렇다면, 구체적인 error의 내용을 분석해서 구체적인 전략을 세워야 합니다. 
