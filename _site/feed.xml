@@ -1,97 +1,162 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-30T08:10:14+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Woongjoon_AI</title><subtitle>AMazing developer</subtitle><author><name>Choi Woongjoon</name></author><entry><title type="html">임의의 숫자의 parameter를 가진 FeedForward Network의 일반항을 정의하고 vectorize하는 과정을 수식으로 도출해보자</title><link href="http://localhost:4000/dlarchitecture/Feed-Forward-Network/" rel="alternate" type="text/html" title="임의의 숫자의 parameter를 가진 FeedForward Network의 일반항을 정의하고 vectorize하는 과정을 수식으로 도출해보자" /><published>2023-11-23T00:00:00+09:00</published><updated>2023-11-23T00:00:00+09:00</updated><id>http://localhost:4000/dlarchitecture/Feed-Forward-Network</id><content type="html" xml:base="http://localhost:4000/dlarchitecture/Feed-Forward-Network/">&lt;h2 id=&quot;why-we-need-understand-neural-network-in-mathematical-view&quot;&gt;Why we need understand Neural Network in Mathematical view?&lt;/h2&gt;
-&lt;p&gt;FeedForward Network는 가장 기본적인 형태의 neural net입니다. 이는 노드에 weight matrix를 곱하고 bias를 더 해줌으로써 구현됩니다. neural net을 수식으로 이해함으로써 neural net에 대한 이해도가 올라가기 때문에 수학적으로 이해하는 것이 딥러닝 엔지니어의 역량을 기르는데 많은 도움이 된다고 여겨집니다. 이 글은 임의의 layer의 node의 일반항을 도출하여 vectorize하는 과정을 수식으로 도출할 것입니다 .&lt;/p&gt;
-&lt;h2 id=&quot;term-definition&quot;&gt;Term Definition&lt;/h2&gt;
-&lt;p&gt;여기서의 Term에 관한 Symbol이나 Notation 방식은 Andrew 교수님의 DeepLearning 강의를 참고하였습니다.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-11T16:05:30+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Woongjoon_AI</title><subtitle>AMazing developer</subtitle><author><name>Choi Woongjoon</name></author><entry><title type="html">Train,Dev,Test의 error를 어떻게 해석해야 할까요?</title><link href="http://localhost:4000/dls_c3/What-to-do-we-see-error/" rel="alternate" type="text/html" title="Train,Dev,Test의 error를 어떻게 해석해야 할까요?" /><published>2024-01-11T00:00:00+09:00</published><updated>2024-01-11T00:00:00+09:00</updated><id>http://localhost:4000/dls_c3/What-to-do-we-see-error</id><content type="html" xml:base="http://localhost:4000/dls_c3/What-to-do-we-see-error/">프로젝트에서 Machine Learning Model을 사용하기로 했습니다. 그러면, Model을 개발할 때, 어떤 Model을 고르고, 데이터를 증강하는지, 어떤 알고리즘을 쓰는지 등등이 중요해집니다. 이는 모델이 Over fit인지, Variance가 높은지 판단해야 좋은 선택을 할 수 있습니다..  
 
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;기호&lt;/th&gt;
-      &lt;th&gt;설명&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;\(l\)&lt;/td&gt;
-      &lt;td&gt;\(l\)번째  layer  . \(l\) =   0, … , L  은 weights와 bias를 가지는  layer의 번호를 의미한다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;\(n^{[l]}\)&lt;/td&gt;
-      &lt;td&gt;\(l\) 번째 layer의 node의 개수를 의미합니다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;\(j\)&lt;/td&gt;
-      &lt;td&gt;\(j  = 0,..., n^{[l]}\)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;\(k\)&lt;/td&gt;
-      &lt;td&gt;\(k = 0, .... n^{[l-1]}\)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;\(m\)&lt;/td&gt;
-      &lt;td&gt;\(m\) 은 training step에서의 batch size 입니다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;\(i\)&lt;/td&gt;
-      &lt;td&gt;\(i = 0,..... m\)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;\(w_{j,k}^{[l]}\)&lt;/td&gt;
-      &lt;td&gt;\(l\) 번째 layer의 weight \(W^{[l]}\) , \(W^{[l]} \in \mathbb{R}^{n^{[l]} \times n^{[l-1]} }\) . \(W^{[l]}\) 의 \((j,k)\) 원소를 의미한다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;\(z_{j,i}^{[l]}\)&lt;/td&gt;
-      &lt;td&gt;\(l\) 번째 layer의 bias를 더한 output의 \((j,i)\) 성분입니다 .&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;\(a_{j,i}^{[l]}\)&lt;/td&gt;
-      &lt;td&gt;\(l\) 번째 layer의 activation의 \((i,j)\)성분입니다 .&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;\(b^{[l]}\)&lt;/td&gt;
-      &lt;td&gt;\(l\) 번쨰 layer의 bias입니다.\(b^{[l]} \in \mathbb{R}^{n^{[l]}  }\)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;\(g_{j}^{[l]}\)&lt;/td&gt;
-      &lt;td&gt;\(l\) 번째 layer activation function \(g_{j}^{[l]} : \mathbb{R}^{n^{[l]}} \rightarrow \mathbb{R}^{n^{[l]}}\)  , \(g_{j}^{[l]} \in \mathbb{R}^{n^{[l]}  }\)&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+# Error-rate를 확인하면 어떻게 해야할까?
+Error-rate를 train,dev, test에 대해서 logging 할 것입니다. 이 log 값들을 가지고 어떻게 해야 할지 결정하기 위해서는 몇 가지 용어들을 정의해야 합니다.  
 
-&lt;h2 id=&quot;explanation-in-mathematical-view&quot;&gt;Explanation in Mathematical View&lt;/h2&gt;
+## Term
+여기서는 human-level performance와 avoidable bias라는 용어의 정의와 이에 대해 간략한 설명을 하겠습니다.
 
-&lt;h3 id=&quot;zl-의-vectorization&quot;&gt;\({Z}^{[l]}\) 의 vectorization&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://kau365-my.sharepoint.com/personal/oongjoon_kau_kr/Documents/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%9D%B4%EB%AF%B8%EC%A7%80/DeepLearning/Architecture/feedforward%20-%20%EB%B3%B5%EC%82%AC%EB%B3%B8.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+### Human-level performance
+![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217819&amp;authkey=%21AFm_FOTf9RHr9A4&amp;width=611&amp;height=351)
 
-&lt;p&gt;다른 교육자료들을 보면 쉽게 설명하기 위해서 3개의 node로 한정짓거나 하는 방식으로 설명을 하게 됩니다. 하지만, 여기서는 일반식을 정의하기 위해서 \(n^{[l-1]}\)개의 node에서  \(n^{[l]}\)개의 node로 변환시키는 \(l\)번째 layer에  대해서 설명을 하겠습니다. (bias는 그림에서만 생략하였습니다 . ) . 위의 그림은 \(l\)번째 layer 를 나타낸 그림입니다. 동그라미가 node이고 연결선이 weight입니다. notation은 &lt;a href=&quot;#term-definition&quot;&gt;Definition&lt;/a&gt;을 참조하시면됩니다.&lt;/p&gt;
+Machine Learning의 성능은 시간이 지나면서 사람의 능력을 뛰어넘게 되었습니다. 하지만, 이론상 최고 성능에는 도달하지 못하고 계속 근접하게 됩니다. 이론상 최고치를 Bayes optimal error라고 합니다. 여기서, 사람의 능력을 human level performance라고 합니다. Bayes error는 이론상의 최대치이고 계산할 수 있지만 조건에 따라 계산이 매우 복잡하여 수치적으로 근사하는 것이 최선일 수 있습니다. 즉, ***언제나 정확한 Bayes error 값을 알 수 없습니다.*** Bayes error를 human level performance가 넘을 수는 없지만, human level performance는 Bayes error에 상당히 근접해 있습니다. 따라서, human level performance를 Bayes error의 approximation이라 여기고 Bayes error 대신 사용하게 됩니다. 
 
-&lt;p&gt;여기서 , \(z_{k,i}^{[l]}\) 에는 \(n^{[l-1]}\) 개의 node가 연결되어 있습니다.  &lt;br /&gt;
-따라서 ,&lt;/p&gt;
+머신러닝 에서는 human level performance에 도달하기 전까지는 모델의 performance를 빠르게 올릴 수 있습니다. 왜냐하면, bias, variance를 설정할 수 있으므로 목표를 어떻게 잡아야 할지 명확히 알 수 있습니다. 하지만, human level performance를 넘게 된다면 performance를 끌어올리기 어려워집니다. Bayes error를 정확히 알 수 없기에 목표 지점을 정확히 잡을 수 없습니다. 특히, Online Ads, Recommendation, Loan Approval 같은 **Structured Data** 을 활용하는 Model은 이미 사람을 뛰어넘었다고 알려져 있습니다. 이러면, bias, variance를 활용한 방법이 아닌 다른 방법들을 마련해야 합니다. 하지만, 시각, 청각, 사고 같은 **자연적 인지** 에서는 아직 인간을 딥러닝이 따라잡지 못하고 있습니다. 따라서, human-level performance를 아는 것이 중요하다고 할 수 있습니다.  
 
-\[\begin{equation}
+### Avoidable bias
+avoidable bias는 **Bayes error approximation 과 training error 간의 차이**입니다. 여기서, approximation은 human level performance가 됩니다. 이 avoidable bias를 bias로 설정하고,  variance는 human level performance와 dev error와의 차이로 설정해서
+모델의 performance를 높이기 위한 전략을 세우게 됩니다. 이때, avoidable bias는 0 이상이어야 하므로, training error의 upper bound가 human level performance임을 내포하고 있습니다.  
+
+## bias reduction or variance reduction ?
+|error type|Approach|
+|-------------|-----------------------------------------|
+|High Avoidable Bias| - Traing Bigger Model &lt;/br&gt; - Train Longer &lt;/br&gt; - Better Optimization Algorithm &lt;/br&gt; - Architecture,hyperparameter search|
+|High Variance| - More Data &lt;/br&gt; - regularization &lt;/br&gt; - Architecture,hyperparameter search|  
+
+Avoidable bias가 높다는 것은 모델이 Training data를 잘 학습하지 못한다는 뜻이므로, parameter가 더 많은 모델을 사용하거나 훈련을 더 길게 하거나 optimization 알고리즘이 다른 걸 사용할 수 있습니다.
+Variance가 높다는 것은 모델이 과적합 되었다는 뜻이므로, 더 많은 데이터를 수집하거나 Regularization 기법을 사용할 수 있습니다.  
+
+# Error를 분석하자
+bias문제인지 variance 문제인지  error-rate 를 통해 판단이 되었습니다. 그렇다면, 구체적인 error의 내용을 분석해서 구체적인 전략을 세워야 합니다. 
+
+## error-label check
+dev, test, train의 error를 사람이 확인해서 구체적인 insight를 얻을 수 있습니다. 예를 들어, 동물을 분류하는 multi classifier 문제의 경우에 아래와 같은 식으로 어떻게 잘못 분류했는지를 검사할 수 있습니다.  
+
+|Image|Dog|Cat|....|Comments|
+|-------------|-------------|-------------|-------------|-------------|
+|1| |$$\checkmark$$ | |Pitball|
+|2|$$\checkmark$$ | | |Lion|
+|...| | | | | 
+
+체크를 하다 보면, labeling이 잘못되어 있는 경우가 있을 수 있습니다. 이 경우에는 label miss라는 마크를 따로 달아두는 것이 좋다고 합니다.  
+|Image|Dog|Cat|....|miss label|Comments|
+|-------------|-------------|-------------|-------------|-------------|-------------|
+|1| |$$\checkmark$$ | ||Pitball|
+|2|$$\checkmark$$ | | ||Lion|
+|3| | | | $$\checkmark$$|miss labeling|
+|...| | | | ||    
+
+이러한 analysis를 통해 insight를 얻게 되면, 바로 성능향상 작업에 들어가서는 안 됩니다. 특정 error나 mislabeling이 나왔다고 해서 전부 고치는 것이 항상 정답은 아닙니다. 예를 들어, dog를 잘못 분류하는 예제가 10개가 나왔고, dog를 잘 분류하도록 알고리즘을 설계하는 작업에 착수했습니다. 하지만,  이 예제가 전체 오답률의 1퍼센트라면 이는 미미한 성능향상을 끌어낼 것입니다. 또, labeling을 잘못되어 있어서 이를 수정하는 데 자원을 소모했습니다. 그렇지만, 이 비율이 2퍼센트 정도라면 큰 성능향상을 끌어내지 않을 것입니다.
+만약에, 특정 예제나 miss labeling이 비율이 오답의 30%~40%라면 유의미한 성능향상을 보일 것입니다.
+error label을 검사할시 몇 가지 tip이 있습니다.  
+
+error label을 사람이 체크하고 수정할 시, dev set에 했던 process를 test set에서도 해야 합니다. machine learning model은 dev, test가 같은 distribution에서의 data라 예상하고 model의 성능을 평가합니다. 따라서, dev에서도 일반화가 된다면 test에서도 일반화가 되어야 합니다. dev와 test가 같은 distribution을 가져야 하므로, dev에서 label을 고쳤다면, test에서도 label을 고쳐줍니다.  
+
+error를 확인할 때 맞춘 것도 보는 것이 도움이 됩니다. Model이 운이 좋아서 정답을 맞힌 가능성이 있기 때문입니다. 만약에, 틀린 예제만을 점검할 시, 모델의 error 추정치가 과대평가 될 수 있습니다. 하지만, 이는  Model의 성능이 좋으면 좋을수록 하기 어렵습니다. 예를 들어, 모델의 정확도가 98퍼센트이고 error 비율이 2퍼센트라면면 98퍼센트의 데이터를 보는 것은 많은 자원이 소모되기 때문입니다. 
+
+실제로는, training data의 error를 확인하는 것이 정석이지만, dev ,test에 비해 data의 size가 상당히 크기 때문에 자원이 상당히 많이 소모됩니다. 딥러닝 알고리즘은 random 한 error에 robust 하므로 training data의 random 한 error에 대해서는 영향을 거의 받지 않을 것입니다. 
+
+## Build System First
+실제로 ML project를 임할 때에는 error analysis에 집중하기 보다는 bias, variance를 통해 model의 performance를 향상하게 시키는 system을 구축하는 것이 중요하다고 합니다. error analysis나 distribution 차이는 그다음에 해결해도 괜찮다고 합니다. 우선은, model performance를 향상하게 시키는 system을 구현하는 것이 훨씬 중요하다고 합니다.  
+
+## Mismatched data distribution
+위의 Error Analysis 과정을 거치면서, 특정 label이나 mislabel 문제가 아님이 밝혀질 수 있습니다. Train 과 dev, test의 distribution 차이에서 오는 variance의 문제일 수도 있습니다. 
+
+### Distribution Eqaulity
+예를 들어, 모바일 앱에서 구동하는 ML application을 개발한다고 하겠습니다. Train Data 약 20만 개를 web에서 수집하고, dev, test에는 mobile app에서 수집한 data 1만 개를 각각 5천개씩 나누어서 사용했습니다. 이렇게 되면, train과 dev, test 간의 distribution의 차이로 문제가 발생할 수 있습니다. web에서의 image data는 화질이 좋지만,, mobile app의 image data는 화질이 좋지 않을 가능성이 있습니다.  
+
+이때 , train, dev,test data를 단순하게 shuffle 해서 같은 distribution으로 만들어 주는 방법을 사용할 수 있습니다. 하지만, 이 새로운 data는 mobile data 반영률이 약 4.7퍼센트 정도밖에 되질 않을 것입니다. ML model이 학습하고자 하는 distribution은 mobile의 distribution인데, model은 전혀 다른 distribution을 target으로 삼고 있는 것입니다.
+대신에, dev, test를 각각 2500개 정도로 설정하고 5천 개를 train에 포함하므로 train의 distribution을 dev, test에 더 가깝게 만드는 방법을 사용할 수 있습니다.  하지만, 여전히 train과 dev, test의 distribution은 다릅니다. 
+
+어떤 방법을 적용할지는 팀의 상황과 project의 제한조건 등에 따라서 다를 것이므로 , 정답이 없다고 여겨집니다. 하지만, Andrew 교수님은 후자의 방법이 장기적으로 더 좋은 효과를 보일 것이라 얘기하십니다.   
+
+### Data Augmentation and Collect Data
+더 많은 data를 확보하는 것도 좋은 방법이 될 수 있습니다. 이때, data augmentation과 collect data를 고려하게 됩니다.
+collect data는 말 그대로 data를 추가로 수집을 하는 것입니다. train에 mobile에서의 data가 부족하다면, mobile data를 추가로 수집해서 train data에 포함할 수 있습니다.
+Data Augmentation은 기존에 가지고 있는 data로 새로운 data를 합성해 내는 것입니다. 예를 들어, 사람의 목소리와 차의 소음 소리를 결합해 차 속에서 말하는 사람의 목소리를 만들 수 있습니다. 아니면, 기존의 자동차 사진으로 새로운 자동차 사진을 생성해 낼 수 있습니다. 하지만, data augmentation 시 주의할 점이 있습니다. **적은 data로 augmentation 시 train은 여전히 sample space의 작은 subset일 가능성이 있다**는 것입니다. 차의 소음 소리 data가 만 시간 정도가 있고, 사람의 목소리 data가 100만 시간이 있다고 가정하겠습니다. 여기서, 사용할 수 있는 방법은 차의 소음 소리를 100번 반복해서 사람의 목소리와 합성하는 것입니다. 사람의 귀에는 다 다른 소음 data로 들리지만, computer 입장에서는 전부 같은 소음 data로 보일 수 있습니다. 또한, 20개의 차 이미지로 새로운 차 이미지를 만들어 냈다고 했을 때, 사람의 눈에는 달라 보이지만 computer 입장에서는 같은 차 이미지일 수 있습니다.  small subset만을 학습하게 된다면, model을 sample space의 일부에 overfit이 될 것입니다.  
+### Train-dev 
+Train data와 dev, test의 data가 서로 다른 distribution인지 아닌지 모를 수도 있습니다. 이럴 때는, train-dev라는 새로운 data set을 만듦으로써 확인할 수 있습니다. train data에서 무작위로 train-dev를 sampling 하므로 train-dev와 train은 같은 distribution을 갖게 됩니다. 따라서, 이 model이 unseen data에 대해서 예측을 잘하는지를 판단할 수 있게 됩니다. 
+
+# Decision Making in General Foramt
+|Error Type|Comapre|
+|-------------|-----------|
+|high avoidable bias|human-level vs train error|
+|high variance|train error vs train-dev error|
+|data mismatch|train-dev error vs dev/test error|  
+
+위에서 작성된 decision 전략에서 train-dev error와의 차이가 추가되었습니다.  알고리즘이 일반화가 잘 되는지를 dev, test가 아닌 train-dev와 비교하는 것이 좀 더 일반화된 형태의 decision making이라 볼 수 있겠습니다. 
+
+
+# Conclusion 
+
+ML project team에서 ML의 새로운 model의 performance를 올릴 때는 아래와 같은 순서를 따른다고 볼 수 있습니다.
+
+1. bias, variance 값에 따라 approach를 적용할 수 있는 system을 만든다.
+2. system build 후 error analysis를 통해 distribution mismatch인지 아닌지를 점검한다.
+3. distribution이 mismatch가 아니라면 error case 중 비율이 높은 것을 우선시한다.
+
+
+
+# Reference 
+
+[DeepLearning Specialization](https://www.coursera.org/learn/machine-learning-projects/home/week/1)</content><author><name>Choi Woongjoon</name></author><category term="DLS_C3" /><category term="Machine Learning" /><category term="Coursera" /><category term="deep learning" /><summary type="html">ML Project structing</summary></entry><entry><title type="html">임의의 숫자의 parameter를 가진 FeedForward Network의 일반항을 정의하고 vectorize하는 과정을 수식으로 도출해보자</title><link href="http://localhost:4000/dlarchitecture/Feed-Forward-Network/" rel="alternate" type="text/html" title="임의의 숫자의 parameter를 가진 FeedForward Network의 일반항을 정의하고 vectorize하는 과정을 수식으로 도출해보자" /><published>2023-11-23T00:00:00+09:00</published><updated>2023-11-23T00:00:00+09:00</updated><id>http://localhost:4000/dlarchitecture/Feed-Forward-Network</id><content type="html" xml:base="http://localhost:4000/dlarchitecture/Feed-Forward-Network/">## Why we need understand Neural Network in Mathematical view?
+FeedForward Network는 가장 기본적인 형태의 neural net입니다. 이는 노드에 weight matrix를 곱하고 bias를 더 해줌으로써 구현됩니다. neural net을 수식으로 이해함으로써 neural net에 대한 이해도가 올라가기 때문에 수학적으로 이해하는 것이 딥러닝 엔지니어의 역량을 기르는데 많은 도움이 된다고 여겨집니다. 이 글은 임의의 layer의 node의 일반항을 도출하여 vectorize하는 과정을 수식으로 도출할 것입니다 .
+## Term Definition
+여기서의 Term에 관한 Symbol이나 Notation 방식은 Andrew 교수님의 DeepLearning 강의를 참고하였습니다.  
+
+|기호|설명|
+|-------------------------------|-----------------------------------------------------------------------------------|
+|$$l$$| $$l $$번째  layer  . $$ l $$ =   0, ... , L  은 weights와 bias를 가지는  layer의 번호를 의미한다.|
+|$$n^{[l]}$$| $$ l $$ 번째 layer의 node의 개수를 의미합니다.|
+|$$j$$|$$j  = 0,..., n^{[l]}$$|
+|$$k$$|$$k = 0, .... n^{[l-1]} $$|
+|$$m$$|$$m$$ 은 training step에서의 batch size 입니다.|
+|$$i$$|$$i = 0,..... m$$|
+|$$w_{j,k}^{[l]}$$| $$l $$ 번째 layer의 weight $$ W^{[l]} $$ , $$ W^{[l]} \in \mathbb{R}^{n^{[l]} \times n^{[l-1]} } $$ . $$ W^{[l]} $$ 의 $$(j,k) $$ 원소를 의미한다.|
+|$$z_{j,i}^{[l]}$$| $$l$$ 번째 layer의 bias를 더한 output의 $$(j,i)$$ 성분입니다 . |
+|$$a_{j,i}^{[l]}$$|$$l$$ 번째 layer의 activation의 $$(i,j) $$성분입니다 .|
+|$$b^{[l]}$$|$$l$$ 번쨰 layer의 bias입니다.$$ b^{[l]} \in \mathbb{R}^{n^{[l]}  } $$ |
+|$$g_{j}^{[l]}$$| $$l$$ 번째 layer activation function $$g_{j}^{[l]} : \mathbb{R}^{n^{[l]}} \rightarrow \mathbb{R}^{n^{[l]}} $$  , $$g_{j}^{[l]} \in \mathbb{R}^{n^{[l]}  } $$|  
+
+## Explanation in Mathematical View
+
+### $${Z}^{[l]}$$ 의 vectorization 
+![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217803&amp;authkey=%21AG3PCmGXC76EdXA&amp;width=1121&amp;height=1233)
+
+
+다른 교육자료들을 보면 쉽게 설명하기 위해서 3개의 node로 한정짓거나 하는 방식으로 설명을 하게 됩니다. 하지만, 여기서는 일반식을 정의하기 위해서 $$ n^{[l-1]}$$개의 node에서  $$ n^{[l]}$$개의 node로 변환시키는 $$ l$$번째 layer에  대해서 설명을 하겠습니다. (bias는 그림에서만 생략하였습니다 . ) . 위의 그림은 $$ l$$번째 layer 를 나타낸 그림입니다. 동그라미가 node이고 연결선이 weight입니다. notation은 [Definition](#term-definition)을 참조하시면됩니다.
+
+여기서 , $$z_{k,i}^{[l]}$$ 에는 $$ n^{[l-1]} $$ 개의 node가 연결되어 있습니다.    
+따라서 ,   
+
+$$ 
+\begin{equation}
 z_{j,i}^{[l]} = \sum_{k=0}^{n^{[l-1]}}  w_{j,k}^{[l]} \cdot a_{k,i}^{[l-1]} + b_{j}^{[l]} 
-\end{equation}\]
+\end{equation}
+$$    
 
-&lt;p&gt;위 수식을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(1)&lt;/code&gt; 이라 하겠습니다.&lt;/p&gt;
+위 수식을 `(1)` 이라 하겠습니다.  
 
-&lt;p&gt;vector space는 다음과 같이 정의됩니다.  \(\vec{a}_{:, i}^{[l-1]} \in \mathbb{R}^ {n \times {n^{[l-1]}} }, \vec{w}_{j, :}^{[l]} \in \mathbb{R}^ {n \times {n^{[l-1]}}}\)  .&lt;/p&gt;
+vector space는 다음과 같이 정의됩니다.  $$ \vec{a}_{:, i}^{[l-1]} \in \mathbb{R}^ {n \times {n^{[l-1]}} }, \vec{w}_{j, :}^{[l]} \in \mathbb{R}^ {n \times {n^{[l-1]}}}  $$  .  
 
-&lt;p&gt;딥러닝에서는 이러한 multiplication을 sequential하게 하는것이 아닌 parallell 하게 진행합니다.(ex.Numpy) 따라서, 우리는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(1)&lt;/code&gt; 을 vectorization 해야 합니다 .  위 식은 sum을 나타내지만 , 이는 vector \(w_{j,:}^{[l]}\) 와 vector \(a_{:,i}^{[l-1]}\)  의 multiplication이라 볼 수 있습니다. 위 식에서 변수 j의 범위는 \(0&amp;lt;= j &amp;lt;=n^{[l]}\) 입니다.  따라서 , 이를 확장하면 아래와 같이 vectorize할 수 있습니다.&lt;/p&gt;
+딥러닝에서는 이러한 multiplication을 sequential하게 하는것이 아닌 parallell 하게 진행합니다.(ex.Numpy) 따라서, 우리는 `(1)` 을 vectorization 해야 합니다 .  위 식은 sum을 나타내지만 , 이는 vector $$ w_{j,:}^{[l]} $$ 와 vector $$ a_{:,i}^{[l-1]}$$  의 multiplication이라 볼 수 있습니다. 위 식에서 변수 j의 범위는 $$ 0&lt;= j &lt;=n^{[l]} $$ 입니다.  따라서 , 이를 확장하면 아래와 같이 vectorize할 수 있습니다.
 
-\[\begin{align*}
+
+$$
+\begin{align*}
 \begin{bmatrix}
 z_{1, i}^{[l]} \\
 \vdots \\
 z_{j, i}^{[l]} \\
 \vdots \\
 z_{n^{[l]}, i}^{[l]}
-\end{bmatrix} &amp;amp;=
+\end{bmatrix} &amp;=
 \begin{bmatrix}
-w_{1, 1}^{[l]} &amp;amp; \dots &amp;amp; w_{1, k}^{[l]} &amp;amp; \dots &amp;amp; w_{1, n^{[l - 1]}}^{[l]} \\
-\vdots &amp;amp; \ddots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \\
-w_{j, 1}^{[l]} &amp;amp; \dots &amp;amp; w_{j, k}^{[l]} &amp;amp; \dots &amp;amp; w_{j, n^{[l - 1]}}^{[l]} \\
-\vdots &amp;amp; \ddots &amp;amp; \vdots &amp;amp; \ddots &amp;amp; \vdots \\
-w_{n^{[l]}, 1}^{[l]} &amp;amp; \dots &amp;amp; w_{n^{[l]}, k}^{[l]} &amp;amp; \dots &amp;amp; w_{n^{[l]}, n^{[l - 1]}}^{[l]}
+w_{1, 1}^{[l]} &amp; \dots &amp; w_{1, k}^{[l]} &amp; \dots &amp; w_{1, n^{[l - 1]}}^{[l]} \\
+\vdots &amp; \ddots &amp; \vdots &amp; \ddots &amp; \vdots \\
+w_{j, 1}^{[l]} &amp; \dots &amp; w_{j, k}^{[l]} &amp; \dots &amp; w_{j, n^{[l - 1]}}^{[l]} \\
+\vdots &amp; \ddots &amp; \vdots &amp; \ddots &amp; \vdots \\
+w_{n^{[l]}, 1}^{[l]} &amp; \dots &amp; w_{n^{[l]}, k}^{[l]} &amp; \dots &amp; w_{n^{[l]}, n^{[l - 1]}}^{[l]}
 \end{bmatrix}
 \begin{bmatrix}
 a_{1, i}^{[l - 1]} \\
@@ -107,56 +172,63 @@ b_j^{[l]} \\
 \vdots \\
 b_{n^{[l]}}^{[l]}
 \end{bmatrix},
-\end{align*}\]
+\end{align*}
+$$  
 
-&lt;p&gt;이를 수식으로 표현하면 다음과 같습니다.&lt;/p&gt;
+이를 수식으로 표현하면 다음과 같습니다.  
 
-\[\vec{z}_{:, i}^{[l]} = \vec{W}^{[l]} \vec{a}_{:, i}^{[l - 1]} + \vec{b}^{[l]}\]
+$$\vec{z}_{:, i}^{[l]} = \vec{W}^{[l]} \vec{a}_{:, i}^{[l - 1]} + \vec{b}^{[l]} $$ 
 
-&lt;p&gt;vector space는 다음과 같이 정의됩니다 .\(\vec{z}_{:, i}^{[l]} \in \mathbb{R}^{ {n^{[l]}}} , \vec{W}^{[l]} \in \mathbb{R}^{n^{[l]} \times n^{[l - 1]}}  , \vec{b}^{[l]} \in \mathbb{R}^{ {n^{[l]}}} , \vec{a}_{:, i}^{[l - 1]} \in \mathbb{R}^{ {n^{[l - 1]}}}\)&lt;/p&gt;
+vector space는 다음과 같이 정의됩니다 .$$\vec{z}_{:, i}^{[l]} \in \mathbb{R}^{ {n^{[l]}}} , \vec{W}^{[l]} \in \mathbb{R}^{n^{[l]} \times n^{[l - 1]}}  , \vec{b}^{[l]} \in \mathbb{R}^{ {n^{[l]}}} , \vec{a}_{:, i}^{[l - 1]} \in \mathbb{R}^{ {n^{[l - 1]}}}$$
 
-&lt;p&gt;이는 1개의 training data에 대한  math expression입니다. 이를 이제 \(m\)개의 batch data의 size로 확장하여 vectorize를 해보겠습니다.&lt;/p&gt;
+이는 1개의 training data에 대한  math expression입니다. 이를 이제 $$ m $$개의 batch data의 size로 확장하여 vectorize를 해보겠습니다.   
 
-\[\begin{align}
-\vec{Z}^{[l]} &amp;amp;=
+$$
+\begin{align}
+\vec{Z}^{[l]} &amp;=
 \begin{bmatrix}
-\vec{z}_{:, 1}^{[l]} &amp;amp; \dots &amp;amp; \vec{z}_{:, i}^{[l]} &amp;amp; \dots &amp;amp; \vec{z}_{:, m}^{[l]}
+\vec{z}_{:, 1}^{[l]} &amp; \dots &amp; \vec{z}_{:, i}^{[l]} &amp; \dots &amp; \vec{z}_{:, m}^{[l]}
 \end{bmatrix}  \\
-&amp;amp;= \vec{W}^{[l]}
+&amp;= \vec{W}^{[l]}
 \begin{bmatrix}
-\vec{a}_{:, 1}^{[l - 1]} &amp;amp; \dots &amp;amp; \vec{a}_{:, i}^{[l - 1]} &amp;amp; \dots &amp;amp; \vec{a}_{:, m}^{[l - 1]}
+\vec{a}_{:, 1}^{[l - 1]} &amp; \dots &amp; \vec{a}_{:, i}^{[l - 1]} &amp; \dots &amp; \vec{a}_{:, m}^{[l - 1]}
 \end{bmatrix} +
 \begin{bmatrix}
-\vec{b}^{[l]} &amp;amp; \dots &amp;amp; \vec{b}^{[l]} &amp;amp; \dots &amp;amp; \vec{b}^{[l]}
+\vec{b}^{[l]} &amp; \dots &amp; \vec{b}^{[l]} &amp; \dots &amp; \vec{b}^{[l]}
 \end{bmatrix} \notag \\
-&amp;amp;= \vec{W}^{[l]} \vec{A}^{[l - 1]} + broadcast(\vec{b}^{[l]}), \notag \\
-\end{align}\]
+&amp;= \vec{W}^{[l]} \vec{A}^{[l - 1]} + broadcast(\vec{b}^{[l]}), \notag \\
+\end{align}
+$$  
 
-&lt;p&gt;vector space는 다음과 같이 정의됩니다 .\(\vec{Z}^{[l]} \in \mathbb{R}^{n^{[l]} \times m} , \vec{A}^{[l - 1]} \in \mathbb{R}^{n^{[l - 1]} \times m}\)&lt;/p&gt;
+vector space는 다음과 같이 정의됩니다 .$$ \vec{Z}^{[l]} \in \mathbb{R}^{n^{[l]} \times m} , \vec{A}^{[l - 1]} \in \mathbb{R}^{n^{[l - 1]} \times m}$$
 
-&lt;h3 id=&quot;al-의-vectorization&quot;&gt;\({A}^{[l]}\) 의 vectorization&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://kau365-my.sharepoint.com/personal/oongjoon_kau_kr/Documents/%EB%B8%94%EB%A1%9C%EA%B7%B8%EC%9D%B4%EB%AF%B8%EC%A7%80/DeepLearning/Architecture/feedforward-al.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;위의 그림은 \(Z^{[l]}\) 을 activation function \(g^{[l]}\) 에 parameter 로 넘겨주는 그림입니다. \(Z^{[l]}\) 의 모든 node가 \({A}^{[l]}\)의 각 node에 전부 연결되어 있습니다. \(g^{[l]}\) 이 아직 확정이 되지 않았기에 그렇습니다. 보통은 RELU를 사용하게 되어 1 대 1 mapping 관계가 되지만, softmax를 사용하게 된다면 \(n^{[l]}\) 대 1 mapping 관계가 될 것입니다. notation은 &lt;a href=&quot;#term-definition&quot;&gt;Definition&lt;/a&gt;을 참조하시면됩니다.&lt;/p&gt;
+### $${A}^{[l]}$$ 의 vectorization
+![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217804&amp;authkey=%21AF5RN-qLjiNzdI4&amp;height=1121&amp;width=1233)  
 
-&lt;p&gt;아래와 같은 식으로 표현할 수 있습니다.&lt;/p&gt;
+위의 그림은 $$Z^{[l]}$$ 을 activation function $$g^{[l]} $$ 에 parameter 로 넘겨주는 그림입니다. $$Z^{[l]}$$ 의 모든 node가 $${A}^{[l]}$$의 각 node에 전부 연결되어 있습니다. $$g^{[l]} $$ 이 아직 확정이 되지 않았기에 그렇습니다. 보통은 RELU를 사용하게 되어 1 대 1 mapping 관계가 되지만, softmax를 사용하게 된다면 $$ n^{[l]} $$ 대 1 mapping 관계가 될 것입니다. notation은 [Definition](#term-definition)을 참조하시면됩니다.  
 
-\[\begin{equation}
+아래와 같은 식으로 표현할 수 있습니다.  
+
+$$ 
+\begin{equation}
 a_{j, i}^{[l]} = g_j^{[l]}(z_{1, i}^{[l]}, \dots, z_{j, i}^{[l]}, \dots, z_{n^{[l]}, i}^{[l]}). 
-\end{equation}\]
+\end{equation}
+$$  
 
-&lt;p&gt;위 수식을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(2)&lt;/code&gt; 이라 하겠습니다.&lt;/p&gt;
+위 수식을 `(2)` 이라 하겠습니다.  
 
-&lt;p&gt;마찬가지로, sequential하게 하는것이 아닌 parallell 하게 진행되기 때문에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(2)&lt;/code&gt; 를 vectorize 해보도록 하겠습니다.&lt;/p&gt;
+마찬가지로, sequential하게 하는것이 아닌 parallell 하게 진행되기 때문에 `(2)` 를 vectorize 해보도록 하겠습니다.    
 
-\[\begin{align*}
+$$
+\begin{align*}
 \begin{bmatrix}
 a_{1, i}^{[l]} \\
 \vdots \\
 a_{j, i}^{[l]} \\
 \vdots \\
 a_{n^{[l]}, i}^{[l]}
-\end{bmatrix} &amp;amp;=
+\end{bmatrix} &amp;=
 \begin{bmatrix}
 g_1^{[l]}(z_{1, i}^{[l]}, \dots, z_{j, i}^{[l]}, \dots, z_{n^{[l]}, i}^{[l]}) \\
 \vdots \\
@@ -164,60 +236,55 @@ g_j^{[l]}(z_{1, i}^{[l]}, \dots, z_{j, i}^{[l]}, \dots, z_{n^{[l]}, i}^{[l]}) \\
 \vdots \\
 g_{n^{[l]}}^{[l]}(z_{1, i}^{[l]}, \dots, z_{j, i}^{[l]}, \dots, z_{n^{[l]}, i}^{[l]}) \\
 \end{bmatrix}
-\end{align*}\]
+\end{align*}
+$$
+  
+이를 수식으로 표현하면   
 
-&lt;p&gt;이를 수식으로 표현하면&lt;/p&gt;
+$$
+\vec{a}_{:, i}^{[l]} = \vec{g}^{[l]}(\vec{z}_{:, i}^{[l]})
+$$  
 
-\[\vec{a}_{:, i}^{[l]} = \vec{g}^{[l]}(\vec{z}_{:, i}^{[l]})\]
+vector space는 다음과 같이 정의됩니다 .$$ \vec{a}_{:, i}^{[l]} \in R^{n^{[l]}} $$  
 
-&lt;p&gt;vector space는 다음과 같이 정의됩니다 .\(\vec{a}_{:, i}^{[l]} \in R^{n^{[l]}}\)&lt;/p&gt;
+위의 수식은  전체 activation 중 1개의 node를 의미합니다. 이를 전체 activation에 대해 확장해보도록 하겠습니다 . 
 
-&lt;p&gt;위의 수식은  전체 activation 중 1개의 node를 의미합니다. 이를 전체 activation에 대해 확장해보도록 하겠습니다 .&lt;/p&gt;
-
-\[\vec{A}^{[l]} =
+$$
+\vec{A}^{[l]} =
 \begin{bmatrix}
-\vec{a}_{:, 1}^{[l]} &amp;amp; \dots &amp;amp; \vec{a}_{:, i}^{[l]} &amp;amp; \dots &amp;amp; \vec{a}_{:, m}^{[l]}
-\end{bmatrix},\]
+\vec{a}_{:, 1}^{[l]} &amp; \dots &amp; \vec{a}_{:, i}^{[l]} &amp; \dots &amp; \vec{a}_{:, m}^{[l]}
+\end{bmatrix},
+$$  
 
-&lt;p&gt;vector space는 다음과 같이 정의됩니다. \(\vec{A}^{[l]} \in R^{n^{[l]} \times m}\)&lt;/p&gt;
+vector space는 다음과 같이 정의됩니다. $$ \vec{A}^{[l]} \in R^{n^{[l]} \times m} $$  
 
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+## Conclusion
 
-&lt;p&gt;임의의 layer의 vectorize 과정을 수학적으로 직접 도출해보았습니다. 아래와 같은 이유로 도움이 될 것이라 여겨집니다.&lt;/p&gt;
+임의의 layer의 vectorize 과정을 수학적으로 직접 도출해보았습니다. 아래와 같은 이유로 도움이 될 것이라 여겨집니다. 
 
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;neural net에 대한 이해도가 올라간다.
-neural net의 작동 원리를 깊게 이해하면, 모델의 성능을 향상시키고 문제를 해결하는 데 도움이 됩니다. 일반항을 도출하면 neural net의 내부 작동 방식을 더 잘 이해할 수 있습니다&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;neural net이 어떻게 계산을 최적화 하는지 이해
-vectorization 과정을 수식으로 도출하면, 어떻게 최적화할 수 있는지에 대한 통찰력을 얻을 수 있습니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;문제 해결 능력 
-벡터화 과정을 수식으로 도출하면, 모델이 예상대로 작동하지 않을 때 문제를 진단하고 해결하는 데 도움이 될 것입니다.. 이는 디버깅 및 최적화 과정에서 매우 유용합니다.\&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;커뮤니케이션 능력 향상
-이러한 수식을 도출하고 이해하는 능력은 다른 엔지니어, 연구원, 이해관계자와의 커뮤니케이션에서 중요합니다. 이를 통해 복잡한 개념을 명확하게 전달하고, 팀의 협업을 촉진할 수 있습니다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;가장 기본이다.
-feedforward network는 가장 기본적인 형태이기에 vectorize 과정을 수식으로 도출을 해본다면, 다른 neural net을 도출해내는 데에도 도움이 될 것입니다. 뿐만 아니라, 다른  neural net 모델들을 분해해보면 feedforward 가 사용되어지는 경우가 많습니다.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+1. neural net에 대한 이해도가 올라간다.
+neural net의 작동 원리를 깊게 이해하면, 모델의 성능을 향상시키고 문제를 해결하는 데 도움이 됩니다. 일반항을 도출하면 neural net의 내부 작동 방식을 더 잘 이해할 수 있습니다
 
-&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+2. neural net이 어떻게 계산을 최적화 하는지 이해
+vectorization 과정을 수식으로 도출하면, 어떻게 최적화할 수 있는지에 대한 통찰력을 얻을 수 있습니다.
 
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://jonaslalin.com/2021/12/10/feedforward-neural-networks-part-1/&quot;&gt;feedforward-neural-networks-part-1/journalsim From Jonas Lalin &lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Feedforward_neural_network&quot;&gt;wikiepdia&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Choi Woongjoon</name></author><category term="DLArchitecture" /><category term="Machine Learning" /><category term="deep learning" /><summary type="html">Mathematical view</summary></entry><entry><title type="html">The Phyiscal Layer</title><link href="http://localhost:4000/network/The-Physical-Layer/" rel="alternate" type="text/html" title="The Phyiscal Layer" /><published>2022-10-03T00:00:00+09:00</published><updated>2022-10-03T00:00:00+09:00</updated><id>http://localhost:4000/network/The-Physical-Layer</id><content type="html" xml:base="http://localhost:4000/network/The-Physical-Layer/">예전 Post에서 TCP-IP Model에 대해 설명을 한 적이 있습니다. TCP-IP Model은 5개의 layer로 이루어져 있는데, 오늘은 가장 아래 layer인 Physical Layer Model에 대해서 설명해보도록 하겠습니다. 
+3. 문제 해결 능력 
+벡터화 과정을 수식으로 도출하면, 모델이 예상대로 작동하지 않을 때 문제를 진단하고 해결하는 데 도움이 될 것입니다.. 이는 디버깅 및 최적화 과정에서 매우 유용합니다.\
+
+4. 커뮤니케이션 능력 향상
+이러한 수식을 도출하고 이해하는 능력은 다른 엔지니어, 연구원, 이해관계자와의 커뮤니케이션에서 중요합니다. 이를 통해 복잡한 개념을 명확하게 전달하고, 팀의 협업을 촉진할 수 있습니다.
+
+5. 가장 기본이다.
+feedforward network는 가장 기본적인 형태이기에 vectorize 과정을 수식으로 도출을 해본다면, 다른 neural net을 도출해내는 데에도 도움이 될 것입니다. 뿐만 아니라, 다른  neural net 모델들을 분해해보면 feedforward 가 사용되어지는 경우가 많습니다. 
+
+
+
+
+## Reference
+
+1.  [feedforward-neural-networks-part-1/journalsim From Jonas Lalin ](https://jonaslalin.com/2021/12/10/feedforward-neural-networks-part-1/)    
+
+2. [wikiepdia](https://en.wikipedia.org/wiki/Feedforward_neural_network)</content><author><name>Choi Woongjoon</name></author><category term="DLArchitecture" /><category term="Machine Learning" /><category term="deep learning" /><summary type="html">Mathematical view</summary></entry><entry><title type="html">The Phyiscal Layer</title><link href="http://localhost:4000/network/The-Physical-Layer/" rel="alternate" type="text/html" title="The Phyiscal Layer" /><published>2022-10-03T00:00:00+09:00</published><updated>2022-10-03T00:00:00+09:00</updated><id>http://localhost:4000/network/The-Physical-Layer</id><content type="html" xml:base="http://localhost:4000/network/The-Physical-Layer/">예전 Post에서 TCP-IP Model에 대해 설명을 한 적이 있습니다. TCP-IP Model은 5개의 layer로 이루어져 있는데, 오늘은 가장 아래 layer인 Physical Layer Model에 대해서 설명해보도록 하겠습니다. 
 
 # Physical Layer?
 
@@ -1430,230 +1497,4 @@ if not found:
      print('not found')	
 ```
 
-loop else를 사용하지 않는다면 flag status로 따로 loop 밖에서 발견하지 못한  flow를 처리해 주어야 할 것입니다.</content><author><name>Choi Woongjoon</name></author><category term="Python" /><category term="Python" /><category term="loop" /><category term="Statemens" /><summary type="html">for and while detail in Python</summary></entry><entry><title type="html">Categorical variable’s representation and interpretation</title><link href="http://localhost:4000/statistics/Analyzing-Categorical-data/" rel="alternate" type="text/html" title="Categorical variable’s representation and interpretation" /><published>2022-03-11T00:00:00+09:00</published><updated>2022-03-11T00:00:00+09:00</updated><id>http://localhost:4000/statistics/Analyzing-Categorical-data</id><content type="html" xml:base="http://localhost:4000/statistics/Analyzing-Categorical-data/">Machine Learning 혹은 Deep Learning이라는 어떤 주어진 data의 distribution을 구하는 것입니다. 이를 위해서는 statistics에 대한 이해도가 필요합니다. 물론 , statistics를 모르고도 deep learning을 할 수 있지만, data를 어떻게 분석하고,  model을 해석하는데 statistics는 유용한 tool이 되어줍니다. 따라서, statistics를 공부를 하는것은 machine learning에 있어서 필수적이라 볼 수 있습니다.
-
-khan academy의 statistics 강의를 듣고 정리하는 식으로 공부할려 합니다. 
-
-
-
-# Analyzing Categorical data
-
-## Variable ,individual
-
-| Drink             | Type | Calories | Sugars(g) | Caffeine(mg) |
-| ----------------- | ---- | -------- | --------- | ------------ |
-| Brewed Coffe      | Hot  | 4        | 0         | 260          |
-| Caff'e latte      | Hot  | 100      | 14        | 75           |
-| Caff'e latte      | Hot  | 170      | 27        | 95           |
-| Cappucino         | Hot  | 60       | 8         | 75           |
-| Iced brewed coffe | Cold | 60       | 15        | 120          |
-| Chai latte        | Hot  | 120      | 25        | 60           |
-
-이러한 coffee data가 예시로 주어졋다고 가정하겠습니다. 
-
-여기서, Individual은 drink가 됩니다. 왜냐하면, 각 drink가 개별적인 data를 나타내기 때문입니다. 
-
-&gt;여기서, individual을 제외한 나머지 column은 variable이고 각 row가 data를 의미합니다.
-
-variable은 두 가지 종류가 있는데 , quantitive 와 categorical 입니다.
-
-&gt; quantitive는  어떤 목록에 fit할 수 없는 값들을 나타냅니다.
-&gt;
-&gt; categorical은 몇 개의 목록(bucket)을 가지는 값을 의미합니다.
-
-## analyzing One categorical variable
-
-1개의 categroical variable을 여러개의 representaion으로 나타낼 수 있습니다. 그에 대해 알아보고자 합니다.
-
-### pictographs
-
-![image](https://user-images.githubusercontent.com/50165842/157341172-2a5f82e2-8427-4920-bf99-af6f8437380d.png)
-
-pictograph란 &quot;이미지나 심볼을 사용하여 data를 representation하는 방법&quot;을 의미합니다.
-
-통계학을 처음 배울때 , visualizing하기 쉬우므로 많이 사용되는 방법이기도 합니다.
-
-위의 예제에서, symbol 1개는 5개의 다람쥐를 의미합니다. 이를 수식적으로 표현하면 5마리의 다람쥐 / 심볼 입니다.
-
-pictograph 를 읽는 방법은 아래와 같습니다.
-
-&gt; Jazz에 참가한 다람쥐의 symbol수는 5개입니다. 
-&gt;
-&gt; 5 개의 심볼* (5마리의 다람쥐 / 심볼) 을 계산한다.
-&gt;
-&gt; 심볼이 약분되어서 5 * 5마리의 다람쥐 = 25마리의 다람쥐 
-
-### bar charts
-
-![image](https://user-images.githubusercontent.com/50165842/157343173-a5d33159-2e5e-4b37-87fc-632ae2e992f4.png)
-
-
-
-bar chart의 경우 one-way table이 있는 경우 , bar chart로 변환할 수 있습니다. 
-
-bar chart를 만들 때에는 scale 단위를 잘 정해야 합니다. scale의 단위가 너무 작으면 data를 bar chart내에서 표현할 수 없습니다. 예를들어 , max 값이 40이 제한이라면 50이라는 값을 넘기는 variable이 4개중 3개이기에 의미 있는 정보를 도출할 수 없습니다. 만약에 , max 값이 10000이라면 4개간의 비교를 시각적으로 하기 어려울 것입니다. 따라서, 위의 예제의 경우 이상적인 scale은 min값 0 에 max값 70으로 볼 수 있을 것입니다. 
-
-![image](https://user-images.githubusercontent.com/50165842/157343194-41e847a7-c315-4e14-a142-013ceb985500.png)
-
-
-
-### bar chart comparing two sets
-
-bar chart를 이용하면 1개의 set 뿐만 아니라 2개의 set을 비교할 수도 있습니다.
-
-
-
-
-
-![image](https://user-images.githubusercontent.com/50165842/157555346-be29e9aa-6a5d-4139-843c-706b907a9e5a.png)
-
-예를 들면 , 한 사람의 시험 점수를 기말, 중간 으로 나누어서 표현할 수 있습니다.
-
-### bar chart question
-
-Q . bar chart로 부터 물어볼 수 있는 정보는 무엇이 있을까요?
-
-A. 
-
--  range
-- mid-range
--  median
-- 최빈값(mode) 
-- average
-
-
-
-
-
-
-
-## Two-way table
-
-여태까지는 1개의 variable만을 table이나 cahrt에 표현하는 방법에 대해서만 알아보았습니다. 하지만,2개의 variable을 한번에 table에 표현할 수도 있습니다. 이번에는 2개의 variable을 table에 표현하는 방법을 알아보도록 하겠습니다 .
-
-&gt; 100명의 사람이 있는데, 남자는 48명 , 여자가 52명이 있습니다. 이 사람들에게 어떤 동물을 선호하는지 조사하였습니다. 남자는 36명이 개를 , 10명이 고양이를 , 2명은 선호하는 동물이 없다고 합니다. 여자는 20명이 개를, 26명이 고양이를, 6명은 선호하는 동물이 없다고 합니다.
-
-위의 조사한 내용을 여러 표현 방법으로 표현해보도록 하겠습니다.
-
-
-
-### two-way frequency table
-
-![image](https://user-images.githubusercontent.com/50165842/157670735-afb44c35-328d-4573-a0d4-d5663757bf3f.png)
-
-1. 위 data는 2개의 categorical variable을 가지고 있습니다. 이 variable은 성별, 선호도를 나타냅니다.
-2. 성별 variabl이 2개의 bucket, 선호도의 variable이 3개의 bucket을 가지므로 6개의 cell에 value를 넣어야 합니다.
-3. 3개의 row에 선호도 variable , 2개의 column이 성별을 나타내도록 합니다.
-4. (row,column) 에 해당하는 위치에 해당하는 value를 기입합니다.
-
-
-
-위와 같이 count를 채워 넣는 것을 frequency table이라고 합니다.
-
-
-
-### venn diagram
-
-![image](https://user-images.githubusercontent.com/50165842/157671681-76015b84-952f-4915-8cd4-521078d35d0e.png)
-
-
-
-각 variable이 2개의 bucket을 가진다면 쉽게 venn diagram으로 표현할 수 있습니다.
-
-![image](https://user-images.githubusercontent.com/50165842/157672946-efed14c6-a90c-452f-8578-0f9d4f98086c.png)
-
-
-
-
-
-
-
-### two-way relative frequency table
-
-![image](https://user-images.githubusercontent.com/50165842/157774712-934c24b2-8d87-4899-a297-ed4a4f24ed49.png)
-
-
-
-frequency table을 다르게 나타낼 수도 있습니다. 각 column에 대한 percentage(relative-frequency)가 궁금할 수도 있고 , row에 대한 percentage(relative-frequency)가 궁금할 수 도 있습니다.
-
-한 variable을 기준으로 다른 variable의 가능성을 비교할 수 있게 됩니다. 
-
-예를 들어서 , 위 data에서는 sports를 play 하지 않는 학생은 sports를 play 하는 학생들 보다 악기를 play할 가능성이 높습니다.
-
-### interprete two-way table
-
-![image](https://user-images.githubusercontent.com/50165842/157775529-b55e9502-a835-46c4-9df6-0ddbac2f2e11.png)
-
-two-way table을 좀더 보도록 하겠습니다. 
-
-two-way table을 사용하면 한 variable에 대해서 다른 variable이 어떻게 변하는지를 알 수 있습니다 .  이를 해석하는 방법은 여러가지가 있는데 , 이에 대해 다루어보겠습니다.
-
-1.
-
-Computer time이라는 variable에 대해서 Hours/night라는 variable은 아래와 같이 변해갑니다.
-
-- minimal :   5 or fewer   &lt;  5-7   &lt;  7 or more
-- Moderate :   5 or fewer   ~= 5-7  ~=  7 or more
-- Extreme :    5 or fewer &gt;  5-7  &gt; 7 or more
-
-Computer Time 이 줄어 들수록 잠을 자는 시간이 늘어나므로 , minimal 과 7 or more는 관련이 있다는 결과를 도출해 낼 수 있습니다.
-
-
-
-2.
-
-7 or more 에서 Minimal 의 비율은 55 %입니다.  7 or more에서 Extreme의 비율은 20 %입니다. 따라서, Minimal 이 7 or more에서 majority이므로 , 7 or more과 Minimal 이 관계가 있다고 볼 수 있습니다.
-
-
-
-3.
-
-7 or more에서 Minimal 의 비율은 55 %입니다. Minimal은 전체의 35.8 %입니다. Minimal이 전체의 대부분이 아니므로 , 다른 이용 시간에서  Minimal 의 비율이 majority가 아닙니다. 따라서 , 7 or more과 Minimal이 관련이 있다고 볼 수 있습니다.
-
-이를 다른 variable을 기준으로 생각하면 Minimal 에서 7 or more의 비율이 51.1 % 이고 , 7 or more은 전체의 33.3 %이므로 Minimal 과 7 or more는 관련이 있다고 볼 수 있습니다. 
-
-
-
-
-
-## Marginal distribution and conditional distribution
-
-위에서 two-way table을 보았는데 , 이는 2개의 dimension (2개의 variable)을 따르므로 joint distribution이라 볼 수 있습니다.
-
-이번에는 이 distribution 중 2가지 type의 distribution에 대해서 알아보도록 하겠습니다.
-
-### marginal distribution
-
-![image](https://user-images.githubusercontent.com/50165842/157877405-0c44a84d-ee80-4be9-a97b-a54469a481fb.png)
-
-이러한 two-way table이 있을때 초록색으로 highlight 된 부분이 있습니다. 이 부분은 전체에서 , Graduate, Undergraduate , 즉 각 student level 얼마만큼의 사람이 있는지를 보여줍니다.
-
-이와 같이, 전체에 대해서 한가지 variable만을 기준으로 각  bucket에 얼마나 있는지 보는 것을 marginal distribution 이라고 합니다.
-
- marginal distribution은 1가지 variable에 집중한다 보셔도 됩니다.
-
-
-
-### conditional distribution
-
-Q . 각 student level 에 대한 A status variable의 conditional distribution을 구하시오
-
-
-
-
-
-![image](https://user-images.githubusercontent.com/50165842/157877994-a24d17be-deb3-4a80-b5a7-7608df21d01e.png)
-
-
-
-Conditional Distribution이라 함은 a라는  variable이 있고  , b라는 variable에 대하여 어떤 값이 주어졌을 때 이를 percentage로 나타낸 것이, 이를 b에 대한 a의   conditional distribution 이라고 합니다.
-
-
-
-
-
-
-
-# Reference
-
-[ Analyzing categorical data  Statistics and probability Khan Academy](https://www.khanacademy.org/math/statistics-probability/analyzing-categorical-data)</content><author><name>Choi Woongjoon</name></author><category term="Statistics" /><category term="Mathmathics" /><category term="Machine Learning" /><category term="Khan" /><category term="Statistics" /><category term="cateogrical data" /><summary type="html">one-way table, two-way table, bar graph, distribution</summary></entry></feed>
+loop else를 사용하지 않는다면 flag status로 따로 loop 밖에서 발견하지 못한  flow를 처리해 주어야 할 것입니다.</content><author><name>Choi Woongjoon</name></author><category term="Python" /><category term="Python" /><category term="loop" /><category term="Statemens" /><summary type="html">for and while detail in Python</summary></entry></feed>
