@@ -31,6 +31,7 @@ avoidable bias는 **Bayes error approximation 과 training error 간의 차이**
 모델의 performance를 높이기 위한 전략을 세우게 됩니다. 이때, avoidable bias는 0 이상이어야 하므로, training error의 upper bound가 human level performance임을 내포하고 있습니다.  
 
 ## bias reduction or variance reduction ?
+  
 |error type|Approach|
 |-------------|-----------------------------------------|
 |High Avoidable Bias| - Traing Bigger Model </br> - Train Longer </br> - Better Optimization Algorithm </br> - Architecture,hyperparameter search|
@@ -52,6 +53,7 @@ dev, test, train의 error를 사람이 확인해서 구체적인 insight를 얻�
 |...| | | | | 
 
 체크를 하다 보면, labeling이 잘못되어 있는 경우가 있을 수 있습니다. 이 경우에는 label miss라는 마크를 따로 달아두는 것이 좋다고 합니다.  
+
 |Image|Dog|Cat|....|miss label|Comments|
 |-------------|-------------|-------------|-------------|-------------|-------------|
 |1| |$$\checkmark$$ | ||Pitball|
@@ -91,6 +93,7 @@ Data Augmentation은 기존에 가지고 있는 data로 새로운 data를 합성
 Train data와 dev, test의 data가 서로 다른 distribution인지 아닌지 모를 수도 있습니다. 이럴 때는, train-dev라는 새로운 data set을 만듦으로써 확인할 수 있습니다. train data에서 무작위로 train-dev를 sampling 하므로 train-dev와 train은 같은 distribution을 갖게 됩니다. 따라서, 이 model이 unseen data에 대해서 예측을 잘하는지를 판단할 수 있게 됩니다. 
 
 # Decision Making in General Foramt
+  
 |Error Type|Comapre|
 |-------------|-----------|
 |high avoidable bias|human-level vs train error|
