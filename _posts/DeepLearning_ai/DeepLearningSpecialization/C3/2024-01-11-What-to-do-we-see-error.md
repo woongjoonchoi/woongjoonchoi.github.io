@@ -34,8 +34,8 @@ avoidable bias는 **Bayes error approximation 과 training error 간의 차이**
   
 |error type|Approach|
 |-------------|-----------------------------------------|
-|High Avoidable Bias| - Traing Bigger Model </br> - Train Longer </br> - Better Optimization Algorithm </br> - Architecture,hyperparameter search|
-|High Variance| - More Data </br> - regularization </br> - Architecture,hyperparameter search|  
+|High Avoidable Bias| - Traing Bigger Model  <br/> - Train Longer  <br/> - Better Optimization Algorithm  <br/> - Architecture,hyperparameter search|
+|High Variance| - More Data <br/> - regularization <br/> - Architecture,hyperparameter search|  
 
 Avoidable bias가 높다는 것은 모델이 Training data를 잘 학습하지 못한다는 뜻이므로, parameter가 더 많은 모델을 사용하거나 훈련을 더 길게 하거나 optimization 알고리즘이 다른 걸 사용할 수 있습니다.
 Variance가 높다는 것은 모델이 과적합 되었다는 뜻이므로, 더 많은 데이터를 수집하거나 Regularization 기법을 사용할 수 있습니다.  
