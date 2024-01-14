@@ -24,11 +24,11 @@ toc_sticky: true
 
 Recursive Algorithm을 사용하게 되면 python 기준 새로운 stackframe가 namespace가 생성이 됩니다 . 그리고 , 이 새로운 stackframe에 name이 bind 됩니다. 
 
-![5-2. [자료구조] 이진트리(binary tree)](https://t1.daumcdn.net/cfile/tistory/9969463D5B33AEFA0A)
+![5-2. [자료구조] 이진트리(binary tree)](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217824&authkey=%21AKrm8cD9n11IvQg&width=500&height=306)
 
 만약, binary tree가 완벽한(perfect) binary tree라면 tree의 높이는$$O(\log n)$$ 이 나올 것입니다. 따라서, 최소 $$ O(\log n)$$ 의 stackframe이 생성이 될것입니다.
 
-![Creating a right skewed binary tree in C - Stack Overflow](https://i.stack.imgur.com/9w8b7.png)
+![Creating a right skewed binary tree in C - Stack Overflow](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217825&authkey=%21AATrPXZbRKvGR3Q&width=421&height=269)
 
 만약에 binary tree 가 치우쳐져(skewed) 있다면 , tree 의 높이는 $$ O(n)$$ 가 될 것입니다. 따라서 , stackframe은 최악의 경우(worst case) $$O(n) $$ 개수 만큼 생성 될 것입니다.  Stackframe 생성에 제한이 있는 environment 라면, 상당히 큰 이슈가 될 것입니다.
 
@@ -50,7 +50,7 @@ Tree Traversal 알고리즘은 아주 큰 단점을 가지고 있습니다. 바�
 
 ## TBT(Threaded Binary Tree)
 
-![스레드 이진 트리 - 위키백과, 우리 모두의 백과사전](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Threaded_tree.svg/1200px-Threaded_tree.svg.png)
+![스레드 이진 트리 - 위키백과, 우리 모두의 백과사전](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217826&authkey=%21AKsX0Nu0H5dSFA4&width=630&height=535)
 
 Threaded Binary Tree, 즉 TBT는 stack frame을 사용하지 않고 , space wasted 를 해결하고 , root가 아니더라도 traversal이 가능하게끔 
 
@@ -155,7 +155,7 @@ Idea는 간단합니다. 이 tree를 skewed tree로 만드는 것입니다.  대
 
 위 알고리즘을 무한히 반복하면  stack 없이 inorder traversal의 결과를 얻게 됩니다.
 
-![Morris Traversal · LeetCode](https://ttzztt.gitbooks.io/lc/content/assets/Morris_Inorder.png)
+![Morris Traversal · LeetCode](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217827&authkey=%21AOOTvTfWXz2Jg_Y&width=2496&height=1060)
 
 
 
