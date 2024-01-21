@@ -42,23 +42,23 @@ blocking,non blocking은 I/O api에서 사용되는 개념입니다. data를 rea
 ![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217846&authkey=%21AIFoSWztVEf8__U&width=280&height=230)  
 이번에는 sync,async 그리고 blocking,non blocking을 결합한 모든 경우 4가지를 살펴보도록 하겠습니다. 아래의 예시들은 IBM의 블로그에서 가져왔습니다. 
 ### Synchronous blocking I/O
-![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217841&authkey=%21AHtLt7Sg1RFMkno&width=538&height=340)  
+![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217845&authkey=%21ACDJFjlBed31WXw&width=768&height=493)  
 user application이 system call을하고 system call이 완료될 때 까지 system call이 application을 block합니다. 
 여기서 cpu를 차지하지 않고 system call의 response를 기다리고 있기에 효율적이라 볼 수 있다고 합니다.  
 read system call이 호출되면 , system call이 application을 block하고 context는 kernel 전환되어집니다. 
 
 ### Synchronous non-blocking I/O
-![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217844&authkey=%21AAXEgvXfjhbCNHM&width=474&height=340)  
+![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217849&authkey=%21APD7PUTY2InbhPo&width=546&height=392)  
 이 case에서는 user application이 system call을 요청하는데 , read는 error를 return하고 call이 수행되지 않습니다. 대부분의 case에서 user application은 data를 읽어야 다음 작업을 수행할 수 있기에 무수히 많은 system call을 read가 수행될 떄 까지 하게 됩니다.  
 data가 kerenl에서 접근이 가능해지고 , user 가 호출한 read가 다시 return 되기 까지의 시간이 길어지기에  , IO에서 latency가 증가되고, 따라서 전체적인 처리량이 감소하게 됩니다.  
 
 ### Asynchronous blocking I/O
-![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217843&authkey=%21AKIBNtY_EnPbH5s&width=541&height=340)  
+![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217849&authkey=%21APD7PUTY2InbhPo&width=546&height=392)  
 이 case에서는 user application이 select라는 system call을 요청하는 case입니다. select는 file descriptor가 쓰기 가능한지, 읽기 가능한지 에 대한 것을 알려줍니다. 하나의 file descriptor만이 아니라 1024 이하의 file descriptor에 대해 알려주게 됩니다. 여기서, user application은 다음 작업을 하러 가도 됩니다. 즉, asynchronous합니다. 하지만,select가 user application을 blocking 하기에 기다리게 됩니다.  
 이 select는 비효율적이기에 고성능 I/O에서 사용되는 것은 권장되지 않는다고 합니다. 
 
 ### Asynchronous non-blocking I/O (AIO)
-![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217842&authkey=%21ALwinUqGvysgdig&width=481&height=340)  
+![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217848&authkey=%21AKSg7EXa9R4YtLk&width=559&height=388)  
 asynchronous non-blocking I/O 모델은 호출한 process와 I/O의 작업을 overlap하여 실행하게 됩니다. user application이 aio_read라는 system call을 하게되면 read가 성공했다고 즉시 return을 받게됩니다. user application은 다른 process를 수행하면서, 동시에 background에서는 I/O가 read를 수행하고 있습니다.  read의 response가 user application에 도착하면 , signal이나 callback이 발생하여 data가 kernel에서 user application으로 전송되게 됩니다. 
 여러 I/O 요청에 대해 단일 프로세스에서의 계산과 I/O처리를 겹치는 것은 프로세스의 처리속도와 I/O의 처리속도의 차이를 최대한 활용합니다. 하나 이상의 느린 I/O요청이 처리되는 동안 CPU는 프로세스의 다른 작업을 처리할 수 있고, I/O가 처리가 되면 CPU는 이에 대해 동작을 수행하고 동시에 새로운 I/O요청이 수행됩니다.  
 ## Conclusion 
