@@ -61,7 +61,8 @@ NVIDIA의 Cuda 에서는 data를 작은 chunk들로 쪼갠 다음에, data trans
 
 ### 주의점
 
- 염두에 둬야 할 것이 있습니다. non-blocking configuration을 설정하는 것 자체는 program에 나쁜 점은 없습니다. 하지만, 실제로 non-blocking을 사용하는 것과 사용하지 않은 것의 차이가 없을 수 있습니다. 병렬적으로 computation을 하지 못하고 모든 small chunk data를 기다려야 하는 지점, 즉 sync point 때문입니다. 예를 들어, tensor를 transformation 하는 것은 small chunk에 대해 각각 적용되어도 최종 결과에는 차이가 없습니다. 하지만, 특정 dimension에 대해 normalize를 하는 경우, 예를 들어 batch normalization, batch 전체에 대한 statistic을 계산해야 하기에 batch norm 함수는 host에 대해 non-block이야 합니다.
+ 염두에 둬야 할 것이 있습니다. non-blocking configuration을 설정하는 것 자체는 program에 나쁜 점은 없습니다. 하지만, 실제로 non-blocking을 사용하는 것과 사용하지 않은 것의 차이가 없을 수 있습니다. 병렬적으로 computation을 하지 못하고 모든 small chunk data를 기다려야 하는 지점, 즉 sync point 때문입니다. 예를 들어, tensor를 transformation 하는 것은 small chunk에 대해 각각 적용되어도 최종 결과에는 차이가 없습니다. 하지만, 특정 dimension에 대해 normalize를 하는 경우, 예를 들어 batch normalization, batch 전체에 대한 statistic을 계산해야 하기에 hots 는 batch norm 함수에 대해 synchronous여야 합니다.
+
  즉, model의 computation에 대한 수학적인 이해가 바탕이 되지 않는다면 성능에 대한 profiling을 할 수 없을 것입니다. 
 
 ## All together
