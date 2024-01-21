@@ -42,8 +42,10 @@ Cuda 에서 host에서 device(GPU)로 data를 전송하기 위해서는 임시�
 Pinned memory를 고정해 놓음으로써 host의 pageable memory와 pinned memory 사이의 전송 cost를 없앨 수 있습니다.  
 
 ## prefetch
-prefetch의 pytorch docs의 정의는 다음과 같습니다.
->prefetch_factor (int, optional, keyword-only arg) Number of batches loaded in advance by each worker. 2 means there will be a total of 2 * num_workers batches prefetched across all workers. (default value depends on the set value for num_workers. If value of num_workers=0 default is None. Otherwise, if value of num_workers > 0 default is 2).
+prefetch의 pytorch docs의 정의는 다음과 같습니다.  
+
+>prefetch_factor (int, optional, keyword-only arg) Number of batches loaded in advance by each worker. 2 means there will be a total of 2 * num_workers batches prefetched across all workers. (default value depends on the set value for num_workers. If value of num_workers=0 default is None. Otherwise, if value of num_workers > 0 default is 2).  
+
 모든 worker가 prefetch * batch_size만큼의 data를 미리 loading 하게 됩니다. 따라서, Disk와 host 간의 통신이 줄어들게 되어 overhead를 많이 줄일 수 있게 됩니다. 하지만, 이 역시 CPU의 spec을 고려해서 잘 설정해야 합니다.  
 
 ## non_blocking
