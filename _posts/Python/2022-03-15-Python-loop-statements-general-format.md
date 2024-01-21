@@ -1,5 +1,5 @@
 ---
-title : "Python loop statement general format and general definition"
+title : "Python loop statement의 일반적인 형태 와 정의 .어떻게 loop에서 Flag변수를 사용하지 않을 수 있는가? "
 
 
 
