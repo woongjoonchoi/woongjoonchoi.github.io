@@ -26,7 +26,7 @@ Sync ,Async 는 앞에 철자 a가 붙어있기 때문에 반대되는 개념이
 1.  synchronization은 B process를 호출한 process A가 B process의 처리결과를 신경써서 기다리는 것이다.
 2.  asynchronization은 B process를 호출한 process A 가 B process의 처리결과를 신경쓰지 않고 기다리지 않고 자신의 동작을 수행한다. 
 
-호출한 process A가 다른 process들이 특정 부분에서 서로의 순서나 공유자원등을 신경쓰는 것은 process A가 나머지 process들의 처리결과를 신경쓴다고 볼 수 있습니다.  
+호출한 process A가 특정 부분에서 다른 process를 호출하고 동작의 순서가 특정한 순서가 되도록 하는 것은 process A가 나머지 process들의 처리결과를 신경쓴다고 볼 수 있습니다.  
 main program ,즉 process A와 특정 이벤트를 처리하는 방법, 즉 process B과 서로 신경쓰지 않고  process B가 발생합니다. process A가 process B의 처리결과를 신경쓰지 않고 자신의 동작을 수행함과 같은 의미입니다. 
 ## Block vs Nonblock
 blocking,non blocking은 I/O api에서 사용되는 개념입니다. data를 read하거나 write하는 등의 작업이 I/O 작업입니다. 
