@@ -23,7 +23,7 @@ Pytorch의 DataLoader class를 보면 num_worker라는 configuration이 있습�
 num_workers (int, optional) how many subprocesses to use for data loading. 0 means that the data will be loaded in the main process. (default: 0)
 ```
 
-subprocess가 fork()로 생성되어(unix의 경우), batch_size * num_worker만큼의 data를 로딩하게 됩니다. 여기서, 주목해야 할 점은 호출하는 main process는 worker에 대해 asynchronous 하다는 점입니다. 즉, main process가 data를 GPU로 로딩하고 훈련하게 되면, num worker는 parallel 하게 data를 fetching 하게 됩니다.
+subprocess가 fork()로 생성되어(unix의 경우), batch_size * num_worker만큼의 data를 로딩하게 됩니다. 여기서, 주목해야 할 점은 호출하는 main process는 worker에 대해 asynchronous 하다는 점입니다. 즉, main process가 data를 GPU로 로딩하고 훈련하게 되면, num worker는 parallel 하게 data를 fetching 하게 됩니다.worker는 data를 read하는 I/O operation이기에 worker는 main process를 non-blocking 한다고 할 수 있습니다.
 
 num_worker configuration을 사용할 때 주의점은 CPU의 메모리를 얼마나 잡아먹는지를 고려하면서 사용해야 한다는 점입니다. parent process와 똑같은 양의 CPU 메모리를 worker process가 차지하게 되는데, 만약에 Datset Class가 매우 큰 List를 포함하고 있다면 `worker * parent process size`만큼의 메모리를 차지하게 될 것입니다. 
 
@@ -47,6 +47,8 @@ prefetch의 pytorch docs의 정의는 다음과 같습니다.
 >prefetch_factor (int, optional, keyword-only arg) Number of batches loaded in advance by each worker. 2 means there will be a total of 2 * num_workers batches prefetched across all workers. (default value depends on the set value for num_workers. If value of num_workers=0 default is None. Otherwise, if value of num_workers > 0 default is 2).  
 
 모든 worker가 prefetch * batch_size만큼의 data를 미리 loading 하게 됩니다. 따라서, Disk와 host 간의 통신이 줄어들게 되어 overhead를 많이 줄일 수 있게 됩니다. 하지만, 이 역시 CPU의 spec을 고려해서 잘 설정해야 합니다.  
+### In My opinion
+제 생각에는 실제로 써먹기 힘든 옵션이라 생각합니다.gpu가 data를 기다리는 상황이 얼마나 발생할지에 따라 달라질 수 있습니다. 하지만 ,  하드웨어 리소스가 이 정도로 충분하다면 , 애초에 하드웨어의 스펙을 최적화해서 단가를 낮추는 게 더 경제적이라고 생각합니다. 
 
 ## non_blocking
 non block의 pytorch docs의 정의는 다음과 같습니다. 
