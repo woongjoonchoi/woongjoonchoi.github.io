@@ -8,10 +8,10 @@ main:
     url: /categories/
   - title: "Tags"
     url: /tags/
-  - title : "CV"
-    url :  "https://kau365-my.sharepoint.com/:b:/g/personal/oongjoon_kau_kr/EUebRgY_s5xFikJdu4cCTZgBSeQd5DRoslVvEaEhYt2WYw?e=kNtQkx"
-  - title : "CV_KR"
-    url :  "https://kau365-my.sharepoint.com/:b:/g/personal/oongjoon_kau_kr/EY70u-guz5BOnxNWqBdBcrIBoAbFny3p8tUOcPE8x7QZTA?e=h34VMJ"
+  # - title : "CV"
+  #   url :  "https://kau365-my.sharepoint.com/:b:/g/personal/oongjoon_kau_kr/EUebRgY_s5xFikJdu4cCTZgBSeQd5DRoslVvEaEhYt2WYw?e=kNtQkx"
+  # - title : "CV_KR"
+  #   url :  "https://kau365-my.sharepoint.com/:b:/g/personal/oongjoon_kau_kr/EY70u-guz5BOnxNWqBdBcrIBoAbFny3p8tUOcPE8x7QZTA?e=h34VMJ"
 
   # - title: "Sitemap"
   #   url: /sitemap/
