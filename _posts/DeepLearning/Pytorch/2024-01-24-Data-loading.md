@@ -16,7 +16,7 @@ toc_sticky: true
 # Pin-memory,worker,pre-fetch,gpu non-blocking을 다 합쳐서 생각해보자. 
 pytorch의 docs를 보면서 worker라는 configuration을 지정해 주면 단순히 worker라는 게 생겨서 data를 loading 해준다고만만 알고 있었습니다. 이를, pin-memory,pre-fetch , GPU non-blocking과 결합을 하는 순간 어떻게 동작하는 것인지 전혀 이해를 못 하는 저 자신을 보게 되었습니다. Pytorch자체는 high-level API를 제공하는 framework이지만, 이 configuration은 deep learning model의 훈련을 low-level에서 설정해서 진행하도록 해주는 것임을 알게 되었습니다. low-level에서 훈련 configuration을 조정하는 것은 딥러닝 엔지니어로서 만이  아니라 소프트웨어 엔지니어로써의 역량향상에 도움이 될 것이라 여겨집니다.  
 
-!! Asynchronous ,Sychronous가 무엇인자 모른다면 이 [post]()를 보시고 오기를 권장합니다. 
+!! Asynchronous ,Sychronous가 무엇인자 모른다면 이 [post](https://woongjoonchoi.github.io/development/Sync-vs-Async-Block-vs-Nonblock/)를 보시고 오기를 권장합니다. 
 ## worker
 Pytorch의 DataLoader class를 보면 num_worker라는 configuration이 있습니다.num_worker에 대한 설명은 다음과 같습니다.
 ```
