@@ -1,5 +1,5 @@
 ---
-title : "Syncrhonize,Asyncrhonize  vs  Non-blocking,Blocking  : Synchronize와 Blocking은 같은거 아닌가?"
+title : "Synchronize,Asynchronize  vs  Non-blocking,Blocking  : Synchronize와 Blocking은 같은거 아닌가?"
 
 excerpt: "I/O , CPu overlaping"
 
@@ -12,8 +12,8 @@ toc: true
 toc_sticky: true
 ---
 
-# Syncrhonize,Asyncrhonize,Non-blocking,Blocking??
-요새 딥러닝 프레임워크인 pytorch docs를 읽다가 blocking이라는 단어를 보게 되었습니다. blocking이라는 단어가 별 뜻이 없는 줄 알았는데, 관련 내용을 forum에서 찾아보다가 NVIDIA의 패트릭 형님이 깊은 이해를 위한 링크를 달아주신 걸 보았습니다. NVIDIA의 post였는데 blocking, non-blocking, synchronize,asynchronize가 수십번은 반복되는데, 내용이 전혀 이해되지 않았습니다. blocking, non-blocking을 검색하면서 이 개념은 프로세스의 동작 제어와 관련한한 내용임을 알았습니다. synchronize, asyncrhonize와 blocking, non-blocking은 다른 개념이라는 사실을 처음 알게 되었습니다. 관련 포스트를 보면서, synchronize, asyncrhonize를 세부적으로 이해하지 못하고 있음을 알았습니다. 엔지니어로서 동작 제어권은 프로세스를 설계하는 데 중요하므로 꼭 알아야 한다는 생각이 듭니다. 
+# Synchronize,Asynchronize,Non-blocking,Blocking??
+요새 딥러닝 프레임워크인 pytorch docs를 읽다가 blocking이라는 단어를 보게 되었습니다. blocking이라는 단어가 별 뜻이 없는 줄 알았는데, 관련 내용을 forum에서 찾아보다가 NVIDIA의 패트릭 형님이 깊은 이해를 위한 링크를 달아주신 걸 보았습니다. NVIDIA의 post였는데 blocking, non-blocking, synchronize,asynchronize가 수십번은 반복되는데, 내용이 전혀 이해되지 않았습니다. blocking, non-blocking을 검색하면서 이 개념은 프로세스의 동작 제어와 관련한한 내용임을 알았습니다. synchronize, asynchronize와 blocking, non-blocking은 다른 개념이라는 사실을 처음 알게 되었습니다. 관련 포스트를 보면서, synchronize, asynchronize를 세부적으로 이해하지 못하고 있음을 알았습니다. 엔지니어로서 동작 제어권은 프로세스를 설계하는 데 중요하므로 꼭 알아야 한다는 생각이 듭니다. 
 ## Sync vs Async
 
 ![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217840&authkey=%21APnBHuRo6P7JPu0&width=435&height=250)  
