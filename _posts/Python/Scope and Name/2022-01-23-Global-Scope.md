@@ -8,7 +8,7 @@ excerpt: "Global Scope"
 categories:
   - Python
 tags:
-  - [Python,Scope]
+  - [Python,Scope, LearnigPython]
 # classes : wide
 toc: true
 toc_sticky: true

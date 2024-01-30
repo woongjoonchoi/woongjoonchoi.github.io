@@ -8,7 +8,7 @@ excerpt: "Python Intger Internal"
 categories:
 - Python
 tags:
-- [Python,Object,Builtin]
+- [Python,Object,Builtin,PythonInternal]
 # classes : wide
 toc: true
 toc_sticky: true

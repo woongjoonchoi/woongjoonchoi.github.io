@@ -8,7 +8,7 @@ excerpt: "for and while detail in Python"
 categories:
   - Python
 tags:
-  - [Python,loop,Statemens]
+  - [Python,loop,Statemens , LearnigPython]
 # classes : wide
 toc: true
 toc_sticky: true
