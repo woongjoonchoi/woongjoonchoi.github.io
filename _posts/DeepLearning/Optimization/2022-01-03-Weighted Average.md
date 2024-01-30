@@ -8,7 +8,7 @@ excerpt: "Momentum and Exponentially Weighted Average"
 categories:
   - Optimization
 tags:
-  - [Machine Learning,Optimization,pyhsics ,deep learning]
+  - [Machine Learning,Optimization,pyhsics ,deep learning,DLSC2]
 # classes : wide
 toc: true
 toc_sticky: true

@@ -8,7 +8,7 @@ excerpt: "DeepLearning.ai Dls Optimization "
 categories:
   - DLS_C2
 tags:
-  - [Machine Learning,Coursera,deep learning ,C2]
+  - [Machine Learning,Coursera,deep learning ,DLSC2]
 # classes : wide
 toc: true
 toc_sticky: true

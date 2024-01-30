@@ -8,7 +8,7 @@ excerpt: "Batch size"
 categories:
   - Optimization
 tags:
-  - [Machine Learning,batch size,deep learning]
+  - [Machine Learning,batch size,deep learning,DLSC2]
 # classes : wide
 toc: true
 toc_sticky: true

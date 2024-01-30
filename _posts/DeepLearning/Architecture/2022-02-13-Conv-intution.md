@@ -8,7 +8,7 @@ excerpt: "Convolution Intuition"
 categories:
   - DLArchitecture
 tags:
-  - [Machine Learning,Convolution,deep learning ]
+  - [Machine Learning,Convolution,deep learning ,DLSC4]
 # classes : wide
 toc: true
 toc_sticky: true
