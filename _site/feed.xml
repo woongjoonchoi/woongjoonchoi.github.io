@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-24T22:57:53+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Woongjoon_AI</title><subtitle>AMazing developer</subtitle><author><name>Choi Woongjoon</name></author><entry><title type="html">Pytorch data api : worker, pinned memory, prefetch, non-blocking?? 이 것들이 다 설정되면 어떻게 작동할까요?</title><link href="http://localhost:4000/pytorch/Data-loading/" rel="alternate" type="text/html" title="Pytorch data api : worker, pinned memory, prefetch, non-blocking?? 이 것들이 다 설정되면 어떻게 작동할까요?" /><published>2024-01-24T00:00:00+09:00</published><updated>2024-01-24T00:00:00+09:00</updated><id>http://localhost:4000/pytorch/Data-loading</id><content type="html" xml:base="http://localhost:4000/pytorch/Data-loading/"># Pin-memory,worker,pre-fetch,gpu non-blocking을 다 합쳐서 생각해보자. 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-02-14T17:59:46+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Woongjoon_AI</title><subtitle>AMazing developer</subtitle><author><name>Choi Woongjoon</name></author><entry><title type="html">Pytorch data api : worker, pinned memory, prefetch, non-blocking?? 이 것들이 다 설정되면 어떻게 작동할까요?</title><link href="http://localhost:4000/pytorch/Data-loading/" rel="alternate" type="text/html" title="Pytorch data api : worker, pinned memory, prefetch, non-blocking?? 이 것들이 다 설정되면 어떻게 작동할까요?" /><published>2024-01-24T00:00:00+09:00</published><updated>2024-01-24T00:00:00+09:00</updated><id>http://localhost:4000/pytorch/Data-loading</id><content type="html" xml:base="http://localhost:4000/pytorch/Data-loading/"># Pin-memory,worker,pre-fetch,gpu non-blocking을 다 합쳐서 생각해보자. 
 pytorch의 docs를 보면서 worker라는 configuration을 지정해 주면 단순히 worker라는 게 생겨서 data를 loading 해준다고만만 알고 있었습니다. 이를, pin-memory,pre-fetch , GPU non-blocking과 결합을 하는 순간 어떻게 동작하는 것인지 전혀 이해를 못 하는 저 자신을 보게 되었습니다. Pytorch자체는 high-level API를 제공하는 framework이지만, 이 configuration은 deep learning model의 훈련을 low-level에서 설정해서 진행하도록 해주는 것임을 알게 되었습니다. low-level에서 훈련 configuration을 조정하는 것은 딥러닝 엔지니어로서 만이  아니라 소프트웨어 엔지니어로써의 역량향상에 도움이 될 것이라 여겨집니다.  
 
-!! Asynchronous ,Sychronous가 무엇인자 모른다면 이 [post]()를 보시고 오기를 권장합니다. 
+!! Asynchronous ,Sychronous가 무엇인자 모른다면 이 [post](https://woongjoonchoi.github.io/development/Sync-vs-Async-Block-vs-Nonblock/)를 보시고 오기를 권장합니다. 
 ## worker
 Pytorch의 DataLoader class를 보면 num_worker라는 configuration이 있습니다.num_worker에 대한 설명은 다음과 같습니다.
 ```
@@ -97,78 +97,70 @@ https://discuss.pytorch.org/t/should-we-set-non-blocking-to-true/38234/24
 https://discuss.pytorch.org/t/doing-data-augmnetation-in-parallel/90685/2
 
 
-https://pytorch.org/tutorials/recipes/recipes/tuning_guide.html</content><author><name>Choi Woongjoon</name></author><category term="Pytorch" /><category term="Machine Learning" /><category term="Pytorch" /><category term="deep learning" /><category term="DeepLearning General Method" /><summary type="html">Data Transfer optimization and overlap</summary></entry><entry><title type="html">Syncrhonize,Asyncrhonize vs Non-blocking,Blocking : Synchronize와 Blocking은 같은거 아닌가?</title><link href="http://localhost:4000/development/Sync-vs-Async-Block-vs-Nonblock/" rel="alternate" type="text/html" title="Syncrhonize,Asyncrhonize vs Non-blocking,Blocking : Synchronize와 Blocking은 같은거 아닌가?" /><published>2024-01-23T00:00:00+09:00</published><updated>2024-01-23T00:00:00+09:00</updated><id>http://localhost:4000/development/Sync-vs-Async-Block-vs-Nonblock</id><content type="html" xml:base="http://localhost:4000/development/Sync-vs-Async-Block-vs-Nonblock/">&lt;h1 id=&quot;syncrhonizeasyncrhonizenon-blockingblocking&quot;&gt;Syncrhonize,Asyncrhonize,Non-blocking,Blocking??&lt;/h1&gt;
-&lt;p&gt;요새 딥러닝 프레임워크인 pytorch docs를 읽다가 blocking이라는 단어를 보게 되었습니다. blocking이라는 단어가 별 뜻이 없는 줄 알았는데, 관련 내용을 forum에서 찾아보다가 NVIDIA의 패트릭 형님이 깊은 이해를 위한 링크를 달아주신 걸 보았습니다. NVIDIA의 post였는데 blocking, non-blocking, synchronize,asynchronize가 수십번은 반복되는데, 내용이 전혀 이해되지 않았습니다. blocking, non-blocking을 검색하면서 이 개념은 프로세스의 동작 제어와 관련한한 내용임을 알았습니다. synchronize, asyncrhonize와 blocking, non-blocking은 다른 개념이라는 사실을 처음 알게 되었습니다. 관련 포스트를 보면서, synchronize, asyncrhonize를 세부적으로 이해하지 못하고 있음을 알았습니다. 엔지니어로서 동작 제어권은 프로세스를 설계하는 데 중요하므로 꼭 알아야 한다는 생각이 듭니다.&lt;/p&gt;
-&lt;h2 id=&quot;sync-vs-async&quot;&gt;Sync vs Async&lt;/h2&gt;
+https://pytorch.org/tutorials/recipes/recipes/tuning_guide.html</content><author><name>Choi Woongjoon</name></author><category term="Pytorch" /><category term="Machine Learning" /><category term="Pytorch" /><category term="deep learning" /><category term="DeepLearning General Method" /><summary type="html">Data Transfer optimization and overlap</summary></entry><entry><title type="html">Synchronize,Asynchronize vs Non-blocking,Blocking : Synchronize와 Blocking은 같은거 아닌가?</title><link href="http://localhost:4000/development/Sync-vs-Async-Block-vs-Nonblock/" rel="alternate" type="text/html" title="Synchronize,Asynchronize vs Non-blocking,Blocking : Synchronize와 Blocking은 같은거 아닌가?" /><published>2024-01-24T00:00:00+09:00</published><updated>2024-01-24T00:00:00+09:00</updated><id>http://localhost:4000/development/Sync-vs-Async-Block-vs-Nonblock</id><content type="html" xml:base="http://localhost:4000/development/Sync-vs-Async-Block-vs-Nonblock/"># Synchronize,Asynchronize,Non-blocking,Blocking??
+요새 딥러닝 프레임워크인 pytorch docs를 읽다가 blocking이라는 단어를 보게 되었습니다. blocking이라는 단어가 별 뜻이 없는 줄 알았는데, 관련 내용을 forum에서 찾아보다가 NVIDIA의 패트릭 형님이 깊은 이해를 위한 링크를 달아주신 걸 보았습니다. NVIDIA의 post였는데 blocking, non-blocking, synchronize,asynchronize가 수십번은 반복되는데, 내용이 전혀 이해되지 않았습니다. blocking, non-blocking을 검색하면서 이 개념은 프로세스의 동작 제어와 관련한한 내용임을 알았습니다. synchronize, asynchronize와 blocking, non-blocking은 다른 개념이라는 사실을 처음 알게 되었습니다. 관련 포스트를 보면서, synchronize, asynchronize를 세부적으로 이해하지 못하고 있음을 알았습니다. 엔지니어로서 동작 제어권은 프로세스를 설계하는 데 중요하므로 꼭 알아야 한다는 생각이 듭니다. 
+## Sync vs Async
 
-&lt;p&gt;&lt;img src=&quot;https://onedrive.live.com/embed?resid=7E81BBCD99889380%217840&amp;amp;authkey=%21APnBHuRo6P7JPu0&amp;amp;width=435&amp;amp;height=250&quot; alt=&quot;image&quot; /&gt;&lt;br /&gt;
-위 그림은 Synchronous, Asynchronous 를 나타내는 그림입니다. 그림을 보면 프로세스 A가 프로세스 B의 동작을 기다리는지가 차이점입니다. 이를 일반적으로 정의해보겠습니다.&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;synchronization is the task of coordinating multiple of processes to join up or handshake at a certain point, in order to reach an agreement or commit to a certain sequence of action.&lt;/li&gt;
-  &lt;li&gt;Asynchrony, in computer programming, refers to the occurrence of events independent of the main program flow and ways to deal with such events.&lt;/li&gt;
-&lt;/ol&gt;
+![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217840&amp;authkey=%21APnBHuRo6P7JPu0&amp;width=435&amp;height=250)  
+위 그림은 Synchronous, Asynchronous 를 나타내는 그림입니다. 그림을 보면 프로세스 A가 프로세스 B의 동작을 기다리는지가 차이점입니다. 이를 일반적으로 정의해보겠습니다. 
+ 1.  synchronization is the task of coordinating multiple of processes to join up or handshake at a certain point, in order to reach an agreement or commit to a certain sequence of action.
+ 2.  Asynchrony, in computer programming, refers to the occurrence of events independent of the main program flow and ways to deal with such events. 
+   
+Sync ,Async 는 앞에 철자 a가 붙어있기 때문에 반대되는 개념이라고 예측이됩니다. 하지만, 설명이 반대되는 내용이 아닌거 같습니다. 아래의 reference에서 본 설명이 이해가 잘 되었기에 그대로 적어보도록 하겠습니다.
 
-&lt;p&gt;Sync ,Async 는 앞에 철자 a가 붙어있기 때문에 반대되는 개념이라고 예측이됩니다. 하지만, 설명이 반대되는 내용이 아닌거 같습니다. 아래의 reference에서 본 설명이 이해가 잘 되었기에 그대로 적어보도록 하겠습니다.&lt;/p&gt;
+1.  synchronization은 B process를 호출한 process A가 B process의 처리결과를 신경써서 기다리는 것이다.
+2.  asynchronization은 B process를 호출한 process A 가 B process의 처리결과를 신경쓰지 않고 기다리지 않고 자신의 동작을 수행한다. 
 
-&lt;ol&gt;
-  &lt;li&gt;synchronization은 B process를 호출한 process A가 B process의 처리결과를 신경써서 기다리는 것이다.&lt;/li&gt;
-  &lt;li&gt;asynchronization은 B process를 호출한 process A 가 B process의 처리결과를 신경쓰지 않고 기다리지 않고 자신의 동작을 수행한다.&lt;/li&gt;
-&lt;/ol&gt;
+호출한 process A가 특정 부분에서 다른 process를 호출하고 동작의 순서가 특정한 순서가 되도록 하는 것은 process A가 나머지 process들의 처리결과를 신경쓴다고 볼 수 있습니다.  
+main program ,즉 process A와 특정 이벤트를 처리하는 방법, 즉 process B과 서로 신경쓰지 않고  process B가 발생합니다. process A가 process B의 처리결과를 신경쓰지 않고 자신의 동작을 수행함과 같은 의미입니다. 
+## Block vs Nonblock
+blocking,non blocking은 I/O api에서 사용되는 개념입니다. data를 read하거나 write하는 등의 작업이 I/O 작업입니다. 
+1. Blocking : approach to I/O would be to start the access and then wait for it to complete.
+2. Non-locking : a form of input/output processing that permits other processing to continue before the I/O operation has finished. 
 
-&lt;p&gt;호출한 process A가 특정 부분에서 다른 process를 호출하고 동작의 순서가 특정한 순서가 되도록 하는 것은 process A가 나머지 process들의 처리결과를 신경쓴다고 볼 수 있습니다.&lt;br /&gt;
-main program ,즉 process A와 특정 이벤트를 처리하는 방법, 즉 process B과 서로 신경쓰지 않고  process B가 발생합니다. process A가 process B의 처리결과를 신경쓰지 않고 자신의 동작을 수행함과 같은 의미입니다.&lt;/p&gt;
-&lt;h2 id=&quot;block-vs-nonblock&quot;&gt;Block vs Nonblock&lt;/h2&gt;
-&lt;p&gt;blocking,non blocking은 I/O api에서 사용되는 개념입니다. data를 read하거나 write하는 등의 작업이 I/O 작업입니다.&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Blocking : approach to I/O would be to start the access and then wait for it to complete.&lt;/li&gt;
-  &lt;li&gt;Non-locking : a form of input/output processing that permits other processing to continue before the I/O operation has finished.&lt;/li&gt;
-&lt;/ol&gt;
+앞의 sync,async에 비해 설명이 명시적으로 반대의 성질을 갖고 있습니다. blocking은 호출되면 제어권을 호출한 process에게 넘겨주지 않고 , non-blocking은 호출한 process에게 제어권을 넘겨줍니다. 이를 간단하게 정의하면 다음과 같습니다. 이번에도, reference의 블로그의 설명을 그대로 차용했습니다.
 
-&lt;p&gt;앞의 sync,async에 비해 설명이 명시적으로 반대의 성질을 갖고 있습니다. blocking은 호출되면 제어권을 호출한 process에게 넘겨주지 않고 , non-blocking은 호출한 process에게 제어권을 넘겨줍니다. 이를 간단하게 정의하면 다음과 같습니다. 이번에도, reference의 블로그의 설명을 그대로 차용했습니다.&lt;/p&gt;
+1. blocking : 호출된 함수가 호출한 함수에게 자신의 동작이 끝날때 까지 제어권을 넘겨주지 않는다.
+2. non-blocking : 호출된 함수가 자신의 동작이 끝나지 않았음에도 호출한 함수에게 바로 제어권을 넘겨줍니다. 
 
-&lt;ol&gt;
-  &lt;li&gt;blocking : 호출된 함수가 호출한 함수에게 자신의 동작이 끝날때 까지 제어권을 넘겨주지 않는다.&lt;/li&gt;
-  &lt;li&gt;non-blocking : 호출된 함수가 자신의 동작이 끝나지 않았음에도 호출한 함수에게 바로 제어권을 넘겨줍니다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;four-patterns&quot;&gt;Four patterns&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://onedrive.live.com/embed?resid=7E81BBCD99889380%217846&amp;amp;authkey=%21AIFoSWztVEf8__U&amp;amp;width=280&amp;amp;height=230&quot; alt=&quot;image&quot; /&gt;&lt;br /&gt;
-이번에는 sync,async 그리고 blocking,non blocking을 결합한 모든 경우 4가지를 살펴보도록 하겠습니다. 아래의 예시들은 IBM의 블로그에서 가져왔습니다.&lt;/p&gt;
-&lt;h3 id=&quot;synchronous-blocking-io&quot;&gt;Synchronous blocking I/O&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://onedrive.live.com/embed?resid=7E81BBCD99889380%217845&amp;amp;authkey=%21ACDJFjlBed31WXw&amp;amp;width=768&amp;amp;height=493&quot; alt=&quot;image&quot; /&gt;&lt;br /&gt;
+## Four patterns 
+![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217846&amp;authkey=%21AIFoSWztVEf8__U&amp;width=280&amp;height=230)  
+이번에는 sync,async 그리고 blocking,non blocking을 결합한 모든 경우 4가지를 살펴보도록 하겠습니다. 아래의 예시들은 IBM의 블로그에서 가져왔습니다. 
+### Synchronous blocking I/O
+![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217845&amp;authkey=%21ACDJFjlBed31WXw&amp;width=768&amp;height=493)  
 user application이 system call을하고 system call이 완료될 때 까지 system call이 application을 block합니다. 
-여기서 cpu를 차지하지 않고 system call의 response를 기다리고 있기에 효율적이라 볼 수 있다고 합니다.&lt;br /&gt;
-read system call이 호출되면 , system call이 application을 block하고 context는 kernel 전환되어집니다.&lt;/p&gt;
+여기서 cpu를 차지하지 않고 system call의 response를 기다리고 있기에 효율적이라 볼 수 있다고 합니다.  
+read system call이 호출되면 , system call이 application을 block하고 context는 kernel 전환되어집니다. 
 
-&lt;h3 id=&quot;synchronous-non-blocking-io&quot;&gt;Synchronous non-blocking I/O&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://onedrive.live.com/embed?resid=7E81BBCD99889380%217849&amp;amp;authkey=%21APD7PUTY2InbhPo&amp;amp;width=546&amp;amp;height=392&quot; alt=&quot;image&quot; /&gt;&lt;br /&gt;
-이 case에서는 user application이 system call을 요청하는데 , read는 error를 return하고 call이 수행되지 않습니다. 대부분의 case에서 user application은 data를 읽어야 다음 작업을 수행할 수 있기에 무수히 많은 system call을 read가 수행될 떄 까지 하게 됩니다.&lt;br /&gt;
-data가 kerenl에서 접근이 가능해지고 , user 가 호출한 read가 다시 return 되기 까지의 시간이 길어지기에  , IO에서 latency가 증가되고, 따라서 전체적인 처리량이 감소하게 됩니다.&lt;/p&gt;
+### Synchronous non-blocking I/O
+![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217849&amp;authkey=%21APD7PUTY2InbhPo&amp;width=546&amp;height=392)  
+이 case에서는 user application이 system call을 요청하는데 , read는 error를 return하고 call이 수행되지 않습니다. 대부분의 case에서 user application은 data를 읽어야 다음 작업을 수행할 수 있기에 무수히 많은 system call을 read가 수행될 떄 까지 하게 됩니다.  
+data가 kerenl에서 접근이 가능해지고 , user 가 호출한 read가 다시 return 되기 까지의 시간이 길어지기에  , IO에서 latency가 증가되고, 따라서 전체적인 처리량이 감소하게 됩니다.  
 
-&lt;h3 id=&quot;asynchronous-blocking-io&quot;&gt;Asynchronous blocking I/O&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://onedrive.live.com/embed?resid=7E81BBCD99889380%217849&amp;amp;authkey=%21APD7PUTY2InbhPo&amp;amp;width=546&amp;amp;height=392&quot; alt=&quot;image&quot; /&gt;&lt;br /&gt;
-이 case에서는 user application이 select라는 system call을 요청하는 case입니다. select는 file descriptor가 쓰기 가능한지, 읽기 가능한지 에 대한 것을 알려줍니다. 하나의 file descriptor만이 아니라 1024 이하의 file descriptor에 대해 알려주게 됩니다. 여기서, user application은 다음 작업을 하러 가도 됩니다. 즉, asynchronous합니다. 하지만,select가 user application을 blocking 하기에 기다리게 됩니다.&lt;br /&gt;
-이 select는 비효율적이기에 고성능 I/O에서 사용되는 것은 권장되지 않는다고 합니다.&lt;/p&gt;
+### Asynchronous blocking I/O
+![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217850&amp;authkey=%21AOh9xd1HXab2_wU&amp;width=622&amp;height=408)  
+이 case에서는 user application이 select라는 system call을 요청하는 case입니다. select는 file descriptor가 쓰기 가능한지, 읽기 가능한지 에 대한 것을 알려줍니다. 하나의 file descriptor만이 아니라 1024 이하의 file descriptor에 대해 알려주게 됩니다. 여기서, user application은 다음 작업을 하러 가도 됩니다. 즉, asynchronous합니다. 하지만,select가 user application을 blocking 하기에 기다리게 됩니다.  
+이 select는 비효율적이기에 고성능 I/O에서 사용되는 것은 권장되지 않는다고 합니다. 
 
-&lt;h3 id=&quot;asynchronous-non-blocking-io-aio&quot;&gt;Asynchronous non-blocking I/O (AIO)&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://onedrive.live.com/embed?resid=7E81BBCD99889380%217848&amp;amp;authkey=%21AKSg7EXa9R4YtLk&amp;amp;width=559&amp;amp;height=388&quot; alt=&quot;image&quot; /&gt;&lt;br /&gt;
+### Asynchronous non-blocking I/O (AIO)
+![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217848&amp;authkey=%21AKSg7EXa9R4YtLk&amp;width=559&amp;height=388)  
 asynchronous non-blocking I/O 모델은 호출한 process와 I/O의 작업을 overlap하여 실행하게 됩니다. user application이 aio_read라는 system call을 하게되면 read가 성공했다고 즉시 return을 받게됩니다. user application은 다른 process를 수행하면서, 동시에 background에서는 I/O가 read를 수행하고 있습니다.  read의 response가 user application에 도착하면 , signal이나 callback이 발생하여 data가 kernel에서 user application으로 전송되게 됩니다. 
-여러 I/O 요청에 대해 단일 프로세스에서의 계산과 I/O처리를 겹치는 것은 프로세스의 처리속도와 I/O의 처리속도의 차이를 최대한 활용합니다. 하나 이상의 느린 I/O요청이 처리되는 동안 CPU는 프로세스의 다른 작업을 처리할 수 있고, I/O가 처리가 되면 CPU는 이에 대해 동작을 수행하고 동시에 새로운 I/O요청이 수행됩니다.&lt;/p&gt;
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+여러 I/O 요청에 대해 단일 프로세스에서의 계산과 I/O처리를 겹치는 것은 프로세스의 처리속도와 I/O의 처리속도의 차이를 최대한 활용합니다. 하나 이상의 느린 I/O요청이 처리되는 동안 CPU는 프로세스의 다른 작업을 처리할 수 있고, I/O가 처리가 되면 CPU는 이에 대해 동작을 수행하고 동시에 새로운 I/O요청이 수행됩니다.  
+## Conclusion 
 
-&lt;p&gt;Program을 코드로 작성할 때 원하는 동작을 하는지에 대해만 관심이 있었을 뿐 , device가 computer의 resource를 얼마나 효율적으로 활용하는지에 대해서는 크게 신경을 안쓰고 있었다는 것을 깨달았습니다. Operating System수업을 학부시절에 들었지만, 이를 실제로 제 Program에 어떻게 접목시킬지는 크게 고민을 안해봤습니다.지금부터라도 , Operating System에서 배웠던 지식들을 어떻게 제 Program에 접목시킬지를 고민해보고 추가적으로 Operating System을 더 깊이있게 공부해야 함을 깨달았습니다.&lt;/p&gt;
+Program을 코드로 작성할 때 원하는 동작을 하는지에 대해만 관심이 있었을 뿐 , device가 computer의 resource를 얼마나 효율적으로 활용하는지에 대해서는 크게 신경을 안쓰고 있었다는 것을 깨달았습니다. Operating System수업을 학부시절에 들었지만, 이를 실제로 제 Program에 어떻게 접목시킬지는 크게 고민을 안해봤습니다.지금부터라도 , Operating System에서 배웠던 지식들을 어떻게 제 Program에 접목시킬지를 고민해보고 추가적으로 Operating System을 더 깊이있게 공부해야 함을 깨달았습니다.
 
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+## References
 
-&lt;p&gt;https://musma.github.io/2019/04/17/blocking-and-synchronous.html&lt;/p&gt;
+https://musma.github.io/2019/04/17/blocking-and-synchronous.html
 
-&lt;p&gt;https://developer.ibm.com/articles/l-async/&lt;/p&gt;
+https://developer.ibm.com/articles/l-async/
 
-&lt;p&gt;https://en.wikipedia.org/wiki/Asynchronous_I/O&lt;/p&gt;
+https://en.wikipedia.org/wiki/Asynchronous_I/O
 
-&lt;p&gt;https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)&lt;/p&gt;
+https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)
 
-&lt;p&gt;https://en.wikipedia.org/wiki/Synchronization_(computer_science)&lt;/p&gt;</content><author><name>Choi Woongjoon</name></author><category term="Development" /><category term="SoftwareEngineering" /><category term="Resource Management" /><summary type="html">I/O , CPu overlaping</summary></entry><entry><title type="html">Integer Internal Implementation after 3.12</title><link href="http://localhost:4000/python/Integer-internal/" rel="alternate" type="text/html" title="Integer Internal Implementation after 3.12" /><published>2024-01-21T00:00:00+09:00</published><updated>2024-01-21T00:00:00+09:00</updated><id>http://localhost:4000/python/Integer-internal</id><content type="html" xml:base="http://localhost:4000/python/Integer-internal/"># Integer Internal after Python 3.12
+https://en.wikipedia.org/wiki/Synchronization_(computer_science)</content><author><name>Choi Woongjoon</name></author><category term="Development" /><category term="SoftwareEngineering" /><category term="Resource Management" /><summary type="html">I/O , CPu overlaping</summary></entry><entry><title type="html">Integer Internal Implementation after 3.12</title><link href="http://localhost:4000/python/Integer-internal/" rel="alternate" type="text/html" title="Integer Internal Implementation after 3.12" /><published>2024-01-21T00:00:00+09:00</published><updated>2024-01-21T00:00:00+09:00</updated><id>http://localhost:4000/python/Integer-internal</id><content type="html" xml:base="http://localhost:4000/python/Integer-internal/"># Integer Internal after Python 3.12
 
 파이썬을 사용하면서 정수와 같은 numeric object를 사용하게 된다. 정수를 사용하다 보면, arbitary precision을 지원한다는 사실이 놀랍지만, 그냥 받아들이면서 했다. 이에 대해 신경쓰지 않아도 추상화가 잘 되어있기에 , 괜찮을 수 있다. 하지만, 좀 더 좋은 엔지니어가 되기 위해서는 high-level이아닌 low-level에서 어떻게 작동하는지 볼줄 알아야 한다고 생각한다. high-level로 추상화된 동작을 분해하는 것은 문제를 분해하는 것과 같은 이치기에 문제해결능력에 도움이 될 것이라 생각한다. 또한, low-level에 구현을 이해하면 다른 영역에서도 이 idea를 적용할 가능성이 높을 것이다. 
 
@@ -398,7 +390,7 @@ https://github.com/python/cpython/issues/101291
 https://github.com/python/cpython/blob/main/Include/cpython/longintrepr.h#L47C1-L55C27
 
 
-https://ko.wikipedia.org/wiki/%EC%B9%B4%EB%9D%BC%EC%B6%94%EB%B0%94_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98</content><author><name>Choi Woongjoon</name></author><category term="Python" /><category term="Python" /><category term="Object" /><category term="Builtin" /><summary type="html">Python Intger Internal</summary></entry><entry><title type="html">Train,Dev,Test의 error를 어떻게 해석해야 할까요?</title><link href="http://localhost:4000/dls_c3/What-to-do-we-see-error/" rel="alternate" type="text/html" title="Train,Dev,Test의 error를 어떻게 해석해야 할까요?" /><published>2024-01-11T00:00:00+09:00</published><updated>2024-01-11T00:00:00+09:00</updated><id>http://localhost:4000/dls_c3/What-to-do-we-see-error</id><content type="html" xml:base="http://localhost:4000/dls_c3/What-to-do-we-see-error/">프로젝트에서 Machine Learning Model을 사용하기로 했습니다. 그러면, Model을 개발할 때, 어떤 Model을 고르고, 데이터를 증강하는지, 어떤 알고리즘을 쓰는지 등등이 중요해집니다. 이는 모델이 Over fit인지, Variance가 높은지 판단해야 좋은 선택을 할 수 있습니다.Andrew 교수님의 DeepLearning Specialization에서 이에 대한 내용을 다루었고 이를 정리했습니다.  
+https://ko.wikipedia.org/wiki/%EC%B9%B4%EB%9D%BC%EC%B6%94%EB%B0%94_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98</content><author><name>Choi Woongjoon</name></author><category term="Python" /><category term="Python" /><category term="Object" /><category term="Builtin" /><category term="PythonInternal" /><summary type="html">Python Intger Internal</summary></entry><entry><title type="html">Train,Dev,Test의 error를 어떻게 해석해야 할까요?</title><link href="http://localhost:4000/dls_c3/What-to-do-we-see-error/" rel="alternate" type="text/html" title="Train,Dev,Test의 error를 어떻게 해석해야 할까요?" /><published>2024-01-11T00:00:00+09:00</published><updated>2024-01-11T00:00:00+09:00</updated><id>http://localhost:4000/dls_c3/What-to-do-we-see-error</id><content type="html" xml:base="http://localhost:4000/dls_c3/What-to-do-we-see-error/">프로젝트에서 Machine Learning Model을 사용하기로 했습니다. 그러면, Model을 개발할 때, 어떤 Model을 고르고, 데이터를 증강하는지, 어떤 알고리즘을 쓰는지 등등이 중요해집니다. 이는 모델이 Over fit인지, Variance가 높은지 판단해야 좋은 선택을 할 수 있습니다.Andrew 교수님의 DeepLearning Specialization에서 이에 대한 내용을 다루었고 이를 정리했습니다.  
 
 # Error-rate를 확인하면 어떻게 해야할까?
 Error-rate를 train,dev, test에 대해서 logging 할 것입니다. 이 log 값들을 가지고 어떻게 해야 할지 결정하기 위해서는 몇 가지 용어들을 정의해야 합니다.  
@@ -502,7 +494,7 @@ ML project team에서 ML의 새로운 model의 performance를 올릴 때는 아�
 
 # Reference 
 
-[DeepLearning Specialization](https://www.coursera.org/learn/machine-learning-projects/home/week/1)</content><author><name>Choi Woongjoon</name></author><category term="DLS_C3" /><category term="Machine Learning" /><category term="Coursera" /><category term="deep learning" /><summary type="html">ML Project structing</summary></entry><entry><title type="html">임의의 숫자의 parameter를 가진 FeedForward Network의 일반항을 정의하고 vectorize하는 과정을 수식으로 도출해보자</title><link href="http://localhost:4000/dlarchitecture/Feed-Forward-Network/" rel="alternate" type="text/html" title="임의의 숫자의 parameter를 가진 FeedForward Network의 일반항을 정의하고 vectorize하는 과정을 수식으로 도출해보자" /><published>2023-12-30T00:00:00+09:00</published><updated>2023-12-30T00:00:00+09:00</updated><id>http://localhost:4000/dlarchitecture/Feed-Forward-Network</id><content type="html" xml:base="http://localhost:4000/dlarchitecture/Feed-Forward-Network/">## Why we need understand Neural Network in Mathematical view?
+[DeepLearning Specialization](https://www.coursera.org/learn/machine-learning-projects/home/week/1)</content><author><name>Choi Woongjoon</name></author><category term="DLS_C3" /><category term="Machine Learning" /><category term="Coursera" /><category term="deep learning" /><category term="DLSC3" /><summary type="html">ML Project structing</summary></entry><entry><title type="html">임의의 숫자의 parameter를 가진 FeedForward Network의 일반항을 정의하고 vectorize하는 과정을 수식으로 도출해보자</title><link href="http://localhost:4000/dlarchitecture/Feed-Forward-Network/" rel="alternate" type="text/html" title="임의의 숫자의 parameter를 가진 FeedForward Network의 일반항을 정의하고 vectorize하는 과정을 수식으로 도출해보자" /><published>2023-12-30T00:00:00+09:00</published><updated>2023-12-30T00:00:00+09:00</updated><id>http://localhost:4000/dlarchitecture/Feed-Forward-Network</id><content type="html" xml:base="http://localhost:4000/dlarchitecture/Feed-Forward-Network/">## Why we need understand Neural Network in Mathematical view?
 FeedForward Network는 가장 기본적인 형태의 neural net입니다. 이는 노드에 weight matrix를 곱하고 bias를 더 해줌으로써 구현됩니다. neural net을 수식으로 이해함으로써 neural net에 대한 이해도가 올라가기 때문에 수학적으로 이해하는 것이 딥러닝 엔지니어의 역량을 기르는데 많은 도움이 된다고 여겨집니다. 이 글은 임의의 layer의 node의 일반항을 도출하여 vectorize하는 과정을 수식으로 도출할 것입니다 .
 ## Term Definition
 여기서의 Term에 관한 Symbol이나 Notation 방식은 Andrew 교수님의 DeepLearning 강의를 참고하였습니다.  
@@ -1425,7 +1417,7 @@ math-modules에 대한 document link를 첨부하도록 하겠습니다.
 
 [Python-Lexical-analysis]: &quot;https://docs.python.org/ko/3/reference/lexical_analysis.html#floating&quot;
 
-Learning-Python</content><author><name>Choi Woongjoon</name></author><category term="Python" /><category term="Python" /><category term="Object" /><category term="Builtin" /><summary type="html">Python Numerics</summary></entry><entry><title type="html">Polynomial Regression</title><link href="http://localhost:4000/standfordml/polynominal-regerssion/" rel="alternate" type="text/html" title="Polynomial Regression" /><published>2022-06-02T00:00:00+09:00</published><updated>2022-06-02T00:00:00+09:00</updated><id>http://localhost:4000/standfordml/polynominal-regerssion</id><content type="html" xml:base="http://localhost:4000/standfordml/polynominal-regerssion/"># Polynomial Regression in Multiple Features
+Learning-Python</content><author><name>Choi Woongjoon</name></author><category term="Python" /><category term="Python" /><category term="Object" /><category term="Builtin" /><category term="LearnigPython" /><summary type="html">Python Numerics</summary></entry><entry><title type="html">Polynomial Regression</title><link href="http://localhost:4000/standfordml/polynominal-regerssion/" rel="alternate" type="text/html" title="Polynomial Regression" /><published>2022-06-02T00:00:00+09:00</published><updated>2022-06-02T00:00:00+09:00</updated><id>http://localhost:4000/standfordml/polynominal-regerssion</id><content type="html" xml:base="http://localhost:4000/standfordml/polynominal-regerssion/"># Polynomial Regression in Multiple Features
 
 Linear Regression 모델을 1개의 독립변수 x와 1개의 의존변수 y로 나타내는 것을 Simple Linear Regression이라 한다. 이를 , 수식으로 표현하면  
 $$
@@ -1613,4 +1605,4 @@ Python의 Core Data Type은 아래와 같습니다.
 
 
 
-Learning Python(by Mark Lutz)  - chp 4</content><author><name>Choi Woongjoon</name></author><category term="Python" /><category term="Python" /><category term="Object" /><category term="Builtin" /><summary type="html">Python Objects</summary></entry></feed>
+Learning Python(by Mark Lutz)  - chp 4</content><author><name>Choi Woongjoon</name></author><category term="Python" /><category term="Python" /><category term="Object" /><category term="Builtin" /><category term="LearnigPython" /><summary type="html">Python Objects</summary></entry></feed>
