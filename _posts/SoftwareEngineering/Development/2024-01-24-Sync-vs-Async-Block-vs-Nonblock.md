@@ -53,7 +53,7 @@ read system call이 호출되면 , system call이 application을 block하고 con
 data가 kerenl에서 접근이 가능해지고 , user 가 호출한 read가 다시 return 되기 까지의 시간이 길어지기에  , IO에서 latency가 증가되고, 따라서 전체적인 처리량이 감소하게 됩니다.  
 
 ### Asynchronous blocking I/O
-![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217849&authkey=%21APD7PUTY2InbhPo&width=546&height=392)  
+![image](https://onedrive.live.com/embed?resid=7E81BBCD99889380%217850&authkey=%21AOh9xd1HXab2_wU&width=622&height=408)  
 이 case에서는 user application이 select라는 system call을 요청하는 case입니다. select는 file descriptor가 쓰기 가능한지, 읽기 가능한지 에 대한 것을 알려줍니다. 하나의 file descriptor만이 아니라 1024 이하의 file descriptor에 대해 알려주게 됩니다. 여기서, user application은 다음 작업을 하러 가도 됩니다. 즉, asynchronous합니다. 하지만,select가 user application을 blocking 하기에 기다리게 됩니다.  
 이 select는 비효율적이기에 고성능 I/O에서 사용되는 것은 권장되지 않는다고 합니다. 
 
