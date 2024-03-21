@@ -8,7 +8,7 @@ excerpt: "Mathematical view"
 categories:
   - DLArchitecture
 tags:
-  - [Machine Learning,deep learning ]
+  - [Machine Learning,deep learning,derivation ]
 # classes : wide
 toc: true
 toc_sticky: true

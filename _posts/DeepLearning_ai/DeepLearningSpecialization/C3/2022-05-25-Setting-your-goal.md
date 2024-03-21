@@ -8,7 +8,7 @@ excerpt: "DeepLearning.ai Dls ML strategy (Metric, Data Split)"
 categories:
   - DLS_C3
 tags:
-  - [Machine Learning,Coursera,deep learning ,DLSC3]
+  - [Machine Learning,Coursera,deep learning ,DLSC3,ML Strategy]
 # classes : wide
 toc: true
 toc_sticky: true
