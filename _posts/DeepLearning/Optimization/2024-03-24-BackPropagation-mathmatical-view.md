@@ -16,14 +16,7 @@ usemathjax : true
 ---
 지난 번 [post](https://woongjoonchoi.github.io/dlarchitecture/Feed-Forward-Network/) 에서는 FeedForwrad Network의 forward propagtion을 수식으로 유도하는 과정을 보였습니다. 이번에는 Backward propagation을 수식으로 유도하는 과정을 보이도록 하겠습니다. 
 
-$$ \frac{\delta J }{\delta W_{(0,0)}^{[l]}}  ,  \frac{\delta J }{\delta b^{[l]}} $$
-$$ \frac{\delta J }{\delta W_{(0,0)}^{[l]}}  = \frac{\delta J }{\delta Z_{(0,0)}^{[l]}}  \frac{\delta Z_{(0,0)}^{[l]}}{\delta W_{(0,0)}^{[l]}}  $$
 
-
-$$ \sum_{i=0}^m$$
-
-$$ \partial $$
-$$ \frac{\partial{ \partial J}}{\partial w_{1, 1}^{[l]}}$$
 ## $$ \frac{\delta J }{\delta W^{[l]}}  ,  \frac{\delta J }{\delta b^{[l]}} $$ 
 
 
@@ -129,7 +122,7 @@ $$
 \frac {\partial J}{\partial z^{[l]}} = \frac{\partial \vec{a}_{:, i}^{[l]}}{\partial \vec{z}_{:, i}^{[l]}} \frac{\partial J}{\partial \vec{a}_{:, i}^{[l]}}
 $$  
 그리고 , 
-$$ \frac {\partial J}{\partial \vec{a}_{:, i}^{[l]}} \in \R^{n^{[l]}}   ,  \frac {\partial \vec{a}_{:, i}^{[l]}}{\partial \vec{z}_{:, i}^{[l]}} \in \R^{n^{[l]} \times n^{[l]}}$$
+$$ \frac {\partial J}{\partial \vec{a}_{:, i}^{[l]}} \in \mathbb{R}^{n^{[l]}}   ,  \frac {\partial \vec{a}_{:, i}^{[l]}}{\partial \vec{z}_{:, i}^{[l]}} \in \mathbb{R}^{n^{[l]} \times n^{[l]}}$$
   과 같은 real number집합에 포함됩니다.  
 이를 최종적으로 정리하면 아래와 같이 정리할 수 있습니다.  
 
@@ -187,8 +180,10 @@ w_{1, n^{[l - 1]}}^{[l]} & \dots & w_{j, n^{[l - 1]}}^{[l]} & \dots & w_{n^{[l]}
 \end{split}
 \end{equation*}
 
-$$ 
-이는 다음과 같이 표현할 수 있습니다.  
+$$  
+
+이는 다음과 같이 표현할 수 있습니다.
+
 $$
 
 \frac{\partial J}{\partial \vec{A}^{[l - 1]}} = {\partial \vec{W}^{[l]}}^{T} \frac{\partial J}{\partial \vec{Z}^{[l]}}
