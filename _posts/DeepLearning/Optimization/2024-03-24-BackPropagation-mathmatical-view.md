@@ -80,7 +80,7 @@ $$ \frac{\delta J }{\delta b_{j}^{[l]}} =  \sum_{i=0}^{m} \frac{\delta J }{\delt
 $$ \frac{\delta J }{\delta b^{[l]}}  = \sum_{axis=1} \frac{\delta J }{\delta Z^{[l]}} $$ 
 
 
-## \frac{\delta J }{\delta Z^{[l]}} 
+## $$ \frac{\delta J }{\delta Z^{[l]}} $$
 
 이번에는 $$ Z_{0,0}^{[l]}$$ 에 대해서만 생각해보도록 하겠습니다.  
 
@@ -137,7 +137,7 @@ $$
 
 $$ 
 
-## \frac{\delta J }{\delta A^{[l-1]}} 
+## $$ \frac{\delta J }{\delta A^{[l-1]}} $$
 
 이번에는 A(0,0)에 대해서만 생각해보도록 하겠습니다.  
 $$ 
