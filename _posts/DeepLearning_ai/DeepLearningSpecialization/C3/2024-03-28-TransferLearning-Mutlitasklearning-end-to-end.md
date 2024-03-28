@@ -14,7 +14,8 @@ toc_sticky: true
 NeuralNetwork를 학습할 때 , 원하는 만큼의 data가 주어진다면 NeuralNetwork를 학습하는데 전략을 세울 필요가 없습니다. 하지만, realworld에서는 data가 충분히 주어지는 경우가 드뭅니다. 따라서, 상황에 따른 학습 전략들을 알고 있다면 큰 도움이 될 것입니다. 
 
 ## Transfer Learning
-![image](https://1drv.ms/i/c/7e81bbcd99889380/IQPzJrVtcL4jT5_Hh47sGhFfAScwCAmYd0tmRZC4tKauyos?width=588&height=278)
+![image](https://1drv.ms/i/c/7e81bbcd99889380/IQPzJrVtcL4jT5_Hh47sGhFfAScwCAmYd0tmRZC4tKauyos?width=588&height=278)  
+
 Transfer Learning은 어떤 Task A를 수행하는 NeuralNetwork를 학습하게 된다면 학습한 NeuralNetwork를 이용하여 Task B를 수행하는 NeuralNetwork를 훈련하는 방법입니다. 이 때 , Task A를 학습하는 것을 Pre-training , Task B를 학습하는 것을 Fine-tuning이라고 합니다.  
 
 Transfer Learning의 예시에는 다음과 같은 것들이 있습니다. 
@@ -30,6 +31,8 @@ Transfer Learning을 적용하기 위해서는 다음과 같은 조건이 붙는
 * Task A,B의 input이 같다(같은 format). 
 * Task A의 data 수가 Task B의 data 수 보다 많다.
 * Task A에서 학습한 low-level feature들이 Task B를 학습하는데 도움이 된다. 
+
+
 ## Multitask Learning
 MultiTask Learning은 여러 task를 **동시에** 훈련하여 서로 다른 task의 공통점 및 차이점을 이용하여 performance를 올리는 방법입니다.  
 MulitTask Learning의 예시로는 다음과 같은 것들이 있습니다.  
