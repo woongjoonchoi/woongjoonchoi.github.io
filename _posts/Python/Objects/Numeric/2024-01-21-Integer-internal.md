@@ -13,6 +13,8 @@ tags:
 toc: true
 toc_sticky: true
 ---
+24-03-29 carry,f가 64bit이고 ,pb,z가 32bit인 내용 추가
+
 # Integer Internal after Python 3.12
 
 파이썬을 사용하면서 정수와 같은 numeric object를 사용하게 된다. 정수를 사용하다 보면, arbitary precision을 지원한다는 사실이 놀랍지만, 그냥 받아들이면서 했다. 이에 대해 신경쓰지 않아도 추상화가 잘 되어있기에 , 괜찮을 수 있다. 하지만, 좀 더 좋은 엔지니어가 되기 위해서는 high-level이아닌 low-level에서 어떻게 작동하는지 볼줄 알아야 한다고 생각한다. high-level로 추상화된 동작을 분해하는 것은 문제를 분해하는 것과 같은 이치기에 문제해결능력에 도움이 될 것이라 생각한다. 또한, low-level에 구현을 이해하면 다른 영역에서도 이 idea를 적용할 가능성이 높을 것이다. 
@@ -212,7 +214,7 @@ for (i = 0; i < size_a; ++i) {
 
 ``` 
 
-여기서 f는 a의 i번째 자릿수의 값이고, pz는 곱셈 결과의 자릿수를 나타내는 포인터이고, pb는 b의 자릿수를 가리키는 포인터, pbend는 b의 가장 앞 자릿수를 가리키는 포인터입니다. 그저 c언어의 곱하기를 수행한 다음에 overflow 및 underflow를 방지하고 carry를 shift 해주는 코드입니다. `carry += *pz + *pb++ * f;` 는 z의 i번째 자릿수에 a의 i번째 자릿수 * b의 i번째 자릿수를 더합니다. inplace operator로 pb의 값을 즉, 자릿수를 증가시킵니다. `*pz++ = (digit)(carry & PyLong_MASK);` 에서 PyLong_MASK로 pz i번째 자릿수에 base의 크기보다 작은 값을 할당해 줍니다. 그러면서, pz의 값, 즉 z의 자릿수를 증가시킵니다. pointer의 산술연산과 inplace operation이 결합하여 최적화가 되어있는 부분이 헷갈릴 수도 있기에 따로 설명을 해보았습니다.
+여기서 f는 a의 i번째 자릿수의 값이고, pz는 곱셈 결과의 자릿수를 나타내는 포인터이고, pb는 b의 자릿수를 가리키는 포인터, pbend는 b의 가장 앞 자릿수를 가리키는 포인터입니다.여기서, carry,f는 64bit u_int이고 pz,pb는 32bit int를 가리키는 pointer입니다. 그저 c언어의 곱하기를 수행한 다음에 overflow 및 underflow를 방지하고 carry를 shift 해주는 코드입니다. `carry += *pz + *pb++ * f;` 는 z의 i번째 자릿수에 a의 i번째 자릿수 * b의 i번째 자릿수를 더합니다. inplace operator로 pb의 값을 즉, 자릿수를 증가시킵니다. `*pz++ = (digit)(carry & PyLong_MASK);` 에서 PyLong_MASK로 pz i번째 자릿수에 base의 크기보다 작은 값을 할당해 줍니다. 그러면서, pz의 값, 즉 z의 자릿수를 증가시킵니다. pointer의 산술연산과 inplace operation이 결합하여 최적화가 되어있는 부분이 헷갈릴 수도 있기에 따로 설명을 해보았습니다.
 
 ## Divide
 Python의 나눗셈 내부를 보면 한 자릿수의 나눗셈은 그냥 c언어의 나눗셈 연산을 사용하여 진행됩니다. 하지만, 자릿수가 커질 경우 Donald Knuth 교수님이 제안하신 Algorithm D를 사용하여 최적화 되어있습니다. 이는 The Art of Computer Programming, Vol.2 4.3.1 chapter에 실려있습니다. 이에 대해서는 따로 소개하지 않도록 하겠습니다. 여러 나눗셈 토큰들이 기본 연산인 x_divrem이라는 활용하는데, x_divrem은 내부적으로 Algorithm D로 구성돼 있다고 알고 있으면 좋을 거 같습니다.
