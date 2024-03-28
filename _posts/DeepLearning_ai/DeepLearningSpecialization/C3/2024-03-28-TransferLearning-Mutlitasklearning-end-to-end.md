@@ -53,6 +53,8 @@ Multi-task learning은 다음과 같은 상황에서 고려할 수 있습니다.
   * Multi-task Learning은 100개의 task가 각각 1000개의 data를 가지고 있다면 ,  99000개의 data를 사용한 task로 pretraining 후 1개의 task가 fine-tuning하는 것과 마찬가지입니다. 만약, 1개의 task의 data가 상당히 많다면, pre-training task에 비해 fine-tuning하는 task의 data수가 더 많아서 transfer learning이 잘 이루어지지 않을 것입니다.(transfer learning은 multitask learning의 상위개념)
 * 충분히 큰 Neural Network를 훈련한다.
   * 만약 Neural Network가 충분히 크지 않다면 , 각 task를 개별적으로 하는 Neural Network가 Peformance가 더 뛰어날 것입니다. 
+
+
 ## End-to-End 
 End-to-End는 data로부터 바로 output을 도출하는 Neural Network를 의미합니다. Computer Science분야에서 어떠한 문제를 해결할 때에는 그 문제들을 작은 단위로 쪼개서 작은 문제들을 해결하고 이를 결합하여 원래의 문제를 해결합니다. Neural Network도 문제를 작은 단위로 나누어서 각 문제를 해결하는 Neural Network나 Domain Knowledge를 사용하여 원래의 문제를 해결할 수 있습니다.  
 예시로는 다음과 같습니다. 
