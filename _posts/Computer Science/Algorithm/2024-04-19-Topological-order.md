@@ -116,3 +116,8 @@ edge (u,v)를 고려하는데 v가 u의 anscestor라면 cycle을 detect하게 �
 - Topological Ordering이 존재한다는 것은 주어진 Graph는 Directed Acyclic Graph이므로 여러 Computer Science Idea에 적용될 수 있다.
 - Topological Ordering을 구하기 위해서는 DFS의 finish order의 reverse를 계산해야 한다.
 - 주어진 Graph가 Directed Acyclic Graph인지 알기 위해서는 Topological Ordering의 Definition이 위배되는지 확인하고 Cycle을 Return하기 위해서는 DFS의 code에 ancestor를 방문하는지 체크하는 코드를 추가한다. 
+
+
+## References
+
+[Mit Topological order](https://www.youtube.com/watch?v=IBfWDYSffUU)
