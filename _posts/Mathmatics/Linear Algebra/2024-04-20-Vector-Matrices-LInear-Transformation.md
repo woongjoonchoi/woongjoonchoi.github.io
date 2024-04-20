@@ -55,7 +55,8 @@ xy coordinate에는 $$\hat{i}  ,  \hat{j}$$ 라는 특별한 vector가 있습니
 ### Span
 vector의 span은 basis vector에 임의의 scalar를 곱하였 을 때 얻어질 수 있는 vector의 집합입니다. 여러 예시에 대해 알아보도록 하겠습니다.
 
-- $$ \usepackage[document]{ragged2e}\begin{flushleft} \overrightarrow a + y \cdot \overrightarrow b   ,\qquad  \overrightarrow a \neq \emptyset , \overrightarrow b \neq \emptyset \end{flushleft}$$
+
+- $$ \begin{flalign*} \overrightarrow a + y \cdot \overrightarrow b   ,\qquad  \overrightarrow a \neq \emptyset , \overrightarrow b \neq \emptyset \end{flalign*}$$
   - 이 경우에는 임의의 직선이 span이 될 것입니다.
 - $$ x \cdot \overrightarrow a + y \cdot \overrightarrow b   ,\qquad \overrightarrow a = c \cdot \overrightarrow b , \overrightarrow a \neq \emptyset , \overrightarrow b \neq \emptyset ,  c \neq 0 $$
   - 이 경우에도 임의의 직선이 span이 될 것입니다.
