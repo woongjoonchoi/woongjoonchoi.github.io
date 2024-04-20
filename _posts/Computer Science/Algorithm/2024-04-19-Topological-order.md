@@ -76,13 +76,14 @@ Topological Ordering의 Ordering의 Formal 한 Definition을 알았으니 Vertex
 Topological Ordering의 Formal한 Definition과 이를 Linear Time에 구하는 알고리즘을 알게되었습니다. Topological Ordering의 궁극적인 목표는 DAG인지 판별하는 것입니다 . 추가적으로 , Cycle이 있다면 Cycle인 부분을 알고 싶을 것입니다 .위에서 배운 내용으로 , 주어진 Graph가 DAG인지 판별해보도록 하겠습니다. 
 ### Cycle Detection
 
-DAG는 Topological Order를 가진다는 것을 확인했습니다. DAG라는 명제를 P , Toplogical Order를 가진다라는 명제를 Q라고 하면 , $$ \neg P \rightarrow \neg Q $$
+DAG는 Topological Order를 가진다는 것을 확인했습니다. DAG라는 명제를 P , Toplogical Order를 가진다라는 명제를 Q라고 하면 , $$ \neg Q \rightarrow \neg P $$
 가 성립하게 됩니다. 즉, Topological Order를 가지지 않는다면 Cyclig Graph여야 합니다. 따라서 ,  reverse finish order가 topological order의 property를 만족하는지 확인하면 DAG인지 아닌지 알 수 있습니다. 이는 $$ O(V +E) $$에 확인할 수 있습니다. 
 ### Cycle Return 
 단순히 Cycle을 Detection할 뿐만 아니라 Cycle에 어떤 vertex가 포함되는지 궁금할 수 있습니다. 이러한 cycle을 return하기 위해서 아래와 같은 Claim을 설정하고 증명하도록 하겠습니다.
 #### Claim and Proof
 > If graph G contains Cycle, Full-DFS traverse an edge from v to ancestor of v . 
 여기서 ancestor는 아직 호출(call)이 끝나지 않은 vertex를 의미합니다.  
+
  Cycle 이 vertex (v0,v1,....vk,v0) 로 구성되어 있다고 가정하겠습니다.
 
  일반성을 위해서 , v0를 Full-DFS 알고리즘을 처음 호출하는 vertex라 가정하겠습니다. 임의의 vertex v-i 는 vertex v-i+1을 계속 호출하게 됩니다. 이는 v-i 의 호출(call)이 종료되기 전에 v-i+1의 호출이 먼저 종료되게 됩니다.  따라서, v0의 호출보다 v-k의 호출이 먼저 종료되게 될 것입니다. 
