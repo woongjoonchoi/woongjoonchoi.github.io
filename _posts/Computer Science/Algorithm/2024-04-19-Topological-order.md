@@ -9,7 +9,7 @@ excerpt: "DAG or Cycle"
 categories:
   - Algorithm
 tags:
-  - [Algorithm,6.006,Computer Science]
+  - [Algorithm,Introduction-to-algorithm-6.006,Computer Science]
 
 toc: true
 toc_sticky: true
