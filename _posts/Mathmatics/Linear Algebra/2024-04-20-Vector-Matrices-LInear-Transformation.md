@@ -92,8 +92,8 @@ transformation 후의 $$ \overrightarrow v $$ 는 transformation 후의 $$ \hat 
 <!-- $$ \overrightarrow transformed \ v =  -1 \cdot \hat transformed \ i + 2 \cdot \hat transformed \ j $$ -->
 ### Matrix View
 이를 vector 관점이 아닌 matrix 관점에서 볼 수 있습니다 . 
-예를들어 , $$ \begin{bmatrix} a \ b \\ c \  d \end{bmatrix}  \begin{bmatrix} x \\ y \end{bmatrix}$$ 라는 matrix,vector를 고려해보겠습니다. 이는 $$ x \cdot \begin{bmatrix} a \\ b \end{bmatrix}  + y \cdot \begin{bmatrix} c \\ d \end{bmatrix} $$ 와 같은 equation입니다. 즉 ,  $$ \begin{bmatrix} a \\ b \end{bmatrix} $$ 를 $$ \hat transformed \ i $$  , $$ \begin{bmatrix} c \\ d \end{bmatrix} $$ 를 $$ \hat transformed \ j $$ 로 생각하면 됩니다. x,y는 basis vector에 대한 scaler가 될 것입니다. 
-예를 들어 , clockwise 90 degree rotation의 경우 $$ \begin{bmatrix} 0 \ 1 \\ -1 \  0 \end{bmatrix}  $$ 가 될 것이고 , $$ \hat transformed \ i  =  \begin{bmatrix} 0 \\ 1  \end{bmatrix} , \hat transformed \ j = \begin{bmatrix}  -1 \\  0 \end{bmatrix} $$  가 될 것입니다. 
+예를들어 , $$ \begin{bmatrix} a & b \\ c &  d \end{bmatrix}  \begin{bmatrix} x \\ y \end{bmatrix}$$ 라는 matrix,vector를 고려해보겠습니다. 이는 $$ x \cdot \begin{bmatrix} a \\ b \end{bmatrix}  + y \cdot \begin{bmatrix} c \\ d \end{bmatrix} $$ 와 같은 equation입니다. 즉 ,  $$ \begin{bmatrix} a \\ b \end{bmatrix} $$ 를 $$ \hat transformed \ i $$  , $$ \begin{bmatrix} c \\ d \end{bmatrix} $$ 를 $$ \hat transformed \ j $$ 로 생각하면 됩니다. x,y는 basis vector에 대한 scaler가 될 것입니다. 
+예를 들어 , clockwise 90 degree rotation의 경우 $$ \begin{bmatrix} 0 & 1 \\ -1 &  0 \end{bmatrix}  $$ 가 될 것이고 , $$ \hat transformed \ i  =  \begin{bmatrix} 0 \\ 1  \end{bmatrix} , \hat transformed \ j = \begin{bmatrix}  -1 \\  0 \end{bmatrix} $$  가 될 것입니다. 
 
 <!-- $$ \begin{bmatrix} 0 \ 1 \\ -1 \  0 \end{bmatrix}  $$ -->
 <!-- $$ \begin{bmatrix} a \\ b \end{bmatrix} $$ -->
@@ -108,12 +108,12 @@ Linear Transformation을 Matrix 관점에서 보는 법을 알아보았습니다
 
 
 이는 matrix의 곱셈으로 표현이 됩니다. 예시를 들어보겠습니다. 
-90 degree clockwise rotation인 $$\begin{bmatrix} 0 \ 1 \\ -1 \  0 \end{bmatrix} $$와 sheer transformation인  $$\begin{bmatrix} 0 \ 1 \\ -1 \  0 \end{bmatrix} $$ 를 적용해보도록 하겠습니다. 새로운 $$ \hat i , \hat j $$는 각각  $$ \begin{bmatrix} 1 \\ 1 \end{bmatrix}  , \begin{bmatrix} -1 \\ 1 \end{bmatrix}$$ 가 될 것입니다.  즉 , $$ \begin{bmatrix} 1 -1 \\ 1 0 \end{bmatrix} $$ 가 최종적인 linear transformation이 됩니다. 이는 2개의 연속적인 transformation이 아닌 하나의 transformation으로 볼 수 있습니다.  
-따라서 $$ \begin{bmatrix} 1 1 \\ 0 1 \end{bmatrix}  \begin{bmatrix} 0 -1 \\ 1 0 \end{bmatrix}  =  \begin{bmatrix} 1 -1 \\ 1 0 \end{bmatrix}  $$ 이므로 , 두 matrix의 product는 geometric 관점에서 한 transformation을 적용하고 다른 transformation을 적용한 것과 같습니다.   
+90 degree clockwise rotation인 $$\begin{bmatrix} 0 \ 1 \\ -1 \  0 \end{bmatrix} $$와 sheer transformation인  $$\begin{bmatrix} 0 \ 1 \\ -1 \  0 \end{bmatrix} $$ 를 적용해보도록 하겠습니다. 새로운 $$ \hat i , \hat j $$는 각각  $$ \begin{bmatrix} 1 \\ 1 \end{bmatrix}  , \begin{bmatrix} -1 \\ 1 \end{bmatrix}$$ 가 될 것입니다.  즉 , $$ \begin{bmatrix} 1 &-1 \\ 1& 0 \end{bmatrix} $$ 가 최종적인 linear transformation이 됩니다. 이는 2개의 연속적인 transformation이 아닌 하나의 transformation으로 볼 수 있습니다.  
+따라서 $$ \begin{bmatrix} 1& 1 \\ 0& 1 \end{bmatrix}  \begin{bmatrix} 0 &-1 \\ 1& 0 \end{bmatrix}  =  \begin{bmatrix} 1 &-1 \\ 1 &0 \end{bmatrix}  $$ 이므로 , 두 matrix의 product는 geometric 관점에서 한 transformation을 적용하고 다른 transformation을 적용한 것과 같습니다.   
 여기서, 오른쪽의 transformation을 먼저 적용하고 왼쪽의 transformation을 적용한다는 것을 기억해야합니다. 합성함수인 f(g(x))에서 유래했기에 오른쪽에서 왼쪽으로 읽어야 합니다. 
 
-임의의 Matrix $$ \begin{bmatrix} 0 & 2 \\ -1 & 0 \end{bmatrix}  \begin{bmatrix} 1 1 \\ -2 0 \end{bmatrix}  =  \begin{bmatrix} ? ? \\ ? ? \end{bmatrix}  $$ 에 대해서 고려해보도록 하겠습니다.  여기서 새로운 matrix는 최종적인 $$ \hat i ,\hat j $$가 될 것입니다. 
-왼쪽부터 Matrix를 각각 M1,M2라 명명하겠습니다. M2 transformation 이후 $$ \hat i , \hat j$$ 는 $$ \begin{bmatrix} 1 \\ 1 \end{bmatrix}   , \begin{bmatrix} -2 \\ 0 \end{bmatrix}  $$ 가 됩니다. 연속적으로 M1 transformation을 적용한다면 $$ \hat i $$ 는 $$\begin{bmatrix} 0 2 \\ -1 0 \end{bmatrix} \begin{bmatrix} 1 \\ 1 \end{bmatrix} \begin{bmatrix}  2 \\ 1\end{bmatrix} $$ , $$ \hat j $$ 는 $$\begin{bmatrix} 0 2 \\ -1 0 \end{bmatrix} \begin{bmatrix} -2 \\ 0 \end{bmatrix} \begin{bmatrix}  0 \\ -2\end{bmatrix} $$ 가 될 것입니다. 
+임의의 Matrix $$ \begin{bmatrix} 0 & 2 \\ -1 & 0 \end{bmatrix}  \begin{bmatrix} 1 &1 \\ -2& 0 \end{bmatrix}  =  \begin{bmatrix} ?& ? \\ ?& ? \end{bmatrix}  $$ 에 대해서 고려해보도록 하겠습니다.  여기서 새로운 matrix는 최종적인 $$ \hat i ,\hat j $$가 될 것입니다. 
+왼쪽부터 Matrix를 각각 M1,M2라 명명하겠습니다. M2 transformation 이후 $$ \hat i , \hat j$$ 는 $$ \begin{bmatrix} 1 \\ 1 \end{bmatrix}   , \begin{bmatrix} -2 \\ 0 \end{bmatrix}  $$ 가 됩니다. 연속적으로 M1 transformation을 적용한다면 $$ \hat i $$ 는 $$\begin{bmatrix} 0 &2 \\ -1 &0 \end{bmatrix} \begin{bmatrix} 1 \\ 1 \end{bmatrix} \begin{bmatrix}  2 \\ 1\end{bmatrix} $$ , $$ \hat j $$ 는 $$\begin{bmatrix} 0 &2 \\ -1& 0 \end{bmatrix} \begin{bmatrix} -2 \\ 0 \end{bmatrix} \begin{bmatrix}  0 \\ -2\end{bmatrix} $$ 가 될 것입니다. 
 
 ### Matrix Multiplication Order is Important?
 Matrix Product의 순서는 중요할까요? 결론은 그렇습니다.  
