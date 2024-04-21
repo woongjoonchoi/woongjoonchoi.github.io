@@ -8,7 +8,7 @@ excerpt: "Pytorch multiprocess"
 categories:
   - Pytorch
 tags:
-  - [Machine Learning,Pytorch,deep learning ]
+  - [Machine Learning,Pytorch,deep learning ,Pytorch data api]
 # classes : wide
 toc: true
 toc_sticky: true

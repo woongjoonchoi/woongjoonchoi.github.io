@@ -8,7 +8,7 @@ excerpt: "Data Transfer optimization and overlap"
 categories:
   - Pytorch
 tags:
-  - [Machine Learning,Pytorch,deep learning ,DeepLearning General Method]
+  - [Machine Learning,Pytorch,deep learning ,DeepLearning General Method,Pytorch data api]
 # classes : wide
 toc: true
 toc_sticky: true
