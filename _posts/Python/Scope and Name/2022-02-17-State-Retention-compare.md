@@ -8,7 +8,7 @@ excerpt: "Summary"
 categories:
   - Python
 tags:
-  - [Python,Scope, LearnigPython]
+  - [Python,Scope, LearnigPython,LearningPython,Chp17Scope]
 # classes : wide
 toc: true
 toc_sticky: true

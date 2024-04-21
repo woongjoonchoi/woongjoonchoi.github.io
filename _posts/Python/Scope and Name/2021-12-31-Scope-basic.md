@@ -8,7 +8,7 @@ excerpt: "Scope"
 categories:
   - Python
 tags:
-  - [Python,Module,Package,Scope, LearnigPython]
+  - [Python,Module,Package,Scope, LearningPython,Chp17Scope]
 # classes : wide
 toc: true
 toc_sticky: true
