@@ -8,7 +8,7 @@ excerpt: "Python String Operation"
 categories:
 - Python
 tags:
-- [Python,Object,Builtin,PythonInternal,String]
+- [Python,Object,Builtin,PythonInternal,String,StringInternal]
 # classes : wide
 toc: true
 toc_sticky: true
