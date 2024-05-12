@@ -35,6 +35,8 @@ VGG network를 scratch부터 훈련시키면서 겪었던 이슈들과 그에 �
 | <img src="https://github.com/woongjoonchoi/woongjoonchoi.github.io/assets/50165842/377e7b46-1c0f-43e7-aa6e-b08a8cffac9e"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/woongjoonchoi.github.io/assets/50165842/34fc3ec0-4bc6-4294-9aef-a5ec5ec76c2e"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/woongjoonchoi.github.io/assets/50165842/279b757c-f86e-424f-97d3-d6a70f9ca6d7"  width="300" height="300">|  |
 |:--: |:--: |:--:  | :--: |
 | *linear/loss*  |*linear/top-1-error* |*linear/top-5-error*|  |
+
+
 ## Dataset Chang From CalTech256 to Cifar100
 Caltech256 dataset은 class당 이미지가 100개 정도였고, 분류해야할 class label이 257개 이고, class label의 분포가 imbalance 했습니다. 따라서, label당 이미지 개수가 500개이고, 분류할 class가 100개인 cifar100 dataset에 대하여 model B를 학습하였습니다.   
 하지만, model B에 대해서도 학습이 잘 진행되지 않았습니다. 
