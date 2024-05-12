@@ -30,7 +30,8 @@ VGG network를 scratch부터 훈련시키면서 겪었던 이슈들과 그에 �
 | *trial4/loss*  |*trial4/top-1-error* |*trial4/top-5-error*|  |
 
 ## 1 by 1 Convolution to Linear Layer
-논문에서는 fully convolution으로 구현을 하였지만 , torchvision의 implementation은 fully connected layer로 구현하였습니다. fully connected layer나 1 by 1 convolution은 수학적으로 차이가 없지만 , avearage pooling layer를 어디서 적용하는지의 차이점이 있습니다. 따라서, 여기서 차이가 발생했다 생각하여 1 by 1 convolution을 fully connected layer로 대체하였지만, training에서 큰 효과를 보지 못하였습니다. average를 순서를 바꾸어도 수학적으로는 차이가 없고 , 실제로 차이가 없었기에 network의 구조를 fully convolution을 유지하기로 결정했습니다.  
+논문에서는 fully convolution으로 구현을 하였지만 , torchvision의 implementation은 fully connected layer로 구현하였습니다. fully connected layer나 1 by 1 convolution은 수학적으로 차이가 없지만 , avearage pooling layer를 어디서 적용하는지의 차이점이 있습니다. 따라서, 여기서 차이가 발생했다 생각하여 1 by 1 convolution을 fully connected layer로 대체하였지만, training에서 큰 효과를 보지 못하였습니다. average를 순서를 바꾸어도 수학적으로는 차이가 없고 , 실제로 차이가 없었기에 network의 구조를 fully convolution을 유지하기로 결정했습니다.   
+
 | <img src="https://github.com/woongjoonchoi/woongjoonchoi.github.io/assets/50165842/377e7b46-1c0f-43e7-aa6e-b08a8cffac9e"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/woongjoonchoi.github.io/assets/50165842/34fc3ec0-4bc6-4294-9aef-a5ec5ec76c2e"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/woongjoonchoi.github.io/assets/50165842/279b757c-f86e-424f-97d3-d6a70f9ca6d7"  width="300" height="300">|  |
 |:--: |:--: |:--:  | :--: |
 | *linear/loss*  |*linear/top-1-error* |*linear/top-5-error*|  |
