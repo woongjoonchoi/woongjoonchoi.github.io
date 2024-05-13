@@ -162,17 +162,13 @@ vgg-C의 경우 시도 1개에 대한 plot을 올리지만 비슷한 실패를 �
 vgg model D를 학습도 B,C처럼 잘 될것이라 예상했지만, 잘 되지 않았습니다. 따라서, random initialize하는 비율을 계속 조절해나가면서 activation이 saturate하지 않은 configuration을 찾으려 여러 시도를 했습니다.  하지만, 가능한 모든 configuration을 시도했는데 , 잘 되지 않았습니다. 
 
 
-vgg-D실패 그림  
+아래의 시도 이외에도 여러 시도들이 있었지만, 비슷한 가정을 가지고 시도를 했기에 loss 에대한 plot 3장만을 가져왔습니다 .
 
-| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+| <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/cf5f2e92-6f18-40f1-b251-afd87ddd0247"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/e47d82d6-5906-4d5f-8b03-1a9e18ff2185"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/452e0b88-f615-43dc-8192-b8fc78821754"  width="300" height="300">|  |
 |:--: |:--: |:--:  | :--: |
-| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
-| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
-| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
-| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
-| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
-| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
-| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
+| *imagnet-D-fail1/loss*  |*imagnet-D-fail2/loss* |*imagnet-D-fail3/loss*|  |
+
+
 
 여러 resource를 찾아보다가 DeepLearningBook에서 288pg에서 다음과 같은 내용을 발견하였습니다. 
 > On the face of an extremely steep cliff structure, the gradient update step can move the parameters extremely far, usually jumping off of the cliff structure altogether.
@@ -187,8 +183,14 @@ high derivatives in some places. When the parameters get close to such a cliff r
 
 vgg-B,vgg-C에서 training이 효과적으로 진행될 때에는 , loss function이 본격적으로 감소하기 전에는 oscillation이 없다가 감소하기 시작하면서 oscillation이 발생하는 pattern이 있음을 알아냈습니다.  하지만, vgg-D를 실패할 때에는 loss function이 training 시작부터 oscillation이 심하게 발생함을 발견했습니다.  따라서, neural network 더욱더 깊어지면서 loss function에 extremely cliff structure가 발생했다고 생각했습니다. 이에 대한 heuristic 한 solution중 하나인 , gradient clipping을 적용하였습니다. 이전에도 적용중이였지만,이번에는 clipping 값을 더욱더 낮췄습니다. 그렇게 하였더니 , loss function의 oscillation이 줄어들면서 vgg D model도 training이 효과적으로 진행이 되기 시작했습니다. 
 
-vgg-D 성공 그림 
+vgg-D는 현재 9 epoch까지 학습이 진행되었습니다 .
 
-| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+| <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/831e32c8-c553-4686-8e67-776018e02e89"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/87ea47ae-6c77-448c-98e0-97688ab6d1aa"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/c0836816-9747-4dbe-961e-8ba568f7056b"  width="300" height="300">|  |
 |:--: |:--: |:--:  | :--: |
-| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
+| *Imagenet-D-success/loss*  |*Imagenet-D-success/top-1-error* |*Imagenet-D-success/top-5-error*|  |
+
+
+## Further improvement
+
+앞으로 시도해야할 것은 large scale에 대한 train, scale jittering image에 대한 train이 남아 있습니다. 이것들은 gpu resource에 여유분이 생긴다면 , 시도를 해보게 될 거 같습니다.  
+좀 더 개선할 수 있는 점으로는 수렴속도를 더 빠르게 할 수 있는 방법을 찾아봐야 할 거 같습니다. log scale로 봤을때 논문의 성과를 재현할려면 85epoch ~90epoch 정도가 필요한 거 같습니다. 논문에서는 74 epcoh만에 성공했다는데 훈련을 좀 더 길게 해보면서 이에 대한 방법을 고민해야 할 거 같습니다. 
