@@ -108,22 +108,20 @@ random initialize시 weight의 distribution이 xavier initialization보다 더 �
 Xavier initialization의 논문을 정확히 읽지 않고 , 그저 기계적으로 적용만 하였었는데, Xavier normalization 논문을 읽으면서 이 논문이 activation의 distribution과 gradient의 distribution을 layer별로 차이가 나지 않게 하여 학습에 도움을 주는 initialization strategy라는 것을 알게 되었습니다. 따라서, 다시 xavier initialization하는 layer의 수를 논문에서 언급된대로 수정하였고, std도 0.01로 수정하여 최대한 layer간의 activation gradient distribution이 비슷하도록 수정하였습니다.  
 그렇게 하였더니, 모델 B가 cifar10, MNIST 데이터에 수렴하기 시작했습니다 .
 
-새로 만든, vgg-2 mnist,vgg-4cifar10
 
-
-| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+| <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/b6069bc7-a4e9-4015-92fa-40c0d80f79f3"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/d266c7aa-c715-46d0-a547-db6468fdde19"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/1bb63eb6-7b39-4cf3-bd84-e6fec3a0af74"  width="300" height="300">|  |
 |:--: |:--: |:--:  | :--: |
-| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
-| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
-| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
+| *Mnist-success/loss*  |*Mnist-success/top-1-error* |*Mnist-success/top-5-error*|  |
+| <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/90c07dae-b528-4008-aa98-8b70e59e5b9e"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/9637f790-2cd5-4937-8141-e60a95c6451a"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/5c500812-17ae-432c-ae40-6ce9c88c85f7"  width="300" height="300">|  |
+| *cifar10-success/loss*  |*cifar10-success/top-1-error* |*cifar10-success/top-5-error*|  |  
+
+
 ## Trying Again on Cifar100 and find activation distribtion is important.
 이를 토대로 하여 , CIFAR100에 모델을 다시 학습하기 시작하였습니다.  그러더니, CIFAR100에도 모델이 잘 fit하기 시작하였습니다. 이 당시 논문의 저자들이 activation이  saturate한 것을 해결하기 위해서 여러 방안들을 고려하다가 결국엔 model A로 학습을 한 후 이 weight들을 다른 model들을 학습하는데 사용한 것으로 보여집니다. 하지만, 논문의 저자들은 model A 없이 model을 학습하는 방향을 imagenet challange 제출후에도 고민하였고, 결국 weight initialization strategy를 적절히 적용함으로서 해결책을 알아낸거 같습니다. 
 
-vgg-4, cifar 그림
-
-| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+| <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/528995cd-0d56-4478-b65a-5fb1319976bf"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/02658b9d-eea4-4845-8e83-7b92d8425c8c"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/66083bef-636b-4056-b6a7-6a5c443d0c52"  width="300" height="300">|  |
 |:--: |:--: |:--:  | :--: |
-| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
+| *cifar-success/loss*  |*cifar-success/top-1-error* |*cifar-success/top-5-error*|  |
 
 
 ## Trying on ImageNet , model B does not convergence well.
