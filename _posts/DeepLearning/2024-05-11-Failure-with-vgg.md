@@ -77,8 +77,19 @@ viewpoint of generalization.
 
 accuracy가 나아지지 못하는 상황으로 보았을 때 , xavier initialize 로 인해서 weight가 sampling 되는 range가 좁기에 , convolution의 latent filter들이 각각 다른 feature들을 학습하지 못한다고 가정하였습니다.  따라서, random initialize하는 비율을 각각 다르게 증가시켜서 실험을 해보았습니다. 하지만, 어쩌다 한번 약간의 성능향상이 있을뿐, consistent한 결과를 얻지 못했습니다.
 
+더 많은 결과들이 있지만, 4개정도로 제한했습니다.
 
-그림 vgg-2 std1e-1 전까지 
+| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+|:--: |:--: |:--:  | :--: |
+| *caltech/loss*  |*caltech/top-1-error* |*caltech/top-5-error*|  |
+| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+| *cifar/loss*  |*cifar/top-1-error* |*cifar/top-5-error*|  |
+| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+| *caltech(random increase)/loss*  |*caltech(random increase)/top-1-error* |*caltech(random increase)/top-5-error*|  |
+| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
+
+
 
 ## Dataset Change From Cifar 100 to Cifar10, MNIST
 Cifar10은 class당 tranining image개수가 5000개이고, Mnist는 class당 training image 개수가 6000개입니다. 뿐만 아니라, label의 분포가 balance 합니다.  여전히,loss function은   수렴하지만 , accuracy가 나아지지 않는걸 관측하였습니다. 따라서, 풀고자 하는 문제, 즉 dataset의 복잡함이 원인이 아니라고 판단하였습니다. 
@@ -108,10 +119,23 @@ convloution의 fiter의 derivative는 $$dW_c  \mathrel{+}= \sum _{h=0} ^{n_H} \s
 따라서,back propagation을 하면서 , xaiver intialization을 한 filter들이 각기 다른 feature를 배우도록 학습할 수 있다고 생각했습니다. 
 
 vgg-B 성공 ,vgg-C성공 
-## loss function in cliff 
-
+## extreme cliff in loss function and gradient exploding 
+vgg model D를 학습도 B,C처럼 잘 될것이라 예상했지만, 잘 되지 않았습니다. 따라서, random initialize하는 비율을 계속 조절해나가면서 activation이 saturate하지 않은 configuration을 찾으려 여러 시도를 했습니다.  하지만, 가능한 모든 configuration을 시도했는데 , 잘 되지 않았습니다. 
 
 
 vgg-D실패 그림  
+
+여러 resource를 찾아보다가 DeepLearningBook에서 288pg에서 다음과 같은 내용을 발견하였습니다. 
+> On the face of an extremely steep cliff structure, the gradient update step can move the parameters extremely far, usually jumping off of the cliff structure altogether.
+
+
+<img src="https://github.com/woongjoonchoi/woongjoonchoi.github.io/assets/50165842/e10abe34-df75-4481-a57b-af04fac997c6"  width="300" height="300">
+ 
+그리고 DeepLearnigBook pg289에서 위 그림과 함께 다음과 같은 내용이 적혀져 있습니다. 
+> The objective function for highly nonlinear deep neural networks or for recurrent neural networks often contains sharp nonlinearities in parameter space resulting from the multiplication of several parameters. These nonlinearities give rise to very
+high derivatives in some places. When the parameters get close to such a cliff region, a gradient descent update can catapult the parameters very far, possibly losing most of the optimization work that had been done .
+
+
+vgg-B,vgg-C에서 training이 효과적으로 진행될 때에는 , loss function이 본격적으로 감소하기 전에는 oscillation이 없다가 감소하기 시작하면서 oscillation이 발생하는 pattern이 있음을 알아냈습니다.  하지만, vgg-D를 실패할 때에는 loss function이 training 시작부터 oscillation이 심하게 발생함을 발견했습니다.  따라서, neural network 더욱더 깊어지면서 loss function에 extremely cliff structure가 발생했다고 생각했습니다. 이에 대한 heuristic 한 solution중 하나인 , gradient clipping을 적용하였습니다. 이전에도 적용중이였지만,이번에는 clipping 값을 더욱더 낮췄습니다. 그렇게 하였더니 , loss function의 oscillation이 줄어들면서 vgg D model도 training이 효과적으로 진행이 되기 시작했습니다. 
 
 vgg-D 성공 그림 
