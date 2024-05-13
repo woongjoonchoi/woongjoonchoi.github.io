@@ -39,8 +39,16 @@ VGG network를 scratch부터 훈련시키면서 겪었던 이슈들과 그에 �
 
 ## Dataset Chang From CalTech256 to Cifar100
 Caltech256 dataset은 class당 이미지가 100개 정도였고, 분류해야할 class label이 257개 이고, class label의 분포가 imbalance 했습니다. 따라서, label당 이미지 개수가 500개이고, 분류할 class가 100개인 cifar100 dataset에 대하여 model B를 학습하였습니다.   
-하지만, model B에 대해서도 학습이 잘 진행되지 않았습니다. 
-그림 vgg-1 cifar 100 2개
+하지만, model B에 대해서도 학습이 잘 진행되지 않았습니다.  
+
+| <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/39dabb1e-7e1d-4211-9eeb-511d017f66ee"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/1c82260b-1996-4544-a59d-f1c053af524c"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/45dad146-29ed-421c-bb38-7c9bcb897581"  width="300" height="300">|  |
+|:--: |:--: |:--:  | :--: |
+| *trial1/loss*  |*trial1/top-1-error* |*trial1/top-5-error*|  |
+| <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/7d13a9ed-d32b-4a7b-bfd2-a792635375ee"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/8b4d3dda-2070-4ca9-95d2-9dd7cbb5939f"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/2b1baf0b-ed69-4da3-9f84-17fbfc07bfa0"  width="300" height="300">|  |
+| *trial2/loss*  |*trial2/top-1-error* |*trial2/top-5-error*|  |
+
+
+trial2부터는 train accuracy도 확인하기 위해서 train accuarcy를 plot하기 시작하였습니다. 주황색이 validation ,파란색이 train에 대한 metric입니다. 
 
 ## weight initialization method differ by layer
 weight initialization 방법을 모든 layer의 weight에 대해 xavier initialization을 했다고 이해를 했었는데, 아래 문장을 자세히보면 다음과 같은 의미를 지닙니다. 
@@ -51,10 +59,13 @@ pre-training 없이 Xavier initialization을 사용해서 weight를 initialize�
 그리고 , 이 문장이 나오기 전에 아래와 같은 문장이 등장했습니다.  
 > The initialisation of the network weights is important, since bad initialisation can stall learning due to the instability of gradient in deep nets. To circumvent this problem, we began with training the configuration A (Table 1), shallow enough to be trained with random initialisation 
 
-학습의 지연을 해결하기 위해서 pre-training을 사용했다고 적혀있습니다. 따라서, pre-training없이 weight initialization이 가능하다는 말은 학습의 지연과 gradient의 instabilitiy를 방지하는 것을 xavier initialization을 통해서 가능하다는 말과 같습니다. 논문에서 , pre-trained weight로 앞부분과 뒷부분의 fully connected layer부분을 xavier initialization을 하였고, 나머지 layer는 random initialization을 하였다고 했습니다. 따라서, 논문처럼 앞부분과 뒷부분의 fully connected layer부분을 xavier initialization을 해주고, 나머지 layer는 mean이 0 std가 0.02인 normal distribution에서 weight sampling하여 initialize 해주었습니다. std를 0.2로 해주었던 이유는 최근에 봤었던 karphaty의 mingpt코드에서 gpt-2를 scratch부터 훈련할 때 std를 0.2로 두었기에 , 0.2로 두면 모델을 scratch부터 훈련할 때 도움이 되겠구나 싶어서 설정하였습니다. 그리고,bias는 전부 0으로 initialize해주었습니다. 이때, gradient explode problem으로 인해 loss값이 Nan값이 계산이 되었는데, 이는 gradient clip으로 gradient값을 조정해주었습니다. 
+학습의 지연을 해결하기 위해서 pre-training을 사용했다고 적혀있습니다. 따라서, pre-training없이 weight initialization이 가능하다는 말은 학습의 지연과 gradient의 instabilitiy를 방지하는 것을 xavier initialization을 통해서 가능하다는 말과 같습니다. 논문에서 , pre-trained weight로 앞부분과 뒷부분의 fully connected layer부분을 xavier initialization을 하였고, 나머지 layer는 random initialization을 하였다고 했습니다. 따라서, 논문처럼 앞부분과 뒷부분의 fully connected layer부분을 xavier initialization을 해주고, 나머지 layer는 mean이 0 std가 0.02인 normal distribution에서 weight sampling하여 initialize 해주었습니다. std를 0.2로 해주었던 이유는 최근에 봤었던 karphaty의 mingpt코드에서 gpt-2를 scratch부터 훈련할 때 std를 0.2로 두었기에 , 0.2로 두면 모델을 scratch부터 훈련할 때 도움이 되겠구나 싶어서 설정하였습니다. 그리고,bias는 전부 0으로 initialize해주었습니다. 이때, gradient explode problem으로 인해 loss값이 Nan값이 계산이 되었는데, 이는 gradient clip으로 gradient값을 조정해주었습니다. 그럼에도 불구하고 모델의 정확도에는 변함이 없었습니다. 
 
-그림 vgg-2 아래 2개
-
+| <img src="https://github.com/woongjoonchoi/woongjoonchoi.github.io/assets/50165842/93b15631-2a6a-441a-9b16-5f069676fbc8"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/woongjoonchoi.github.io/assets/50165842/0ebaf582-5deb-4434-82cd-01002617c062"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/woongjoonchoi.github.io/assets/50165842/bd9a1aa5-ccad-4fd1-b6bd-77675d65ceb5"  width="300" height="300">|  |
+|:--: |:--: |:--:  | :--: |
+| *caltech/loss*  |*caltech/top-1-error* |*caltech/top-5-error*|  |
+| <img src="https://github.com/woongjoonchoi/woongjoonchoi.github.io/assets/50165842/d6ece40a-57df-4bd3-9ea0-bf47c878dcdb"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/woongjoonchoi.github.io/assets/50165842/fbed2235-4a11-4255-aebb-ac80c3f11629"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/woongjoonchoi.github.io/assets/50165842/b763ead7-0050-4356-a3cd-b51388a399fe"  width="300" height="300">|  |
+| *cifar/loss*  |*cifar/top-1-error* |*cifar/top-5-error*|  |
 
 
 
@@ -76,10 +87,16 @@ Cifar10은 class당 tranining image개수가 5000개이고, Mnist는 class당 tr
 random initialize시 weight의 distribution이 xavier initialization보다 더 커집니다.  뒷부분의 layer의 activation은 이전 layer의 weight와 actviation의 weighted sum입니다. weight의 distribution이 상당히 크기 때문에 뒷부분의 layer는 매번 다른 distribution의 input에 대해서 학습하는 상황을 맞이하게 되어 잘 generalize 하지 못한다고 생각이 들었습니다.   
 Xavier initialization의 논문을 정확히 읽지 않고 , 그저 기계적으로 적용만 하였었는데, Xavier normalization 논문을 읽으면서 이 논문이 activation의 distribution과 gradient의 distribution을 layer별로 차이가 나지 않게 하여 학습에 도움을 주는 initialization strategy라는 것을 알게 되었습니다. 따라서, 다시 xavier initialization하는 layer의 수를 논문에서 언급된대로 수정하였고, std도 0.01로 수정하여 최대한 layer간의 activation gradient distribution이 비슷하도록 수정하였습니다.  
 그렇게 하였더니, 모델 B가 cifar10, MNIST 데이터에 수렴하기 시작했습니다 .
-## Trying Again on Cifar100
 
+새로 만든, vgg-2 mnist,vgg-4cifar10
+## Trying Again on Cifar100 and find activation distribtion is important.
+이를 토대로 하여 , CIFAR100에 모델을 다시 학습하기 시작하였습니다.  그러더니, CIFAR100에도 모델이 잘 fit하기 시작하였습니다. 이 당시 논문의 저자들이 activation이  saturate한 것을 해결하기 위해서 여러 방안들을 고려하다가 결국엔 model A로 학습을 한 후 이 weight들을 다른 model들을 학습하는데 사용한 것으로 보여집니다. 하지만, 논문의 저자들은 model A 없이 model을 학습하는 방향을 imagenet challange 제출후에도 고민하였고, 결국 weight initialization strategy를 적절히 적용함으로서 해결책을 알아낸거 같습니다. 
+
+vgg-4, cifar 그림
 ## Trying on ImageNet , model B does not convergence well.
+이러한 tiny dataset에 대하여 model을 fit한 이후 좀 더 큰 dataset인 imagenet에 대하여도 시도를 하였습니다. 이번에는 ,model A와 model B를 동시에 학습을 진행하였습니다.  하지만, model A에는 학습이 잘 진행되었지만, model B에는 학습이 잘 진행되지 않았습니다. 
 
+vgg-B 실패그림,vgg-A성공그림
 ## increase xavier initializiation layer 
 
 ## loss function in cliff 
