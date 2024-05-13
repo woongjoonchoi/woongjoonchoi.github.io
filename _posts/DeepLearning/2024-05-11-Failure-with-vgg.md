@@ -72,7 +72,9 @@ pre-training 없이 Xavier initialization을 사용해서 weight를 initialize�
 ## number of random intialize layer increase 
 DeepLearning Book pg301에 보면 다음과 같은 문장이 있습니다.  
 > A further difficulty is that some initial points may be beneficial from the viewpoint of optimization but detrimental from the
-viewpoint of generalization.  
+viewpoint of generalization.   
+
+
 accuracy가 나아지지 못하는 상황으로 보았을 때 , xavier initialize 로 인해서 weight가 sampling 되는 range가 좁기에 , convolution의 latent filter들이 각각 다른 feature들을 학습하지 못한다고 가정하였습니다.  따라서, random initialize하는 비율을 각각 다르게 증가시켜서 실험을 해보았습니다. 하지만, 어쩌다 한번 약간의 성능향상이 있을뿐, consistent한 결과를 얻지 못했습니다.
 
 
@@ -98,5 +100,18 @@ vgg-4, cifar 그림
 
 vgg-B 실패그림,vgg-A성공그림
 ## increase xavier initializiation layer 
+vgg model B와 vgg model A의 차이점은 layer depth가 2가 증가했다는 것입니다. hidden layer 2개를 추가적으로 random initialization을 해주는 것이 activation의 saturation에 영향을 끼쳤다고 생각했습니다. xavier initialization은 layer의 parameter수가 늘어날수록 weight를 sample하는 range를 줄여줍니다. parameter수가 늘어날 수록 weighted sum의 term의 개수가 늘어나기에 activation이 더욱더 saturate할 가능성이 높은데 , weight의 range를 줄여서 activation의 variance를 줄여주는 것입니다. vgg model의 경우 layer가 깊어질수록 parameter수가 늘어나는데, 이 부분을 normal distribution에서 random하게 sampling했기에 activation이 saturate하게 되었다고 가설을 세웠습니다.   
+그렇다면, 아까 겪었던 weight의 range가 좁아지면서 convolution의 각 filter들이 각기 다른 feature들을 학습하지 못하는 가능성이 발생할 수 있습니다. 하지만, 이는 convolution과 fully connected layer의 backpropagation expression을 보면 발생하지 않는다는 것을 알 수 있습니다. 
 
+convoloution layer의 actvation derivative는 $$dA \mathrel{+}= \sum _{h=0} ^{n_H} \sum_{w=0} ^{n_W} W_c \times dZ_{hw} $$ 이렇게 도출이 됩니다. random하게 initialize하는 layer의 convolution filter는 input activation , 즉 xavier initialization을 적용한 convolution layer의 output의 derivative에 영향을 줍니다. weight를 normal distribution에서 sampling 했기에 , weight의 range가 상대적으로 크기 때문에 dA의 range가 상대적으로 커지게 됩니다.  
+convloution의 fiter의 derivative는 $$dW_c  \mathrel{+}= \sum _{h=0} ^{n_H} \sum_{w=0} ^ {n_W} a_{slice} \times dZ_{hw}  $$와 같이 도출이 됩니다. xavier intialization을 적용한 filter에 output , 즉 random initialization의 input 의 derivative가 곱해지기에 filter의 derivative range는 상대적으로 커지게 됩니다.  
+따라서,back propagation을 하면서 , xaiver intialization을 한 filter들이 각기 다른 feature를 배우도록 학습할 수 있다고 생각했습니다. 
+
+vgg-B 성공 ,vgg-C성공 
 ## loss function in cliff 
+
+
+
+vgg-D실패 그림  
+
+vgg-D 성공 그림 
