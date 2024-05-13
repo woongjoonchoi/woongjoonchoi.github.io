@@ -137,7 +137,7 @@ vgg-A의 경우 gpu resource를 다른데 사용하기 위해서 18epoch후 학�
 | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/ff104131-b3dd-41b0-993f-c7c5f61f87b7"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/e21b0929-8e4e-430a-a33c-85109321bd87"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/b1f8e9b2-0386-4a3a-9cf2-79b9f0ee560d"  width="300" height="300">|  |
 | *Imagenet-B-fail/loss*  |*Imagenet-B-fail/top-1-error* |*Imagenet-B-fail/top-5-error*|  |  
 | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/bc5f5982-f9cb-4592-a986-cbb558b8c867"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/49e63588-c35e-48ca-b376-d7aea70eb08c"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/50a5da10-5734-4e22-a3e5-ae879c5b3fee"  width="300" height="300">|  |
-| *Imagenet-B-fail2/loss*  |*Imagenet-B-fail3/top-1-error* |*Imagenet-B-fail4/top-5-error*|  |  
+| *Imagenet-B-fail2/loss*  |*Imagenet-B-fail3/loss* |*Imagenet-B-fail4/loss*|  |  
 
 
 ## increase xavier initializiation layer 
