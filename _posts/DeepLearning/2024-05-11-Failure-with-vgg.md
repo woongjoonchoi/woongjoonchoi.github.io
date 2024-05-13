@@ -94,10 +94,14 @@ accuracy가 나아지지 못하는 상황으로 보았을 때 , xavier initializ
 ## Dataset Change From Cifar 100 to Cifar10, MNIST
 Cifar10은 class당 tranining image개수가 5000개이고, Mnist는 class당 training image 개수가 6000개입니다. 뿐만 아니라, label의 분포가 balance 합니다.  여전히,loss function은   수렴하지만 , accuracy가 나아지지 않는걸 관측하였습니다. 따라서, 풀고자 하는 문제, 즉 dataset의 복잡함이 원인이 아니라고 판단하였습니다. 
 
-그림 vgg-2 처음  Mnist,cifar10 
 
-| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
-| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
+| <img src="https://github.com/woongjoonchoi/woongjoonchoi.github.io/assets/50165842/ddf04bb4-a6d2-4a5e-9fa3-3eb28b09e30c"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/woongjoonchoi.github.io/assets/50165842/3d1a0c03-dc23-47f0-af19-71467749f961"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/woongjoonchoi.github.io/assets/50165842/42b3e750-d02b-43f5-9ba7-c71f877d2a16"  width="300" height="300">|  |
+|:--: |:--: |:--:  | :--: |
+| *Mnist-fail/loss*  |*Mnist-fail/top-1-error* |*Mnist-fail/top-5-error*|  |
+| <img src="https://github.com/woongjoonchoi/woongjoonchoi.github.io/assets/50165842/cd07038b-219f-4941-915f-7d9c5017fb2e"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/742d5642-3dd4-4bcd-b588-4899362f20a3"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/f4bdb904-f756-4dd4-ab4f-74506b26baef"  width="300" height="300">|  |
+| *cifar10-fail/loss*  |*cifar10-fail/top-1-error* |*cifar10-fail/top-5-error*|  |  
+
+
 ## Return back to standard deviation 0.01
 
 random initialize시 weight의 distribution이 xavier initialization보다 더 커집니다.  뒷부분의 layer의 activation은 이전 layer의 weight와 actviation의 weighted sum입니다. weight의 distribution이 상당히 크기 때문에 뒷부분의 layer는 매번 다른 distribution의 input에 대해서 학습하는 상황을 맞이하게 되어 잘 generalize 하지 못한다고 생각이 들었습니다.   
@@ -106,6 +110,10 @@ Xavier initialization의 논문을 정확히 읽지 않고 , 그저 기계적으
 
 새로 만든, vgg-2 mnist,vgg-4cifar10
 
+
+| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+|:--: |:--: |:--:  | :--: |
+| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
 | <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
 | *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
 ## Trying Again on Cifar100 and find activation distribtion is important.
@@ -114,12 +122,19 @@ Xavier initialization의 논문을 정확히 읽지 않고 , 그저 기계적으
 vgg-4, cifar 그림
 
 | <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+|:--: |:--: |:--:  | :--: |
 | *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
+
+
 ## Trying on ImageNet , model B does not convergence well.
 이러한 tiny dataset에 대하여 model을 fit한 이후 좀 더 큰 dataset인 imagenet에 대하여도 시도를 하였습니다. 이번에는 ,model A와 model B를 동시에 학습을 진행하였습니다.  하지만, model A에는 학습이 잘 진행되었지만, model B에는 학습이 잘 진행되지 않았습니다. 
 
 vgg-B 실패그림,vgg-A성공그림
 
+
+| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+|:--: |:--: |:--:  | :--: |
+| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
 | <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
 | *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
 ## increase xavier initializiation layer 
@@ -133,6 +148,9 @@ convloution의 fiter의 derivative는 $$dW_c  \mathrel{+}= \sum _{h=0} ^{n_H} \s
 vgg-B 성공 ,vgg-C성공 
 
 | <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+|:--: |:--: |:--:  | :--: |
+| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
+| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
 | *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
 ## extreme cliff in loss function and gradient exploding 
 vgg model D를 학습도 B,C처럼 잘 될것이라 예상했지만, 잘 되지 않았습니다. 따라서, random initialize하는 비율을 계속 조절해나가면서 activation이 saturate하지 않은 configuration을 찾으려 여러 시도를 했습니다.  하지만, 가능한 모든 configuration을 시도했는데 , 잘 되지 않았습니다. 
@@ -140,6 +158,13 @@ vgg model D를 학습도 B,C처럼 잘 될것이라 예상했지만, 잘 되지 
 
 vgg-D실패 그림  
 
+| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+|:--: |:--: |:--:  | :--: |
+| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
+| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
+| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
 | <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
 | *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
 
@@ -157,3 +182,7 @@ high derivatives in some places. When the parameters get close to such a cliff r
 vgg-B,vgg-C에서 training이 효과적으로 진행될 때에는 , loss function이 본격적으로 감소하기 전에는 oscillation이 없다가 감소하기 시작하면서 oscillation이 발생하는 pattern이 있음을 알아냈습니다.  하지만, vgg-D를 실패할 때에는 loss function이 training 시작부터 oscillation이 심하게 발생함을 발견했습니다.  따라서, neural network 더욱더 깊어지면서 loss function에 extremely cliff structure가 발생했다고 생각했습니다. 이에 대한 heuristic 한 solution중 하나인 , gradient clipping을 적용하였습니다. 이전에도 적용중이였지만,이번에는 clipping 값을 더욱더 낮췄습니다. 그렇게 하였더니 , loss function의 oscillation이 줄어들면서 vgg D model도 training이 효과적으로 진행이 되기 시작했습니다. 
 
 vgg-D 성공 그림 
+
+| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+|:--: |:--: |:--:  | :--: |
+| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
