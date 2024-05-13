@@ -134,7 +134,9 @@ vgg-B 실패그림,vgg-A성공그림
 |:--: |:--: |:--:  | :--: |
 | *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
 | <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
-| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
+| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |  
+
+
 ## increase xavier initializiation layer 
 vgg model B와 vgg model A의 차이점은 layer depth가 2가 증가했다는 것입니다. hidden layer 2개를 추가적으로 random initialization을 해주는 것이 activation의 saturation에 영향을 끼쳤다고 생각했습니다. xavier initialization은 layer의 parameter수가 늘어날수록 weight를 sample하는 range를 줄여줍니다. parameter수가 늘어날 수록 weighted sum의 term의 개수가 늘어나기에 activation이 더욱더 saturate할 가능성이 높은데 , weight의 range를 줄여서 activation의 variance를 줄여주는 것입니다. vgg model의 경우 layer가 깊어질수록 parameter수가 늘어나는데, 이 부분을 normal distribution에서 random하게 sampling했기에 activation이 saturate하게 되었다고 가설을 세웠습니다.   
 그렇다면, 아까 겪었던 weight의 range가 좁아지면서 convolution의 각 filter들이 각기 다른 feature들을 학습하지 못하는 가능성이 발생할 수 있습니다. 하지만, 이는 convolution과 fully connected layer의 backpropagation expression을 보면 발생하지 않는다는 것을 알 수 있습니다. 
@@ -149,7 +151,9 @@ vgg-B 성공 ,vgg-C성공
 |:--: |:--: |:--:  | :--: |
 | *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
 | <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
-| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
+| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |  
+
+
 ## extreme cliff in loss function and gradient exploding 
 vgg model D를 학습도 B,C처럼 잘 될것이라 예상했지만, 잘 되지 않았습니다. 따라서, random initialize하는 비율을 계속 조절해나가면서 activation이 saturate하지 않은 configuration을 찾으려 여러 시도를 했습니다.  하지만, 가능한 모든 configuration을 시도했는데 , 잘 되지 않았습니다. 
 
