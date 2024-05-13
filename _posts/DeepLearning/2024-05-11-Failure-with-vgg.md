@@ -127,14 +127,17 @@ Xavier initialization의 논문을 정확히 읽지 않고 , 그저 기계적으
 ## Trying on ImageNet , model B does not convergence well.
 이러한 tiny dataset에 대하여 model을 fit한 이후 좀 더 큰 dataset인 imagenet에 대하여도 시도를 하였습니다. 이번에는 ,model A와 model B를 동시에 학습을 진행하였습니다.  하지만, model A에는 학습이 잘 진행되었지만, model B에는 학습이 잘 진행되지 않았습니다. 
 
-vgg-B 실패그림,vgg-A성공그림
+vgg-B의 경우 여러번 시도를 했고, loss function의 감소가 보이질 않았기에 중간에 학습을 여러번 중단하였습니다.  
+vgg-A의 경우 gpu resource를 다른데 사용하기 위해서 18epoch후 학습을 중단하였습니다. 
 
 
-| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+| <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/5e3ef688-1e07-4d49-8855-27552ea596d6"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/4420a1fd-7212-4256-9727-bd71b82aa44b"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/d40f82a0-4ab4-4073-8748-b4320a3843fe"  width="300" height="300">|  |
 |:--: |:--: |:--:  | :--: |
-| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
-| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
-| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |  
+| *Imagenet-A-success/loss*  |*Imagenet-A-success/top-1-error* |*Imagenet-A-success/top-5-error*|  |
+| <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/ff104131-b3dd-41b0-993f-c7c5f61f87b7"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/e21b0929-8e4e-430a-a33c-85109321bd87"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/b1f8e9b2-0386-4a3a-9cf2-79b9f0ee560d"  width="300" height="300">|  |
+| *Imagenet-B-fail/loss*  |*Imagenet-B-fail/top-1-error* |*Imagenet-B-fail/top-5-error*|  |  
+| <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/bc5f5982-f9cb-4592-a986-cbb558b8c867"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/49e63588-c35e-48ca-b376-d7aea70eb08c"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/50a5da10-5734-4e22-a3e5-ae879c5b3fee"  width="300" height="300">|  |
+| *Imagenet-B-fail2/loss*  |*Imagenet-B-fail3/top-1-error* |*Imagenet-B-fail4/top-5-error*|  |  
 
 
 ## increase xavier initializiation layer 
@@ -145,13 +148,14 @@ convoloution layer의 actvation derivative는 $$dA \mathrel{+}= \sum _{h=0} ^{n_
 convloution의 fiter의 derivative는 $$dW_c  \mathrel{+}= \sum _{h=0} ^{n_H} \sum_{w=0} ^ {n_W} a_{slice} \times dZ_{hw}  $$와 같이 도출이 됩니다. xavier intialization을 적용한 filter에 output , 즉 random initialization의 input 의 derivative가 곱해지기에 filter의 derivative range는 상대적으로 커지게 됩니다.  
 따라서,back propagation을 하면서 , xaiver intialization을 한 filter들이 각기 다른 feature를 배우도록 학습할 수 있다고 생각했습니다. 
 
-vgg-B 성공 ,vgg-C성공 
+vgg-B의 경우 gpu resource를 다른데 사용해야 했기에 15epoch이후 학습을 중단했습니다.  
+vgg-C의 경우 시도 1개에 대한 plot을 올리지만 비슷한 실패를 여러번 겪은후 성공했습니다.(아직 학습은 진행중입니다. 현재 14epoch정도까지 학습했습니다.)
 
-| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
+| <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/9620bd2e-239d-4cf3-8472-0f97fae0e486"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/d795f2f1-57b2-4d0a-8450-2424240f65e2"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/a8b25eef-e0a7-49e1-ae2d-76d33aba17dd"  width="300" height="300">|  |
 |:--: |:--: |:--:  | :--: |
-| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |
-| <img src=""  width="300" height="300">|<img src=""  width="300" height="300"> | <img src=""  width="300" height="300">|  |
-| *cifar(random increase)/loss*  |*cifar(random increase)/top-1-error* |*cifar(random increase)/top-5-error*|  |  
+| *Imagenet-B-suc/loss*  |*Imagenet-B-suc/top-1-error* |*Imagenet-B-suc/top-5-error*|  |
+| <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/71df5885-a69c-4b41-aef2-8aa6e83c3b0a"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/dc7ddb5e-2c93-466c-9e43-e3b1f8c5707e"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/6863cc7b-cb37-4553-b636-8d78300a4a06"  width="300" height="300">|  |
+| *Imagenet-C-suc/loss*  |*Imagenet-C-suc/top-1-error* |*Imagenet-C-suc/top-5-error*|  |  
 
 
 ## extreme cliff in loss function and gradient exploding 
