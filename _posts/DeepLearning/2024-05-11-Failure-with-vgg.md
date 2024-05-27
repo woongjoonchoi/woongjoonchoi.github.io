@@ -195,7 +195,9 @@ wandb에서 wandb.log('all') 을 사용하면 parameter와 gradient의 distribut
 
 | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/3f3b1aab-848b-4761-82c6-d6f75e3eec13"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/a5cc1791-9a41-4c24-a027-e25387ee8412"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/38d45576-5254-486c-aac9-ca560706b9fe"  width="300" height="300">|  |
 |:--: |:--: |:--:  | :--: |
-| *extractor16/vanishing_gradient*  |*extractor18/vanishing_gradient* |*output3/vanishing_gradient*|  |
+| *extractor16/vanishing_gradient*  |*extractor18/vanishing_gradient* |*output3/vanishing_gradient*|  |  
+
+
 DeepLearning의 세부적인 task를 고려하지 않고 abstraction 해서 생각을 하면 $$ \theta := \theta - \alpha \cdot d\theta $$ 의 과정을 반복한다고 볼 수 있습니다. $$ J(\theta + d\theta ) \approx J(\theta ) + d\theta \cdot \alpha $$ 와 같은 근사값을 가지게 되는데, 이는 $$ d\theta$$ 가 커지면 빠르게 loss function이 convergence하면서 학습속도가 빨라진다고 유추할 수 있습니다.  
 따라서, 여러 configuration을 조합해서 아래와 같은 결론을 얻어냈습니다.   
 
