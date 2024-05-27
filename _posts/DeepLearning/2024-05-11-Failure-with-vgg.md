@@ -189,8 +189,35 @@ vgg-D는 현재 9 epoch까지 학습이 진행되었습니다 .
 |:--: |:--: |:--:  | :--: |
 | *Imagenet-D-success/loss*  |*Imagenet-D-success/top-1-error* |*Imagenet-D-success/top-5-error*|  |
 
+## Gradient Vanishing Problem
+
+wandb에서 wandb.log('all') 을 사용하면 parameter와 gradient의 distribution을 plot할 수 있음을 알게되었습니다. 따라서, 모델의 gradient 및 parameter의 distribution을 관측하기 위해서 기존에 성공했던 configuration을 그대로 하여 다시 훈련을 진행하였습니다. 그 결과, 대부분 layer에서 gradient의 min,max의 크기가 1e-7까지 떨어짐을 확인하였습니다. 따라서, 이는 gradient vanisihing problem에 직면하였다고 여겼습니다. 
+
+| <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/3f3b1aab-848b-4761-82c6-d6f75e3eec13"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/a5cc1791-9a41-4c24-a027-e25387ee8412"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/38d45576-5254-486c-aac9-ca560706b9fe"  width="300" height="300">|  |
+|:--: |:--: |:--:  | :--: |
+| *extractor16/vanishing_gradient*  |*extractor18/vanishing_gradient* |*output3/vanishing_gradient*|  |
+DeepLearning의 세부적인 task를 고려하지 않고 abstraction 해서 생각을 하면 $$ \theta := \theta - \alpha \cdot d\theta $$ 의 과정을 반복한다고 볼 수 있습니다. $$ J(\theta + d\theta ) \approx J(\theta ) + d\theta \cdot \alpha $$ 와 같은 근사값을 가지게 되는데, 이는 $$ d\theta$$ 가 커지면 빠르게 loss function이 convergence하면서 학습속도가 빨라진다고 유추할 수 있습니다.  
+따라서, 여러 configuration을 조합해서 아래와 같은 결론을 얻어냈습니다.   
+
+1. 뒤의 layer에 random initialize된 layer가 있다면 이전 layer의 gradient가 weighted sum으로 인해 더 커진다. 
+2. deep layer(channel 수가 512)의 경우 xavier initialize를 하면 gradient가 vanishing되지 않는다.   
+
+
+
+
+| <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/77788f14-3548-4f86-82a1-0c552c8e624b"  width="300" height="300">|<img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/457e6c4d-5994-4622-a979-972e5ff4c6da"  width="300" height="300"> | <img src="https://github.com/woongjoonchoi/DeepLearningPaper-Reproducing/assets/50165842/f70fedf1-c548-4eef-80d7-3f47ffb3c16a"  width="300" height="300">|  |
+|:--: |:--: |:--:  | :--: |
+| *extractor16/propagte_gradient*  |*extractor18/propagte_gradient* |*output3/propagte_gradient*|  |
+  
+
+기존에는 gradient의 min,max 의 크기가 1e-5였는데 , 위에서 얻은 결론 1,2 에 근거하여 configuration을 설정해서 gradient의 min,max의 크기가 2e-1 정도까지 증가시켰습니다.   
+
+이로 인해서 , 10 epoch까지 훈련했을때 , Microsoft Research가 Resnet paper에서 재현한 vgg의 10 epoch top-1-val-error 보다 약 3% 높은 수치에 수렴하였습니다 . 하지만, Microsoft Research의 경우 evaluation performance를 올리기 위해서 10-crop-test를 하였고, 저는 vgg paper에서 시도한 center crop을 시도하였습니다. 10-crop-test의 performance가 더 좋다고 나왔고 , 또한 Microsoft Research는 image data에 대해서 ReLu activation을 사용할 때 효과적인 initialization 방법인 he initialization을 사용하였고 , 저는 xavier initialization을 사용하였습니다. he initialization이 더 좋다고 알려졌기에 Vgg paper의 configuration으로는 최대점을 뽑아냈다고 생각합니다. 
+
+## Conclusion 
+
+Vgg Paper는 최신 논문은 아니지만 1억개가 넘는 parameter를 100gb가 넘는 1000개의 class에 대해 처음부터 훈련시키면서 large scale training을 어떻게 해야하는지에 대한 지식들을 얻을 수 있었습니다. 여기서 얻은 결론들은 , 나중에 billion 단위의 model을 훈련할 때 큰 도움이 될 것이라 여겨집니다. 
 
 ## Further improvement
 
 앞으로 시도해야할 것은 large scale에 대한 train, scale jittering image에 대한 train이 남아 있습니다. 이것들은 gpu resource에 여유분이 생긴다면 , 시도를 해보게 될 거 같습니다.  
-좀 더 개선할 수 있는 점으로는 수렴속도를 더 빠르게 할 수 있는 방법을 찾아봐야 할 거 같습니다. log scale로 봤을때 논문의 성과를 재현할려면 85epoch ~90epoch 정도가 필요한 거 같습니다. 논문에서는 74 epcoh만에 성공했다는데 훈련을 좀 더 길게 해보면서 이에 대한 방법을 고민해야 할 거 같습니다. 
