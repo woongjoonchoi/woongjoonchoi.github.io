@@ -1,3 +1,19 @@
+---
+title : "Encoder-Decoder(RNN,CNN,attention,self-attention)"
+
+
+
+excerpt: "Encoder decoder Types"
+
+categories:
+  - DLArchitecture
+tags:
+  - [Machine Learning,Transformer,attention,deep learning ]
+# classes : wide
+toc: true
+toc_sticky: true
+---
+
 
 수많은 Generative AI 모델이 여러 분야에서 응용되고 있는게 2024년도 AI의 Trend라 볼 수 있습니다. 단순히 , image,text,speech 같은 1가지 type의 input을 넘어서서 여러 type의 input을 받는 multimodal이 점점 대세가 되고 있습니다. 
 하지만, 모든 응용사례를 전부 알기에는 시간이 너무 부족합니다. 이를 abstraction 해서 생각할 수 있다면 나중에 실제로 필요한 사례들의 data type만 고려한다면 쉽게 자신의 연구분야나 업무에 적용할 수 있습니다. generative AI를 가장 상위 개념으로 abstraction 한다면 Encoder-Decoder로 볼 수 있다고 생각합니다. Encoder-Deocder의 여러 유형에 대해 알아보겠습니다.
