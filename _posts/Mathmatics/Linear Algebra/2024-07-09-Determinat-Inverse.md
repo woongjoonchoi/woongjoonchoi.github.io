@@ -14,7 +14,9 @@ toc: true
 toc_sticky: true
 ---
 
-Determinant 와 Inverse Matrix는 formula를 사용하면 numeric하게 계산을 할 수 있다. 계산을 하는 것도 중요하다 . 하지만 , 이를 다른 관점에서 해석하는 것도 Matrix Operation을 이해하는데 큰 도움을 준다. formula를 통해서 value를 구하는 것도 매우 중요하다. 실제 , Matrix Operation을 구현하는데 가장 중요할 것이다. 다양한 관점에서 해석할 수 있으면 상황에 따라 가장 적합한 Tool을 적용할 수 있을 것이다
+Determinant 와 Inverse Matrix는 formula를 사용하면 numeric하게 계산을 할 수 있다. 계산을 하는 것도 중요하다 . 하지만 , 이를 다른 관점에서 해석하는 것도 Matrix Operation을 이해하는데 큰 도움을 준다. formula를 통해서 value를 구하는 것도 매우 중요하다. 실제 , Matrix Operation을 구현하는데 가장 중요할 것이다. 다양한 관점에서 해석할 수 있으면 상황에 따라 가장 적합한 Tool을 적용할 수 있을 것이다. 
+
+
 ## Determinant
 두 vector의 Determinant는 두 vector가 이루는 면적이다. determinant 값은 음수, 0, 양수 가 가능하다. 면적인데 어떻게 음수가 나올 수 있는지 의문을 가질 수 있다. 이는 determinant를 구하는 두 vector의 위치에 따라 달라진다.   
 두 vector를 column으로 하는 matrix를 생각해보자. determinant의 부호는 오른쪽 column vector에서 왼쪽 column vector 방향으로 오른손을 감았을 떄 위로 향하면 +이고 아래로 향하면 -이다. 물리학에서 배운 오른손의 법칙과 비슷하다. 
