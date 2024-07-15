@@ -37,7 +37,7 @@ $$ P(Y | X) \rightarrow P(Y | H) $$
 ## CNN Encoder - CNN Decoder
 CNN encoder , Cnn decoder의 경우 가장 고전적인 예제중 하나는 바로 Image Segmentation 입니다. 
 
-![image](https://1drv.ms/i/c/7e81bbcd99889380/IQP6gaSioG3BR5UlqN_H06RiAf_14_ozYYilfo6b1FBMyPw?width=660)  
+![image](https://github.com/user-attachments/assets/10782b20-ac12-4503-942a-106ab88227cf)  
 
 
 Image Segmentation의 예제의 경우 input image를 fixed size vector로 압축하게 됩니다 . 그리고 압축된 vector를 통해서 원래의 이미지로 복원하게 됩니다. 
@@ -55,7 +55,7 @@ Image Segmentation의 예제의 경우 input image를 fixed size vector로 압�
 
 ## RNN Encoder - RNN decoder
 
-![image](https://1drv.ms/i/c/7e81bbcd99889380/IQPA2bsgbDdETqHTtQaJphBqAYPPWoYAcmoMWeT9nMW7z6o?width=660)  
+![image](https://github.com/user-attachments/assets/58b3ff13-b735-4541-821f-d00cb8a1a700)  
 
 RNN의 경우 Input X를 sequence로 표현한 input $$ ( x_1, x_2, \ldots, x_n ) $$ 으로부터 fixed size vector를 계산하게 됩니다. 이 때 , input 의 order를 고려하기에 casual strucuture 의 형태를 띄게 됩니다 . input으로 fixed size vector H를 계산하고 , 이를 Decoder에 input으로 넣어주게 됩니다. 
 Decoder의 경우 Output을 계속 generation 하기 위해서 Auto-regressive Model이 됩니다. 여기에 추가적으로 , hidden state vector H가 주어지게 됩니다. 
@@ -63,7 +63,8 @@ Decoder의 경우 Output을 계속 generation 하기 위해서 Auto-regressive M
 ## CNN Encoder - RNN decoder
 
 
-![image](https://1drv.ms/i/c/7e81bbcd99889380/IQNMAzcM5SxhRKbYho5Dsq7BASX8fXK3eLhKR3M-CDl-OIE?width=660)  
+![image](https://github.com/user-attachments/assets/cad7feef-a119-4d85-99f1-b0ff47c532a7)  
+
 
 이의 대표적인 예시로는 image captioning model 이 있습니다. RNN Encoder 에서는 sequence를 압축한 fixed size vector를 decoder의 input으로 주었다면 여기에선 CNN으로 압축한 fixed size vector를 Decoder의 Input으로 주게 됩니다. CNN으로 sequence를 압축할 수 있지만, 위의 예시와 차별점으로 두기 위해서 image로 생각해보겠습니다.
 
@@ -73,7 +74,7 @@ image의 input을 받게 된다면 , CNN을 통해서 어떠한 vector가 나오
 
 fixed size encoding은 임의의 input을 항상 똑같은 size로 encoding하게 됨으로서 , information loss가 발생할 수 있다는 단점이 있습니다. 
 
-![image](https://1drv.ms/i/c/7e81bbcd99889380/IQPouxd8mnJhRKZfAmg9kRxmAeYsbBfcx1RQRiP_mlinkG0?width=660)   
+![image](https://github.com/user-attachments/assets/1cf8f147-ad5f-470c-b74f-a799b462a1ee)   
 
 위 그림은 RNN Encoder - RNN decoder로 Machine Translation을 시도했을 때 , sequence가 길어지면 길어질수록 번역 정확도가 떨어짐을 보여주는 그래프입니다. input sentence의 길이가 길고, output sentence의 길이가 점점 길어지면서 input sentence의 information 이 loss가 일어나게 됩니다. 결과적으로 , 말은 되지만 input과 관련이 없는 setence를 점점 generate 하게 됩니다. 
 
@@ -84,7 +85,7 @@ fixed size encoding은 임의의 input을 항상 똑같은 size로 encoding하�
 ## RNN(attention) Encoder - RNN(attention)  decoder
 
 
-![image](https://1drv.ms/i/c/7e81bbcd99889380/IQOBpm_gVD20TLswZ6FjdUlZAaJDwWriQCvsmsdkUV5MjYY?width=391&height=462)    
+![image](https://github.com/user-attachments/assets/bbeb7377-f585-40db-a259-8cb435bcc61b)    
 
 여기에서 attention이라는 mechanism을 사용하게 됩니다. attention mechanism은 input seqeunce에 대해 weighted factor를 계산하게 됩니다. weighted factor를 매번 계산해서 각 decoder의 time step마다 다른 weighted factor를 사용하게 됩니다. 
 그리고 , token size의 vector의 input을 통해 새로운 vector를 계산할 때 attention 을 사용하면 attention layer의 수는 token 개수에 independent하게 됩니다. 이론상으로 1개의 layer만으로 token 개수 만큼 information을 반영할 수 있습니다. 
@@ -106,7 +107,7 @@ $$ s_i = f(s_{i-1}, y_{i-1}, c_i). $$
 ## Transformer Encoder - Transformer decoder
 
 
-![image](https://1drv.ms/i/c/7e81bbcd99889380/IQN-H1qmRP2jQp576200JkuSARZu4wK-SGZkXWSrribkzus?width=401&height=507)  
+![image](https://github.com/user-attachments/assets/9de83ee7-d0ab-4f95-84d6-a9d82f90dc34)  
 
 기존 RNN 의 단점으로는 다음 step의 output을 계산하는데 이전 input의 output을 사용해서 parallelize 하기 어렵다는 단점이 있습니다 . 따라서 , 이러한 attention mechanism은 유지한 채, pallelize의 이점을 살리기 위한 architecture가 self-attention입니다.  이 self-attention을 이용해서 block을 만든 것을 transformer라고 합니다. 
 
@@ -132,7 +133,7 @@ self-attention은 sequence의 수식에서 보면 summation이기에 , sequence�
 
 그리고, 여기까지만 봤을때 이상한 점이 하나 있습니다. 저희 Decoder Model은 $$  P(Y \mid H) = \prod_{t=1}^{n} P(y_t \mid y_{1:t-1}, H) $$ 을 풀어야 하는데 decoder의 hidden state q를 계산할 때에는 이전 q와 independent하게 연산이 되고 있습니다. 
 
-![image](https://1drv.ms/i/c/7e81bbcd99889380/IQObhGBeEC7VQ7_P1seKCP-MAdzDbwjuvjYJ-1JzpZOt5Sg?width=540&height=741)  
+![image](https://github.com/user-attachments/assets/f763679b-8444-4885-802c-25b09791c2e4)  
 
 Transformer architecture를 보면 Decoder에서 전체 decdoer 의 hidden state를 input에서 먼저 multi-head-attention을 연산을 하게 됩니다. 따라서, $$( y1,y2 .. y^{t-1} )$$ 에 대해서  output의 hidden state을 계산해주고 , 그 다음에 source token representation으로 k,v를 계산한 다음에 decoder의 output을 계산합니다. 즉 ,$$  P(Y \mid H) = \prod_{t=1}^{n} P(y_t \mid y_{1:t-1}, H) $$ 의 문제를 풀고 있음을 알 수 있습니다. 
 
@@ -144,7 +145,7 @@ Decoder에서도 기존RNN 에서는 fixed size vector로 압축했지만, trans
 
 ## Vision Transformer Encoder - Transformer Decoder
 
-![image](https://1drv.ms/i/c/7e81bbcd99889380/IQNWMKdJWAWbS6erVotq80W9ARZwkAVaGn05gl7nAAtg1qc?width=660)  
+![image](https://github.com/user-attachments/assets/b930a6c8-20c2-4127-a120-56349c0067dc)  
 
 이 부분은 Encoder 부분만 보고 넘어 가겠습니다. Transformer에 어떻게 Image Input을 어떻게 넣을 수 있을까요? transformer가 input으로 인식할 수 있게 변환해주면 됩니다. token을 word embedding으로 변환하고 word embedding의 sequence를 input으로 받는게 transformer이지만, 사실 $$ d_{model} $$ 의 vector의 sequence를 input으로 받는 것입니다.  따라서, 어떠한 function으로 image를 $$ d_{model} $$ 의 vector로 mapping 해준 다음에 transformer의 input으로 사용하게 됩니다. 
 
