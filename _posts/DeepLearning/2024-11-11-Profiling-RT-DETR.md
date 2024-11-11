@@ -1,3 +1,19 @@
+---
+title : "Profiling using Nvidia Nsight Tools "
+
+
+
+excerpt: "Profiling with Nvidia Nsight tools"
+
+# categories:
+#   - 
+tags:
+  - [deep learning]
+# classes : wide
+toc: true
+toc_sticky: true
+---
+
 
 ## Why Profiling is important?
 Profiling은 소프트웨어의 **성능을 분석**하기 위한 중요한 기법입니다. 프로그램이 실행되는 동안 CPU 사용량, 메모리 소비, GPU 사용률, I/O 성능 등을 측정하여 병목 현상을 파악하는 데 사용됩니다. 특히 **딥러닝** 및 **병렬 컴퓨팅** 환경에서는 모델의 연산 성능을 최대화하기 위해 필수적인 과정이 됩니다.
