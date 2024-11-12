@@ -35,7 +35,7 @@ Profiling은 소프트웨어의 **성능을 분석**하기 위한 중요한 기�
 
 ---
 
-다음으로, 이러한 프로파일링을 수행할 수 있는 **Nvidia Nsight Tools**와 **PyTorch Profiler**를 소개하겠습니다.
+특히, academy나 industry에서 **병렬 컴퓨팅 (Parallel Computing)**  을 최적화하는 기술이 점점 더 요구되고 있습니다. .
 ### The Importance of Parallel Computing and Optimization
 
 병렬 컴퓨팅은 현대 컴퓨터 과학에서 필수적인 요소로 자리 잡고 있습니다. 특히 **딥러닝**과 **데이터 분석** 분야에서는 방대한 양의 데이터와 연산을 처리하기 위해 병렬 컴퓨팅 기술이 필수적입니다. 다수의 GPU를 사용하는 **분산 학습 (Distributed Training)** 이 일반화되면서, 연산 속도를 높이고 처리 시간을 단축시키기 위해 병렬화와 최적화는 더욱 중요해졌습니다.
@@ -70,6 +70,8 @@ Profiling은 소프트웨어의 **성능을 분석**하기 위한 중요한 기�
 - **PyTorch Profiler**는 딥러닝 모델의 연산 성능을 분석하고, 시간 소모가 많은 연산(`hot spots`)을 파악하여 모델의 병목을 제거할 수 있도록 도와줍니다. PyTorch의 기본 프로파일링 기능과 함께 TensorBoard를 통한 시각화도 지원합니다.
 
 ---
+
+**Nvidia Nsight Tools**와 **PyTorch Profiler** 에 대해 알아보았습니다. 각 Profiler를 상황에 맞게 적절히 선택한다면 좋은 insight를 얻을 수 있습니다. 
 
 #### PyTorch Profiler vs. Nvidia Nsight Tools: 차이점
 
@@ -141,7 +143,7 @@ Nvidia Nsight Tools를 사용하는 rule of Thumb은 다음과 같은 순서를 
 - **GPU 간 통신 병목**은 분산 학습에서 성능 저하로 이어질 수 있습니다.
 
 
-Nsight Systems는 단순한 하드웨어 수준 분석을 넘어, **딥러닝 프레임워크에서 정의한 논리적인 모듈 단위로도 분석**할 수 있는 기능을 제공합니다. 예를 들어, PyTorch의 `Module` 또는 TensorFlow의 `Layer` 단위로 성능을 분석할 수 있어, 모델의 각 레이어나 블록에서 발생하는 병목을 쉽게 파악할 수 있습니다. 이를 통해 사용자는 더 세부적인 성능 최적화가 가능합니다.
+Nsight Systems는 단순한 하드웨어 수준 분석을 넘어, **딥러닝 프레임워크에서 정의한 논리적인 모듈 단위로도 분석**할 수 있는 기능을 제공합니다. 예를 들어, PyTorch의 **Module** 또는 TensorFlow의 **Layer** 단위로 성능을 분석할 수 있어, 모델의 각 레이어나 블록에서 발생하는 병목을 쉽게 파악할 수 있습니다. 이를 통해 사용자는 더 세부적인 성능 최적화가 가능합니다.
 
 - **모듈 단위 분석**을 통해, 연산 시간, 메모리 사용량 등을 레이어별로 확인할 수 있어 병목 현상이 발생하는 특정 모듈을 빠르게 식별할 수 있습니다.
 - 이러한 기능은 복잡한 모델의 구조를 이해하고, 레이어별 최적화 전략을 수립하는 데 큰 도움을 줍니다.
@@ -152,7 +154,9 @@ Nsight Systems는 단순한 하드웨어 수준 분석을 넘어, **딥러닝 �
 4. **모듈 단위 분석**: 딥러닝 프레임워크의 레이어나 모듈 단위로 성능을 분석할 수 있어, 모델 구조에서 발생하는 병목 현상을 더 세부적으로 진단할 수 있습니다.
 5. **확장성 있는 분석 기능**: 단일 GPU에서 다중 GPU, 그리고 클러스터 환경까지 다양한 규모에서 성능 분석이 가능합니다.
 
+
 ---
+Nsight System 으로 **시스템 레벨** 에서의 최적화를 시도할 수 있습니다. 그렇다면, Nsight Compute로 **커널 레벨** 에서의 Profiling을 해야하는 이유는 무엇일까요?  
 
 ### Nsight Compute
 
@@ -175,11 +179,12 @@ Nsight Systems는 단순한 하드웨어 수준 분석을 넘어, **딥러닝 �
 
 ---
 
+**Nvidia Nsight Tools** 를 사용하기 위해서는 **Hardware**가 필요하고 다양한 **dependency** 를 설치해야 합니다. 
 
-### Setting Profiling Environment 
+## Setting Profiling Environment 
 
 
-프로파일링 환경을 설정하는 것은 모델 최적화 과정에서 첫 번째 단계로, 성능 문제를 정확히 분석하고 해결하기 위한 필수적인 준비 작업입니다. 특히 대규모 딥러닝 모델을 다룰 때, 하드웨어와 소프트웨어 환경의 설정이 중요합니다. 특히, Transformer architecture를 기반으로하는 모델의 복잡한 작업을 실시간으로 수행하기 위해 고도의 최적화가 필요하며, 이를 위해 성능 프로파일링이 핵심적인 역할을 합니다.
+프로파일링 **환경을 설정**하는 것은 모델 최적화 과정에서 첫 번째 단계로, 성능 문제를 정확히 분석하고 해결하기 위한 필수적인 준비 작업입니다. 특히 대규모 딥러닝 모델을 다룰 때, **하드웨어**와 **소프트웨어 환경**의 설정이 중요합니다. 특히, Transformer architecture를 기반으로하는 모델의 복잡한 작업을 실시간으로 수행하기 위해 고도의 최적화가 필요하며, 이를 위해 성능 프로파일링이 핵심적인 역할을 합니다.
 
 Transformer architecture를 기반의 복잡한 모델을 다룰 때, 모델이 사용하는 하드웨어와 소프트웨어 환경이 성능 분석의 정확성과 효율성에 영향을 미칠 수 있습니다. 다양한 하드웨어 리소스(CPU, GPU, 메모리 등)를 사용할 경우, 각 리소스의 사용을 모니터링하고 병목 현상을 정확히 식별하는 것이 어려울 수 있습니다. 또한, 프로파일링 도구가 제공하는 데이터는 매우 방대하여 이를 해석하고 실제 최적화 방안을 도출하는 과정이 복잡해집니다.
 
@@ -206,6 +211,7 @@ Nvidia Nsight Systems를 위한 environment를 설정하는 [링크](!https://do
 
 이때 , Ubuntu의 오래된 version에 설치하는 것이 좀 더 안정적인거 같습니다. 또한, CUDA Driver를 GPU와 호환이 되는 version을 확인하여 설치하는 것이 중요합니다 .뿐만 아니라 , 설치하고자 하는 Nsight Tool과 Cuda Driver가 호환이 되는지를 잘 체크하여야 합니다. **Driver Installation** 은 default로 최신 version을 설치하게 됩니다. 따라서,특정  version을 잘 찾아서 설치하는 것이 중요합니다.
 
+**환경 설정** 을 완료했으면 분석을 할 **딥러닝 모델**이 필요합니다. 
 
 
 ### Model : RT-DETR
@@ -222,10 +228,11 @@ RT-DETR 모델을 성능 분석의 대상으로 선택함으로써, 실시간 �
 
 이러한 질문을 바탕으로 Nvidia Nsight 도구를 활용해 RT-DETR 모델의 성능을 체계적으로 분석할 수 있으며, 이를 통해 실시간 객체 탐지 작업에서 보다 최적화된 모델을 구현할 수 있을 것입니다.
 
+**환경 설정** 과 **딥러닝 모델** 이 준비가 되었으므로 본격적으로 **Nvidia Nsight Tools**를 활용해서 Profiling을 시작할 수 있습니다. 
 
-## Profiling Using Nsight Systems
+## Profiling Using Nsight Systmes
 
-프로파일링은 모델의 성능 최적화에 필수적인 단계입니다. 특히 Nvidia Nsight Systems는 GPU와 CPU의 연산 처리 흐름을 시각화하여 모델의 연산 병목을 파악하고, 성능 최적화를 위한 주요 지표를 제공합니다. 이를 통해 모델이 실제 운영 환경에서 필요한 성능을 발휘할 수 있도록 최적화하는 데 도움을 줍니다.
+프로파일링은 모델의 성능 최적화에 필수적인 단계입니다. 특히 **Nvidia Nsight Systems**는 GPU와 CPU의 연산 처리 흐름을 시각화하여 모델의 연산 병목을 파악하고, 성능 최적화를 위한 주요 지표를 제공합니다. 이를 통해 모델이 실제 운영 환경에서 필요한 성능을 발휘할 수 있도록 최적화하는 데 도움을 줍니다.
 
 딥러닝 모델을 최적화할 때, CPU와 GPU 간의 연산 타이밍을 조율하거나 메모리 대역폭을 개선하는 것이 중요합니다. 그러나 실시간으로 많은 연산을 처리하는 모델에서는 예상치 못한 병목 현상이 자주 발생합니다. Nsight Systems는 이와 같은 문제점을 깊이 있게 분석하여 최적화에 필요한 구체적인 정보를 제공합니다. 
 
@@ -252,9 +259,9 @@ RT-DETR 모델을 성능 분석의 대상으로 선택함으로써, 실시간 �
 ![image](https://github.com/user-attachments/assets/a3b65423-dc03-4be1-8809-301e1c8c359c)  
 
 
-PyTorch는 딥러닝 연구와 모델 개발에 널리 사용되는 라이브러리로, 성능 최적화를 위해 GPU 프로파일링이 필수적입니다. Nvidia Nsight는 PyTorch 모델을 실행할 때 발생하는 GPU 연산과 자원 사용에 대한 심층적인 분석을 제공하는 도구입니다. 이를 통해 개발자는 모델 성능 병목을 찾아내고 최적화 작업을 진행할 수 있습니다.
+**PyTorch**는 딥러닝 연구와 모델 개발에 널리 사용되는 라이브러리로, 성능 최적화를 위해 GPU 프로파일링이 필수적입니다. Nvidia Nsight는 PyTorch 모델을 실행할 때 발생하는 GPU 연산과 자원 사용에 대한 심층적인 분석을 제공하는 도구입니다. 이를 통해 개발자는 모델 성능 병목을 찾아내고 최적화 작업을 진행할 수 있습니다.
 
-PyTorch 환경에서 모델을 프로파일링하려면, Nsight를 설정하는 과정이 필요합니다. 이 과정에서 발생할 수 있는 문제는, PyTorch와 Nsight 간의 통합이 다소 복잡할 수 있다는 점입니다. 특히, PyTorch 코드에서 Nsight를 효과적으로 사용할 수 있도록 환경을 설정하는 데 시간이 소요될 수 있습니다. 이로 인해 실험적인 설정이 필요하고, PyTorch의 다양한 버전과의 호환성 문제도 고려해야 합니다.
+PyTorch 환경에서 모델을 프로파일링하려면, **Nsight를 설정**하는 과정이 필요합니다. 이 과정에서 발생할 수 있는 문제는, PyTorch와 Nsight 간의 통합이 다소 복잡할 수 있다는 점입니다. 특히, PyTorch 코드에서 Nsight를 효과적으로 사용할 수 있도록 환경을 설정하는 데 시간이 소요될 수 있습니다. 이로 인해 실험적인 설정이 필요하고, PyTorch의 다양한 버전과의 호환성 문제도 고려해야 합니다.
 
 다음은 이 과정에서 고려해야 할 주요 질문들입니다:
 
@@ -299,7 +306,7 @@ Pytorch에서 Nvidia Nsight를 어떻게 설정하는지 알아보겠습니다.
 
     torch.cuda.cudart().cudaProfilerStop()
 ```
-여기서 `torch.cuda.cudart().cudaProfilerStart()` 와 `torch.cuda.cudart().cudaProfilerStop()`는 전체 profiling의 시작과 끝을 정해주는 method입니다. 이 두 method사이의 코드에 대해서만 Nvidia Nsight Tool이 profiling을 할 수 있게 됩니다 . 그 다음은 `torch.cuda.nvtx.range_push` , `torch.cuda.nvtx.range_pop` 입니다.이 method는 논리적인 range를 stack frame의 형태로 설정해줍니다. 따라서, `torch.cuda.nvtx.range_push` 를 호출한 상태에서 추가적으로 `torch.cuda.nvtx.range_push` 를 호출하게 되면 호출된 range를 stack frame에 쌓게 됩니다. 따라서, nested 한 range를 설정이 가능하게 해줍니다.  
+여기서 `torch.cuda.cudart().cudaProfilerStart()` 와 `torch.cuda.cudart().cudaProfilerStop()`는 전체 profiling의 시작과 끝을 정해주는 method입니다. 이 두 method사이의 코드에 대해서만 Nvidia Nsight Tool이 profiling을 할 수 있게 됩니다 . 그 다음은 `torch.cuda.nvtx.range_push` , `torch.cuda.nvtx.range_pop` 입니다.이 method는 **논리적인** range를 **stack frame**의 형태로 설정해줍니다. 따라서, `torch.cuda.nvtx.range_push` 를 호출한 상태에서 추가적으로 `torch.cuda.nvtx.range_push` 를 호출하게 되면 호출된 range를 stack frame에 쌓게 됩니다. 따라서, nested 한 range를 설정이 가능하게 해줍니다.  
 Module단위로 pytorch에 range를 설정할려면 hook을 통해서 설정할 수 있습니다.
 ```python
     for idx, m  in enumerate(module.named_modules()) :
@@ -337,7 +344,7 @@ nsys profile -w true -t cuda,nvtx,osrt,cudnn,cublas -s cpu  --capture-range=cuda
 파일을 Open하게 되면 다음과 같은 report를 얻게 됩니다.
 ![image](https://github.com/user-attachments/assets/16ea3cb5-2ad1-48e9-95ac-7993cd0173b6)  
 
-이 때 , profiling시  iteration 구간을 최대한 짧게 하는 것이 좋습니다. 왜냐하면, 정확한 수치보다는 대략적인 경향성을 파악하는 것이 목적이기 때문입니다. profiling하는 구간이 길수록 overhead가 커지기 때문에 최대한 구간을 짧게 하는 것이 좋습니다. 저는 10번의 iteration 정도만 profiling하였습니다.
+이 때 , profiling시  iteration 구간을 **최대한 짧게** 하는 것이 좋습니다. 왜냐하면, 정확한 수치보다는 **대략적인 경향성**을 파악하는 것이 목적이기 때문입니다. profiling하는 구간이 길수록 overhead가 커지기 때문에 최대한 구간을 짧게 하는 것이 좋습니다. 저는 10번의 iteration 정도만 profiling하였습니다.
 
 위의 report를 보면 `iteration11` 에 대한 분석이 2개가 있음을 확인할 수 있습니다. 하나는 `CUDA HW` 에서의 profiling이고 하나는 `Threads`에서의 profiling입니다. `CUDA HW`의 경우 `Device` 에서 execution을 나타내고 , `Threads`는 `Host`에서 호출후 종료가 되기까지를 나타냅니다. 따라서 ,pytorch에서 `Host`에서 module을 연산을 실행하더라도 이전 module의 결과에 synchronous하기 때문에 `CudaStreamSynchronize`를 호출하는 것을 볼 수 있습니다. 제 개인적으로는 실제 performance에서의 bottleneck을 분석하기 위해서는 `CUDA HW`에서의 profiling 결과를 분석해야 한다고 생각합니다. 실제 `Device` 에서의 performance를 optimization하면 `Host`에서의 performance가 향상되기 때문입니다. 각 range를 더블click 하면 아래의 `Event view`에서 확인할 수 있습니다 .
  이 때 주의할점은 , 한번 range를 click하면 `CUDA HW` 나 `Threads`에서 전환을 하기 위해서는 `Shift + MouseDoubleClick`을 통해야만 상호간의 전환이 가능합니다. 만약에, 잘못 더블click을 하였다면 profiling 하고자하는 perspective를 바꾸는 것이 중요합니다. 
@@ -373,13 +380,15 @@ Profiling을 한 결과는 다음고 같습니다.
 - encoder에서는 각 fpn block의 bottleneck module과 self-attention layer가 bottleneck임을 확인하였습니다. fpn block중 특히 2번째 fpn block이 bottleneck임을 확인하였습니다. 
 - decoder에서는 각 decoder layer의 self-attention과 cross-attention이 bottleneck임을 확인하였습니다. 
 
-이를 통해 중점적으로 분석해야할 kernel들을 명확히 할 수 있게 되었습니다. 
+이를 통해 중점적으로 분석해야할 kernel들을 명확히 할 수 있게 되었습니다.
+
+**시스템 레벨**에서 분석을 통해 , 어떤 모듈이 bottleneck인지를 알 수 있습니다. 따라서, bottleneck인 모듈의 **커널**들을 분석하여 정확한 원인을 알 수 있습니다. 
 ## Profiling Using Nsight Compute
 
 
-딥러닝 모델 최적화 과정에서, GPU 자원의 효율적인 활용은 성능을 극대화하는 데 중요한 요소입니다. Nvidia Nsight Compute는 GPU 연산의 세부적인 메트릭과 병목 현상을 분석할 수 있도록 지원하는 강력한 도구로, 특히 모델의 커널 단위 성능을 심층 분석하여 최적화에 필요한 인사이트를 제공합니다. 이를 통해 GPU 연산 효율성을 극대화하고, 모델의 추론 속도를 개선할 수 있습니다.
+딥러닝 모델 최적화 과정에서, GPU 자원의 효율적인 활용은 성능을 극대화하는 데 중요한 요소입니다. Nvidia Nsight Compute는 GPU 연산의 세부적인 메트릭과 병목 현상을 분석할 수 있도록 지원하는 강력한 도구로, 특히 모델의 **커널 단위** 성능을 심층 분석하여 최적화에 필요한 인사이트를 제공합니다. 이를 통해 GPU 연산 효율성을 극대화하고, 모델의 추론 속도를 개선할 수 있습니다.
 
-하지만 GPU 기반 모델에서는 종종 커널 단위의 연산 성능 저하와 비효율적인 자원 사용이 발생할 수 있습니다. Nsight Compute는 GPU 연산의 각 커널 성능을 심도 있게 분석함으로써, 성능 저하가 발생하는 지점과 그 원인을 구체적으로 파악할 수 있습니다. 이를 통해 모델 최적화 작업의 주요 목표를 설정할 수 있습니다.
+하지만 GPU 기반 모델에서는 종종 **커널 단위**의 연산 성능 저하와 비효율적인 자원 사용이 발생할 수 있습니다. Nsight Compute는 GPU 연산의 각 커널 성능을 심도 있게 분석함으로써, 성능 저하가 발생하는 지점과 그 원인을 구체적으로 파악할 수 있습니다. 이를 통해 모델 최적화 작업의 주요 목표를 설정할 수 있습니다.
 
 이 과정에서 우선적으로 고려할 질문들은 다음과 같습니다:
 
@@ -422,7 +431,7 @@ profiling이 성공적으로 완료되면 `ncu-rep` 이라는 확장자의 file�
 여기서 , 다양한 metric들을 분석할 수 있습니다. 자세한 metric에 대한 정보는 Documentation에서 확인할 수 있습니다.
 
 ### Nsight Compute Profiling Result
-Nsight Compute의 Profiling 을 분석하기 위해서 `MemoryWorkload Analysis` 라는 metric을 분석하였습니다.왜냐하면, FlashAttention 논문에서 Device Memory access를 최소화 해서 성능을 최적화 한것에서 영감을 받았기 때문입니다 . 저는 이 Metric에서 L2 cache와 Device Memory간의 data transfer size를 module단위로 구하였습니다. 왜냐하면, transfer size 와 memory access size는 비례관계이기 때문입니다.
+Nsight Compute의 Profiling 을 분석하기 위해서 `MemoryWorkload Analysis` 라는 metric을 분석하였습니다.왜냐하면, FlashAttention 논문에서 **Device Memory access**를 최소화 해서 성능을 최적화 한것에서 영감을 받았기 때문입니다 . 저는 이 Metric에서 **L2 cache**와 **Device Memory**간의 **data transfer size**를 module단위로 구하였습니다. 왜냐하면, **transfer size** 와 **memory access size**는 비례관계이기 때문입니다.
 > $$transfer \; size  = bus \; width \cdot memory \; access $$ 라는 공식이 만족됩니다. 이론상의 bandwidth는 $$bandwidth  = bus \; width \cdot clock \; rate $$ 입니다. clockrate는 초당 수행가능한 instruction의 수를 의미합니다. 이론상의 bandwidth는 모든 instruction이 load,store 일 것입니다. 따라서, 특정한 size만큼의 memory를 주고 받았다면 이 size를 전달하기 위한 memory access는 bandwidth 공식을 적용하면 됩니다.  
 
 이 때 transfer는 양방향으로 발생하기 때문에 read,write의 size를 전부 더해주어야 합니다. 그리고 , 각 module을 이루는 Kernel이 여러개이기 때문에 일일이 계산기로 구하였습니다. 왜냐하면, Nsight Compute GUI에서 csv같은 table format으로의 export를 지원하지 않기 때문입니다. (추후, csv로의 export option을 찾았습니다만 , 아직 실제로 적용해보지 못하였습니다. 적용하게 된다면 그 부분을 나중에 추가하도록 하겠습니다 .)
@@ -443,9 +452,9 @@ Nsight Compute의 Profiling 을 분석하기 위해서 `MemoryWorkload Analysis`
 
 ## Comprehensive analysis and optimization suggestions
 
-딥러닝 모델의 성능 최적화를 위해서는 다양한 도구를 사용하여 성능을 분석하고, 이를 바탕으로 최적화 방향을 설정해야 합니다. Nsight Compute와 Nsight Systems는 각각 GPU의 세부적인 성능 분석과 시스템 레벨의 프로파일링을 제공하는 도구입니다. 두 도구를 통합하여 사용함으로써, 모델의 성능 병목을 더 정확히 파악하고 효과적인 최적화 방안을 도출할 수 있습니다.
+딥러닝 모델의 성능 최적화를 위해서는 다양한 도구를 사용하여 성능을 분석하고, 이를 바탕으로 최적화 방향을 설정해야 합니다. Nsight Compute와 Nsight Systems는 각각 GPU의 세부적인 성능 분석과 시스템 레벨의 프로파일링을 제공하는 도구입니다. **두 도구를 통합**하여 사용함으로써, 모델의 성능 병목을 더 정확히 파악하고 효과적인 최적화 방안을 도출할 수 있습니다.
 
-Nsight Compute는 GPU의 세부적인 성능을 분석하는 데 집중합니다. 주로 CUDA 커널의 실행 시간, 메모리 액세스, GPU 사용률 등의 지표를 제공합니다. 반면, Nsight Systems는 전체 시스템 관점에서 실행 흐름을 분석하며, CPU와 GPU의 상호작용, 데이터 전송 시간, 메모리 사용 패턴 등을 시각적으로 분석할 수 있게 해줍니다. 이 두 도구는 서로 보완적이며, 각 도구의 장점을 통합하면 더 깊이 있는 성능 분석을 할 수 있습니다.
+Nsight Compute는 GPU의 **세부적인 성능**을 분석하는 데 집중합니다. 주로 CUDA 커널의 실행 시간, 메모리 액세스, GPU 사용률 등의 지표를 제공합니다. 반면, Nsight Systems는 **전체 시스템 관점**에서 실행 흐름을 분석하며, CPU와 GPU의 상호작용, 데이터 전송 시간, 메모리 사용 패턴 등을 시각적으로 분석할 수 있게 해줍니다. 이 두 도구는 서로 보완적이며, 각 도구의 장점을 통합하면 더 깊이 있는 성능 분석을 할 수 있습니다.
 
 두 도구를 통합했을 때 발생할 수 있는 주요 문제점은 각 도구에서 제공하는 정보의 해석이 서로 다를 수 있다는 점입니다. 예를 들어, Nsight Compute에서는 GPU 레벨의 성능 데이터를 제공하는 반면, Nsight Systems는 전체 시스템에서 발생하는 병목 현상에 대한 정보를 제공합니다. 이 두 가지를 결합하여 병목을 정확히 식별하지 않으면, 최적화가 비효율적으로 진행될 수 있습니다.
 
@@ -468,11 +477,11 @@ Nsight Compute는 GPU의 세부적인 성능을 분석하는 데 집중합니다
 
 모델 성능을 최적화하기 위한 핵심은 병목 현상을 정확히 식별하고, 이를 해결하기 위한 전략을 세우는 것입니다. Nsight Systems와 Nsight Compute를 활용한 분석을 통해, 성능 저하의 주요 원인을 찾아내고, 이를 기반으로 최적화 솔루션을 제안할 수 있습니다.
 
-Nsight Systems를 사용하여 모델을 프로파일링한 결과, 가장 큰 latency를 발생시키는 모듈을 식별할 수 있었습니다. 이 모듈은 주로 GPU에서 데이터 전송 및 연산을 처리하는 부분으로, 성능 병목이 집중된 위치를 정확히 확인할 수 있었습니다. 이후, Nsight Compute를 통해 더 세부적으로 분석한 결과, latency와 transfer size가 비례한다는 사실을 발견했습니다. 즉, 전송되는 데이터의 크기가 커질수록, 해당 모듈의 latency가 증가하는 것으로 나타났습니다.
+Nsight Systems를 사용하여 모델을 프로파일링한 결과, **가장 큰 latency**를 발생시키는 모듈을 식별할 수 있었습니다. 이 모듈은 **self-attention**과 **fpn** 부분으로, 성능 병목이 집중된 위치를 정확히 확인할 수 있었습니다. 이후, Nsight Compute를 통해 더 세부적으로 분석한 결과, latency와 transfer size가 비례한다는 사실을 발견했습니다. 즉, 전송되는 데이터의 크기가 커질수록, 해당 모듈의 latency가 증가하는 것으로 나타났습니다.
 
-이러한 분석 결과를 바탕으로, transfer size를 줄이면 모듈의 latency를 감소시킬 수 있다는 결론을 도출할 수 있었습니다. transfer size를 최적화하는 방법에는 여러 가지가 있습니다. 첫째, **FlashAttention**과 같은 기술을 활용하여 커널을 fusion하는 방법이 있습니다. 이 방법은 여러 연산을 하나의 커널로 통합하여, 불필요한 데이터 전송을 줄이고, 메모리 접근 횟수를 최소화하는 방식입니다. 둘째, **SIMD(Single Instruction, Multiple Data)**와 같은 메모리 최적화 기법을 고려할 수 있습니다. SIMD는 하나의 명령어로 여러 데이터를 동시에 처리할 수 있도록 하여, 메모리 작업을 최적화하고, 성능을 향상시킬 수 있습니다.
+이러한 분석 결과를 바탕으로, transfer size를 줄이면 모듈의 latency를 감소시킬 수 있다는 결론을 도출할 수 있었습니다. transfer size를 최적화하는 방법에는 여러 가지가 있습니다. 첫째, **FlashAttention**과 같은 기술을 활용하여 **커널을 fusion**하는 방법이 있습니다. 이 방법은 여러 연산을 하나의 커널로 통합하여, 불필요한 데이터 전송을 줄이고, 메모리 접근 횟수를 최소화하는 방식입니다. 둘째, **SIMD(Single Instruction, Multiple Data)**와 같은 메모리 최적화 기법을 고려할 수 있습니다. SIMD는 하나의 명령어로 여러 데이터를 동시에 처리할 수 있도록 하여, 메모리 작업을 최적화하고, 성능을 향상시킬 수 있습니다.
 
-따라서, transfer size를 줄이는 데 집중한 최적화는 두 가지 방향으로 진행할 수 있습니다. 첫 번째는 FlashAttention과 같은 커널 Fusion 기법을 사용하여 데이터 전송을 최소화하는 것이고, 두 번째는 SIMD와 같은 메모리 최적화 기법을 통해 메모리 작업을 개선하는 것입니다. 이러한 최적화 전략을 통해 모델의 latency를 크게 줄이고, 전반적인 성능을 개선할 수 있을 것입니다.
+따라서, transfer size를 줄이는 데 집중한 최적화는 두 가지 방향으로 진행할 수 있습니다. 첫 번째는 FlashAttention과 같은 **커널 Fusion** 기법을 사용하여 데이터 전송을 최소화하는 것이고, 두 번째는 **SIMD**와 같은 메모리 최적화 기법을 통해 메모리 작업을 개선하는 것입니다. 이러한 최적화 전략을 통해 모델의 latency를 크게 줄이고, 전반적인 성능을 개선할 수 있을 것입니다.
 
 
 
