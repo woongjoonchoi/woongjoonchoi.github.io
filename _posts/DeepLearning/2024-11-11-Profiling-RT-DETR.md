@@ -179,8 +179,6 @@ Nsight System 으로 **시스템 레벨** 에서의 최적화를 시도할 수 �
 
 ---
 
-**Nvidia Nsight Tools** 를 사용하기 위해서는 **Hardware**가 필요하고 다양한 **dependency** 를 설치해야 합니다. 
-
 ## Setting Profiling Environment 
 
 
