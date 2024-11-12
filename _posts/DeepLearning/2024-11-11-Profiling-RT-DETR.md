@@ -97,6 +97,10 @@ Profiling은 소프트웨어의 **성능을 분석**하기 위한 중요한 기�
 
 ## Overview of Nvidia Nsight Tools
 
+![Nvidia_Gpu_Profiler_-_Layered_Architecture](https://github.com/user-attachments/assets/82e96014-7625-4c7c-b4ce-b56bb6f23785)  
+
+
+
 딥러닝과 고성능 컴퓨팅(HPC)에서는 GPU의 성능을 최대한 활용하기 위해 **정확한 성능 분석**이 필요합니다. Nvidia는 이를 위해 **Nsight Tools**라는 강력한 프로파일링 도구를 제공합니다. Nsight Tools는 GPU 하드웨어와 CUDA 애플리케이션의 성능을 상세하게 분석할 수 있어, 병렬 컴퓨팅과 최적화 작업에 필수적인 도구로 자리 잡았습니다.
 
 최근의 딥러닝 모델과 고성능 애플리케이션은 매우 복잡한 연산을 포함하고 있으며, 대규모 데이터셋을 처리하는 과정에서 **병목 현상**이 자주 발생합니다. 이 문제를 해결하지 않으면 연산 시간이 길어지고, 리소스가 비효율적으로 사용되기 때문에 비용이 크게 증가할 수 있습니다.
@@ -243,6 +247,10 @@ RT-DETR 모델을 성능 분석의 대상으로 선택함으로써, 실시간 �
 
 
 ### How to Setting Nvidia Nsight in Pytorch
+
+
+![image](https://github.com/user-attachments/assets/a3b65423-dc03-4be1-8809-301e1c8c359c)  
+
 
 PyTorch는 딥러닝 연구와 모델 개발에 널리 사용되는 라이브러리로, 성능 최적화를 위해 GPU 프로파일링이 필수적입니다. Nvidia Nsight는 PyTorch 모델을 실행할 때 발생하는 GPU 연산과 자원 사용에 대한 심층적인 분석을 제공하는 도구입니다. 이를 통해 개발자는 모델 성능 병목을 찾아내고 최적화 작업을 진행할 수 있습니다.
 
@@ -414,7 +422,10 @@ profiling이 성공적으로 완료되면 `ncu-rep` 이라는 확장자의 file�
 여기서 , 다양한 metric들을 분석할 수 있습니다. 자세한 metric에 대한 정보는 Documentation에서 확인할 수 있습니다.
 
 ### Nsight Compute Profiling Result
-Nsight Compute의 Profiling 을 분석하기 위해서 `MemoryWorkload Analysis` 라는 metric을 분석하였습니다.왜냐하면, FlashAttention 논문에서 Device Memory access를 최소화 해서 성능을 최적화 한것에서 영감을 받았기 때문입니다 . 저는 이 Metric에서 L2 cache와 Device Memory간의 data transfer size를 module단위로 구하였습니다. 각 module을 이루는 Kernel이 여러개이기 때문에 일일이 계산기로 구하였습니다. 왜냐하면, Nsight Compute GUI에서 csv같은 table format으로의 export를 지원하지 않기 때문입니다. (추후, csv로의 export option을 찾았습니다만 , 아직 실제로 적용해보지 못하였습니다. 적용하게 된다면 그 부분을 나중에 추가하도록 하겠습니다 .)
+Nsight Compute의 Profiling 을 분석하기 위해서 `MemoryWorkload Analysis` 라는 metric을 분석하였습니다.왜냐하면, FlashAttention 논문에서 Device Memory access를 최소화 해서 성능을 최적화 한것에서 영감을 받았기 때문입니다 . 저는 이 Metric에서 L2 cache와 Device Memory간의 data transfer size를 module단위로 구하였습니다. 왜냐하면, transfer size 와 memory access size는 비례관계이기 때문입니다.
+> $$transfer \; size  = bus \; width \cdot memory \; access $$ 라는 공식이 만족됩니다. 이론상의 bandwidth는 $$bandwidth  = bus \; width \cdot clock \; rate $$ 입니다. clockrate는 초당 수행가능한 instruction의 수를 의미합니다. 이론상의 bandwidth는 모든 instruction이 load,store 일 것입니다. 따라서, 특정한 size만큼의 memory를 주고 받았다면 이 size를 전달하기 위한 memory access는 bandwidth 공식을 적용하면 됩니다.  
+
+이 때 transfer는 양방향으로 발생하기 때문에 read,write의 size를 전부 더해주어야 합니다. 그리고 , 각 module을 이루는 Kernel이 여러개이기 때문에 일일이 계산기로 구하였습니다. 왜냐하면, Nsight Compute GUI에서 csv같은 table format으로의 export를 지원하지 않기 때문입니다. (추후, csv로의 export option을 찾았습니다만 , 아직 실제로 적용해보지 못하였습니다. 적용하게 된다면 그 부분을 나중에 추가하도록 하겠습니다 .)
 ![image](https://github.com/user-attachments/assets/01b695dc-f622-4b8b-9d52-51495a66cd39)  
 
 `Show As`라는 드롭다운에서 `Transfer size` 옵션을 선택하면 transfer size를 확인할 수 있습니다. 각 module의 transfer size와 duration(latency)를 plot해서 분석하였습니다.
@@ -428,6 +439,8 @@ Nsight Compute의 Profiling 을 분석하기 위해서 `MemoryWorkload Analysis`
 
 
 이를 통해 Module의 latency는 transfer size와 비례한다는 insight를 얻었습니다. 
+
+
 ## Comprehensive analysis and optimization suggestions
 
 딥러닝 모델의 성능 최적화를 위해서는 다양한 도구를 사용하여 성능을 분석하고, 이를 바탕으로 최적화 방향을 설정해야 합니다. Nsight Compute와 Nsight Systems는 각각 GPU의 세부적인 성능 분석과 시스템 레벨의 프로파일링을 제공하는 도구입니다. 두 도구를 통합하여 사용함으로써, 모델의 성능 병목을 더 정확히 파악하고 효과적인 최적화 방안을 도출할 수 있습니다.
@@ -462,4 +475,13 @@ Nsight Systems를 사용하여 모델을 프로파일링한 결과, 가장 큰 l
 따라서, transfer size를 줄이는 데 집중한 최적화는 두 가지 방향으로 진행할 수 있습니다. 첫 번째는 FlashAttention과 같은 커널 Fusion 기법을 사용하여 데이터 전송을 최소화하는 것이고, 두 번째는 SIMD와 같은 메모리 최적화 기법을 통해 메모리 작업을 개선하는 것입니다. 이러한 최적화 전략을 통해 모델의 latency를 크게 줄이고, 전반적인 성능을 개선할 수 있을 것입니다.
 
 
+
+## References
+
+[Nvidia nsight  systems requirements](https://docs.nvidia.com/nsight-systems/InstallationGuide/index.html#cuda-version)  
+[Nvidia Nsight compute requirements](https://docs.nvidia.com/nsight-compute/ReleaseNotes/index.html#updates-in-2024-3-2)  
+[GPU 메모리 대역폭 계산](https://chatgpt.com/share/672206fe-9514-800b-9fe2-812d99e71209)  
+[Nvidia nsight systems references](https://docs.nvidia.com/nsight-systems/index.html#nsight-systems)  
+[Nvidia nsight compute references](https://docs.nvidia.com/nsight-compute/index.html)
+[Cuda Installation Guide for Linux](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/contents.html)  
 
