@@ -3,7 +3,7 @@ title : "Asynchronous in CUDA "
 
 
 
-excerpt: "What is "Async" in CUDA ? "
+excerpt: "What is Async in CUDA ? "
 
 # categories:
 #   - 
@@ -78,5 +78,5 @@ Data Transfer 와 Kernel Execution을 Overlap할 수 있습니다. Cuda Thread�
 ## References
 
 
-[cuda-c-programming-guide/programming-models](https://docs.nvidia.com/cuda/cuda-c-programming-guide/#programming-model)
+[cuda-c-programming-guide/programming-models](https://docs.nvidia.com/cuda/cuda-c-programming-guide/#programming-model)  
 [cuda-c-programming-guide/cuda-runtime](https://docs.nvidia.com/cuda/cuda-c-programming-guide/#programming-model)
