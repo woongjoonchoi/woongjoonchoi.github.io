@@ -12,7 +12,9 @@ tags:
 # classes : wide
 toc: true
 toc_sticky: true
----
+--- 
+
+
 연구실에서 박사님과 미팅을 하던 도중 한가지 의문점이 생겼습니다. 
 > 과연 Nvidia가 말하는 Asynchronous는 Computer Science의 Asynchronous와 같은 개념인가?  
 
